@@ -1,33 +1,50 @@
 aid: splunk
-url: >-
-  https://raw.githubusercontent.com/api-evangelist/splunk/refs/heads/main/apis.yml
+url: https://raw.githubusercontent.com/api-evangelist/splunk/refs/heads/main/apis.yml
 apis:
-  - aid: splunk:splunk
-    name: Splunk
-    tags:
-      - API
-    humanURL: https://www.splunk.com/en_us/blog/learn/api-monitoring.html
-    properties:
-      - url: https://www.splunk.com/en_us/blog/learn/api-monitoring.html
-        type: Documentation
-    description: >-
-      API monitoring checks to see if API-connected resources are available,
-      working properly and responding to calls.
+- aid: splunk:splunk
+  name: Splunk
+  tags:
+  - API
+  humanURL: https://www.splunk.com/en_us/blog/learn/api-monitoring.html
+  properties:
+  - url: https://www.splunk.com/en_us/blog/learn/api-monitoring.html
+    type: Documentation
+  description: API monitoring checks to see if API-connected resources are available, working properly and responding to calls.
 name: Splunk
 tags:
-  - Monitoring
-  - Observability
-  - Platform
+- Analytics
+- Data Analysis
+- Logging
+- Machine Data
+- Monitoring
+- Observability
+- Platform
+- SIEM
+- Security
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://www.splunk.com/content/dam/splunk2/images/icons/favicons/favicon.ico
 access: 3rd-Party
 created: '2025-01-08'
 modified: '2025-01-13'
 position: Consumer
-description: >-
-  API monitoring checks to see if API-connected resources are available, working
-  properly and responding to calls.
+description: Splunk is a platform for searching, monitoring, and analyzing machine-generated big data via a web-style interface.
 maintainers:
-  - FN: Kin Lane
-    email: info@apievangelist.com
+- FN: Kin Lane
+  email: info@apievangelist.com
+- name: Splunk Inc.
+  email: devinfo@splunk.com
+  url: https://www.splunk.com
 specificationVersion: '0.19'
+common:
+- url: https://dev.splunk.com/
+  type: Developer Portal
+- url: https://www.splunk.com/en_us/blog
+  type: Blog
+- url: https://www.splunk.com/en_us/support-and-services.html
+  type: Support
+- url: https://www.splunk.com/en_us/customer-success/splunk-services-status.html
+  type: Status
+- url: https://community.splunk.com/
+  type: Community
+- url: https://github.com/splunk
+  type: GitHub Organization
