@@ -1,0 +1,455 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/splunk/blob/main/json-schema/splunk-search-job-schema.json",
+  "title": "Splunk Search Job",
+  "description": "Schema for a Splunk Enterprise search job resource. A search job represents an asynchronous execution of a Splunk Search Processing Language (SPL) query. Jobs progress through states from QUEUED through DONE or FAILED, producing events and results that can be retrieved via the REST API.",
+  "type": "object",
+  "properties": {
+    "sid": {
+      "type": "string",
+      "description": "The unique search identifier (search ID) assigned to this job. Format is typically <epoch_time>.<sequential_number>.",
+      "examples": [
+        "1704067200.12345",
+        "admin__admin__search__RMD5a1b2c3d4e5f6"
+      ]
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the search job resource, typically the SID"
+    },
+    "id": {
+      "type": "string",
+      "format": "uri",
+      "description": "The full REST API URI for this search job resource",
+      "examples": [
+        "https://localhost:8089/services/search/jobs/1704067200.12345"
+      ]
+    },
+    "updated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp of the last update to this search job"
+    },
+    "published": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp of when this search job was created"
+    },
+    "author": {
+      "type": "string",
+      "description": "The Splunk user who created the search job",
+      "examples": [
+        "admin"
+      ]
+    },
+    "content": {
+      "type": "object",
+      "description": "The detailed properties and status of the search job",
+      "properties": {
+        "sid": {
+          "type": "string",
+          "description": "The search ID (duplicated from top level for convenience)"
+        },
+        "label": {
+          "type": "string",
+          "description": "Optional human-readable label for the search job"
+        },
+        "search": {
+          "type": "string",
+          "description": "The full SPL search string submitted for this job"
+        },
+        "eventSearch": {
+          "type": "string",
+          "description": "The portion of the search string that generates events (before any transforming commands)"
+        },
+        "reportSearch": {
+          "type": "string",
+          "description": "The portion of the search string that performs reporting/transforming operations"
+        },
+        "dispatchState": {
+          "type": "string",
+          "description": "The current execution state of the search job",
+          "enum": [
+            "QUEUED",
+            "PARSING",
+            "RUNNING",
+            "PAUSED",
+            "FINALIZING",
+            "DONE",
+            "FAILED"
+          ]
+        },
+        "doneProgress": {
+          "type": "number",
+          "description": "Progress of the search as a decimal from 0.0 (not started) to 1.0 (complete)",
+          "minimum": 0,
+          "maximum": 1,
+          "examples": [
+            0.0,
+            0.5,
+            1.0
+          ]
+        },
+        "scanCount": {
+          "type": "integer",
+          "description": "Number of events scanned so far during search execution",
+          "minimum": 0
+        },
+        "eventCount": {
+          "type": "integer",
+          "description": "Number of events matched by the search and available for retrieval",
+          "minimum": 0
+        },
+        "eventAvailableCount": {
+          "type": "integer",
+          "description": "Number of events currently stored and available for retrieval",
+          "minimum": 0
+        },
+        "eventFieldCount": {
+          "type": "integer",
+          "description": "Number of distinct fields found across all events",
+          "minimum": 0
+        },
+        "resultCount": {
+          "type": "integer",
+          "description": "Number of results produced by the search (after transforming commands)",
+          "minimum": 0
+        },
+        "resultPreviewCount": {
+          "type": "integer",
+          "description": "Number of preview results available while the search is still running",
+          "minimum": 0
+        },
+        "runDuration": {
+          "type": "number",
+          "description": "Total elapsed time in seconds since the search started running",
+          "minimum": 0,
+          "examples": [
+            0.123,
+            45.678
+          ]
+        },
+        "earliestTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The earliest time boundary of the search time range"
+        },
+        "latestTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The latest time boundary of the search time range"
+        },
+        "cursorTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The current time position of the search cursor as it scans through data"
+        },
+        "searchEarliestTime": {
+          "type": "number",
+          "description": "Earliest time as epoch seconds"
+        },
+        "searchLatestTime": {
+          "type": "number",
+          "description": "Latest time as epoch seconds"
+        },
+        "ttl": {
+          "type": "integer",
+          "description": "Time to live in seconds. The job is automatically deleted after this many seconds of inactivity.",
+          "minimum": 0,
+          "default": 86400,
+          "examples": [
+            600,
+            86400
+          ]
+        },
+        "priority": {
+          "type": "integer",
+          "description": "Execution priority of the search job on a scale of 0 (lowest) to 10 (highest)",
+          "minimum": 0,
+          "maximum": 10,
+          "default": 5
+        },
+        "statusBuckets": {
+          "type": "integer",
+          "description": "Number of status buckets generated for the search timeline visualization",
+          "minimum": 0,
+          "default": 0
+        },
+        "searchProviders": {
+          "type": "array",
+          "description": "List of search providers that participated in executing this search",
+          "items": {
+            "type": "string"
+          }
+        },
+        "isDone": {
+          "type": "boolean",
+          "description": "Whether the search has completed execution"
+        },
+        "isFailed": {
+          "type": "boolean",
+          "description": "Whether the search has failed"
+        },
+        "isPaused": {
+          "type": "boolean",
+          "description": "Whether the search is currently paused"
+        },
+        "isFinalized": {
+          "type": "boolean",
+          "description": "Whether the search has been finalized (stopped early and results frozen)"
+        },
+        "isSaved": {
+          "type": "boolean",
+          "description": "Whether the search job has been saved (persisted beyond its TTL)"
+        },
+        "isZombie": {
+          "type": "boolean",
+          "description": "Whether the search job is a zombie (running but no longer being monitored)"
+        },
+        "isPreviewEnabled": {
+          "type": "boolean",
+          "description": "Whether preview results are enabled for this search"
+        },
+        "isRealTimeSearch": {
+          "type": "boolean",
+          "description": "Whether this is a real-time search"
+        },
+        "isSavedSearch": {
+          "type": "boolean",
+          "description": "Whether this job was dispatched from a saved search"
+        },
+        "isRemoteTimeline": {
+          "type": "boolean",
+          "description": "Whether the timeline data is fetched from remote peers"
+        },
+        "isEventsPreviewEnabled": {
+          "type": "boolean",
+          "description": "Whether events preview is enabled"
+        },
+        "isBatchModeSearch": {
+          "type": "boolean",
+          "description": "Whether the search runs in batch mode"
+        },
+        "request": {
+          "type": "object",
+          "description": "The original search request parameters",
+          "properties": {
+            "search": {
+              "type": "string",
+              "description": "The original search string submitted"
+            },
+            "earliest_time": {
+              "type": "string",
+              "description": "The requested earliest time"
+            },
+            "latest_time": {
+              "type": "string",
+              "description": "The requested latest time"
+            },
+            "exec_mode": {
+              "type": "string",
+              "description": "The requested execution mode",
+              "enum": [
+                "normal",
+                "blocking",
+                "oneshot"
+              ]
+            },
+            "search_mode": {
+              "type": "string",
+              "description": "The requested search mode",
+              "enum": [
+                "normal",
+                "realtime"
+              ]
+            },
+            "max_count": {
+              "type": "integer",
+              "description": "Maximum number of results requested"
+            },
+            "max_time": {
+              "type": "integer",
+              "description": "Maximum execution time in seconds"
+            },
+            "auto_cancel": {
+              "type": "integer",
+              "description": "Auto-cancel after this many seconds of inactivity"
+            },
+            "auto_finalize_ec": {
+              "type": "integer",
+              "description": "Auto-finalize after this many events"
+            },
+            "enable_lookups": {
+              "type": "boolean",
+              "description": "Whether lookups were enabled"
+            },
+            "spawn_process": {
+              "type": "boolean",
+              "description": "Whether the search ran in a separate process"
+            }
+          }
+        },
+        "performance": {
+          "type": "object",
+          "description": "Performance and resource usage metrics for the search execution",
+          "properties": {
+            "dispatch.command.search": {
+              "type": "object",
+              "description": "Performance stats for the search command phase",
+              "properties": {
+                "duration_secs": {
+                  "type": "number",
+                  "description": "Duration in seconds"
+                },
+                "invocations": {
+                  "type": "integer",
+                  "description": "Number of invocations"
+                },
+                "input_count": {
+                  "type": "integer",
+                  "description": "Number of input events"
+                },
+                "output_count": {
+                  "type": "integer",
+                  "description": "Number of output events"
+                }
+              }
+            }
+          },
+          "additionalProperties": {
+            "type": "object"
+          }
+        },
+        "messages": {
+          "type": "array",
+          "description": "Messages generated during search execution",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "description": "Severity level of the message",
+                "enum": [
+                  "DEBUG",
+                  "INFO",
+                  "WARN",
+                  "ERROR",
+                  "FATAL"
+                ]
+              },
+              "text": {
+                "type": "string",
+                "description": "The message text"
+              }
+            },
+            "required": [
+              "type",
+              "text"
+            ]
+          }
+        }
+      },
+      "required": [
+        "sid",
+        "dispatchState",
+        "doneProgress",
+        "isDone",
+        "isFailed"
+      ]
+    },
+    "links": {
+      "type": "object",
+      "description": "Related resource links for the search job",
+      "properties": {
+        "alternate": {
+          "type": "string",
+          "format": "uri",
+          "description": "Alternate representation of this resource"
+        },
+        "search.log": {
+          "type": "string",
+          "format": "uri",
+          "description": "URI to retrieve the search log"
+        },
+        "events": {
+          "type": "string",
+          "format": "uri",
+          "description": "URI to retrieve the untransformed events"
+        },
+        "results": {
+          "type": "string",
+          "format": "uri",
+          "description": "URI to retrieve the search results"
+        },
+        "results_preview": {
+          "type": "string",
+          "format": "uri",
+          "description": "URI to retrieve preview results"
+        },
+        "timeline": {
+          "type": "string",
+          "format": "uri",
+          "description": "URI to retrieve the search timeline"
+        },
+        "summary": {
+          "type": "string",
+          "format": "uri",
+          "description": "URI to retrieve the field summary"
+        },
+        "control": {
+          "type": "string",
+          "format": "uri",
+          "description": "URI to send control actions to the job"
+        }
+      }
+    },
+    "acl": {
+      "type": "object",
+      "description": "Access control information for the search job",
+      "properties": {
+        "owner": {
+          "type": "string",
+          "description": "The owner of the search job"
+        },
+        "app": {
+          "type": "string",
+          "description": "The app context in which the search was created"
+        },
+        "sharing": {
+          "type": "string",
+          "description": "The sharing level of the search job",
+          "enum": [
+            "user",
+            "app",
+            "global",
+            "system"
+          ]
+        },
+        "perms": {
+          "type": "object",
+          "description": "Permission settings",
+          "properties": {
+            "read": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Roles with read access"
+            },
+            "write": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Roles with write access"
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "sid",
+    "content"
+  ]
+}

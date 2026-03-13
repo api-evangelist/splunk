@@ -1,0 +1,245 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/splunk/blob/main/json-schema/splunk-event-schema.json",
+  "title": "Splunk Event",
+  "description": "Schema for a Splunk event, the fundamental unit of data in Splunk. An event represents a single entry of machine data that has been indexed by Splunk, containing the raw event data along with metadata fields used for searching, filtering, and organizing data. Events are ingested through various data inputs including HTTP Event Collector (HEC), file monitors, TCP/UDP inputs, and scripted inputs.",
+  "type": "object",
+  "properties": {
+    "time": {
+      "oneOf": [
+        {
+          "type": "number",
+          "description": "Event timestamp as epoch time in seconds since 1970-01-01 00:00:00 UTC. Fractional seconds are supported for sub-second precision."
+        },
+        {
+          "type": "string",
+          "description": "Event timestamp as an ISO 8601 string or other Splunk-recognized time format."
+        }
+      ],
+      "description": "The timestamp of the event. When submitting via HEC, this is epoch time in seconds. When retrieved from search results, the format depends on the output mode. If omitted during ingestion, Splunk assigns the current system time.",
+      "examples": [
+        1704067200.000,
+        "2024-01-01T00:00:00.000+00:00"
+      ]
+    },
+    "_time": {
+      "type": "string",
+      "description": "The indexed timestamp of the event as stored in Splunk. This is the canonical time field used in search results and is always present on indexed events.",
+      "examples": [
+        "2024-01-01T00:00:00.000+00:00"
+      ]
+    },
+    "_raw": {
+      "type": "string",
+      "description": "The original raw text of the event as it was received by Splunk. This contains the complete, unmodified event data before field extraction.",
+      "examples": [
+        "2024-01-01 00:00:00 INFO  [main] - Application started successfully on port 8080"
+      ]
+    },
+    "event": {
+      "description": "The event payload when submitting via HTTP Event Collector. Can be a string for raw text events or a JSON object for structured events. This field is required when using the /services/collector/event endpoint.",
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "object",
+          "additionalProperties": true
+        }
+      ],
+      "examples": [
+        "User authentication successful",
+        {
+          "message": "User logged in",
+          "user": "admin",
+          "action": "login",
+          "status": "success"
+        }
+      ]
+    },
+    "host": {
+      "type": "string",
+      "description": "The hostname, IP address, or fully qualified domain name of the system that generated the event. This is a default metadata field that Splunk assigns during data ingestion.",
+      "examples": [
+        "webserver01",
+        "10.0.1.100",
+        "app-server.example.com"
+      ]
+    },
+    "source": {
+      "type": "string",
+      "description": "The source of the event data, typically a file path, network port, or data input name. Identifies where the data originated from on the host.",
+      "examples": [
+        "/var/log/syslog",
+        "/var/log/apache2/access.log",
+        "udp:514",
+        "http:my_hec_token"
+      ]
+    },
+    "sourcetype": {
+      "type": "string",
+      "description": "The source type classifies the event data format and determines how Splunk parses and extracts fields. Splunk includes many built-in sourcetypes and custom ones can be defined.",
+      "examples": [
+        "syslog",
+        "access_combined",
+        "_json",
+        "splunkd",
+        "WinEventLog:Security",
+        "aws:cloudtrail"
+      ]
+    },
+    "index": {
+      "type": "string",
+      "description": "The name of the Splunk index where the event is stored. Indexes are the primary data repositories in Splunk.",
+      "default": "main",
+      "examples": [
+        "main",
+        "web_logs",
+        "security",
+        "_internal",
+        "_audit"
+      ]
+    },
+    "_indextime": {
+      "type": "string",
+      "description": "The time at which the event was indexed by Splunk, as opposed to when the event occurred. Stored as epoch time.",
+      "examples": [
+        "1704067210"
+      ]
+    },
+    "_serial": {
+      "type": "integer",
+      "description": "A sequence number assigned to the event within the search results. Used for ordering and pagination.",
+      "minimum": 0
+    },
+    "_cd": {
+      "type": "string",
+      "description": "Internal Splunk field containing the bucket ID and offset for the event. Used for direct event access.",
+      "examples": [
+        "1:234567"
+      ]
+    },
+    "_bkt": {
+      "type": "string",
+      "description": "The bucket ID where the event is stored within the index. Format is <index_name>~<bucket_id>~<guid>.",
+      "examples": [
+        "main~1~A1B2C3D4-E5F6-7890-ABCD-EF1234567890"
+      ]
+    },
+    "_si": {
+      "type": "array",
+      "description": "Server and index information as a two-element array containing the Splunk server name and the index name.",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 2,
+      "maxItems": 2,
+      "examples": [
+        ["splunk-server", "main"]
+      ]
+    },
+    "linecount": {
+      "type": "integer",
+      "description": "The number of lines in the raw event text",
+      "minimum": 1
+    },
+    "splunk_server": {
+      "type": "string",
+      "description": "The name of the Splunk server that indexed this event. Relevant in distributed search environments.",
+      "examples": [
+        "idx01.example.com"
+      ]
+    },
+    "splunk_server_group": {
+      "type": "string",
+      "description": "The server group of the Splunk server that indexed this event. Used in indexer clustering."
+    },
+    "eventtype": {
+      "type": "string",
+      "description": "The event type classification assigned by Splunk based on configured eventtype definitions."
+    },
+    "tag": {
+      "type": "array",
+      "description": "Tags associated with the event based on field values and tag configurations.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "fields": {
+      "type": "object",
+      "description": "Additional metadata fields to associate with the event during HEC ingestion. These are indexed as metadata and can be searched as indexed fields without being part of the raw event data.",
+      "additionalProperties": {
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "number"
+          },
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "examples": [
+        {
+          "environment": "production",
+          "region": "us-west-2",
+          "severity": "info"
+        }
+      ]
+    }
+  },
+  "if": {
+    "required": ["event"]
+  },
+  "then": {
+    "description": "When the event field is present (HEC submission format), the event field is required."
+  },
+  "else": {
+    "description": "When the event field is absent (search result format), _time and _raw are the core fields."
+  },
+  "examples": [
+    {
+      "time": 1704067200.000,
+      "host": "webserver01",
+      "source": "/var/log/apache2/access.log",
+      "sourcetype": "access_combined",
+      "index": "web_logs",
+      "event": "192.168.1.100 - admin [01/Jan/2024:00:00:00 +0000] \"GET /api/v1/status HTTP/1.1\" 200 1234"
+    },
+    {
+      "_time": "2024-01-01T00:00:00.000+00:00",
+      "_raw": "2024-01-01 00:00:00 INFO  [main] - Application started successfully on port 8080",
+      "host": "app-server.example.com",
+      "source": "/var/log/application.log",
+      "sourcetype": "_json",
+      "index": "main",
+      "linecount": 1,
+      "splunk_server": "idx01.example.com"
+    },
+    {
+      "time": 1704067200.000,
+      "host": "sensor-gateway",
+      "source": "iot:telemetry",
+      "sourcetype": "_json",
+      "index": "iot_data",
+      "event": {
+        "device_id": "sensor-001",
+        "temperature": 22.5,
+        "humidity": 45.2,
+        "location": "building-a"
+      },
+      "fields": {
+        "environment": "production",
+        "region": "us-west-2"
+      }
+    }
+  ]
+}

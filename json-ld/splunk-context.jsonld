@@ -1,0 +1,351 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@vocab": "https://schema.org/",
+    "splunk": "https://dev.splunk.com/enterprise/reference#",
+    "splunkrest": "https://docs.splunk.com/Documentation/Splunk/latest/RESTREF/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "hydra": "http://www.w3.org/ns/hydra/core#",
+    "spdx": "http://spdx.org/rdf/terms#",
+    "ssn": "http://www.w3.org/ns/ssn/",
+    "sosa": "http://www.w3.org/ns/sosa/",
+
+    "SearchJob": {
+      "@id": "splunk:SearchJob",
+      "@context": {
+        "sid": {
+          "@id": "splunk:searchId",
+          "@type": "xsd:string"
+        },
+        "search": {
+          "@id": "splunk:searchQuery",
+          "@type": "xsd:string"
+        },
+        "dispatchState": {
+          "@id": "splunk:dispatchState",
+          "@type": "xsd:string"
+        },
+        "doneProgress": {
+          "@id": "splunk:doneProgress",
+          "@type": "xsd:decimal"
+        },
+        "scanCount": {
+          "@id": "splunk:scanCount",
+          "@type": "xsd:integer"
+        },
+        "eventCount": {
+          "@id": "splunk:eventCount",
+          "@type": "xsd:integer"
+        },
+        "resultCount": {
+          "@id": "splunk:resultCount",
+          "@type": "xsd:integer"
+        },
+        "runDuration": {
+          "@id": "splunk:runDuration",
+          "@type": "xsd:decimal"
+        },
+        "earliestTime": {
+          "@id": "splunk:earliestTime",
+          "@type": "xsd:dateTime"
+        },
+        "latestTime": {
+          "@id": "splunk:latestTime",
+          "@type": "xsd:dateTime"
+        },
+        "cursorTime": {
+          "@id": "splunk:cursorTime",
+          "@type": "xsd:dateTime"
+        },
+        "isDone": {
+          "@id": "splunk:isDone",
+          "@type": "xsd:boolean"
+        },
+        "isFailed": {
+          "@id": "splunk:isFailed",
+          "@type": "xsd:boolean"
+        },
+        "isPaused": {
+          "@id": "splunk:isPaused",
+          "@type": "xsd:boolean"
+        },
+        "isFinalized": {
+          "@id": "splunk:isFinalized",
+          "@type": "xsd:boolean"
+        },
+        "isSaved": {
+          "@id": "splunk:isSaved",
+          "@type": "xsd:boolean"
+        },
+        "isRealTimeSearch": {
+          "@id": "splunk:isRealTimeSearch",
+          "@type": "xsd:boolean"
+        },
+        "ttl": {
+          "@id": "splunk:timeToLive",
+          "@type": "xsd:integer"
+        },
+        "priority": {
+          "@id": "splunk:priority",
+          "@type": "xsd:integer"
+        },
+        "author": {
+          "@id": "dcterms:creator",
+          "@type": "xsd:string"
+        },
+        "published": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updated": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Event": {
+      "@id": "splunk:Event",
+      "@context": {
+        "time": {
+          "@id": "splunk:eventTime",
+          "@type": "xsd:decimal"
+        },
+        "_time": {
+          "@id": "splunk:indexedTime",
+          "@type": "xsd:dateTime"
+        },
+        "_raw": {
+          "@id": "splunk:rawEvent",
+          "@type": "xsd:string"
+        },
+        "event": {
+          "@id": "splunk:eventPayload"
+        },
+        "host": {
+          "@id": "splunk:host",
+          "@type": "xsd:string"
+        },
+        "source": {
+          "@id": "splunk:source",
+          "@type": "xsd:string"
+        },
+        "sourcetype": {
+          "@id": "splunk:sourcetype",
+          "@type": "xsd:string"
+        },
+        "index": {
+          "@id": "splunk:index",
+          "@type": "xsd:string"
+        },
+        "_indextime": {
+          "@id": "splunk:indexTime",
+          "@type": "xsd:string"
+        },
+        "linecount": {
+          "@id": "splunk:lineCount",
+          "@type": "xsd:integer"
+        },
+        "splunk_server": {
+          "@id": "splunk:splunkServer",
+          "@type": "xsd:string"
+        },
+        "eventtype": {
+          "@id": "splunk:eventType",
+          "@type": "xsd:string"
+        },
+        "tag": {
+          "@id": "splunk:tag",
+          "@container": "@set"
+        },
+        "fields": {
+          "@id": "splunk:metadataFields"
+        }
+      }
+    },
+
+    "Index": {
+      "@id": "splunk:Index",
+      "@context": {
+        "name": {
+          "@id": "dcterms:title",
+          "@type": "xsd:string"
+        },
+        "datatype": {
+          "@id": "splunk:datatype",
+          "@type": "xsd:string"
+        },
+        "totalEventCount": {
+          "@id": "splunk:totalEventCount",
+          "@type": "xsd:integer"
+        },
+        "currentDBSizeMB": {
+          "@id": "splunk:currentDBSizeMB",
+          "@type": "xsd:integer"
+        },
+        "maxTotalDataSizeMB": {
+          "@id": "splunk:maxTotalDataSizeMB",
+          "@type": "xsd:integer"
+        },
+        "frozenTimePeriodInSecs": {
+          "@id": "splunk:frozenTimePeriodInSecs",
+          "@type": "xsd:integer"
+        },
+        "homePath": {
+          "@id": "splunk:homePath",
+          "@type": "xsd:string"
+        },
+        "coldPath": {
+          "@id": "splunk:coldPath",
+          "@type": "xsd:string"
+        },
+        "thawedPath": {
+          "@id": "splunk:thawedPath",
+          "@type": "xsd:string"
+        },
+        "disabled": {
+          "@id": "splunk:disabled",
+          "@type": "xsd:boolean"
+        },
+        "isInternal": {
+          "@id": "splunk:isInternal",
+          "@type": "xsd:boolean"
+        },
+        "minTime": {
+          "@id": "splunk:minTime",
+          "@type": "xsd:dateTime"
+        },
+        "maxTime": {
+          "@id": "splunk:maxTime",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "DataInput": {
+      "@id": "splunk:DataInput",
+      "@context": {
+        "inputType": {
+          "@id": "splunk:inputType",
+          "@type": "xsd:string"
+        },
+        "disabled": {
+          "@id": "splunk:disabled",
+          "@type": "xsd:boolean"
+        },
+        "index": {
+          "@id": "splunk:index",
+          "@type": "xsd:string"
+        },
+        "sourcetype": {
+          "@id": "splunk:sourcetype",
+          "@type": "xsd:string"
+        },
+        "host": {
+          "@id": "splunk:host",
+          "@type": "xsd:string"
+        }
+      }
+    },
+
+    "MonitorInput": {
+      "@id": "splunk:MonitorInput",
+      "@context": {
+        "path": {
+          "@id": "splunk:monitorPath",
+          "@type": "xsd:string"
+        },
+        "recursive": {
+          "@id": "splunk:recursive",
+          "@type": "xsd:boolean"
+        },
+        "followTail": {
+          "@id": "splunk:followTail",
+          "@type": "xsd:boolean"
+        },
+        "whitelist": {
+          "@id": "splunk:whitelist",
+          "@type": "xsd:string"
+        },
+        "blacklist": {
+          "@id": "splunk:blacklist",
+          "@type": "xsd:string"
+        }
+      }
+    },
+
+    "HecToken": {
+      "@id": "splunk:HecToken",
+      "@context": {
+        "token": {
+          "@id": "splunk:tokenValue",
+          "@type": "xsd:string"
+        },
+        "name": {
+          "@id": "dcterms:title",
+          "@type": "xsd:string"
+        },
+        "useACK": {
+          "@id": "splunk:useACK",
+          "@type": "xsd:boolean"
+        },
+        "indexes": {
+          "@id": "splunk:allowedIndexes",
+          "@container": "@set"
+        }
+      }
+    },
+
+    "SearchResults": {
+      "@id": "splunk:SearchResults",
+      "@context": {
+        "init_offset": {
+          "@id": "splunk:initOffset",
+          "@type": "xsd:integer"
+        },
+        "results": {
+          "@id": "splunk:resultEntries",
+          "@container": "@list"
+        },
+        "preview": {
+          "@id": "splunk:isPreview",
+          "@type": "xsd:boolean"
+        }
+      }
+    },
+
+    "owner": {
+      "@id": "dcterms:creator",
+      "@type": "xsd:string"
+    },
+    "app": {
+      "@id": "splunk:appContext",
+      "@type": "xsd:string"
+    },
+    "sharing": {
+      "@id": "splunk:sharingLevel",
+      "@type": "xsd:string"
+    },
+    "description": {
+      "@id": "dcterms:description",
+      "@type": "xsd:string"
+    },
+    "name": {
+      "@id": "dcterms:title",
+      "@type": "xsd:string"
+    },
+    "id": {
+      "@id": "@id",
+      "@type": "@id"
+    },
+    "created": {
+      "@id": "dcterms:created",
+      "@type": "xsd:dateTime"
+    },
+    "modified": {
+      "@id": "dcterms:modified",
+      "@type": "xsd:dateTime"
+    }
+  }
+}
