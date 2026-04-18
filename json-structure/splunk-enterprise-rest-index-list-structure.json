@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "IndexList",
+  "type": "object",
+  "properties": {
+    "origin": {
+      "type": "string"
+    },
+    "updated": {
+      "type": "string"
+    },
+    "entry": {
+      "type": "array"
+    }
+  }
+}

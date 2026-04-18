@@ -17,83 +17,86 @@ info:
     name: Splunk Terms of Service
     url: https://www.splunk.com/en_us/legal/splunk-general-terms.html
   x-apisguru-categories:
-    - analytics
-    - monitoring
-    - security
+  - analytics
+  - monitoring
+  - security
   x-logo:
     url: https://www.splunk.com/content/dam/splunk2/images/icons/favicons/favicon.ico
 externalDocs:
   description: Splunk Enterprise REST API Reference
   url: https://docs.splunk.com/Documentation/Splunk/latest/RESTREF/RESTprolog
 servers:
-  - url: https://{host}:{port}
-    description: Splunk Enterprise management endpoint
-    variables:
-      host:
-        default: localhost
-        description: Hostname or IP address of the Splunk Enterprise instance
-      port:
-        default: "8089"
-        description: splunkd management port
+- url: https://{host}:{port}
+  description: Splunk Enterprise management endpoint
+  variables:
+    host:
+      default: localhost
+      description: Hostname or IP address of the Splunk Enterprise instance
+    port:
+      default: "8089"
+      description: splunkd management port
 security:
-  - BearerAuth: []
-  - BasicAuth: []
+- BearerAuth: []
+- BasicAuth: []
 tags:
-  - name: Search
-    description: >-
-      Endpoints for creating, managing, and retrieving search jobs and
-      their results. Splunk search processing language (SPL) queries are
-      submitted as search jobs that run asynchronously.
-    externalDocs:
-      url: https://docs.splunk.com/Documentation/Splunk/latest/RESTREF/RESTsearch
-  - name: Index
-    description: >-
-      Endpoints for managing Splunk indexes, which store and organize
-      ingested data. Indexes can be created, modified, listed, and
-      configured for retention and storage policies.
-    externalDocs:
-      url: https://docs.splunk.com/Documentation/Splunk/latest/RESTREF/RESTindex
-  - name: Data Inputs
-    description: >-
-      Endpoints for configuring and managing data inputs including
-      monitors, TCP/UDP inputs, scripted inputs, and HTTP Event
-      Collector (HEC) tokens. Data inputs define how Splunk ingests data.
-    externalDocs:
-      url: https://docs.splunk.com/Documentation/Splunk/latest/RESTREF/RESTinput
+- name: Search
+  description: >-
+    Endpoints for creating, managing, and retrieving search jobs and
+    their results. Splunk search processing language (SPL) queries are
+    submitted as search jobs that run asynchronously.
+  externalDocs:
+    url: https://docs.splunk.com/Documentation/Splunk/latest/RESTREF/RESTsearch
+- name: Index
+  description: >-
+    Endpoints for managing Splunk indexes, which store and organize
+    ingested data. Indexes can be created, modified, listed, and
+    configured for retention and storage policies.
+  externalDocs:
+    url: https://docs.splunk.com/Documentation/Splunk/latest/RESTREF/RESTindex
+- name: Data Inputs
+  description: >-
+    Endpoints for configuring and managing data inputs including
+    monitors, TCP/UDP inputs, scripted inputs, and HTTP Event
+    Collector (HEC) tokens. Data inputs define how Splunk ingests data.
+  externalDocs:
+    url: https://docs.splunk.com/Documentation/Splunk/latest/RESTREF/RESTinput
 paths:
   /services/search/jobs:
     get:
       operationId: listSearchJobs
-      summary: List search jobs
+      summary: List Search Jobs
       description: >-
         Returns a list of current search jobs for the authenticated user.
         Includes job status, progress, and metadata for each job.
       tags:
-        - Search
+      - Search
       parameters:
-        - $ref: "#/components/parameters/OutputMode"
-        - $ref: "#/components/parameters/Count"
-        - $ref: "#/components/parameters/Offset"
-        - name: search
-          in: query
-          description: Filter search jobs by search string
-          schema:
-            type: string
-        - name: sort_key
-          in: query
-          description: Field to sort by
-          schema:
-            type: string
-            default: dispatch_time
-        - name: sort_dir
-          in: query
-          description: Sort direction
-          schema:
-            type: string
-            enum:
-              - asc
-              - desc
-            default: desc
+      - $ref: "#/components/parameters/OutputMode"
+      - $ref: "#/components/parameters/Count"
+      - $ref: "#/components/parameters/Offset"
+      - name: search
+        in: query
+        description: Filter search jobs by search string
+        schema:
+          type: string
+        example: example_value
+      - name: sort_key
+        in: query
+        description: Field to sort by
+        schema:
+          type: string
+          default: dispatch_time
+        example: example_value
+      - name: sort_dir
+        in: query
+        description: Sort direction
+        schema:
+          type: string
+          enum:
+          - asc
+          - desc
+          default: desc
+        example: asc
       responses:
         "200":
           description: List of search jobs returned successfully
@@ -101,27 +104,71 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/SearchJobList"
+              examples:
+                Listsearchjobs200Example:
+                  summary: Default listSearchJobs 200 response
+                  x-microcks-default: true
+                  value:
+                    origin: example_value
+                    updated: '2026-01-15T10:30:00Z'
+                    generator:
+                      build: example_value
+                      version: example_value
+                    entry:
+                    - sid: '500123'
+                      content: {}
+                    paging:
+                      total: 10
+                      perPage: 10
+                      offset: 10
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
           $ref: "#/components/responses/Forbidden"
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
       operationId: createSearchJob
-      summary: Create a search job
+      summary: Create a Search Job
       description: >-
         Creates a new search job. The search job runs asynchronously. Use
         the returned search ID (sid) to check job status and retrieve
         results. Searches use the Splunk Search Processing Language (SPL).
       tags:
-        - Search
+      - Search
       parameters:
-        - $ref: "#/components/parameters/OutputMode"
+      - $ref: "#/components/parameters/OutputMode"
       requestBody:
         required: true
         content:
           application/x-www-form-urlencoded:
             schema:
               $ref: "#/components/schemas/SearchJobCreateRequest"
+            examples:
+              CreatesearchjobRequestExample:
+                summary: Default createSearchJob request
+                x-microcks-default: true
+                value:
+                  search: example_value
+                  earliest_time: example_value
+                  latest_time: example_value
+                  search_mode: normal
+                  exec_mode: normal
+                  max_count: 10
+                  max_time: 10
+                  timeout: 10
+                  rf: example_value
+                  namespace: example_value
+                  id: abc123
+                  status_buckets: 10
+                  auto_cancel: 10
+                  auto_finalize_ec: 10
+                  auto_pause: 10
+                  enable_lookups: true
+                  reload_macros: true
+                  reduce_freq: 10
+                  spawn_process: true
       responses:
         "201":
           description: Search job created successfully
@@ -134,25 +181,34 @@ paths:
                     type: string
                     description: The search ID assigned to the new search job
                     examples:
-                      - "1234567890.12345"
+                    - "1234567890.12345"
+              examples:
+                Createsearchjob201Example:
+                  summary: Default createSearchJob 201 response
+                  x-microcks-default: true
+                  value:
+                    sid: '500123'
         "400":
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
           $ref: "#/components/responses/Forbidden"
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /services/search/jobs/{search_id}:
     get:
       operationId: getSearchJob
-      summary: Get search job details
+      summary: Get Search Job Details
       description: >-
         Returns detailed information about a specific search job including
         its status, progress, performance metrics, and configuration.
       tags:
-        - Search
+      - Search
       parameters:
-        - $ref: "#/components/parameters/SearchId"
-        - $ref: "#/components/parameters/OutputMode"
+      - $ref: "#/components/parameters/SearchId"
+      - $ref: "#/components/parameters/OutputMode"
       responses:
         "200":
           description: Search job details returned successfully
@@ -160,19 +216,58 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/SearchJob"
+              examples:
+                Getsearchjob200Example:
+                  summary: Default getSearchJob 200 response
+                  x-microcks-default: true
+                  value:
+                    sid: '500123'
+                    content:
+                      sid: '500123'
+                      dispatchState: QUEUED
+                      doneProgress: 42.5
+                      scanCount: 10
+                      eventCount: 10
+                      resultCount: 10
+                      runDuration: 42.5
+                      earliestTime: '2026-01-15T10:30:00Z'
+                      latestTime: '2026-01-15T10:30:00Z'
+                      cursorTime: '2026-01-15T10:30:00Z'
+                      eventSearch: example_value
+                      reportSearch: example_value
+                      isSaved: true
+                      isFinalized: true
+                      isPaused: true
+                      isZombie: true
+                      isDone: true
+                      isFailed: true
+                      isPreviewEnabled: true
+                      isRealTimeSearch: true
+                      isSavedSearch: true
+                      isRemoteTimeline: true
+                      priority: 10
+                      ttl: 10
+                      request: example_value
+                      performance: example_value
+                      messages:
+                      - type: DEBUG
+                        text: example_value
         "404":
           $ref: "#/components/responses/NotFound"
         "401":
           $ref: "#/components/responses/Unauthorized"
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
       operationId: deleteSearchJob
-      summary: Delete a search job
+      summary: Delete a Search Job
       description: >-
         Cancels and deletes the specified search job and its results.
       tags:
-        - Search
+      - Search
       parameters:
-        - $ref: "#/components/parameters/SearchId"
+      - $ref: "#/components/parameters/SearchId"
       responses:
         "200":
           description: Search job deleted successfully
@@ -180,18 +275,21 @@ paths:
           $ref: "#/components/responses/NotFound"
         "401":
           $ref: "#/components/responses/Unauthorized"
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /services/search/jobs/{search_id}/control:
     post:
       operationId: controlSearchJob
-      summary: Control a search job
+      summary: Control a Search Job
       description: >-
         Execute a control action on a search job such as pause, unpause,
         finalize, cancel, or touch (extend the job lifetime).
       tags:
-        - Search
+      - Search
       parameters:
-        - $ref: "#/components/parameters/SearchId"
-        - $ref: "#/components/parameters/OutputMode"
+      - $ref: "#/components/parameters/SearchId"
+      - $ref: "#/components/parameters/OutputMode"
       requestBody:
         required: true
         content:
@@ -199,21 +297,21 @@ paths:
             schema:
               type: object
               required:
-                - action
+              - action
               properties:
                 action:
                   type: string
                   description: The control action to execute
                   enum:
-                    - pause
-                    - unpause
-                    - finalize
-                    - cancel
-                    - touch
-                    - setttl
-                    - setpriority
-                    - enablepreview
-                    - disablepreview
+                  - pause
+                  - unpause
+                  - finalize
+                  - cancel
+                  - touch
+                  - setttl
+                  - setpriority
+                  - enablepreview
+                  - disablepreview
                 ttl:
                   type: integer
                   description: Time to live in seconds (used with setttl action)
@@ -222,6 +320,14 @@ paths:
                   description: Priority value 0-10 (used with setpriority action)
                   minimum: 0
                   maximum: 10
+            examples:
+              ControlsearchjobRequestExample:
+                summary: Default controlSearchJob request
+                x-microcks-default: true
+                value:
+                  action: pause
+                  ttl: 10
+                  priority: 10
       responses:
         "200":
           description: Control action executed successfully
@@ -229,31 +335,36 @@ paths:
           $ref: "#/components/responses/NotFound"
         "401":
           $ref: "#/components/responses/Unauthorized"
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /services/search/jobs/{search_id}/results:
     get:
       operationId: getSearchResults
-      summary: Get search results
+      summary: Get Search Results
       description: >-
         Returns the results of a completed search job. Results are
         available only after the search job has finished. Use the
         count and offset parameters for pagination.
       tags:
-        - Search
+      - Search
       parameters:
-        - $ref: "#/components/parameters/SearchId"
-        - $ref: "#/components/parameters/OutputMode"
-        - $ref: "#/components/parameters/Count"
-        - $ref: "#/components/parameters/Offset"
-        - name: search
-          in: query
-          description: Post-processing search string to filter results
-          schema:
-            type: string
-        - name: field_list
-          in: query
-          description: Comma-separated list of fields to return
-          schema:
-            type: string
+      - $ref: "#/components/parameters/SearchId"
+      - $ref: "#/components/parameters/OutputMode"
+      - $ref: "#/components/parameters/Count"
+      - $ref: "#/components/parameters/Offset"
+      - name: search
+        in: query
+        description: Post-processing search string to filter results
+        schema:
+          type: string
+        example: example_value
+      - name: field_list
+        in: query
+        description: Comma-separated list of fields to return
+        schema:
+          type: string
+        example: example_value
       responses:
         "200":
           description: Search results returned successfully
@@ -261,62 +372,87 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/SearchResults"
+              examples:
+                Getsearchresults200Example:
+                  summary: Default getSearchResults 200 response
+                  x-microcks-default: true
+                  value:
+                    init_offset: 10
+                    results:
+                    - {}
+                    fields:
+                    - name: Example Title
+                      type: example_value
+                    messages:
+                    - type: example_value
+                      text: example_value
+                    preview: true
+                    highlighted: example_value
         "204":
           description: Search job has not yet finished; no results available
         "404":
           $ref: "#/components/responses/NotFound"
         "401":
           $ref: "#/components/responses/Unauthorized"
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /services/search/jobs/{search_id}/events:
     get:
       operationId: getSearchEvents
-      summary: Get search events
+      summary: Get Search Events
       description: >-
         Returns the untransformed events of a search job. Unlike results,
         events return the raw data before any transforming commands are
         applied. Available for searches that include non-transforming
         commands.
       tags:
-        - Search
+      - Search
       parameters:
-        - $ref: "#/components/parameters/SearchId"
-        - $ref: "#/components/parameters/OutputMode"
-        - $ref: "#/components/parameters/Count"
-        - $ref: "#/components/parameters/Offset"
-        - name: earliest_time
-          in: query
-          description: Earliest time boundary for events
-          schema:
-            type: string
-        - name: latest_time
-          in: query
-          description: Latest time boundary for events
-          schema:
-            type: string
-        - name: search
-          in: query
-          description: Post-processing search to filter events
-          schema:
-            type: string
-        - name: field_list
-          in: query
-          description: Comma-separated list of fields to return
-          schema:
-            type: string
-        - name: truncation_mode
-          in: query
-          description: How to truncate long lines
-          schema:
-            type: string
-            enum:
-              - abstract
-              - truncate
-        - name: max_lines
-          in: query
-          description: Maximum number of lines per event
-          schema:
-            type: integer
-            default: 0
+      - $ref: "#/components/parameters/SearchId"
+      - $ref: "#/components/parameters/OutputMode"
+      - $ref: "#/components/parameters/Count"
+      - $ref: "#/components/parameters/Offset"
+      - name: earliest_time
+        in: query
+        description: Earliest time boundary for events
+        schema:
+          type: string
+        example: example_value
+      - name: latest_time
+        in: query
+        description: Latest time boundary for events
+        schema:
+          type: string
+        example: example_value
+      - name: search
+        in: query
+        description: Post-processing search to filter events
+        schema:
+          type: string
+        example: example_value
+      - name: field_list
+        in: query
+        description: Comma-separated list of fields to return
+        schema:
+          type: string
+        example: example_value
+      - name: truncation_mode
+        in: query
+        description: How to truncate long lines
+        schema:
+          type: string
+          enum:
+          - abstract
+          - truncate
+        example: abstract
+      - name: max_lines
+        in: query
+        description: Maximum number of lines per event
+        schema:
+          type: integer
+          default: 0
+        example: 10
       responses:
         "200":
           description: Search events returned successfully
@@ -324,16 +460,35 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/SearchResults"
+              examples:
+                Getsearchevents200Example:
+                  summary: Default getSearchEvents 200 response
+                  x-microcks-default: true
+                  value:
+                    init_offset: 10
+                    results:
+                    - {}
+                    fields:
+                    - name: Example Title
+                      type: example_value
+                    messages:
+                    - type: example_value
+                      text: example_value
+                    preview: true
+                    highlighted: example_value
         "204":
           description: No events available yet
         "404":
           $ref: "#/components/responses/NotFound"
         "401":
           $ref: "#/components/responses/Unauthorized"
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /services/search/jobs/export:
     get:
       operationId: exportSearchResults
-      summary: Export search results
+      summary: Export Search Results
       description: >-
         Runs a search and streams results back as they become available,
         rather than waiting for the search to complete. This is a
@@ -341,36 +496,41 @@ paths:
         searches. The search runs synchronously and results stream back
         in the response.
       tags:
-        - Search
+      - Search
       parameters:
-        - name: search
-          in: query
-          required: true
-          description: The SPL search query to execute
-          schema:
-            type: string
-        - $ref: "#/components/parameters/OutputMode"
-        - name: earliest_time
-          in: query
-          description: Earliest time for the search
-          schema:
-            type: string
-        - name: latest_time
-          in: query
-          description: Latest time for the search
-          schema:
-            type: string
-        - name: auto_cancel
-          in: query
-          description: Seconds of inactivity after which the search is cancelled
-          schema:
-            type: integer
-        - name: enable_lookups
-          in: query
-          description: Whether to enable lookups during the search
-          schema:
-            type: boolean
-            default: true
+      - name: search
+        in: query
+        required: true
+        description: The SPL search query to execute
+        schema:
+          type: string
+        example: example_value
+      - $ref: "#/components/parameters/OutputMode"
+      - name: earliest_time
+        in: query
+        description: Earliest time for the search
+        schema:
+          type: string
+        example: example_value
+      - name: latest_time
+        in: query
+        description: Latest time for the search
+        schema:
+          type: string
+        example: example_value
+      - name: auto_cancel
+        in: query
+        description: Seconds of inactivity after which the search is cancelled
+        schema:
+          type: integer
+        example: 10
+      - name: enable_lookups
+        in: query
+        description: Whether to enable lookups during the search
+        schema:
+          type: boolean
+          default: true
+        example: true
       responses:
         "200":
           description: Search results streaming successfully
@@ -378,51 +538,74 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/SearchResults"
+              examples:
+                Exportsearchresults200Example:
+                  summary: Default exportSearchResults 200 response
+                  x-microcks-default: true
+                  value:
+                    init_offset: 10
+                    results:
+                    - {}
+                    fields:
+                    - name: Example Title
+                      type: example_value
+                    messages:
+                    - type: example_value
+                      text: example_value
+                    preview: true
+                    highlighted: example_value
         "400":
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /services/data/indexes:
     get:
       operationId: listIndexes
-      summary: List indexes
+      summary: List Indexes
       description: >-
         Returns a list of all indexes accessible to the authenticated
         user. Includes index configuration, storage paths, and
         data retention settings.
       tags:
-        - Index
+      - Index
       parameters:
-        - $ref: "#/components/parameters/OutputMode"
-        - $ref: "#/components/parameters/Count"
-        - $ref: "#/components/parameters/Offset"
-        - name: search
-          in: query
-          description: Filter indexes by name or properties
-          schema:
-            type: string
-        - name: sort_key
-          in: query
-          description: Field to sort by
-          schema:
-            type: string
-        - name: sort_dir
-          in: query
-          description: Sort direction
-          schema:
-            type: string
-            enum:
-              - asc
-              - desc
-        - name: datatype
-          in: query
-          description: Filter by data type
-          schema:
-            type: string
-            enum:
-              - all
-              - event
-              - metric
+      - $ref: "#/components/parameters/OutputMode"
+      - $ref: "#/components/parameters/Count"
+      - $ref: "#/components/parameters/Offset"
+      - name: search
+        in: query
+        description: Filter indexes by name or properties
+        schema:
+          type: string
+        example: example_value
+      - name: sort_key
+        in: query
+        description: Field to sort by
+        schema:
+          type: string
+        example: example_value
+      - name: sort_dir
+        in: query
+        description: Sort direction
+        schema:
+          type: string
+          enum:
+          - asc
+          - desc
+        example: asc
+      - name: datatype
+        in: query
+        description: Filter by data type
+        schema:
+          type: string
+          enum:
+          - all
+          - event
+          - metric
+        example: all
       responses:
         "200":
           description: Index list returned successfully
@@ -430,26 +613,58 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/IndexList"
+              examples:
+                Listindexes200Example:
+                  summary: Default listIndexes 200 response
+                  x-microcks-default: true
+                  value:
+                    origin: example_value
+                    updated: '2026-01-15T10:30:00Z'
+                    entry:
+                    - name: Example Title
+                      content: {}
+                    paging:
+                      total: 10
+                      perPage: 10
+                      offset: 10
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
           $ref: "#/components/responses/Forbidden"
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
       operationId: createIndex
-      summary: Create a new index
+      summary: Create a New Index
       description: >-
         Creates a new index with the specified configuration. The index
         name must be unique and conform to Splunk naming conventions.
       tags:
-        - Index
+      - Index
       parameters:
-        - $ref: "#/components/parameters/OutputMode"
+      - $ref: "#/components/parameters/OutputMode"
       requestBody:
         required: true
         content:
           application/x-www-form-urlencoded:
             schema:
               $ref: "#/components/schemas/IndexCreateRequest"
+            examples:
+              CreateindexRequestExample:
+                summary: Default createIndex request
+                x-microcks-default: true
+                value:
+                  name: Example Title
+                  datatype: event
+                  homePath: example_value
+                  coldPath: example_value
+                  thawedPath: example_value
+                  maxTotalDataSizeMB: 10
+                  maxDataSize: example_value
+                  frozenTimePeriodInSecs: 10
+                  maxHotBuckets: 10
+                  maxWarmDBCount: 10
       responses:
         "201":
           description: Index created successfully
@@ -457,6 +672,32 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Index"
+              examples:
+                Createindex201Example:
+                  summary: Default createIndex 201 response
+                  x-microcks-default: true
+                  value:
+                    name: Example Title
+                    content:
+                      datatype: event
+                      totalEventCount: 10
+                      currentDBSizeMB: 10
+                      maxDataSize: auto
+                      maxTotalDataSizeMB: 10
+                      maxHotBuckets: 10
+                      maxWarmDBCount: 10
+                      frozenTimePeriodInSecs: 10
+                      homePath: example_value
+                      coldPath: example_value
+                      thawedPath: example_value
+                      disabled: true
+                      isInternal: true
+                      minTime: example_value
+                      maxTime: example_value
+                      repFactor: example_value
+                      enableOnlineBucketRepair: true
+                      quarantinePastSecs: 10
+                      quarantineFutureSecs: 10
         "400":
           $ref: "#/components/responses/BadRequest"
         "401":
@@ -469,19 +710,30 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
+              examples:
+                Createindex409Example:
+                  summary: Default createIndex 409 response
+                  x-microcks-default: true
+                  value:
+                    messages:
+                    - type: ERROR
+                      text: example_value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /services/data/indexes/{name}:
     get:
       operationId: getIndex
-      summary: Get index details
+      summary: Get Index Details
       description: >-
         Returns detailed configuration and status information for a
         specific index including storage paths, retention settings,
         and current size.
       tags:
-        - Index
+      - Index
       parameters:
-        - $ref: "#/components/parameters/IndexName"
-        - $ref: "#/components/parameters/OutputMode"
+      - $ref: "#/components/parameters/IndexName"
+      - $ref: "#/components/parameters/OutputMode"
       responses:
         "200":
           description: Index details returned successfully
@@ -489,27 +741,68 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Index"
+              examples:
+                Getindex200Example:
+                  summary: Default getIndex 200 response
+                  x-microcks-default: true
+                  value:
+                    name: Example Title
+                    content:
+                      datatype: event
+                      totalEventCount: 10
+                      currentDBSizeMB: 10
+                      maxDataSize: auto
+                      maxTotalDataSizeMB: 10
+                      maxHotBuckets: 10
+                      maxWarmDBCount: 10
+                      frozenTimePeriodInSecs: 10
+                      homePath: example_value
+                      coldPath: example_value
+                      thawedPath: example_value
+                      disabled: true
+                      isInternal: true
+                      minTime: example_value
+                      maxTime: example_value
+                      repFactor: example_value
+                      enableOnlineBucketRepair: true
+                      quarantinePastSecs: 10
+                      quarantineFutureSecs: 10
         "404":
           $ref: "#/components/responses/NotFound"
         "401":
           $ref: "#/components/responses/Unauthorized"
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
       operationId: updateIndex
-      summary: Update index configuration
+      summary: Update Index Configuration
       description: >-
         Updates the configuration of an existing index. Not all index
         properties can be modified after creation.
       tags:
-        - Index
+      - Index
       parameters:
-        - $ref: "#/components/parameters/IndexName"
-        - $ref: "#/components/parameters/OutputMode"
+      - $ref: "#/components/parameters/IndexName"
+      - $ref: "#/components/parameters/OutputMode"
       requestBody:
         required: true
         content:
           application/x-www-form-urlencoded:
             schema:
               $ref: "#/components/schemas/IndexUpdateRequest"
+            examples:
+              UpdateindexRequestExample:
+                summary: Default updateIndex request
+                x-microcks-default: true
+                value:
+                  maxTotalDataSizeMB: 10
+                  frozenTimePeriodInSecs: 10
+                  maxHotBuckets: 10
+                  maxWarmDBCount: 10
+                  disabled: true
+                  coldToFrozenDir: example_value
+                  coldToFrozenScript: example_value
       responses:
         "200":
           description: Index updated successfully
@@ -517,22 +810,51 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Index"
+              examples:
+                Updateindex200Example:
+                  summary: Default updateIndex 200 response
+                  x-microcks-default: true
+                  value:
+                    name: Example Title
+                    content:
+                      datatype: event
+                      totalEventCount: 10
+                      currentDBSizeMB: 10
+                      maxDataSize: auto
+                      maxTotalDataSizeMB: 10
+                      maxHotBuckets: 10
+                      maxWarmDBCount: 10
+                      frozenTimePeriodInSecs: 10
+                      homePath: example_value
+                      coldPath: example_value
+                      thawedPath: example_value
+                      disabled: true
+                      isInternal: true
+                      minTime: example_value
+                      maxTime: example_value
+                      repFactor: example_value
+                      enableOnlineBucketRepair: true
+                      quarantinePastSecs: 10
+                      quarantineFutureSecs: 10
         "400":
           $ref: "#/components/responses/BadRequest"
         "404":
           $ref: "#/components/responses/NotFound"
         "401":
           $ref: "#/components/responses/Unauthorized"
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
       operationId: deleteIndex
-      summary: Delete an index
+      summary: Delete an Index
       description: >-
         Marks an index for deletion. The index data is removed according
         to the configured retention policy. Requires the admin role.
       tags:
-        - Index
+      - Index
       parameters:
-        - $ref: "#/components/parameters/IndexName"
+      - $ref: "#/components/parameters/IndexName"
       responses:
         "200":
           description: Index marked for deletion
@@ -542,24 +864,28 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           $ref: "#/components/responses/Forbidden"
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /services/data/inputs/monitor:
     get:
       operationId: listMonitorInputs
-      summary: List file and directory monitor inputs
+      summary: List File and Directory Monitor Inputs
       description: >-
         Returns a list of file and directory monitoring inputs. Monitor
         inputs continuously watch files and directories for new data.
       tags:
-        - Data Inputs
+      - Data Inputs
       parameters:
-        - $ref: "#/components/parameters/OutputMode"
-        - $ref: "#/components/parameters/Count"
-        - $ref: "#/components/parameters/Offset"
-        - name: search
-          in: query
-          description: Filter inputs by search string
-          schema:
-            type: string
+      - $ref: "#/components/parameters/OutputMode"
+      - $ref: "#/components/parameters/Count"
+      - $ref: "#/components/parameters/Offset"
+      - name: search
+        in: query
+        description: Filter inputs by search string
+        schema:
+          type: string
+        example: example_value
       responses:
         "200":
           description: Monitor inputs listed successfully
@@ -567,25 +893,57 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/MonitorInputList"
+              examples:
+                Listmonitorinputs200Example:
+                  summary: Default listMonitorInputs 200 response
+                  x-microcks-default: true
+                  value:
+                    origin: example_value
+                    updated: '2026-01-15T10:30:00Z'
+                    entry:
+                    - name: Example Title
+                      content: {}
+                    paging:
+                      total: 10
+                      perPage: 10
+                      offset: 10
         "401":
           $ref: "#/components/responses/Unauthorized"
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
       operationId: createMonitorInput
-      summary: Create a file or directory monitor input
+      summary: Create a File or Directory Monitor Input
       description: >-
         Creates a new file or directory monitoring input. The specified
         path will be monitored for new data and ingested into the
         specified index.
       tags:
-        - Data Inputs
+      - Data Inputs
       parameters:
-        - $ref: "#/components/parameters/OutputMode"
+      - $ref: "#/components/parameters/OutputMode"
       requestBody:
         required: true
         content:
           application/x-www-form-urlencoded:
             schema:
               $ref: "#/components/schemas/MonitorInputCreateRequest"
+            examples:
+              CreatemonitorinputRequestExample:
+                summary: Default createMonitorInput request
+                x-microcks-default: true
+                value:
+                  name: Example Title
+                  index: example_value
+                  sourcetype: example_value
+                  source: example_value
+                  host: example_value
+                  disabled: true
+                  followTail: true
+                  recursive: true
+                  whitelist: example_value
+                  blacklist: example_value
       responses:
         "201":
           description: Monitor input created successfully
@@ -593,6 +951,24 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/MonitorInput"
+              examples:
+                Createmonitorinput201Example:
+                  summary: Default createMonitorInput 201 response
+                  x-microcks-default: true
+                  value:
+                    name: Example Title
+                    content:
+                      index: example_value
+                      sourcetype: example_value
+                      source: example_value
+                      host: example_value
+                      disabled: true
+                      followTail: true
+                      recursive: true
+                      whitelist: example_value
+                      blacklist: example_value
+                      crcSalt: example_value
+                      ignoreOlderThan: example_value
         "400":
           $ref: "#/components/responses/BadRequest"
         "401":
@@ -603,23 +979,35 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
+              examples:
+                Createmonitorinput409Example:
+                  summary: Default createMonitorInput 409 response
+                  x-microcks-default: true
+                  value:
+                    messages:
+                    - type: ERROR
+                      text: example_value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /services/data/inputs/monitor/{name}:
     get:
       operationId: getMonitorInput
-      summary: Get monitor input details
+      summary: Get Monitor Input Details
       description: >-
         Returns configuration details for a specific file or directory
         monitoring input.
       tags:
-        - Data Inputs
+      - Data Inputs
       parameters:
-        - name: name
-          in: path
-          required: true
-          description: The name (path) of the monitor input
-          schema:
-            type: string
-        - $ref: "#/components/parameters/OutputMode"
+      - name: name
+        in: path
+        required: true
+        description: The name (path) of the monitor input
+        schema:
+          type: string
+        example: Example Title
+      - $ref: "#/components/parameters/OutputMode"
       responses:
         "200":
           description: Monitor input details returned successfully
@@ -627,30 +1015,62 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/MonitorInput"
+              examples:
+                Getmonitorinput200Example:
+                  summary: Default getMonitorInput 200 response
+                  x-microcks-default: true
+                  value:
+                    name: Example Title
+                    content:
+                      index: example_value
+                      sourcetype: example_value
+                      source: example_value
+                      host: example_value
+                      disabled: true
+                      followTail: true
+                      recursive: true
+                      whitelist: example_value
+                      blacklist: example_value
+                      crcSalt: example_value
+                      ignoreOlderThan: example_value
         "404":
           $ref: "#/components/responses/NotFound"
         "401":
           $ref: "#/components/responses/Unauthorized"
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
       operationId: updateMonitorInput
-      summary: Update a monitor input
+      summary: Update a Monitor Input
       description: Updates the configuration of an existing monitor input.
       tags:
-        - Data Inputs
+      - Data Inputs
       parameters:
-        - name: name
-          in: path
-          required: true
-          description: The name (path) of the monitor input
-          schema:
-            type: string
-        - $ref: "#/components/parameters/OutputMode"
+      - name: name
+        in: path
+        required: true
+        description: The name (path) of the monitor input
+        schema:
+          type: string
+        example: Example Title
+      - $ref: "#/components/parameters/OutputMode"
       requestBody:
         required: true
         content:
           application/x-www-form-urlencoded:
             schema:
               $ref: "#/components/schemas/MonitorInputUpdateRequest"
+            examples:
+              UpdatemonitorinputRequestExample:
+                summary: Default updateMonitorInput request
+                x-microcks-default: true
+                value:
+                  index: example_value
+                  sourcetype: example_value
+                  source: example_value
+                  host: example_value
+                  disabled: true
       responses:
         "200":
           description: Monitor input updated successfully
@@ -658,27 +1078,49 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/MonitorInput"
+              examples:
+                Updatemonitorinput200Example:
+                  summary: Default updateMonitorInput 200 response
+                  x-microcks-default: true
+                  value:
+                    name: Example Title
+                    content:
+                      index: example_value
+                      sourcetype: example_value
+                      source: example_value
+                      host: example_value
+                      disabled: true
+                      followTail: true
+                      recursive: true
+                      whitelist: example_value
+                      blacklist: example_value
+                      crcSalt: example_value
+                      ignoreOlderThan: example_value
         "400":
           $ref: "#/components/responses/BadRequest"
         "404":
           $ref: "#/components/responses/NotFound"
         "401":
           $ref: "#/components/responses/Unauthorized"
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     delete:
       operationId: deleteMonitorInput
-      summary: Delete a monitor input
+      summary: Delete a Monitor Input
       description: >-
         Deletes the specified monitor input. Splunk stops monitoring the
         associated file or directory.
       tags:
-        - Data Inputs
+      - Data Inputs
       parameters:
-        - name: name
-          in: path
-          required: true
-          description: The name (path) of the monitor input
-          schema:
-            type: string
+      - name: name
+        in: path
+        required: true
+        description: The name (path) of the monitor input
+        schema:
+          type: string
+        example: Example Title
       responses:
         "200":
           description: Monitor input deleted successfully
@@ -686,19 +1128,22 @@ paths:
           $ref: "#/components/responses/NotFound"
         "401":
           $ref: "#/components/responses/Unauthorized"
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /services/data/inputs/tcp/cooked:
     get:
       operationId: listTcpCookedInputs
-      summary: List cooked TCP inputs
+      summary: List Cooked Tcp Inputs
       description: >-
         Returns a list of TCP cooked data inputs. Cooked TCP inputs
         receive data from Splunk forwarders.
       tags:
-        - Data Inputs
+      - Data Inputs
       parameters:
-        - $ref: "#/components/parameters/OutputMode"
-        - $ref: "#/components/parameters/Count"
-        - $ref: "#/components/parameters/Offset"
+      - $ref: "#/components/parameters/OutputMode"
+      - $ref: "#/components/parameters/Count"
+      - $ref: "#/components/parameters/Offset"
       responses:
         "200":
           description: TCP cooked inputs listed successfully
@@ -706,21 +1151,38 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/TcpInputList"
+              examples:
+                Listtcpcookedinputs200Example:
+                  summary: Default listTcpCookedInputs 200 response
+                  x-microcks-default: true
+                  value:
+                    origin: example_value
+                    updated: '2026-01-15T10:30:00Z'
+                    entry:
+                    - name: Example Title
+                      content: {}
+                    paging:
+                      total: 10
+                      perPage: 10
+                      offset: 10
         "401":
           $ref: "#/components/responses/Unauthorized"
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /services/data/inputs/tcp/raw:
     get:
       operationId: listTcpRawInputs
-      summary: List raw TCP inputs
+      summary: List Raw Tcp Inputs
       description: >-
         Returns a list of raw TCP data inputs. Raw TCP inputs receive
         data directly over a TCP port without Splunk protocol framing.
       tags:
-        - Data Inputs
+      - Data Inputs
       parameters:
-        - $ref: "#/components/parameters/OutputMode"
-        - $ref: "#/components/parameters/Count"
-        - $ref: "#/components/parameters/Offset"
+      - $ref: "#/components/parameters/OutputMode"
+      - $ref: "#/components/parameters/Count"
+      - $ref: "#/components/parameters/Offset"
       responses:
         "200":
           description: TCP raw inputs listed successfully
@@ -728,21 +1190,38 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/TcpInputList"
+              examples:
+                Listtcprawinputs200Example:
+                  summary: Default listTcpRawInputs 200 response
+                  x-microcks-default: true
+                  value:
+                    origin: example_value
+                    updated: '2026-01-15T10:30:00Z'
+                    entry:
+                    - name: Example Title
+                      content: {}
+                    paging:
+                      total: 10
+                      perPage: 10
+                      offset: 10
         "401":
           $ref: "#/components/responses/Unauthorized"
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /services/data/inputs/udp:
     get:
       operationId: listUdpInputs
-      summary: List UDP inputs
+      summary: List Udp Inputs
       description: >-
         Returns a list of UDP data inputs. UDP inputs receive data
         over a UDP port.
       tags:
-        - Data Inputs
+      - Data Inputs
       parameters:
-        - $ref: "#/components/parameters/OutputMode"
-        - $ref: "#/components/parameters/Count"
-        - $ref: "#/components/parameters/Offset"
+      - $ref: "#/components/parameters/OutputMode"
+      - $ref: "#/components/parameters/Count"
+      - $ref: "#/components/parameters/Offset"
       responses:
         "200":
           description: UDP inputs listed successfully
@@ -750,22 +1229,39 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/UdpInputList"
+              examples:
+                Listudpinputs200Example:
+                  summary: Default listUdpInputs 200 response
+                  x-microcks-default: true
+                  value:
+                    origin: example_value
+                    updated: '2026-01-15T10:30:00Z'
+                    entry:
+                    - name: Example Title
+                      content: {}
+                    paging:
+                      total: 10
+                      perPage: 10
+                      offset: 10
         "401":
           $ref: "#/components/responses/Unauthorized"
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /services/data/inputs/http:
     get:
       operationId: listHttpInputTokens
-      summary: List HTTP Event Collector tokens
+      summary: List Http Event Collector Tokens
       description: >-
         Returns a list of HTTP Event Collector (HEC) tokens configured
         on the Splunk instance. Each token defines an input channel
         for receiving data over HTTP/HTTPS.
       tags:
-        - Data Inputs
+      - Data Inputs
       parameters:
-        - $ref: "#/components/parameters/OutputMode"
-        - $ref: "#/components/parameters/Count"
-        - $ref: "#/components/parameters/Offset"
+      - $ref: "#/components/parameters/OutputMode"
+      - $ref: "#/components/parameters/Count"
+      - $ref: "#/components/parameters/Offset"
       responses:
         "200":
           description: HEC tokens listed successfully
@@ -773,24 +1269,54 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HecTokenList"
+              examples:
+                Listhttpinputtokens200Example:
+                  summary: Default listHttpInputTokens 200 response
+                  x-microcks-default: true
+                  value:
+                    origin: example_value
+                    updated: '2026-01-15T10:30:00Z'
+                    entry:
+                    - name: Example Title
+                      content: {}
+                    paging:
+                      total: 10
+                      perPage: 10
+                      offset: 10
         "401":
           $ref: "#/components/responses/Unauthorized"
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
     post:
       operationId: createHttpInputToken
-      summary: Create an HTTP Event Collector token
+      summary: Create an Http Event Collector Token
       description: >-
         Creates a new HTTP Event Collector (HEC) token for data
         ingestion over HTTP/HTTPS.
       tags:
-        - Data Inputs
+      - Data Inputs
       parameters:
-        - $ref: "#/components/parameters/OutputMode"
+      - $ref: "#/components/parameters/OutputMode"
       requestBody:
         required: true
         content:
           application/x-www-form-urlencoded:
             schema:
               $ref: "#/components/schemas/HecTokenCreateRequest"
+            examples:
+              CreatehttpinputtokenRequestExample:
+                summary: Default createHttpInputToken request
+                x-microcks-default: true
+                value:
+                  name: Example Title
+                  index: example_value
+                  indexes: example_value
+                  sourcetype: example_value
+                  source: example_value
+                  host: example_value
+                  disabled: true
+                  useACK: true
       responses:
         "201":
           description: HEC token created successfully
@@ -798,6 +1324,22 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HecToken"
+              examples:
+                Createhttpinputtoken201Example:
+                  summary: Default createHttpInputToken 201 response
+                  x-microcks-default: true
+                  value:
+                    name: Example Title
+                    content:
+                      token: example_value
+                      index: example_value
+                      indexes:
+                      - example_value
+                      sourcetype: example_value
+                      source: example_value
+                      host: example_value
+                      disabled: true
+                      useACK: true
         "400":
           $ref: "#/components/responses/BadRequest"
         "401":
@@ -808,24 +1350,47 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
+              examples:
+                Createhttpinputtoken409Example:
+                  summary: Default createHttpInputToken 409 response
+                  x-microcks-default: true
+                  value:
+                    messages:
+                    - type: ERROR
+                      text: example_value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /services/collector/event:
     post:
       operationId: sendEvent
-      summary: Send events via HTTP Event Collector
+      summary: Send Events via Http Event Collector
       description: >-
         Sends one or more events to Splunk via HTTP Event Collector.
         Events are submitted as JSON objects. Multiple events can be
         sent in a single request by concatenating JSON objects.
       tags:
-        - Data Inputs
+      - Data Inputs
       security:
-        - HecToken: []
+      - HecToken: []
       requestBody:
         required: true
         content:
           application/json:
             schema:
               $ref: "#/components/schemas/HecEvent"
+            examples:
+              SendeventRequestExample:
+                summary: Default sendEvent request
+                x-microcks-default: true
+                value:
+                  time: example_value
+                  host: example_value
+                  source: example_value
+                  sourcetype: example_value
+                  index: example_value
+                  event: example_value
+                  fields: example_value
       responses:
         "200":
           description: Events received successfully
@@ -833,65 +1398,109 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HecResponse"
+              examples:
+                Sendevent200Example:
+                  summary: Default sendEvent 200 response
+                  x-microcks-default: true
+                  value:
+                    text: example_value
+                    code: 10
+                    invalid-event-number: 10
+                    ackId: '500123'
         "400":
           description: Invalid data format or missing required fields
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/HecResponse"
+              examples:
+                Sendevent400Example:
+                  summary: Default sendEvent 400 response
+                  x-microcks-default: true
+                  value:
+                    text: example_value
+                    code: 10
+                    invalid-event-number: 10
+                    ackId: '500123'
         "401":
           description: Token is disabled or invalid
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/HecResponse"
+              examples:
+                Sendevent401Example:
+                  summary: Default sendEvent 401 response
+                  x-microcks-default: true
+                  value:
+                    text: example_value
+                    code: 10
+                    invalid-event-number: 10
+                    ackId: '500123'
         "403":
           description: Insufficient permissions for the token
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/HecResponse"
+              examples:
+                Sendevent403Example:
+                  summary: Default sendEvent 403 response
+                  x-microcks-default: true
+                  value:
+                    text: example_value
+                    code: 10
+                    invalid-event-number: 10
+                    ackId: '500123'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /services/collector/raw:
     post:
       operationId: sendRawEvent
-      summary: Send raw data via HTTP Event Collector
+      summary: Send Raw Data via Http Event Collector
       description: >-
         Sends raw event data to Splunk via HTTP Event Collector. The
         raw data is ingested as-is without requiring JSON formatting.
         Useful for log file data and other unstructured text.
       tags:
-        - Data Inputs
+      - Data Inputs
       security:
-        - HecToken: []
+      - HecToken: []
       parameters:
-        - name: channel
-          in: query
-          description: >-
-            Channel identifier (GUID) for event ordering. Required if
-            indexer acknowledgment is enabled.
-          schema:
-            type: string
-            format: uuid
-        - name: sourcetype
-          in: query
-          description: Override the sourcetype for the event data
-          schema:
-            type: string
-        - name: source
-          in: query
-          description: Override the source for the event data
-          schema:
-            type: string
-        - name: host
-          in: query
-          description: Override the host for the event data
-          schema:
-            type: string
-        - name: index
-          in: query
-          description: Override the destination index for the event data
-          schema:
-            type: string
+      - name: channel
+        in: query
+        description: >-
+          Channel identifier (GUID) for event ordering. Required if
+          indexer acknowledgment is enabled.
+        schema:
+          type: string
+          format: uuid
+        example: example_value
+      - name: sourcetype
+        in: query
+        description: Override the sourcetype for the event data
+        schema:
+          type: string
+        example: example_value
+      - name: source
+        in: query
+        description: Override the source for the event data
+        schema:
+          type: string
+        example: example_value
+      - name: host
+        in: query
+        description: Override the host for the event data
+        schema:
+          type: string
+        example: example_value
+      - name: index
+        in: query
+        description: Override the destination index for the event data
+        schema:
+          type: string
+        example: example_value
       requestBody:
         required: true
         content:
@@ -899,6 +1508,11 @@ paths:
             schema:
               type: string
               description: Raw event data
+            examples:
+              SendraweventRequestExample:
+                summary: Default sendRawEvent request
+                x-microcks-default: true
+                value: example_value
       responses:
         "200":
           description: Raw data received successfully
@@ -906,30 +1520,60 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HecResponse"
+              examples:
+                Sendrawevent200Example:
+                  summary: Default sendRawEvent 200 response
+                  x-microcks-default: true
+                  value:
+                    text: example_value
+                    code: 10
+                    invalid-event-number: 10
+                    ackId: '500123'
         "400":
           description: Invalid request
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/HecResponse"
+              examples:
+                Sendrawevent400Example:
+                  summary: Default sendRawEvent 400 response
+                  x-microcks-default: true
+                  value:
+                    text: example_value
+                    code: 10
+                    invalid-event-number: 10
+                    ackId: '500123'
         "401":
           description: Token is disabled or invalid
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/HecResponse"
+              examples:
+                Sendrawevent401Example:
+                  summary: Default sendRawEvent 401 response
+                  x-microcks-default: true
+                  value:
+                    text: example_value
+                    code: 10
+                    invalid-event-number: 10
+                    ackId: '500123'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /services/collector/ack:
     post:
       operationId: checkAckStatus
-      summary: Check indexer acknowledgment status
+      summary: Check Indexer Acknowledgment Status
       description: >-
         Queries the indexer acknowledgment status for events sent via
         HTTP Event Collector. Returns whether events with specified
         ack IDs have been indexed.
       tags:
-        - Data Inputs
+      - Data Inputs
       security:
-        - HecToken: []
+      - HecToken: []
       requestBody:
         required: true
         content:
@@ -937,7 +1581,7 @@ paths:
             schema:
               type: object
               required:
-                - acks
+              - acks
               properties:
                 acks:
                   type: array
@@ -945,7 +1589,14 @@ paths:
                   items:
                     type: integer
                   examples:
-                    - [1, 2, 3]
+                  - [1, 2, 3]
+            examples:
+              CheckackstatusRequestExample:
+                summary: Default checkAckStatus request
+                x-microcks-default: true
+                value:
+                  acks:
+                  - 10
       responses:
         "200":
           description: Acknowledgment status returned
@@ -959,12 +1610,30 @@ paths:
                     description: Map of ack ID to boolean indexed status
                     additionalProperties:
                       type: boolean
+              examples:
+                Checkackstatus200Example:
+                  summary: Default checkAckStatus 200 response
+                  x-microcks-default: true
+                  value:
+                    acks: example_value
         "400":
           description: Invalid request format
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/HecResponse"
+              examples:
+                Checkackstatus400Example:
+                  summary: Default checkAckStatus 400 response
+                  x-microcks-default: true
+                  value:
+                    text: example_value
+                    code: 10
+                    invalid-event-number: 10
+                    ackId: '500123'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   securitySchemes:
     BearerAuth:
@@ -997,9 +1666,9 @@ components:
       schema:
         type: string
         enum:
-          - json
-          - xml
-          - csv
+        - json
+        - xml
+        - csv
         default: xml
     Count:
       name: count
@@ -1036,116 +1705,133 @@ components:
     SearchJobCreateRequest:
       type: object
       required:
-        - search
+      - search
       properties:
         search:
           type: string
           description: The SPL search query to execute
           examples:
-            - "search index=main sourcetype=syslog | head 100"
+          - "search index=main sourcetype=syslog | head 100"
         earliest_time:
           type: string
           description: >-
             Earliest time for the search using relative or absolute
             time format
           examples:
-            - "-24h@h"
-            - "2024-01-01T00:00:00.000Z"
+          - "-24h@h"
+          - "2024-01-01T00:00:00.000Z"
         latest_time:
           type: string
           description: Latest time for the search
           examples:
-            - "now"
+          - "now"
         search_mode:
           type: string
           description: The search mode
           enum:
-            - normal
-            - realtime
+          - normal
+          - realtime
           default: normal
+          example: normal
         exec_mode:
           type: string
           description: >-
             Execution mode. Normal runs asynchronously, oneshot runs
             synchronously, blocking waits for completion.
           enum:
-            - normal
-            - blocking
-            - oneshot
+          - normal
+          - blocking
+          - oneshot
           default: normal
+          example: normal
         max_count:
           type: integer
           description: Maximum number of results to return
           default: 10000
+          example: 10
         max_time:
           type: integer
           description: Maximum time in seconds before the search is finalized
           default: 0
+          example: 10
         timeout:
           type: integer
           description: >-
             Number of seconds to keep the search after processing has
             stopped
           default: 86400
+          example: 10
         rf:
           type: string
           description: >-
             Comma-separated list of required fields to include in results
+          example: example_value
         namespace:
           type: string
           description: Application namespace for the search
+          example: example_value
         id:
           type: string
           description: >-
             Optional custom search ID. If not specified, Splunk generates
             one automatically.
+          example: abc123
         status_buckets:
           type: integer
           description: >-
             Number of status buckets to generate for the search timeline.
             Set to a value greater than 0 to enable timeline.
           default: 0
+          example: 10
         auto_cancel:
           type: integer
           description: >-
             Seconds of inactivity after which the search is automatically
             cancelled. 0 means never auto-cancel.
           default: 0
+          example: 10
         auto_finalize_ec:
           type: integer
           description: >-
             Auto-finalize the search after this number of events have
             been processed. 0 disables auto-finalize.
           default: 0
+          example: 10
         auto_pause:
           type: integer
           description: >-
             Seconds of inactivity after which the search is automatically
             paused. 0 means never auto-pause.
           default: 0
+          example: 10
         enable_lookups:
           type: boolean
           description: Whether to enable lookups during the search
           default: true
+          example: true
         reload_macros:
           type: boolean
           description: Whether to reload macro definitions before the search
           default: true
+          example: true
         reduce_freq:
           type: integer
           description: >-
             How frequently to invoke the reduce phase (seconds)
           default: 0
+          example: 10
         spawn_process:
           type: boolean
           description: Whether to run the search in a separate process
           default: true
+          example: true
     SearchJob:
       type: object
       properties:
         sid:
           type: string
           description: The unique search ID
+          example: '500123'
         content:
           type: object
           properties:
@@ -1155,13 +1841,13 @@ components:
               type: string
               description: Current state of the search job
               enum:
-                - QUEUED
-                - PARSING
-                - RUNNING
-                - PAUSED
-                - FINALIZING
-                - DONE
-                - FAILED
+              - QUEUED
+              - PARSING
+              - RUNNING
+              - PAUSED
+              - FINALIZING
+              - DONE
+              - FAILED
             doneProgress:
               type: number
               description: Progress percentage (0.0 to 1.0)
@@ -1237,22 +1923,25 @@ components:
                   type:
                     type: string
                     enum:
-                      - DEBUG
-                      - INFO
-                      - WARN
-                      - ERROR
-                      - FATAL
+                    - DEBUG
+                    - INFO
+                    - WARN
+                    - ERROR
+                    - FATAL
                   text:
                     type: string
+          example: example_value
     SearchJobList:
       type: object
       properties:
         origin:
           type: string
           description: URI of the request
+          example: example_value
         updated:
           type: string
           format: date-time
+          example: '2026-01-15T10:30:00Z'
         generator:
           type: object
           properties:
@@ -1260,10 +1949,12 @@ components:
               type: string
             version:
               type: string
+          example: example_value
         entry:
           type: array
           items:
             $ref: "#/components/schemas/SearchJob"
+          example: []
         paging:
           $ref: "#/components/schemas/Paging"
     SearchResults:
@@ -1272,6 +1963,7 @@ components:
         init_offset:
           type: integer
           description: Starting offset of results
+          example: 10
         results:
           type: array
           description: Array of result rows
@@ -1281,6 +1973,7 @@ components:
             description: >-
               Each result is a key-value object where keys are field
               names and values are field values
+          example: []
         fields:
           type: array
           description: Metadata about the fields in the results
@@ -1291,6 +1984,7 @@ components:
                 type: string
               type:
                 type: string
+          example: []
         messages:
           type: array
           items:
@@ -1300,18 +1994,22 @@ components:
                 type: string
               text:
                 type: string
+          example: []
         preview:
           type: boolean
           description: Whether results are preview (partial) results
+          example: true
         highlighted:
           type: object
           description: Highlighted terms in results
+          example: example_value
     Index:
       type: object
       properties:
         name:
           type: string
           description: The index name
+          example: Example Title
         content:
           type: object
           properties:
@@ -1319,8 +2017,8 @@ components:
               type: string
               description: The type of data stored in the index
               enum:
-                - event
-                - metric
+              - event
+              - metric
             totalEventCount:
               type: integer
               description: Total number of events in the index
@@ -1331,8 +2029,8 @@ components:
               type: string
               description: Maximum size of a hot bucket
               enum:
-                - auto
-                - auto_high_volume
+              - auto
+              - auto_high_volume
               default: auto
             maxTotalDataSizeMB:
               type: integer
@@ -1388,98 +2086,119 @@ components:
               description: >-
                 Events with timestamps this many seconds in the future
                 are quarantined
+          example: example_value
     IndexList:
       type: object
       properties:
         origin:
           type: string
+          example: example_value
         updated:
           type: string
           format: date-time
+          example: '2026-01-15T10:30:00Z'
         entry:
           type: array
           items:
             $ref: "#/components/schemas/Index"
+          example: []
         paging:
           $ref: "#/components/schemas/Paging"
     IndexCreateRequest:
       type: object
       required:
-        - name
+      - name
       properties:
         name:
           type: string
           description: The name for the new index
           examples:
-            - my_new_index
+          - my_new_index
         datatype:
           type: string
           description: Type of data the index will hold
           enum:
-            - event
-            - metric
+          - event
+          - metric
           default: event
+          example: event
         homePath:
           type: string
           description: Absolute path for hot and warm bucket storage
+          example: example_value
         coldPath:
           type: string
           description: Absolute path for cold bucket storage
+          example: example_value
         thawedPath:
           type: string
           description: Absolute path for thawed bucket storage
+          example: example_value
         maxTotalDataSizeMB:
           type: integer
           description: Maximum total size of the index in MB
           default: 500000
+          example: 10
         maxDataSize:
           type: string
           description: Maximum size of a hot bucket
           default: auto
+          example: example_value
         frozenTimePeriodInSecs:
           type: integer
           description: Seconds until data is frozen
           default: 188697600
+          example: 10
         maxHotBuckets:
           type: integer
           description: Maximum number of hot buckets
           default: 3
+          example: 10
         maxWarmDBCount:
           type: integer
           description: Maximum number of warm buckets
           default: 300
+          example: 10
     IndexUpdateRequest:
       type: object
       properties:
         maxTotalDataSizeMB:
           type: integer
           description: Maximum total size of the index in MB
+          example: 10
         frozenTimePeriodInSecs:
           type: integer
           description: Seconds until data is frozen
+          example: 10
         maxHotBuckets:
           type: integer
           description: Maximum number of hot buckets
+          example: 10
         maxWarmDBCount:
           type: integer
           description: Maximum number of warm buckets
+          example: 10
         disabled:
           type: boolean
           description: Whether to disable the index
+          example: true
         coldToFrozenDir:
           type: string
           description: >-
             Path to archive frozen buckets to. If not set, frozen data
             is deleted.
+          example: example_value
         coldToFrozenScript:
           type: string
           description: Script to run when freezing buckets
+          example: example_value
     MonitorInput:
       type: object
       properties:
         name:
           type: string
           description: The monitored file or directory path
+          example: Example Title
         content:
           type: object
           properties:
@@ -1521,85 +2240,104 @@ components:
               description: >-
                 Time modifier to skip files that have not been modified
                 within the specified time
+          example: example_value
     MonitorInputList:
       type: object
       properties:
         origin:
           type: string
+          example: example_value
         updated:
           type: string
           format: date-time
+          example: '2026-01-15T10:30:00Z'
         entry:
           type: array
           items:
             $ref: "#/components/schemas/MonitorInput"
+          example: []
         paging:
           $ref: "#/components/schemas/Paging"
     MonitorInputCreateRequest:
       type: object
       required:
-        - name
+      - name
       properties:
         name:
           type: string
           description: The file or directory path to monitor
           examples:
-            - /var/log/syslog
+          - /var/log/syslog
         index:
           type: string
           description: Destination index
           default: default
+          example: example_value
         sourcetype:
           type: string
           description: Source type to assign
+          example: example_value
         source:
           type: string
           description: Source value to assign
+          example: example_value
         host:
           type: string
           description: Host value to assign
+          example: example_value
         disabled:
           type: boolean
           description: Whether to create the input in disabled state
           default: false
+          example: true
         followTail:
           type: boolean
           description: Start monitoring from end of file
           default: false
+          example: true
         recursive:
           type: boolean
           description: Recursively monitor subdirectories
           default: true
+          example: true
         whitelist:
           type: string
           description: Regex pattern for files to include
+          example: example_value
         blacklist:
           type: string
           description: Regex pattern for files to exclude
+          example: example_value
     MonitorInputUpdateRequest:
       type: object
       properties:
         index:
           type: string
           description: Destination index
+          example: example_value
         sourcetype:
           type: string
           description: Source type to assign
+          example: example_value
         source:
           type: string
           description: Source value to assign
+          example: example_value
         host:
           type: string
           description: Host value to assign
+          example: example_value
         disabled:
           type: boolean
           description: Whether to disable the input
+          example: true
     TcpInput:
       type: object
       properties:
         name:
           type: string
           description: The TCP port number
+          example: Example Title
         content:
           type: object
           properties:
@@ -1624,24 +2362,28 @@ components:
               type: string
               description: How to determine the host value
               enum:
-                - ip
-                - dns
-                - none
+              - ip
+              - dns
+              - none
             ssl:
               type: boolean
               description: Whether SSL is enabled for this input
+          example: example_value
     TcpInputList:
       type: object
       properties:
         origin:
           type: string
+          example: example_value
         updated:
           type: string
           format: date-time
+          example: '2026-01-15T10:30:00Z'
         entry:
           type: array
           items:
             $ref: "#/components/schemas/TcpInput"
+          example: []
         paging:
           $ref: "#/components/schemas/Paging"
     UdpInput:
@@ -1650,6 +2392,7 @@ components:
         name:
           type: string
           description: The UDP port number
+          example: Example Title
         content:
           type: object
           properties:
@@ -1671,27 +2414,31 @@ components:
               type: string
               description: How to determine the host value
               enum:
-                - ip
-                - dns
-                - none
+              - ip
+              - dns
+              - none
             no_appending_timestamp:
               type: boolean
               description: Whether to prevent Splunk from appending a timestamp
             no_priority_stripping:
               type: boolean
               description: Whether to prevent Splunk from stripping priority
+          example: example_value
     UdpInputList:
       type: object
       properties:
         origin:
           type: string
+          example: example_value
         updated:
           type: string
           format: date-time
+          example: '2026-01-15T10:30:00Z'
         entry:
           type: array
           items:
             $ref: "#/components/schemas/UdpInput"
+          example: []
         paging:
           $ref: "#/components/schemas/Paging"
     HecToken:
@@ -1700,6 +2447,7 @@ components:
         name:
           type: string
           description: The token name
+          example: Example Title
         content:
           type: object
           properties:
@@ -1729,98 +2477,110 @@ components:
             useACK:
               type: boolean
               description: Whether indexer acknowledgment is enabled
+          example: example_value
     HecTokenList:
       type: object
       properties:
         origin:
           type: string
+          example: example_value
         updated:
           type: string
           format: date-time
+          example: '2026-01-15T10:30:00Z'
         entry:
           type: array
           items:
             $ref: "#/components/schemas/HecToken"
+          example: []
         paging:
           $ref: "#/components/schemas/Paging"
     HecTokenCreateRequest:
       type: object
       required:
-        - name
+      - name
       properties:
         name:
           type: string
           description: Name for the new HEC token
+          example: Example Title
         index:
           type: string
           description: Default destination index
           default: main
+          example: example_value
         indexes:
           type: string
           description: Comma-separated list of allowed indexes
+          example: example_value
         sourcetype:
           type: string
           description: Default sourcetype
+          example: example_value
         source:
           type: string
           description: Default source value
+          example: example_value
         host:
           type: string
           description: Default host value
+          example: example_value
         disabled:
           type: boolean
           description: Whether to create the token in disabled state
           default: false
+          example: true
         useACK:
           type: boolean
           description: Whether to enable indexer acknowledgment
           default: false
+          example: true
     HecEvent:
       type: object
       required:
-        - event
+      - event
       properties:
         time:
           oneOf:
-            - type: number
-            - type: string
+          - type: number
+          - type: string
           description: >-
             Event timestamp in epoch time (seconds since 1970-01-01).
             If omitted, Splunk uses the current time.
           examples:
-            - 1704067200.000
+          - 1704067200.000
         host:
           type: string
           description: Hostname or IP address of the event source
           examples:
-            - webserver01
+          - webserver01
         source:
           type: string
           description: Source of the event
           examples:
-            - /var/log/application.log
+          - /var/log/application.log
         sourcetype:
           type: string
           description: Source type for the event
           examples:
-            - _json
+          - _json
         index:
           type: string
           description: Destination index for the event
           examples:
-            - main
+          - main
         event:
           description: >-
             The event data. Can be a string or a JSON object. This is
             the actual data payload to be indexed.
           oneOf:
-            - type: string
-            - type: object
-              additionalProperties: true
+          - type: string
+          - type: object
+            additionalProperties: true
           examples:
-            - message: "User logged in"
-              user: "admin"
-              action: "login"
+          - message: "User logged in"
+            user: "admin"
+            action: "login"
         fields:
           type: object
           description: >-
@@ -1828,6 +2588,7 @@ components:
             These fields are indexed as metadata and can be searched.
           additionalProperties:
             type: string
+          example: example_value
     HecResponse:
       type: object
       properties:
@@ -1835,33 +2596,38 @@ components:
           type: string
           description: Human-readable status message
           examples:
-            - Success
+          - Success
         code:
           type: integer
           description: Numeric status code
           examples:
-            - 0
+          - 0
         invalid-event-number:
           type: integer
           description: >-
             For batched events, the index of the first invalid event
+          example: 10
         ackId:
           type: integer
           description: >-
             Acknowledgment ID for tracking indexing status (when
             indexer acknowledgment is enabled)
+          example: '500123'
     Paging:
       type: object
       properties:
         total:
           type: integer
           description: Total number of items available
+          example: 10
         perPage:
           type: integer
           description: Number of items per page
+          example: 10
         offset:
           type: integer
           description: Current offset
+          example: 10
     ErrorResponse:
       type: object
       properties:
@@ -1873,12 +2639,13 @@ components:
               type:
                 type: string
                 enum:
-                  - ERROR
-                  - WARN
-                  - INFO
+                - ERROR
+                - WARN
+                - INFO
               text:
                 type: string
                 description: Error message text
+          example: []
   responses:
     BadRequest:
       description: >-

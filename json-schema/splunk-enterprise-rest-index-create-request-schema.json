@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "IndexCreateRequest",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name for the new index"
+    },
+    "datatype": {
+      "type": "string",
+      "description": "Type of data the index will hold"
+    },
+    "homePath": {
+      "type": "string",
+      "description": "Absolute path for hot and warm bucket storage"
+    },
+    "coldPath": {
+      "type": "string",
+      "description": "Absolute path for cold bucket storage"
+    },
+    "thawedPath": {
+      "type": "string",
+      "description": "Absolute path for thawed bucket storage"
+    },
+    "maxTotalDataSizeMB": {
+      "type": "integer",
+      "description": "Maximum total size of the index in MB"
+    },
+    "maxDataSize": {
+      "type": "string",
+      "description": "Maximum size of a hot bucket"
+    },
+    "frozenTimePeriodInSecs": {
+      "type": "integer",
+      "description": "Seconds until data is frozen"
+    },
+    "maxHotBuckets": {
+      "type": "integer",
+      "description": "Maximum number of hot buckets"
+    },
+    "maxWarmDBCount": {
+      "type": "integer",
+      "description": "Maximum number of warm buckets"
+    }
+  }
+}

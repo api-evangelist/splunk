@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HecEvent",
+  "type": "object",
+  "properties": {
+    "time": {
+      "type": "string",
+      "description": "Event timestamp in epoch time (seconds since 1970-01-01). If omitted, Splunk uses the current time."
+    },
+    "host": {
+      "type": "string",
+      "description": "Hostname or IP address of the event source"
+    },
+    "source": {
+      "type": "string",
+      "description": "Source of the event"
+    },
+    "sourcetype": {
+      "type": "string",
+      "description": "Source type for the event"
+    },
+    "index": {
+      "type": "string",
+      "description": "Destination index for the event"
+    },
+    "event": {
+      "type": "string",
+      "description": "The event data. Can be a string or a JSON object. This is the actual data payload to be indexed."
+    },
+    "fields": {
+      "type": "object",
+      "description": "Additional metadata fields to associate with the event. These fields are indexed as metadata and can be searched."
+    }
+  }
+}

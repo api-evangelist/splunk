@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HecToken",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The token name"
+    },
+    "content": {
+      "type": "object"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SearchJob",
+  "type": "object",
+  "properties": {
+    "sid": {
+      "type": "string",
+      "description": "The unique search ID"
+    },
+    "content": {
+      "type": "object"
+    }
+  }
+}

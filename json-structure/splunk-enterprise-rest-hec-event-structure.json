@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "HecEvent",
+  "type": "object",
+  "properties": {
+    "time": {
+      "type": "string"
+    },
+    "host": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string"
+    },
+    "sourcetype": {
+      "type": "string"
+    },
+    "index": {
+      "type": "string"
+    },
+    "event": {
+      "type": "string"
+    },
+    "fields": {
+      "type": "object"
+    }
+  }
+}

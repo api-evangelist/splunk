@@ -1,0 +1,12 @@
+{
+  "name": "Example Title",
+  "index": "example_value",
+  "sourcetype": "example_value",
+  "source": "example_value",
+  "host": "example_value",
+  "disabled": true,
+  "followTail": true,
+  "recursive": true,
+  "whitelist": "example_value",
+  "blacklist": "example_value"
+}

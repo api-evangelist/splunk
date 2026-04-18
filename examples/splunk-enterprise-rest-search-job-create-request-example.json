@@ -1,0 +1,21 @@
+{
+  "search": "example_value",
+  "earliest_time": "example_value",
+  "latest_time": "example_value",
+  "search_mode": "example_value",
+  "exec_mode": "example_value",
+  "max_count": 10,
+  "max_time": 10,
+  "timeout": 10,
+  "rf": "example_value",
+  "namespace": "example_value",
+  "id": "abc123",
+  "status_buckets": 10,
+  "auto_cancel": 10,
+  "auto_finalize_ec": 10,
+  "auto_pause": 10,
+  "enable_lookups": true,
+  "reload_macros": true,
+  "reduce_freq": 10,
+  "spawn_process": true
+}

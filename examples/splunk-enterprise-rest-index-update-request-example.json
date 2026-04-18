@@ -1,0 +1,9 @@
+{
+  "maxTotalDataSizeMB": 10,
+  "frozenTimePeriodInSecs": 10,
+  "maxHotBuckets": 10,
+  "maxWarmDBCount": 10,
+  "disabled": true,
+  "coldToFrozenDir": "example_value",
+  "coldToFrozenScript": "example_value"
+}

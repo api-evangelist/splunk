@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MonitorInputCreateRequest",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The file or directory path to monitor"
+    },
+    "index": {
+      "type": "string",
+      "description": "Destination index"
+    },
+    "sourcetype": {
+      "type": "string",
+      "description": "Source type to assign"
+    },
+    "source": {
+      "type": "string",
+      "description": "Source value to assign"
+    },
+    "host": {
+      "type": "string",
+      "description": "Host value to assign"
+    },
+    "disabled": {
+      "type": "boolean",
+      "description": "Whether to create the input in disabled state"
+    },
+    "followTail": {
+      "type": "boolean",
+      "description": "Start monitoring from end of file"
+    },
+    "recursive": {
+      "type": "boolean",
+      "description": "Recursively monitor subdirectories"
+    },
+    "whitelist": {
+      "type": "string",
+      "description": "Regex pattern for files to include"
+    },
+    "blacklist": {
+      "type": "string",
+      "description": "Regex pattern for files to exclude"
+    }
+  }
+}

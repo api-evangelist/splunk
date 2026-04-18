@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "MonitorInputUpdateRequest",
+  "type": "object",
+  "properties": {
+    "index": {
+      "type": "string"
+    },
+    "sourcetype": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string"
+    },
+    "host": {
+      "type": "string"
+    },
+    "disabled": {
+      "type": "boolean"
+    }
+  }
+}

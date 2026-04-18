@@ -1,0 +1,12 @@
+{
+  "name": "Example Title",
+  "datatype": "example_value",
+  "homePath": "example_value",
+  "coldPath": "example_value",
+  "thawedPath": "example_value",
+  "maxTotalDataSizeMB": 10,
+  "maxDataSize": "example_value",
+  "frozenTimePeriodInSecs": 10,
+  "maxHotBuckets": 10,
+  "maxWarmDBCount": 10
+}

@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "SearchJobCreateRequest",
+  "type": "object",
+  "properties": {
+    "search": {
+      "type": "string"
+    },
+    "earliest_time": {
+      "type": "string"
+    },
+    "latest_time": {
+      "type": "string"
+    },
+    "search_mode": {
+      "type": "string"
+    },
+    "exec_mode": {
+      "type": "string"
+    },
+    "max_count": {
+      "type": "integer"
+    },
+    "max_time": {
+      "type": "integer"
+    },
+    "timeout": {
+      "type": "integer"
+    },
+    "rf": {
+      "type": "string"
+    },
+    "namespace": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string"
+    },
+    "status_buckets": {
+      "type": "integer"
+    },
+    "auto_cancel": {
+      "type": "integer"
+    },
+    "auto_finalize_ec": {
+      "type": "integer"
+    },
+    "auto_pause": {
+      "type": "integer"
+    },
+    "enable_lookups": {
+      "type": "boolean"
+    },
+    "reload_macros": {
+      "type": "boolean"
+    },
+    "reduce_freq": {
+      "type": "integer"
+    },
+    "spawn_process": {
+      "type": "boolean"
+    }
+  }
+}

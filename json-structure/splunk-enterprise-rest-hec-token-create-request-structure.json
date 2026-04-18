@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "HecTokenCreateRequest",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "index": {
+      "type": "string"
+    },
+    "indexes": {
+      "type": "string"
+    },
+    "sourcetype": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string"
+    },
+    "host": {
+      "type": "string"
+    },
+    "disabled": {
+      "type": "boolean"
+    },
+    "useACK": {
+      "type": "boolean"
+    }
+  }
+}

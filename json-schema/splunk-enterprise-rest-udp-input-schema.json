@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UdpInput",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The UDP port number"
+    },
+    "content": {
+      "type": "object"
+    }
+  }
+}

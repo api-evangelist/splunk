@@ -1,0 +1,596 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Splunk Enterprise REST API"
+  description: "Programmatic access to Splunk Enterprise including search, indexing, data inputs, and HTTP Event Collector."
+  tags:
+    - Splunk
+    - Search
+    - Analytics
+    - Data
+    - Monitoring
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+binds:
+  - namespace: env
+    keys:
+      SPLUNK_AUTH_TOKEN: SPLUNK_AUTH_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: enterprise-rest
+      baseUri: https://localhost:8089
+      description: "Splunk Enterprise REST API for search, indexing, and data management."
+      authentication:
+        type: bearer
+        token: "{{SPLUNK_AUTH_TOKEN}}"
+      resources:
+        - name: search-jobs
+          path: /services/search/jobs
+          description: "Manage search jobs."
+          operations:
+            - name: list-search-jobs
+              method: GET
+              description: "List current search jobs."
+              inputParameters:
+                - name: output_mode
+                  in: query
+                  type: string
+                  required: false
+                  description: "Response format (json or xml)."
+                - name: count
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Number of results."
+                - name: offset
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Results offset."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-search-job
+              method: POST
+              description: "Create a new search job."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  search: "{{tools.search}}"
+                  earliest_time: "{{tools.earliest_time}}"
+                  latest_time: "{{tools.latest_time}}"
+                  exec_mode: "{{tools.exec_mode}}"
+            - name: get-search-job
+              method: GET
+              description: "Get search job status and details."
+              inputParameters:
+                - name: sid
+                  in: path
+                  type: string
+                  required: true
+                  description: "Search job ID."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: delete-search-job
+              method: DELETE
+              description: "Delete a search job."
+              inputParameters:
+                - name: sid
+                  in: path
+                  type: string
+                  required: true
+                  description: "Search job ID."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: control-search-job
+              method: POST
+              description: "Control a search job (pause, unpause, finalize, cancel)."
+              inputParameters:
+                - name: sid
+                  in: path
+                  type: string
+                  required: true
+                  description: "Search job ID."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  action: "{{tools.action}}"
+            - name: get-search-results
+              method: GET
+              description: "Get results from a completed search job."
+              inputParameters:
+                - name: sid
+                  in: path
+                  type: string
+                  required: true
+                  description: "Search job ID."
+                - name: count
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Number of results."
+                - name: offset
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Results offset."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: get-search-events
+              method: GET
+              description: "Get untransformed events from a search job."
+              inputParameters:
+                - name: sid
+                  in: path
+                  type: string
+                  required: true
+                  description: "Search job ID."
+                - name: count
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Number of events."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: export-search-results
+              method: GET
+              description: "Export search results."
+              inputParameters:
+                - name: search
+                  in: query
+                  type: string
+                  required: true
+                  description: "SPL search string."
+                - name: earliest_time
+                  in: query
+                  type: string
+                  required: false
+                  description: "Earliest time."
+                - name: latest_time
+                  in: query
+                  type: string
+                  required: false
+                  description: "Latest time."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: indexes
+          path: /services/data/indexes
+          description: "Manage indexes."
+          operations:
+            - name: list-indexes
+              method: GET
+              description: "List all indexes."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-index
+              method: POST
+              description: "Create a new index."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  name: "{{tools.name}}"
+                  datatype: "{{tools.datatype}}"
+            - name: get-index
+              method: GET
+              description: "Get index details."
+              inputParameters:
+                - name: indexName
+                  in: path
+                  type: string
+                  required: true
+                  description: "Index name."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: update-index
+              method: POST
+              description: "Update index settings."
+              inputParameters:
+                - name: indexName
+                  in: path
+                  type: string
+                  required: true
+                  description: "Index name."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: delete-index
+              method: DELETE
+              description: "Delete an index."
+              inputParameters:
+                - name: indexName
+                  in: path
+                  type: string
+                  required: true
+                  description: "Index name."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: data-inputs
+          path: /services/data/inputs
+          description: "Manage data inputs."
+          operations:
+            - name: list-monitor-inputs
+              method: GET
+              description: "List file monitor inputs."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-monitor-input
+              method: POST
+              description: "Create a file monitor input."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  name: "{{tools.name}}"
+                  index: "{{tools.index}}"
+                  sourcetype: "{{tools.sourcetype}}"
+            - name: list-tcp-cooked-inputs
+              method: GET
+              description: "List TCP cooked inputs."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: list-tcp-raw-inputs
+              method: GET
+              description: "List TCP raw inputs."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: list-udp-inputs
+              method: GET
+              description: "List UDP inputs."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: list-http-input-tokens
+              method: GET
+              description: "List HTTP Event Collector tokens."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-http-input-token
+              method: POST
+              description: "Create an HEC token."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  name: "{{tools.name}}"
+                  index: "{{tools.index}}"
+        - name: hec
+          path: /services/collector
+          description: "HTTP Event Collector."
+          operations:
+            - name: send-event
+              method: POST
+              description: "Send a JSON event via HEC."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  event: "{{tools.event}}"
+                  sourcetype: "{{tools.sourcetype}}"
+                  index: "{{tools.index}}"
+            - name: send-raw-event
+              method: POST
+              description: "Send raw event data via HEC."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: check-ack-status
+              method: POST
+              description: "Check indexing acknowledgment status."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: enterprise-rest-api
+      resources:
+        - path: /v1/search-jobs
+          name: search-jobs
+          description: "Search job management."
+          operations:
+            - method: GET
+              name: list-search-jobs
+              description: "List search jobs."
+              call: "enterprise-rest.list-search-jobs"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-search-job
+              description: "Create a search job."
+              call: "enterprise-rest.create-search-job"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/indexes
+          name: indexes
+          description: "Index management."
+          operations:
+            - method: GET
+              name: list-indexes
+              description: "List indexes."
+              call: "enterprise-rest.list-indexes"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9100
+      namespace: enterprise-rest-mcp
+      transport: http
+      tools:
+        - name: list-search-jobs
+          description: "List current search jobs."
+          hints:
+            readOnly: true
+          call: "enterprise-rest.list-search-jobs"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-search-job
+          description: "Create a new SPL search job."
+          hints:
+            readOnly: false
+          call: "enterprise-rest.create-search-job"
+          with:
+            search: "tools.search"
+            earliest_time: "tools.earliest_time"
+            latest_time: "tools.latest_time"
+            exec_mode: "tools.exec_mode"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-search-job
+          description: "Get search job status."
+          hints:
+            readOnly: true
+          call: "enterprise-rest.get-search-job"
+          with:
+            sid: "tools.sid"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: delete-search-job
+          description: "Delete a search job."
+          hints:
+            readOnly: false
+            destructive: true
+          call: "enterprise-rest.delete-search-job"
+          with:
+            sid: "tools.sid"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: control-search-job
+          description: "Control a search job (pause, unpause, finalize, cancel)."
+          hints:
+            readOnly: false
+          call: "enterprise-rest.control-search-job"
+          with:
+            sid: "tools.sid"
+            action: "tools.action"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-search-results
+          description: "Get results from a search job."
+          hints:
+            readOnly: true
+          call: "enterprise-rest.get-search-results"
+          with:
+            sid: "tools.sid"
+            count: "tools.count"
+            offset: "tools.offset"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-search-events
+          description: "Get untransformed events from a search job."
+          hints:
+            readOnly: true
+          call: "enterprise-rest.get-search-events"
+          with:
+            sid: "tools.sid"
+            count: "tools.count"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: export-search-results
+          description: "Export search results directly."
+          hints:
+            readOnly: true
+          call: "enterprise-rest.export-search-results"
+          with:
+            search: "tools.search"
+            earliest_time: "tools.earliest_time"
+            latest_time: "tools.latest_time"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-indexes
+          description: "List all indexes."
+          hints:
+            readOnly: true
+          call: "enterprise-rest.list-indexes"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-index
+          description: "Create a new index."
+          hints:
+            readOnly: false
+          call: "enterprise-rest.create-index"
+          with:
+            name: "tools.name"
+            datatype: "tools.datatype"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-index
+          description: "Get index details."
+          hints:
+            readOnly: true
+          call: "enterprise-rest.get-index"
+          with:
+            indexName: "tools.indexName"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: update-index
+          description: "Update index settings."
+          hints:
+            readOnly: false
+            idempotent: true
+          call: "enterprise-rest.update-index"
+          with:
+            indexName: "tools.indexName"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: delete-index
+          description: "Delete an index."
+          hints:
+            readOnly: false
+            destructive: true
+          call: "enterprise-rest.delete-index"
+          with:
+            indexName: "tools.indexName"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-monitor-inputs
+          description: "List file monitor inputs."
+          hints:
+            readOnly: true
+          call: "enterprise-rest.list-monitor-inputs"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-monitor-input
+          description: "Create a file monitor input."
+          hints:
+            readOnly: false
+          call: "enterprise-rest.create-monitor-input"
+          with:
+            name: "tools.name"
+            index: "tools.index"
+            sourcetype: "tools.sourcetype"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-http-input-tokens
+          description: "List HTTP Event Collector tokens."
+          hints:
+            readOnly: true
+          call: "enterprise-rest.list-http-input-tokens"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-http-input-token
+          description: "Create an HEC token."
+          hints:
+            readOnly: false
+          call: "enterprise-rest.create-http-input-token"
+          with:
+            name: "tools.name"
+            index: "tools.index"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: send-event
+          description: "Send a JSON event via HTTP Event Collector."
+          hints:
+            readOnly: false
+          call: "enterprise-rest.send-event"
+          with:
+            event: "tools.event"
+            sourcetype: "tools.sourcetype"
+            index: "tools.index"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: check-ack-status
+          description: "Check HEC indexing acknowledgment status."
+          hints:
+            readOnly: true
+          call: "enterprise-rest.check-ack-status"
+          outputParameters:
+            - type: object
+              mapping: "$."

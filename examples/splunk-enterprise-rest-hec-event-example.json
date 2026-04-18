@@ -1,0 +1,9 @@
+{
+  "time": "example_value",
+  "host": "example_value",
+  "source": "example_value",
+  "sourcetype": "example_value",
+  "index": "example_value",
+  "event": "example_value",
+  "fields": "example_value"
+}

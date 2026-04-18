@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MonitorInput",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The monitored file or directory path"
+    },
+    "content": {
+      "type": "object"
+    }
+  }
+}

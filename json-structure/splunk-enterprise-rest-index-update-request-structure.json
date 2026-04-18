@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "IndexUpdateRequest",
+  "type": "object",
+  "properties": {
+    "maxTotalDataSizeMB": {
+      "type": "integer"
+    },
+    "frozenTimePeriodInSecs": {
+      "type": "integer"
+    },
+    "maxHotBuckets": {
+      "type": "integer"
+    },
+    "maxWarmDBCount": {
+      "type": "integer"
+    },
+    "disabled": {
+      "type": "boolean"
+    },
+    "coldToFrozenDir": {
+      "type": "string"
+    },
+    "coldToFrozenScript": {
+      "type": "string"
+    }
+  }
+}

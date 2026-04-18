@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HecTokenCreateRequest",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name for the new HEC token"
+    },
+    "index": {
+      "type": "string",
+      "description": "Default destination index"
+    },
+    "indexes": {
+      "type": "string",
+      "description": "Comma-separated list of allowed indexes"
+    },
+    "sourcetype": {
+      "type": "string",
+      "description": "Default sourcetype"
+    },
+    "source": {
+      "type": "string",
+      "description": "Default source value"
+    },
+    "host": {
+      "type": "string",
+      "description": "Default host value"
+    },
+    "disabled": {
+      "type": "boolean",
+      "description": "Whether to create the token in disabled state"
+    },
+    "useACK": {
+      "type": "boolean",
+      "description": "Whether to enable indexer acknowledgment"
+    }
+  }
+}

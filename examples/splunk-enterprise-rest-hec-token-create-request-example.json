@@ -1,0 +1,10 @@
+{
+  "name": "Example Title",
+  "index": "example_value",
+  "indexes": "example_value",
+  "sourcetype": "example_value",
+  "source": "example_value",
+  "host": "example_value",
+  "disabled": true,
+  "useACK": true
+}

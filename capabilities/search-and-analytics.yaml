@@ -1,0 +1,293 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Splunk Search and Analytics"
+  description: "Unified search and analytics workflow combining SPL search, index management, data inputs, and HTTP Event Collector for SOC analysts, IT operations, and data engineers."
+  tags:
+    - Splunk
+    - Search
+    - Analytics
+    - Monitoring
+    - Data Ingestion
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+binds:
+  - namespace: env
+    keys:
+      SPLUNK_AUTH_TOKEN: SPLUNK_AUTH_TOKEN
+
+capability:
+  consumes:
+    - import: enterprise-rest
+      location: ./shared/enterprise-rest.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: search-analytics-api
+      description: "Unified REST API for Splunk search, indexing, and data ingestion."
+      resources:
+        - path: /v1/search-jobs
+          name: search-jobs
+          description: "Search job management."
+          operations:
+            - method: GET
+              name: list-search-jobs
+              description: "List search jobs."
+              call: "enterprise-rest.list-search-jobs"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-search-job
+              description: "Create a search job."
+              call: "enterprise-rest.create-search-job"
+              with:
+                search: "rest.search"
+                earliest_time: "rest.earliest_time"
+                latest_time: "rest.latest_time"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/indexes
+          name: indexes
+          description: "Index management."
+          operations:
+            - method: GET
+              name: list-indexes
+              description: "List indexes."
+              call: "enterprise-rest.list-indexes"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-index
+              description: "Create an index."
+              call: "enterprise-rest.create-index"
+              with:
+                name: "rest.name"
+                datatype: "rest.datatype"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/events
+          name: events
+          description: "Event ingestion via HEC."
+          operations:
+            - method: POST
+              name: send-event
+              description: "Send an event."
+              call: "enterprise-rest.send-event"
+              with:
+                event: "rest.event"
+                sourcetype: "rest.sourcetype"
+                index: "rest.index"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: search-analytics-mcp
+      transport: http
+      description: "MCP server for AI-assisted Splunk search, analytics, and data management."
+      tools:
+        - name: list-search-jobs
+          description: "List current search jobs."
+          hints:
+            readOnly: true
+          call: "enterprise-rest.list-search-jobs"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-search-job
+          description: "Create a new SPL search job."
+          hints:
+            readOnly: false
+          call: "enterprise-rest.create-search-job"
+          with:
+            search: "tools.search"
+            earliest_time: "tools.earliest_time"
+            latest_time: "tools.latest_time"
+            exec_mode: "tools.exec_mode"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-search-job
+          description: "Get search job status and details."
+          hints:
+            readOnly: true
+          call: "enterprise-rest.get-search-job"
+          with:
+            sid: "tools.sid"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: delete-search-job
+          description: "Delete a search job."
+          hints:
+            readOnly: false
+            destructive: true
+          call: "enterprise-rest.delete-search-job"
+          with:
+            sid: "tools.sid"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: control-search-job
+          description: "Control a search job (pause, unpause, finalize, cancel)."
+          hints:
+            readOnly: false
+          call: "enterprise-rest.control-search-job"
+          with:
+            sid: "tools.sid"
+            action: "tools.action"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-search-results
+          description: "Get results from a completed search job."
+          hints:
+            readOnly: true
+          call: "enterprise-rest.get-search-results"
+          with:
+            sid: "tools.sid"
+            count: "tools.count"
+            offset: "tools.offset"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-search-events
+          description: "Get untransformed events from a search job."
+          hints:
+            readOnly: true
+          call: "enterprise-rest.get-search-events"
+          with:
+            sid: "tools.sid"
+            count: "tools.count"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: export-search-results
+          description: "Export search results directly without creating a job."
+          hints:
+            readOnly: true
+          call: "enterprise-rest.export-search-results"
+          with:
+            search: "tools.search"
+            earliest_time: "tools.earliest_time"
+            latest_time: "tools.latest_time"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-indexes
+          description: "List all Splunk indexes."
+          hints:
+            readOnly: true
+          call: "enterprise-rest.list-indexes"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-index
+          description: "Create a new Splunk index."
+          hints:
+            readOnly: false
+          call: "enterprise-rest.create-index"
+          with:
+            name: "tools.name"
+            datatype: "tools.datatype"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-index
+          description: "Get index details and settings."
+          hints:
+            readOnly: true
+          call: "enterprise-rest.get-index"
+          with:
+            indexName: "tools.indexName"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: update-index
+          description: "Update index settings."
+          hints:
+            readOnly: false
+            idempotent: true
+          call: "enterprise-rest.update-index"
+          with:
+            indexName: "tools.indexName"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: delete-index
+          description: "Delete an index."
+          hints:
+            readOnly: false
+            destructive: true
+          call: "enterprise-rest.delete-index"
+          with:
+            indexName: "tools.indexName"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-monitor-inputs
+          description: "List file monitor data inputs."
+          hints:
+            readOnly: true
+          call: "enterprise-rest.list-monitor-inputs"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-monitor-input
+          description: "Create a file monitor data input."
+          hints:
+            readOnly: false
+          call: "enterprise-rest.create-monitor-input"
+          with:
+            name: "tools.name"
+            index: "tools.index"
+            sourcetype: "tools.sourcetype"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-http-input-tokens
+          description: "List HTTP Event Collector tokens."
+          hints:
+            readOnly: true
+          call: "enterprise-rest.list-http-input-tokens"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-http-input-token
+          description: "Create an HTTP Event Collector token."
+          hints:
+            readOnly: false
+          call: "enterprise-rest.create-http-input-token"
+          with:
+            name: "tools.name"
+            index: "tools.index"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: send-event
+          description: "Send a JSON event via HTTP Event Collector."
+          hints:
+            readOnly: false
+          call: "enterprise-rest.send-event"
+          with:
+            event: "tools.event"
+            sourcetype: "tools.sourcetype"
+            index: "tools.index"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: check-ack-status
+          description: "Check HEC indexing acknowledgment status."
+          hints:
+            readOnly: true
+          call: "enterprise-rest.check-ack-status"
+          outputParameters:
+            - type: object
+              mapping: "$."

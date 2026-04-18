@@ -1,0 +1,10 @@
+name: splunk API Vocabulary
+provider: splunk
+created: '2026-04-18'
+modified: '2026-04-18'
+operations: 26
+schemas: 23
+tags:
+- Data Inputs
+- Index
+- Search

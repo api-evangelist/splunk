@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "IndexUpdateRequest",
+  "type": "object",
+  "properties": {
+    "maxTotalDataSizeMB": {
+      "type": "integer",
+      "description": "Maximum total size of the index in MB"
+    },
+    "frozenTimePeriodInSecs": {
+      "type": "integer",
+      "description": "Seconds until data is frozen"
+    },
+    "maxHotBuckets": {
+      "type": "integer",
+      "description": "Maximum number of hot buckets"
+    },
+    "maxWarmDBCount": {
+      "type": "integer",
+      "description": "Maximum number of warm buckets"
+    },
+    "disabled": {
+      "type": "boolean",
+      "description": "Whether to disable the index"
+    },
+    "coldToFrozenDir": {
+      "type": "string",
+      "description": "Path to archive frozen buckets to. If not set, frozen data is deleted."
+    },
+    "coldToFrozenScript": {
+      "type": "string",
+      "description": "Script to run when freezing buckets"
+    }
+  }
+}

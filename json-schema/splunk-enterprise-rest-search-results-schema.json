@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SearchResults",
+  "type": "object",
+  "properties": {
+    "init_offset": {
+      "type": "integer",
+      "description": "Starting offset of results"
+    },
+    "results": {
+      "type": "array",
+      "description": "Array of result rows"
+    },
+    "fields": {
+      "type": "array",
+      "description": "Metadata about the fields in the results"
+    },
+    "messages": {
+      "type": "array"
+    },
+    "preview": {
+      "type": "boolean",
+      "description": "Whether results are preview (partial) results"
+    },
+    "highlighted": {
+      "type": "object",
+      "description": "Highlighted terms in results"
+    }
+  }
+}
