@@ -1,0 +1,29 @@
+{
+  "operationId": "listMonitorInputs",
+  "method": "GET",
+  "path": "/services/data/inputs/monitor",
+  "summary": "List File and Directory Monitor Inputs",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Listmonitorinputs200Example",
+      "example": {
+        "origin": "example_value",
+        "updated": "2026-01-15T10:30:00Z",
+        "entry": [
+          {
+            "name": "Example Title",
+            "content": {}
+          }
+        ],
+        "paging": {
+          "total": 10,
+          "perPage": 10,
+          "offset": 10
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ErrorResponse",
+  "title": "ErrorResponse",
+  "type": "object",
+  "properties": {
+    "messages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "ERROR",
+              "WARN",
+              "INFO"
+            ]
+          },
+          "text": {
+            "type": "string",
+            "description": "Error message text"
+          }
+        }
+      },
+      "example": []
+    }
+  }
+}

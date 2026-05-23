@@ -1,0 +1,42 @@
+{
+  "operationId": "updateMonitorInput",
+  "method": "POST",
+  "path": "/services/data/inputs/monitor/{name}",
+  "summary": "Update a Monitor Input",
+  "requestExamples": [
+    {
+      "contentType": "application/x-www-form-urlencoded",
+      "name": "UpdatemonitorinputRequestExample",
+      "example": {
+        "index": "example_value",
+        "sourcetype": "example_value",
+        "source": "example_value",
+        "host": "example_value",
+        "disabled": true
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Updatemonitorinput200Example",
+      "example": {
+        "name": "Example Title",
+        "content": {
+          "index": "example_value",
+          "sourcetype": "example_value",
+          "source": "example_value",
+          "host": "example_value",
+          "disabled": true,
+          "followTail": true,
+          "recursive": true,
+          "whitelist": "example_value",
+          "blacklist": "example_value",
+          "crcSalt": "example_value",
+          "ignoreOlderThan": "example_value"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "operationId": "createMonitorInput",
+  "method": "POST",
+  "path": "/services/data/inputs/monitor",
+  "summary": "Create a File or Directory Monitor Input",
+  "requestExamples": [
+    {
+      "contentType": "application/x-www-form-urlencoded",
+      "name": "CreatemonitorinputRequestExample",
+      "example": {
+        "name": "Example Title",
+        "index": "example_value",
+        "sourcetype": "example_value",
+        "source": "example_value",
+        "host": "example_value",
+        "disabled": true,
+        "followTail": true,
+        "recursive": true,
+        "whitelist": "example_value",
+        "blacklist": "example_value"
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "201",
+      "contentType": "application/json",
+      "name": "Createmonitorinput201Example",
+      "example": {
+        "name": "Example Title",
+        "content": {
+          "index": "example_value",
+          "sourcetype": "example_value",
+          "source": "example_value",
+          "host": "example_value",
+          "disabled": true,
+          "followTail": true,
+          "recursive": true,
+          "whitelist": "example_value",
+          "blacklist": "example_value",
+          "crcSalt": "example_value",
+          "ignoreOlderThan": "example_value"
+        }
+      }
+    },
+    {
+      "status": "409",
+      "contentType": "application/json",
+      "name": "Createmonitorinput409Example",
+      "example": {
+        "messages": [
+          {
+            "type": "ERROR",
+            "text": "example_value"
+          }
+        ]
+      }
+    }
+  ]
+}

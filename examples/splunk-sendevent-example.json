@@ -1,0 +1,67 @@
+{
+  "operationId": "sendEvent",
+  "method": "POST",
+  "path": "/services/collector/event",
+  "summary": "Send Events via Http Event Collector",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "SendeventRequestExample",
+      "example": {
+        "time": "example_value",
+        "host": "example_value",
+        "source": "example_value",
+        "sourcetype": "example_value",
+        "index": "example_value",
+        "event": "example_value",
+        "fields": "example_value"
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Sendevent200Example",
+      "example": {
+        "text": "example_value",
+        "code": 10,
+        "invalid-event-number": 10,
+        "ackId": "500123"
+      }
+    },
+    {
+      "status": "400",
+      "contentType": "application/json",
+      "name": "Sendevent400Example",
+      "example": {
+        "text": "example_value",
+        "code": 10,
+        "invalid-event-number": 10,
+        "ackId": "500123"
+      }
+    },
+    {
+      "status": "401",
+      "contentType": "application/json",
+      "name": "Sendevent401Example",
+      "example": {
+        "text": "example_value",
+        "code": 10,
+        "invalid-event-number": 10,
+        "ackId": "500123"
+      }
+    },
+    {
+      "status": "403",
+      "contentType": "application/json",
+      "name": "Sendevent403Example",
+      "example": {
+        "text": "example_value",
+        "code": 10,
+        "invalid-event-number": 10,
+        "ackId": "500123"
+      }
+    }
+  ]
+}

@@ -1,0 +1,394 @@
+{
+  "provider": "Splunk",
+  "providerId": "splunk",
+  "kind": "json-structure",
+  "description": "Structural overview of the Splunk API surface; extracted from openapi/.",
+  "schemaCount": 23,
+  "operationCount": 26,
+  "schemas": [
+    {
+      "name": "SearchJobCreateRequest",
+      "type": "object",
+      "propertyCount": 19,
+      "required": [
+        "search"
+      ]
+    },
+    {
+      "name": "SearchJob",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "SearchJobList",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "SearchResults",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "Index",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "IndexList",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "IndexCreateRequest",
+      "type": "object",
+      "propertyCount": 10,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "IndexUpdateRequest",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "MonitorInput",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "MonitorInputList",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "MonitorInputCreateRequest",
+      "type": "object",
+      "propertyCount": 10,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "MonitorInputUpdateRequest",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "TcpInput",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "TcpInputList",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "UdpInput",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "UdpInputList",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "HecToken",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "HecTokenList",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "HecTokenCreateRequest",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "HecEvent",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "event"
+      ]
+    },
+    {
+      "name": "HecResponse",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "Paging",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "ErrorResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/services/search/jobs",
+      "operationId": "listSearchJobs",
+      "summary": "List Search Jobs",
+      "tags": [
+        "Search"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/services/search/jobs",
+      "operationId": "createSearchJob",
+      "summary": "Create a Search Job",
+      "tags": [
+        "Search"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/services/search/jobs/{search_id}",
+      "operationId": "getSearchJob",
+      "summary": "Get Search Job Details",
+      "tags": [
+        "Search"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/services/search/jobs/{search_id}",
+      "operationId": "deleteSearchJob",
+      "summary": "Delete a Search Job",
+      "tags": [
+        "Search"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/services/search/jobs/{search_id}/control",
+      "operationId": "controlSearchJob",
+      "summary": "Control a Search Job",
+      "tags": [
+        "Search"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/services/search/jobs/{search_id}/results",
+      "operationId": "getSearchResults",
+      "summary": "Get Search Results",
+      "tags": [
+        "Search"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/services/search/jobs/{search_id}/events",
+      "operationId": "getSearchEvents",
+      "summary": "Get Search Events",
+      "tags": [
+        "Search"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/services/search/jobs/export",
+      "operationId": "exportSearchResults",
+      "summary": "Export Search Results",
+      "tags": [
+        "Search"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/services/data/indexes",
+      "operationId": "listIndexes",
+      "summary": "List Indexes",
+      "tags": [
+        "Index"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/services/data/indexes",
+      "operationId": "createIndex",
+      "summary": "Create a New Index",
+      "tags": [
+        "Index"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/services/data/indexes/{name}",
+      "operationId": "getIndex",
+      "summary": "Get Index Details",
+      "tags": [
+        "Index"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/services/data/indexes/{name}",
+      "operationId": "updateIndex",
+      "summary": "Update Index Configuration",
+      "tags": [
+        "Index"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/services/data/indexes/{name}",
+      "operationId": "deleteIndex",
+      "summary": "Delete an Index",
+      "tags": [
+        "Index"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/services/data/inputs/monitor",
+      "operationId": "listMonitorInputs",
+      "summary": "List File and Directory Monitor Inputs",
+      "tags": [
+        "Data Inputs"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/services/data/inputs/monitor",
+      "operationId": "createMonitorInput",
+      "summary": "Create a File or Directory Monitor Input",
+      "tags": [
+        "Data Inputs"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/services/data/inputs/monitor/{name}",
+      "operationId": "getMonitorInput",
+      "summary": "Get Monitor Input Details",
+      "tags": [
+        "Data Inputs"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/services/data/inputs/monitor/{name}",
+      "operationId": "updateMonitorInput",
+      "summary": "Update a Monitor Input",
+      "tags": [
+        "Data Inputs"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/services/data/inputs/monitor/{name}",
+      "operationId": "deleteMonitorInput",
+      "summary": "Delete a Monitor Input",
+      "tags": [
+        "Data Inputs"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/services/data/inputs/tcp/cooked",
+      "operationId": "listTcpCookedInputs",
+      "summary": "List Cooked Tcp Inputs",
+      "tags": [
+        "Data Inputs"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/services/data/inputs/tcp/raw",
+      "operationId": "listTcpRawInputs",
+      "summary": "List Raw Tcp Inputs",
+      "tags": [
+        "Data Inputs"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/services/data/inputs/udp",
+      "operationId": "listUdpInputs",
+      "summary": "List Udp Inputs",
+      "tags": [
+        "Data Inputs"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/services/data/inputs/http",
+      "operationId": "listHttpInputTokens",
+      "summary": "List Http Event Collector Tokens",
+      "tags": [
+        "Data Inputs"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/services/data/inputs/http",
+      "operationId": "createHttpInputToken",
+      "summary": "Create an Http Event Collector Token",
+      "tags": [
+        "Data Inputs"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/services/collector/event",
+      "operationId": "sendEvent",
+      "summary": "Send Events via Http Event Collector",
+      "tags": [
+        "Data Inputs"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/services/collector/raw",
+      "operationId": "sendRawEvent",
+      "summary": "Send Raw Data via Http Event Collector",
+      "tags": [
+        "Data Inputs"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/services/collector/ack",
+      "operationId": "checkAckStatus",
+      "summary": "Check Indexer Acknowledgment Status",
+      "tags": [
+        "Data Inputs"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TcpInput",
+  "title": "TcpInput",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The TCP port number",
+      "example": "Example Title"
+    },
+    "content": {
+      "type": "object",
+      "properties": {
+        "index": {
+          "type": "string",
+          "description": "Destination index"
+        },
+        "sourcetype": {
+          "type": "string",
+          "description": "Source type for incoming data"
+        },
+        "source": {
+          "type": "string",
+          "description": "Source value for incoming data"
+        },
+        "host": {
+          "type": "string",
+          "description": "Host value for incoming data"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "restrictToHost": {
+          "type": "string",
+          "description": "Accept connections only from this host"
+        },
+        "connection_host": {
+          "type": "string",
+          "description": "How to determine the host value",
+          "enum": [
+            "ip",
+            "dns",
+            "none"
+          ]
+        },
+        "ssl": {
+          "type": "boolean",
+          "description": "Whether SSL is enabled for this input"
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

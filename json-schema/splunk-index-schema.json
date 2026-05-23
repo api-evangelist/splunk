@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Index",
+  "title": "Index",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The index name",
+      "example": "Example Title"
+    },
+    "content": {
+      "type": "object",
+      "properties": {
+        "datatype": {
+          "type": "string",
+          "description": "The type of data stored in the index",
+          "enum": [
+            "event",
+            "metric"
+          ]
+        },
+        "totalEventCount": {
+          "type": "integer",
+          "description": "Total number of events in the index"
+        },
+        "currentDBSizeMB": {
+          "type": "integer",
+          "description": "Current database size in megabytes"
+        },
+        "maxDataSize": {
+          "type": "string",
+          "description": "Maximum size of a hot bucket",
+          "enum": [
+            "auto",
+            "auto_high_volume"
+          ],
+          "default": "auto"
+        },
+        "maxTotalDataSizeMB": {
+          "type": "integer",
+          "description": "Maximum total size of the index in MB",
+          "default": 500000
+        },
+        "maxHotBuckets": {
+          "type": "integer",
+          "description": "Maximum number of hot buckets for the index",
+          "default": 3
+        },
+        "maxWarmDBCount": {
+          "type": "integer",
+          "description": "Maximum number of warm buckets",
+          "default": 300
+        },
+        "frozenTimePeriodInSecs": {
+          "type": "integer",
+          "description": "Number of seconds after which data is frozen (archived or deleted). Default is 188697600 (6 years).",
+          "default": 188697600
+        },
+        "homePath": {
+          "type": "string",
+          "description": "Path for hot and warm buckets"
+        },
+        "coldPath": {
+          "type": "string",
+          "description": "Path for cold buckets"
+        },
+        "thawedPath": {
+          "type": "string",
+          "description": "Path for thawed (restored) buckets"
+        },
+        "disabled": {
+          "type": "boolean",
+          "description": "Whether the index is disabled"
+        },
+        "isInternal": {
+          "type": "boolean",
+          "description": "Whether this is an internal Splunk index"
+        },
+        "minTime": {
+          "type": "string",
+          "description": "Earliest time of data in the index"
+        },
+        "maxTime": {
+          "type": "string",
+          "description": "Latest time of data in the index"
+        },
+        "repFactor": {
+          "type": "string",
+          "description": "Replication factor for clustered environments"
+        },
+        "enableOnlineBucketRepair": {
+          "type": "boolean"
+        },
+        "quarantinePastSecs": {
+          "type": "integer",
+          "description": "Events with timestamps this many seconds in the past are quarantined"
+        },
+        "quarantineFutureSecs": {
+          "type": "integer",
+          "description": "Events with timestamps this many seconds in the future are quarantined"
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

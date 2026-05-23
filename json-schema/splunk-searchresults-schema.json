@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SearchResults",
+  "title": "SearchResults",
+  "type": "object",
+  "properties": {
+    "init_offset": {
+      "type": "integer",
+      "description": "Starting offset of results",
+      "example": 10
+    },
+    "results": {
+      "type": "array",
+      "description": "Array of result rows",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "description": "Each result is a key-value object where keys are field names and values are field values"
+      },
+      "example": []
+    },
+    "fields": {
+      "type": "array",
+      "description": "Metadata about the fields in the results",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        }
+      },
+      "example": []
+    },
+    "messages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          }
+        }
+      },
+      "example": []
+    },
+    "preview": {
+      "type": "boolean",
+      "description": "Whether results are preview (partial) results",
+      "example": true
+    },
+    "highlighted": {
+      "type": "object",
+      "description": "Highlighted terms in results",
+      "example": "example_value"
+    }
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MonitorInput",
+  "title": "MonitorInput",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The monitored file or directory path",
+      "example": "Example Title"
+    },
+    "content": {
+      "type": "object",
+      "properties": {
+        "index": {
+          "type": "string",
+          "description": "Destination index for the monitored data",
+          "default": "default"
+        },
+        "sourcetype": {
+          "type": "string",
+          "description": "Source type assigned to the monitored data"
+        },
+        "source": {
+          "type": "string",
+          "description": "Source value assigned to the monitored data"
+        },
+        "host": {
+          "type": "string",
+          "description": "Host value assigned to the monitored data"
+        },
+        "disabled": {
+          "type": "boolean",
+          "description": "Whether the monitor input is disabled"
+        },
+        "followTail": {
+          "type": "boolean",
+          "description": "If true, monitoring starts at the end of file. If false, monitoring starts from the beginning."
+        },
+        "recursive": {
+          "type": "boolean",
+          "description": "Whether to recursively monitor subdirectories"
+        },
+        "whitelist": {
+          "type": "string",
+          "description": "Regex pattern for files to include"
+        },
+        "blacklist": {
+          "type": "string",
+          "description": "Regex pattern for files to exclude"
+        },
+        "crcSalt": {
+          "type": "string",
+          "description": "String to add to the CRC calculation"
+        },
+        "ignoreOlderThan": {
+          "type": "string",
+          "description": "Time modifier to skip files that have not been modified within the specified time"
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

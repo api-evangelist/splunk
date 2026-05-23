@@ -1,0 +1,147 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SearchJob",
+  "title": "SearchJob",
+  "type": "object",
+  "properties": {
+    "sid": {
+      "type": "string",
+      "description": "The unique search ID",
+      "example": "500123"
+    },
+    "content": {
+      "type": "object",
+      "properties": {
+        "sid": {
+          "type": "string"
+        },
+        "dispatchState": {
+          "type": "string",
+          "description": "Current state of the search job",
+          "enum": [
+            "QUEUED",
+            "PARSING",
+            "RUNNING",
+            "PAUSED",
+            "FINALIZING",
+            "DONE",
+            "FAILED"
+          ]
+        },
+        "doneProgress": {
+          "type": "number",
+          "description": "Progress percentage (0.0 to 1.0)",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "scanCount": {
+          "type": "integer",
+          "description": "Number of events scanned so far"
+        },
+        "eventCount": {
+          "type": "integer",
+          "description": "Number of events returned"
+        },
+        "resultCount": {
+          "type": "integer",
+          "description": "Number of results produced"
+        },
+        "runDuration": {
+          "type": "number",
+          "description": "Time elapsed in seconds"
+        },
+        "earliestTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Earliest time boundary of the search"
+        },
+        "latestTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Latest time boundary of the search"
+        },
+        "cursorTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Current time position of the search cursor"
+        },
+        "eventSearch": {
+          "type": "string",
+          "description": "The search string applied to events"
+        },
+        "reportSearch": {
+          "type": "string",
+          "description": "The reporting search string"
+        },
+        "isSaved": {
+          "type": "boolean"
+        },
+        "isFinalized": {
+          "type": "boolean"
+        },
+        "isPaused": {
+          "type": "boolean"
+        },
+        "isZombie": {
+          "type": "boolean"
+        },
+        "isDone": {
+          "type": "boolean"
+        },
+        "isFailed": {
+          "type": "boolean"
+        },
+        "isPreviewEnabled": {
+          "type": "boolean"
+        },
+        "isRealTimeSearch": {
+          "type": "boolean"
+        },
+        "isSavedSearch": {
+          "type": "boolean"
+        },
+        "isRemoteTimeline": {
+          "type": "boolean"
+        },
+        "priority": {
+          "type": "integer",
+          "description": "Job priority (0-10)"
+        },
+        "ttl": {
+          "type": "integer",
+          "description": "Time to live in seconds"
+        },
+        "request": {
+          "type": "object",
+          "description": "Original request parameters"
+        },
+        "performance": {
+          "type": "object",
+          "description": "Performance metrics for the search"
+        },
+        "messages": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "DEBUG",
+                  "INFO",
+                  "WARN",
+                  "ERROR",
+                  "FATAL"
+                ]
+              },
+              "text": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

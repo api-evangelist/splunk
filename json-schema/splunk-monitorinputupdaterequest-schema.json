@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MonitorInputUpdateRequest",
+  "title": "MonitorInputUpdateRequest",
+  "type": "object",
+  "properties": {
+    "index": {
+      "type": "string",
+      "description": "Destination index",
+      "example": "example_value"
+    },
+    "sourcetype": {
+      "type": "string",
+      "description": "Source type to assign",
+      "example": "example_value"
+    },
+    "source": {
+      "type": "string",
+      "description": "Source value to assign",
+      "example": "example_value"
+    },
+    "host": {
+      "type": "string",
+      "description": "Host value to assign",
+      "example": "example_value"
+    },
+    "disabled": {
+      "type": "boolean",
+      "description": "Whether to disable the input",
+      "example": true
+    }
+  }
+}

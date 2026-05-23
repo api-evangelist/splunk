@@ -1,0 +1,33 @@
+{
+  "operationId": "listSearchJobs",
+  "method": "GET",
+  "path": "/services/search/jobs",
+  "summary": "List Search Jobs",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Listsearchjobs200Example",
+      "example": {
+        "origin": "example_value",
+        "updated": "2026-01-15T10:30:00Z",
+        "generator": {
+          "build": "example_value",
+          "version": "example_value"
+        },
+        "entry": [
+          {
+            "sid": "500123",
+            "content": {}
+          }
+        ],
+        "paging": {
+          "total": 10,
+          "perPage": 10,
+          "offset": 10
+        }
+      }
+    }
+  ]
+}

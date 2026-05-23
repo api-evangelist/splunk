@@ -1,0 +1,34 @@
+{
+  "operationId": "getSearchResults",
+  "method": "GET",
+  "path": "/services/search/jobs/{search_id}/results",
+  "summary": "Get Search Results",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Getsearchresults200Example",
+      "example": {
+        "init_offset": 10,
+        "results": [
+          {}
+        ],
+        "fields": [
+          {
+            "name": "Example Title",
+            "type": "example_value"
+          }
+        ],
+        "messages": [
+          {
+            "type": "example_value",
+            "text": "example_value"
+          }
+        ],
+        "preview": true,
+        "highlighted": "example_value"
+      }
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "operationId": "createHttpInputToken",
+  "method": "POST",
+  "path": "/services/data/inputs/http",
+  "summary": "Create an Http Event Collector Token",
+  "requestExamples": [
+    {
+      "contentType": "application/x-www-form-urlencoded",
+      "name": "CreatehttpinputtokenRequestExample",
+      "example": {
+        "name": "Example Title",
+        "index": "example_value",
+        "indexes": "example_value",
+        "sourcetype": "example_value",
+        "source": "example_value",
+        "host": "example_value",
+        "disabled": true,
+        "useACK": true
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "201",
+      "contentType": "application/json",
+      "name": "Createhttpinputtoken201Example",
+      "example": {
+        "name": "Example Title",
+        "content": {
+          "token": "example_value",
+          "index": "example_value",
+          "indexes": [
+            "example_value"
+          ],
+          "sourcetype": "example_value",
+          "source": "example_value",
+          "host": "example_value",
+          "disabled": true,
+          "useACK": true
+        }
+      }
+    },
+    {
+      "status": "409",
+      "contentType": "application/json",
+      "name": "Createhttpinputtoken409Example",
+      "example": {
+        "messages": [
+          {
+            "type": "ERROR",
+            "text": "example_value"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "operationId": "checkAckStatus",
+  "method": "POST",
+  "path": "/services/collector/ack",
+  "summary": "Check Indexer Acknowledgment Status",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "CheckackstatusRequestExample",
+      "example": {
+        "acks": [
+          10
+        ]
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Checkackstatus200Example",
+      "example": {
+        "acks": "example_value"
+      }
+    },
+    {
+      "status": "400",
+      "contentType": "application/json",
+      "name": "Checkackstatus400Example",
+      "example": {
+        "text": "example_value",
+        "code": 10,
+        "invalid-event-number": 10,
+        "ackId": "500123"
+      }
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "operationId": "listIndexes",
+  "method": "GET",
+  "path": "/services/data/indexes",
+  "summary": "List Indexes",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Listindexes200Example",
+      "example": {
+        "origin": "example_value",
+        "updated": "2026-01-15T10:30:00Z",
+        "entry": [
+          {
+            "name": "Example Title",
+            "content": {}
+          }
+        ],
+        "paging": {
+          "total": 10,
+          "perPage": 10,
+          "offset": 10
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+name: Splunk Domain Vocabulary
+provider: Splunk
+providerId: splunk
+description: Tag-derived vocabulary for the Splunk API surface; sourced from openapi/ tags.
+terms:
+- term: Search
+  description: Endpoints for creating, managing, and retrieving search jobs and their results. Splunk search processing language
+    (SPL) queries are submitted as search jobs that run asynchronously.
+- term: Index
+  description: Endpoints for managing Splunk indexes, which store and organize ingested data. Indexes can be created, modified,
+    listed, and configured for retention and storage policies.
+- term: Data Inputs
+  description: Endpoints for configuring and managing data inputs including monitors, TCP/UDP inputs, scripted inputs, and
+    HTTP Event Collector (HEC) tokens. Data inputs define how Splunk ingests data.

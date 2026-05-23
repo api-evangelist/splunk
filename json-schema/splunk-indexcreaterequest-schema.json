@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/IndexCreateRequest",
+  "title": "IndexCreateRequest",
+  "type": "object",
+  "required": [
+    "name"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name for the new index",
+      "examples": [
+        "my_new_index"
+      ]
+    },
+    "datatype": {
+      "type": "string",
+      "description": "Type of data the index will hold",
+      "enum": [
+        "event",
+        "metric"
+      ],
+      "default": "event",
+      "example": "event"
+    },
+    "homePath": {
+      "type": "string",
+      "description": "Absolute path for hot and warm bucket storage",
+      "example": "example_value"
+    },
+    "coldPath": {
+      "type": "string",
+      "description": "Absolute path for cold bucket storage",
+      "example": "example_value"
+    },
+    "thawedPath": {
+      "type": "string",
+      "description": "Absolute path for thawed bucket storage",
+      "example": "example_value"
+    },
+    "maxTotalDataSizeMB": {
+      "type": "integer",
+      "description": "Maximum total size of the index in MB",
+      "default": 500000,
+      "example": 10
+    },
+    "maxDataSize": {
+      "type": "string",
+      "description": "Maximum size of a hot bucket",
+      "default": "auto",
+      "example": "example_value"
+    },
+    "frozenTimePeriodInSecs": {
+      "type": "integer",
+      "description": "Seconds until data is frozen",
+      "default": 188697600,
+      "example": 10
+    },
+    "maxHotBuckets": {
+      "type": "integer",
+      "description": "Maximum number of hot buckets",
+      "default": 3,
+      "example": 10
+    },
+    "maxWarmDBCount": {
+      "type": "integer",
+      "description": "Maximum number of warm buckets",
+      "default": 300,
+      "example": 10
+    }
+  }
+}

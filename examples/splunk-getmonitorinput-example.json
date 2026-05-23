@@ -1,0 +1,30 @@
+{
+  "operationId": "getMonitorInput",
+  "method": "GET",
+  "path": "/services/data/inputs/monitor/{name}",
+  "summary": "Get Monitor Input Details",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Getmonitorinput200Example",
+      "example": {
+        "name": "Example Title",
+        "content": {
+          "index": "example_value",
+          "sourcetype": "example_value",
+          "source": "example_value",
+          "host": "example_value",
+          "disabled": true,
+          "followTail": true,
+          "recursive": true,
+          "whitelist": "example_value",
+          "blacklist": "example_value",
+          "crcSalt": "example_value",
+          "ignoreOlderThan": "example_value"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/HecToken",
+  "title": "HecToken",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The token name",
+      "example": "Example Title"
+    },
+    "content": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string",
+          "description": "The token value (GUID)"
+        },
+        "index": {
+          "type": "string",
+          "description": "Default destination index"
+        },
+        "indexes": {
+          "type": "array",
+          "description": "List of allowed indexes",
+          "items": {
+            "type": "string"
+          }
+        },
+        "sourcetype": {
+          "type": "string",
+          "description": "Default sourcetype"
+        },
+        "source": {
+          "type": "string",
+          "description": "Default source value"
+        },
+        "host": {
+          "type": "string",
+          "description": "Default host value"
+        },
+        "disabled": {
+          "type": "boolean",
+          "description": "Whether the token is disabled"
+        },
+        "useACK": {
+          "type": "boolean",
+          "description": "Whether indexer acknowledgment is enabled"
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

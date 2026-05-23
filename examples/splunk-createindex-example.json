@@ -1,0 +1,68 @@
+{
+  "operationId": "createIndex",
+  "method": "POST",
+  "path": "/services/data/indexes",
+  "summary": "Create a New Index",
+  "requestExamples": [
+    {
+      "contentType": "application/x-www-form-urlencoded",
+      "name": "CreateindexRequestExample",
+      "example": {
+        "name": "Example Title",
+        "datatype": "event",
+        "homePath": "example_value",
+        "coldPath": "example_value",
+        "thawedPath": "example_value",
+        "maxTotalDataSizeMB": 10,
+        "maxDataSize": "example_value",
+        "frozenTimePeriodInSecs": 10,
+        "maxHotBuckets": 10,
+        "maxWarmDBCount": 10
+      }
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "201",
+      "contentType": "application/json",
+      "name": "Createindex201Example",
+      "example": {
+        "name": "Example Title",
+        "content": {
+          "datatype": "event",
+          "totalEventCount": 10,
+          "currentDBSizeMB": 10,
+          "maxDataSize": "auto",
+          "maxTotalDataSizeMB": 10,
+          "maxHotBuckets": 10,
+          "maxWarmDBCount": 10,
+          "frozenTimePeriodInSecs": 10,
+          "homePath": "example_value",
+          "coldPath": "example_value",
+          "thawedPath": "example_value",
+          "disabled": true,
+          "isInternal": true,
+          "minTime": "example_value",
+          "maxTime": "example_value",
+          "repFactor": "example_value",
+          "enableOnlineBucketRepair": true,
+          "quarantinePastSecs": 10,
+          "quarantineFutureSecs": 10
+        }
+      }
+    },
+    {
+      "status": "409",
+      "contentType": "application/json",
+      "name": "Createindex409Example",
+      "example": {
+        "messages": [
+          {
+            "type": "ERROR",
+            "text": "example_value"
+          }
+        ]
+      }
+    }
+  ]
+}

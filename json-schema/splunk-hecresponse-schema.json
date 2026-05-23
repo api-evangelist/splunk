@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/HecResponse",
+  "title": "HecResponse",
+  "type": "object",
+  "properties": {
+    "text": {
+      "type": "string",
+      "description": "Human-readable status message",
+      "examples": [
+        "Success"
+      ]
+    },
+    "code": {
+      "type": "integer",
+      "description": "Numeric status code",
+      "examples": [
+        0
+      ]
+    },
+    "invalid-event-number": {
+      "type": "integer",
+      "description": "For batched events, the index of the first invalid event",
+      "example": 10
+    },
+    "ackId": {
+      "type": "integer",
+      "description": "Acknowledgment ID for tracking indexing status (when indexer acknowledgment is enabled)",
+      "example": "500123"
+    }
+  }
+}

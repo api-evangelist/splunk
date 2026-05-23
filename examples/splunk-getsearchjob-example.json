@@ -1,0 +1,51 @@
+{
+  "operationId": "getSearchJob",
+  "method": "GET",
+  "path": "/services/search/jobs/{search_id}",
+  "summary": "Get Search Job Details",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Getsearchjob200Example",
+      "example": {
+        "sid": "500123",
+        "content": {
+          "sid": "500123",
+          "dispatchState": "QUEUED",
+          "doneProgress": 42.5,
+          "scanCount": 10,
+          "eventCount": 10,
+          "resultCount": 10,
+          "runDuration": 42.5,
+          "earliestTime": "2026-01-15T10:30:00Z",
+          "latestTime": "2026-01-15T10:30:00Z",
+          "cursorTime": "2026-01-15T10:30:00Z",
+          "eventSearch": "example_value",
+          "reportSearch": "example_value",
+          "isSaved": true,
+          "isFinalized": true,
+          "isPaused": true,
+          "isZombie": true,
+          "isDone": true,
+          "isFailed": true,
+          "isPreviewEnabled": true,
+          "isRealTimeSearch": true,
+          "isSavedSearch": true,
+          "isRemoteTimeline": true,
+          "priority": 10,
+          "ttl": 10,
+          "request": "example_value",
+          "performance": "example_value",
+          "messages": [
+            {
+              "type": "DEBUG",
+              "text": "example_value"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Paging",
+  "title": "Paging",
+  "type": "object",
+  "properties": {
+    "total": {
+      "type": "integer",
+      "description": "Total number of items available",
+      "example": 10
+    },
+    "perPage": {
+      "type": "integer",
+      "description": "Number of items per page",
+      "example": 10
+    },
+    "offset": {
+      "type": "integer",
+      "description": "Current offset",
+      "example": 10
+    }
+  }
+}

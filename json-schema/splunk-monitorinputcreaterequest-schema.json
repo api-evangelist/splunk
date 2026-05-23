@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MonitorInputCreateRequest",
+  "title": "MonitorInputCreateRequest",
+  "type": "object",
+  "required": [
+    "name"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The file or directory path to monitor",
+      "examples": [
+        "/var/log/syslog"
+      ]
+    },
+    "index": {
+      "type": "string",
+      "description": "Destination index",
+      "default": "default",
+      "example": "example_value"
+    },
+    "sourcetype": {
+      "type": "string",
+      "description": "Source type to assign",
+      "example": "example_value"
+    },
+    "source": {
+      "type": "string",
+      "description": "Source value to assign",
+      "example": "example_value"
+    },
+    "host": {
+      "type": "string",
+      "description": "Host value to assign",
+      "example": "example_value"
+    },
+    "disabled": {
+      "type": "boolean",
+      "description": "Whether to create the input in disabled state",
+      "default": false,
+      "example": true
+    },
+    "followTail": {
+      "type": "boolean",
+      "description": "Start monitoring from end of file",
+      "default": false,
+      "example": true
+    },
+    "recursive": {
+      "type": "boolean",
+      "description": "Recursively monitor subdirectories",
+      "default": true,
+      "example": true
+    },
+    "whitelist": {
+      "type": "string",
+      "description": "Regex pattern for files to include",
+      "example": "example_value"
+    },
+    "blacklist": {
+      "type": "string",
+      "description": "Regex pattern for files to exclude",
+      "example": "example_value"
+    }
+  }
+}

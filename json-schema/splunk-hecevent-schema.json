@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/HecEvent",
+  "title": "HecEvent",
+  "type": "object",
+  "required": [
+    "event"
+  ],
+  "properties": {
+    "time": {
+      "oneOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "string"
+        }
+      ],
+      "description": "Event timestamp in epoch time (seconds since 1970-01-01). If omitted, Splunk uses the current time.",
+      "examples": [
+        1704067200.0
+      ]
+    },
+    "host": {
+      "type": "string",
+      "description": "Hostname or IP address of the event source",
+      "examples": [
+        "webserver01"
+      ]
+    },
+    "source": {
+      "type": "string",
+      "description": "Source of the event",
+      "examples": [
+        "/var/log/application.log"
+      ]
+    },
+    "sourcetype": {
+      "type": "string",
+      "description": "Source type for the event",
+      "examples": [
+        "_json"
+      ]
+    },
+    "index": {
+      "type": "string",
+      "description": "Destination index for the event",
+      "examples": [
+        "main"
+      ]
+    },
+    "event": {
+      "description": "The event data. Can be a string or a JSON object. This is the actual data payload to be indexed.",
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "object",
+          "additionalProperties": true
+        }
+      ],
+      "examples": [
+        {
+          "message": "User logged in",
+          "user": "admin",
+          "action": "login"
+        }
+      ]
+    },
+    "fields": {
+      "type": "object",
+      "description": "Additional metadata fields to associate with the event. These fields are indexed as metadata and can be searched.",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "example": "example_value"
+    }
+  }
+}

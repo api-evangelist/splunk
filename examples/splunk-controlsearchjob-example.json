@@ -1,0 +1,18 @@
+{
+  "operationId": "controlSearchJob",
+  "method": "POST",
+  "path": "/services/search/jobs/{search_id}/control",
+  "summary": "Control a Search Job",
+  "requestExamples": [
+    {
+      "contentType": "application/x-www-form-urlencoded",
+      "name": "ControlsearchjobRequestExample",
+      "example": {
+        "action": "pause",
+        "ttl": 10,
+        "priority": 10
+      }
+    }
+  ],
+  "responseExamples": []
+}

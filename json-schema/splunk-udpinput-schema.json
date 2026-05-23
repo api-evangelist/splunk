@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UdpInput",
+  "title": "UdpInput",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The UDP port number",
+      "example": "Example Title"
+    },
+    "content": {
+      "type": "object",
+      "properties": {
+        "index": {
+          "type": "string",
+          "description": "Destination index"
+        },
+        "sourcetype": {
+          "type": "string",
+          "description": "Source type for incoming data"
+        },
+        "source": {
+          "type": "string",
+          "description": "Source value for incoming data"
+        },
+        "host": {
+          "type": "string",
+          "description": "Host value for incoming data"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "connection_host": {
+          "type": "string",
+          "description": "How to determine the host value",
+          "enum": [
+            "ip",
+            "dns",
+            "none"
+          ]
+        },
+        "no_appending_timestamp": {
+          "type": "boolean",
+          "description": "Whether to prevent Splunk from appending a timestamp"
+        },
+        "no_priority_stripping": {
+          "type": "boolean",
+          "description": "Whether to prevent Splunk from stripping priority"
+        }
+      },
+      "example": "example_value"
+    }
+  }
+}

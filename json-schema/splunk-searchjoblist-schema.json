@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SearchJobList",
+  "title": "SearchJobList",
+  "type": "object",
+  "properties": {
+    "origin": {
+      "type": "string",
+      "description": "URI of the request",
+      "example": "example_value"
+    },
+    "updated": {
+      "type": "string",
+      "format": "date-time",
+      "example": "2026-01-15T10:30:00Z"
+    },
+    "generator": {
+      "type": "object",
+      "properties": {
+        "build": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "example": "example_value"
+    },
+    "entry": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/SearchJob"
+      },
+      "example": []
+    },
+    "paging": {
+      "$ref": "#/components/schemas/Paging"
+    }
+  }
+}

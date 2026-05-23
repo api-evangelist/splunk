@@ -1,0 +1,48 @@
+{
+  "operationId": "sendRawEvent",
+  "method": "POST",
+  "path": "/services/collector/raw",
+  "summary": "Send Raw Data via Http Event Collector",
+  "requestExamples": [
+    {
+      "contentType": "text/plain",
+      "name": "SendraweventRequestExample",
+      "example": "example_value"
+    }
+  ],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "Sendrawevent200Example",
+      "example": {
+        "text": "example_value",
+        "code": 10,
+        "invalid-event-number": 10,
+        "ackId": "500123"
+      }
+    },
+    {
+      "status": "400",
+      "contentType": "application/json",
+      "name": "Sendrawevent400Example",
+      "example": {
+        "text": "example_value",
+        "code": 10,
+        "invalid-event-number": 10,
+        "ackId": "500123"
+      }
+    },
+    {
+      "status": "401",
+      "contentType": "application/json",
+      "name": "Sendrawevent401Example",
+      "example": {
+        "text": "example_value",
+        "code": 10,
+        "invalid-event-number": 10,
+        "ackId": "500123"
+      }
+    }
+  ]
+}
