@@ -2,13 +2,13 @@
   "repo": "splunk",
   "feeds": [
     {
-      "source": "https://www.splunk.com/en_us/blog",
-      "feed_url": "",
+      "source": "https://dev.splunk.com/",
+      "feed_url": "https://dev.splunk.com/",
       "title": "",
       "saved": 0,
-      "error": "no_feed"
+      "method": "none"
     }
   ],
-  "fetched": "2026-05-17T20:48:52Z",
+  "fetched": "2026-06-01T23:35:02Z",
   "post_count": 0
 }
