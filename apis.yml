@@ -311,6 +311,27 @@ maintainers:
   email: devinfo@splunk.com
   url: https://www.splunk.com
 common:
+- type: ArazzoWorkflows
+  url: arazzo/
+  workflows:
+  - url: arazzo/splunk-control-and-cleanup-search-workflow.yml
+    name: Splunk Finalize, Read, and Clean Up a Search Job
+    summary: Dispatch a long search, finalize it early, read partial results, then delete the job.
+  - url: arazzo/splunk-hec-ingest-and-acknowledge-workflow.yml
+    name: Splunk HEC Ingest an Event and Confirm Indexing
+    summary: Provision a HEC token with acknowledgment, send a JSON event, and confirm it was indexed.
+  - url: arazzo/splunk-provision-index-and-monitor-workflow.yml
+    name: Splunk Provision an Index and Attach a Monitor Input
+    summary: Create an event index, verify it, then create a file monitor input that feeds it.
+  - url: arazzo/splunk-raw-ingest-and-search-workflow.yml
+    name: Splunk Ingest Raw Data then Search for It
+    summary: Send raw text to HEC, then run an SPL search and poll it to confirm the data landed.
+  - url: arazzo/splunk-run-search-job-workflow.yml
+    name: Splunk Run a Search Job and Retrieve Results
+    summary: Dispatch an SPL search, poll the job until it finishes, then read the results.
+  - url: arazzo/splunk-search-events-workflow.yml
+    name: Splunk Search and Retrieve Raw Events
+    summary: Run an SPL search, wait for it to finish, then pull the untransformed events.
 - type: DeveloperPortal
   url: https://dev.splunk.com/
 - type: Blog

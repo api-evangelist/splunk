@@ -1,0 +1,113 @@
+arazzo: 1.0.1
+info:
+  title: Splunk Finalize, Read, and Clean Up a Search Job
+  summary: Dispatch a long search, finalize it early, read partial results, then delete the job.
+  description: >-
+    A lifecycle-management pattern for search jobs. A search is dispatched, then
+    a control action is issued to finalize it (stopping data collection while
+    keeping the results gathered so far). The partial results are read back and
+    the job is finally deleted to free search-head resources. Every step spells
+    out its request inline so the flow can be read and executed without opening
+    the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: splunkApi
+  url: ../openapi/splunk-enterprise-rest-api.yml
+  type: openapi
+workflows:
+- workflowId: control-and-cleanup-search
+  summary: Create, finalize, read, and delete a search job.
+  description: >-
+    Dispatches an SPL search, finalizes it via the control endpoint, retrieves
+    whatever results were gathered, and then deletes the job.
+  inputs:
+    type: object
+    required:
+    - search
+    properties:
+      search:
+        type: string
+        description: The SPL search query to execute.
+      earliest_time:
+        type: string
+        description: Earliest time boundary for the search.
+      latest_time:
+        type: string
+        description: Latest time boundary for the search.
+      count:
+        type: integer
+        description: Maximum number of results to return.
+  steps:
+  - stepId: createJob
+    description: >-
+      Dispatch the SPL search as an asynchronous search job and capture the
+      assigned search ID (sid).
+    operationId: createSearchJob
+    parameters:
+    - name: output_mode
+      in: query
+      value: json
+    requestBody:
+      contentType: application/x-www-form-urlencoded
+      payload:
+        search: $inputs.search
+        earliest_time: $inputs.earliest_time
+        latest_time: $inputs.latest_time
+        exec_mode: normal
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      sid: $response.body#/sid
+  - stepId: finalizeJob
+    description: >-
+      Issue the finalize control action to stop the search from collecting more
+      data while preserving the results gathered so far.
+    operationId: controlSearchJob
+    parameters:
+    - name: search_id
+      in: path
+      value: $steps.createJob.outputs.sid
+    - name: output_mode
+      in: query
+      value: json
+    requestBody:
+      contentType: application/x-www-form-urlencoded
+      payload:
+        action: finalize
+    successCriteria:
+    - condition: $statusCode == 200
+  - stepId: getResults
+    description: >-
+      Retrieve the results gathered before the job was finalized.
+    operationId: getSearchResults
+    parameters:
+    - name: search_id
+      in: path
+      value: $steps.createJob.outputs.sid
+    - name: output_mode
+      in: query
+      value: json
+    - name: count
+      in: query
+      value: $inputs.count
+    - name: offset
+      in: query
+      value: 0
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      results: $response.body#/results
+      fields: $response.body#/fields
+  - stepId: deleteJob
+    description: >-
+      Cancel and delete the search job to release search-head resources.
+    operationId: deleteSearchJob
+    parameters:
+    - name: search_id
+      in: path
+      value: $steps.createJob.outputs.sid
+    successCriteria:
+    - condition: $statusCode == 200
+  outputs:
+    sid: $steps.createJob.outputs.sid
+    results: $steps.getResults.outputs.results

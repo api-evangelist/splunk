@@ -1,0 +1,160 @@
+arazzo: 1.0.1
+info:
+  title: Splunk Ingest Raw Data then Search for It
+  summary: Send raw text to HEC, then run an SPL search and poll it to confirm the data landed.
+  description: >-
+    A round-trip ingestion-and-verification flow. Raw, unstructured text is
+    posted to the HTTP Event Collector raw endpoint, then an SPL search job is
+    dispatched against the target index and polled to completion to confirm the
+    ingested data is searchable. Every step spells out its request inline so the
+    flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: splunkApi
+  url: ../openapi/splunk-enterprise-rest-api.yml
+  type: openapi
+workflows:
+- workflowId: raw-ingest-and-search
+  summary: Send raw data to HEC, then dispatch and poll a search that finds it.
+  description: >-
+    Posts raw text to the HEC raw collector with source and index overrides,
+    then dispatches an SPL search against that index, polls the job to DONE, and
+    reads the results to verify the data is searchable.
+  inputs:
+    type: object
+    required:
+    - hecAuthorization
+    - rawData
+    - index
+    - search
+    properties:
+      hecAuthorization:
+        type: string
+        description: >-
+          The HEC Authorization header value, formatted as "Splunk <token>".
+      rawData:
+        type: string
+        description: The raw, unstructured text to ingest.
+      index:
+        type: string
+        description: Destination index for the raw data and target of the search.
+      sourcetype:
+        type: string
+        description: Source type override for the raw data.
+      source:
+        type: string
+        description: Source override for the raw data.
+      search:
+        type: string
+        description: The SPL search query used to verify the data (e.g. "search index=main").
+      count:
+        type: integer
+        description: Maximum number of results to return.
+  steps:
+  - stepId: sendRaw
+    description: >-
+      Post raw text to the HEC raw endpoint with index, source, and sourcetype
+      overrides.
+    operationId: sendRawEvent
+    parameters:
+    - name: Authorization
+      in: header
+      value: $inputs.hecAuthorization
+    - name: index
+      in: query
+      value: $inputs.index
+    - name: sourcetype
+      in: query
+      value: $inputs.sourcetype
+    - name: source
+      in: query
+      value: $inputs.source
+    requestBody:
+      contentType: text/plain
+      payload: $inputs.rawData
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      code: $response.body#/code
+      text: $response.body#/text
+  - stepId: createJob
+    description: >-
+      Dispatch an SPL search against the target index to confirm the ingested
+      data is searchable.
+    operationId: createSearchJob
+    parameters:
+    - name: output_mode
+      in: query
+      value: json
+    requestBody:
+      contentType: application/x-www-form-urlencoded
+      payload:
+        search: $inputs.search
+        earliest_time: "-15m@m"
+        latest_time: now
+        exec_mode: normal
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      sid: $response.body#/sid
+  - stepId: pollJob
+    description: >-
+      Poll the search job until its dispatchState reports DONE.
+    operationId: getSearchJob
+    parameters:
+    - name: search_id
+      in: path
+      value: $steps.createJob.outputs.sid
+    - name: output_mode
+      in: query
+      value: json
+    successCriteria:
+    - condition: $statusCode == 200
+    - context: $response.body
+      condition: $.content.dispatchState == "DONE"
+      type: jsonpath
+    outputs:
+      dispatchState: $response.body#/content/dispatchState
+      resultCount: $response.body#/content/resultCount
+    onSuccess:
+    - name: jobDone
+      type: goto
+      stepId: getResults
+      criteria:
+      - context: $response.body
+        condition: $.content.dispatchState == "DONE"
+        type: jsonpath
+    onFailure:
+    - name: retryPoll
+      type: retry
+      retryAfter: 2
+      retryLimit: 30
+      criteria:
+      - condition: $statusCode == 200
+  - stepId: getResults
+    description: >-
+      Retrieve the search results to confirm the raw data was indexed and is
+      now searchable.
+    operationId: getSearchResults
+    parameters:
+    - name: search_id
+      in: path
+      value: $steps.createJob.outputs.sid
+    - name: output_mode
+      in: query
+      value: json
+    - name: count
+      in: query
+      value: $inputs.count
+    - name: offset
+      in: query
+      value: 0
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      results: $response.body#/results
+  outputs:
+    sid: $steps.createJob.outputs.sid
+    resultCount: $steps.pollJob.outputs.resultCount
+    results: $steps.getResults.outputs.results

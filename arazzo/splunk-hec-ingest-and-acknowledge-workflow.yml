@@ -1,0 +1,115 @@
+arazzo: 1.0.1
+info:
+  title: Splunk HEC Ingest an Event and Confirm Indexing
+  summary: Provision a HEC token with acknowledgment, send a JSON event, and confirm it was indexed.
+  description: >-
+    An end-to-end HTTP Event Collector ingestion flow with delivery guarantees.
+    A HEC token is created with indexer acknowledgment enabled, a structured
+    JSON event is posted to the collector using that token, and the returned
+    ackId is polled against the acknowledgment endpoint until the event reports
+    as indexed. Every step spells out its request inline so the flow can be read
+    and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: splunkApi
+  url: ../openapi/splunk-enterprise-rest-api.yml
+  type: openapi
+workflows:
+- workflowId: hec-ingest-and-acknowledge
+  summary: Create an ack-enabled HEC token, send a JSON event, and confirm indexing.
+  description: >-
+    Creates a HEC token with useACK enabled, sends a JSON event with the token
+    in the Authorization header, captures the returned ackId, and queries the
+    acknowledgment endpoint to confirm the event was indexed.
+  inputs:
+    type: object
+    required:
+    - tokenName
+    - hecAuthorization
+    - event
+    properties:
+      tokenName:
+        type: string
+        description: Name for the new HEC token to create.
+      index:
+        type: string
+        description: Default destination index for the token and event.
+      sourcetype:
+        type: string
+        description: Source type to assign to the ingested event.
+      hecAuthorization:
+        type: string
+        description: >-
+          The HEC Authorization header value for the collector calls, formatted
+          as "Splunk <token>".
+      event:
+        type: string
+        description: The event payload to ingest.
+      host:
+        type: string
+        description: Host value to assign to the event.
+  steps:
+  - stepId: createToken
+    description: >-
+      Create a HEC token with indexer acknowledgment enabled so that ingested
+      events can be tracked through to indexing.
+    operationId: createHttpInputToken
+    parameters:
+    - name: output_mode
+      in: query
+      value: json
+    requestBody:
+      contentType: application/x-www-form-urlencoded
+      payload:
+        name: $inputs.tokenName
+        index: $inputs.index
+        sourcetype: $inputs.sourcetype
+        useACK: true
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      token: $response.body#/content/token
+      useACK: $response.body#/content/useACK
+  - stepId: sendEvent
+    description: >-
+      Post a structured JSON event to the HTTP Event Collector using the HEC
+      token, capturing the acknowledgment ID for the batch.
+    operationId: sendEvent
+    parameters:
+    - name: Authorization
+      in: header
+      value: $inputs.hecAuthorization
+    requestBody:
+      contentType: application/json
+      payload:
+        event: $inputs.event
+        sourcetype: $inputs.sourcetype
+        index: $inputs.index
+        host: $inputs.host
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      ackId: $response.body#/ackId
+      code: $response.body#/code
+  - stepId: confirmIndexed
+    description: >-
+      Query the indexer acknowledgment endpoint with the ackId and poll until
+      the event reports as indexed.
+    operationId: checkAckStatus
+    parameters:
+    - name: Authorization
+      in: header
+      value: $inputs.hecAuthorization
+    requestBody:
+      contentType: application/json
+      payload:
+        acks:
+        - $steps.sendEvent.outputs.ackId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      acks: $response.body#/acks
+  outputs:
+    token: $steps.createToken.outputs.token
+    ackId: $steps.sendEvent.outputs.ackId
+    acks: $steps.confirmIndexed.outputs.acks

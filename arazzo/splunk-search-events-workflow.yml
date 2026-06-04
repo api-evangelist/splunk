@@ -1,0 +1,132 @@
+arazzo: 1.0.1
+info:
+  title: Splunk Search and Retrieve Raw Events
+  summary: Run an SPL search, wait for it to finish, then pull the untransformed events.
+  description: >-
+    Useful when you need the raw events behind a search rather than the
+    transformed results. A search job is dispatched, polled until its
+    dispatchState is DONE, and then the untransformed events are retrieved with
+    optional line-truncation controls. Every step spells out its request inline
+    so the flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: splunkApi
+  url: ../openapi/splunk-enterprise-rest-api.yml
+  type: openapi
+workflows:
+- workflowId: search-events
+  summary: Create a search job, poll it to completion, and fetch raw events.
+  description: >-
+    Submits an SPL search as an asynchronous job, polls until it is DONE, then
+    returns the untransformed events of the search.
+  inputs:
+    type: object
+    required:
+    - search
+    properties:
+      search:
+        type: string
+        description: The SPL search query to execute.
+      earliest_time:
+        type: string
+        description: Earliest time boundary for the search (e.g. "-7d@d").
+      latest_time:
+        type: string
+        description: Latest time boundary for the search (e.g. "now").
+      count:
+        type: integer
+        description: Maximum number of events to return.
+      max_lines:
+        type: integer
+        description: Maximum number of lines per event (0 means no limit).
+  steps:
+  - stepId: createJob
+    description: >-
+      Dispatch the SPL search as an asynchronous search job and capture the
+      assigned search ID (sid).
+    operationId: createSearchJob
+    parameters:
+    - name: output_mode
+      in: query
+      value: json
+    requestBody:
+      contentType: application/x-www-form-urlencoded
+      payload:
+        search: $inputs.search
+        earliest_time: $inputs.earliest_time
+        latest_time: $inputs.latest_time
+        exec_mode: normal
+        status_buckets: 300
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      sid: $response.body#/sid
+  - stepId: pollJob
+    description: >-
+      Poll the search job until its dispatchState reports DONE so that events
+      are available.
+    operationId: getSearchJob
+    parameters:
+    - name: search_id
+      in: path
+      value: $steps.createJob.outputs.sid
+    - name: output_mode
+      in: query
+      value: json
+    successCriteria:
+    - condition: $statusCode == 200
+    - context: $response.body
+      condition: $.content.dispatchState == "DONE"
+      type: jsonpath
+    outputs:
+      dispatchState: $response.body#/content/dispatchState
+      eventCount: $response.body#/content/eventCount
+    onSuccess:
+    - name: jobDone
+      type: goto
+      stepId: getEvents
+      criteria:
+      - context: $response.body
+        condition: $.content.dispatchState == "DONE"
+        type: jsonpath
+    onFailure:
+    - name: retryPoll
+      type: retry
+      retryAfter: 2
+      retryLimit: 30
+      criteria:
+      - condition: $statusCode == 200
+  - stepId: getEvents
+    description: >-
+      Retrieve the untransformed events of the completed search job in JSON,
+      with optional line truncation.
+    operationId: getSearchEvents
+    parameters:
+    - name: search_id
+      in: path
+      value: $steps.createJob.outputs.sid
+    - name: output_mode
+      in: query
+      value: json
+    - name: count
+      in: query
+      value: $inputs.count
+    - name: offset
+      in: query
+      value: 0
+    - name: truncation_mode
+      in: query
+      value: abstract
+    - name: max_lines
+      in: query
+      value: $inputs.max_lines
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      results: $response.body#/results
+      fields: $response.body#/fields
+  outputs:
+    sid: $steps.createJob.outputs.sid
+    eventCount: $steps.pollJob.outputs.eventCount
+    events: $steps.getEvents.outputs.results
