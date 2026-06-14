@@ -1,0 +1,917 @@
+"""
+Splunk GraphQL Schema
+Conceptual GraphQL representation of the Splunk Enterprise REST API.
+Source: https://dev.splunk.com/enterprise/docs/devtools/restapi/
+"""
+
+scalar DateTime
+scalar JSON
+scalar Long
+
+# ─── Search ──────────────────────────────────────────────────────────────────
+
+type SearchJob {
+  sid: ID!
+  search: String!
+  status: SearchJobStatus!
+  dispatchState: String
+  resultCount: Int
+  eventCount: Int
+  scanCount: Long
+  doneProgress: Float
+  isZombie: Boolean
+  isSaved: Boolean
+  isFailed: Boolean
+  isFinalized: Boolean
+  earliestTime: String
+  latestTime: String
+  createTime: DateTime
+  eventAvailableCount: Int
+  eventSearch: String
+  messages: [SearchMessage!]
+  performance: JSON
+  results: SearchResults
+  preview: SearchPreview
+  timeline: SearchTimeline
+}
+
+enum SearchJobStatus {
+  QUEUED
+  PARSING
+  RUNNING
+  PAUSED
+  FINALIZING
+  FAILED
+  DONE
+}
+
+type SearchMessage {
+  type: String!
+  text: String!
+}
+
+type SearchResults {
+  fields: [SearchField!]!
+  results: [JSON!]!
+  highlighted: JSON
+  preview: Boolean
+  offset: Int
+  count: Int
+  messages: [SearchMessage!]
+}
+
+type SearchField {
+  name: String!
+  groupby_rank: String
+  multivalue: Boolean
+}
+
+type SearchPreview {
+  sid: ID!
+  isPreview: Boolean!
+  results: SearchResults
+}
+
+type SearchTimeline {
+  sid: ID!
+  buckets: [TimelineBucket!]!
+  cursor: Int
+  done: Boolean
+  event_count: Long
+  related_event_count: Long
+}
+
+type TimelineBucket {
+  available_count: Int!
+  duration: Long!
+  earliest_time: String!
+  earliest_strftime: String
+  event_count: Int!
+  is_finalized: Boolean!
+  total_count: Int!
+}
+
+# ─── Index ────────────────────────────────────────────────────────────────────
+
+type Index {
+  name: String!
+  homePath: String
+  coldPath: String
+  thawedPath: String
+  maxTotalDataSizeMB: Long
+  maxDataSize: Long
+  minTime: DateTime
+  maxTime: DateTime
+  currentDBSizeMB: Long
+  totalEventCount: Long
+  isInternal: Boolean
+  isVirtual: Boolean
+  disabled: Boolean
+  datatype: IndexDatatype
+  summary: IndexSummary
+}
+
+enum IndexDatatype {
+  EVENT
+  METRIC
+}
+
+type IndexSummary {
+  name: String!
+  earliestTime: String
+  latestTime: String
+  eventCount: Long
+  diskUsage: Long
+  hosts: [HostSummary!]
+  sourcetypes: [SourcetypeSummary!]
+  sources: [SourceSummary!]
+}
+
+type HostSummary {
+  value: String!
+  count: Long!
+  recentTime: DateTime
+}
+
+type SourcetypeSummary {
+  value: String!
+  count: Long!
+  recentTime: DateTime
+}
+
+type SourceSummary {
+  value: String!
+  count: Long!
+  recentTime: DateTime
+}
+
+# ─── Metadata Dimensions ─────────────────────────────────────────────────────
+
+type Sourcetype {
+  name: String!
+  category: String
+  description: String
+  disabled: Boolean
+  pulldown_type: Boolean
+  lineBreaker: String
+  timestampExtraction: String
+  maxTimestampLookahead: Int
+}
+
+type Source {
+  name: String!
+  eventCount: Long
+  recentTime: DateTime
+  index: String
+}
+
+type Host {
+  name: String!
+  eventCount: Long
+  recentTime: DateTime
+}
+
+# ─── Apps ─────────────────────────────────────────────────────────────────────
+
+type App {
+  name: String!
+  label: String
+  version: String
+  description: String
+  author: String
+  disabled: Boolean
+  visible: Boolean
+  configured: Boolean
+  check_for_updates: Boolean
+  stateChangeRequiresRestart: Boolean
+  details: String
+  config: AppConfig
+}
+
+type AppConfig {
+  appName: String!
+  key: String!
+  value: String
+  namespace: String
+}
+
+# ─── Users and Access Control ─────────────────────────────────────────────────
+
+type User {
+  name: String!
+  realname: String
+  email: String
+  defaultApp: String
+  defaultAppIsUserOverride: Boolean
+  roles: [Role!]
+  capabilities: [Capability!]
+  tz: String
+  type: String
+  locked_out: Boolean
+  force_change_pass: Boolean
+}
+
+type Role {
+  name: String!
+  capabilities: [Capability!]!
+  imported_roles: [String!]
+  srchIndexesAllowed: [String!]
+  srchIndexesDefault: [String!]
+  srchDiskQuota: Int
+  srchJobsQuota: Int
+  rtSrchJobsQuota: Int
+  permissions: [Permission!]
+}
+
+type Permission {
+  resource: String!
+  read: [String!]
+  write: [String!]
+}
+
+type Capability {
+  name: String!
+  description: String
+}
+
+# ─── KV Store ─────────────────────────────────────────────────────────────────
+
+type KVStore {
+  name: String!
+  app: String!
+  fields: JSON
+  accelerated_fields: JSON
+}
+
+type KVStoreData {
+  _key: ID!
+  _user: String
+  data: JSON!
+}
+
+# ─── Dashboards and Views ─────────────────────────────────────────────────────
+
+type Dashboard {
+  name: String!
+  label: String
+  description: String
+  version: Int
+  rootNode: String
+  authorizedCapabilityList: [String!]
+  panels: [DashboardPanel!]
+  viewState: ViewState
+  eai_data: String
+}
+
+type DashboardPanel {
+  id: String!
+  title: String
+  type: String
+  searches: [SavedSearch!]
+  visualizationType: String
+  options: JSON
+}
+
+type ViewState {
+  id: String!
+  namespace: String
+  value: JSON
+}
+
+# ─── Saved Searches and Alerts ────────────────────────────────────────────────
+
+type SavedSearch {
+  name: String!
+  search: String!
+  description: String
+  disabled: Boolean
+  isScheduled: Boolean
+  cron_schedule: String
+  dispatch_earliest_time: String
+  dispatch_latest_time: String
+  alert_type: String
+  alert_threshold: String
+  alert_comparator: String
+  alert_condition: String
+  alert_expires: String
+  actions: [String!]
+  nextScheduledTime: DateTime
+  alert: Alert
+}
+
+type Alert {
+  name: String!
+  savedSearch: String!
+  triggerTime: DateTime
+  triggerCount: Int
+  digest_mode: Boolean
+  severity: AlertSeverity
+  suppressions: [AlertSuppression!]
+}
+
+enum AlertSeverity {
+  INFO
+  WARNING
+  ERROR
+  CRITICAL
+}
+
+type AlertSuppression {
+  name: String!
+  search: String!
+  suppression_period: String
+  expiration: DateTime
+  fields: [String!]
+}
+
+# ─── Data Models ──────────────────────────────────────────────────────────────
+
+type Datamodel {
+  name: String!
+  displayName: String
+  description: String
+  baseSearch: String
+  disabled: Boolean
+  objects: [DatamodelObject!]!
+  acceleration: DatamodelAcceleration
+}
+
+type DatamodelObject {
+  name: String!
+  displayName: String
+  parentName: String
+  lineage: [String!]
+  constraints: [DatamodelConstraint!]
+  fields: [DatamodelField!]
+}
+
+type DatamodelConstraint {
+  search: String!
+}
+
+type DatamodelField {
+  fieldName: String!
+  displayName: String
+  type: String
+  owner: String
+  required: Boolean
+}
+
+type DatamodelAcceleration {
+  enabled: Boolean!
+  earliestTime: String
+  backfill_enabled: Boolean
+  status: JSON
+}
+
+# ─── Lookups and Transforms ───────────────────────────────────────────────────
+
+type Lookup {
+  name: String!
+  filename: String
+  match_type: String
+  max_matches: Int
+  min_matches: Int
+  default_match: String
+  fields_list: [String!]
+  time_field: String
+  time_format: String
+}
+
+type LookupTable {
+  name: String!
+  lookup: String!
+  header: [String!]!
+  rows: [[String]]
+}
+
+type Transforms {
+  name: String!
+  type: TransformType!
+  source_key: String
+  dest_key: String
+  regex: String
+  format: String
+  fields: [String!]
+}
+
+enum TransformType {
+  LOOKUP
+  EXTRACTION
+  ALIAS
+  METRIC_SCHEMA
+}
+
+type FieldExtraction {
+  name: String!
+  stanza: String!
+  value: String!
+  type: String
+  attribute: String
+}
+
+type FieldAlias {
+  name: String!
+  stanza: String!
+  aliases: JSON!
+}
+
+# ─── Macros and Event Types ───────────────────────────────────────────────────
+
+type MacroDefinition {
+  name: String!
+  definition: String!
+  args: [String!]
+  validation: String
+  errormsg: String
+  iseval: Boolean
+  description: String
+}
+
+type EventType {
+  name: String!
+  search: String!
+  description: String
+  disabled: Boolean
+  priority: Int
+  tags: [Tag!]
+}
+
+type Tag {
+  name: String!
+  objects: [TagObject!]
+}
+
+type TagObject {
+  field: String!
+  value: String!
+}
+
+# ─── Tokens ───────────────────────────────────────────────────────────────────
+
+type Token {
+  id: ID!
+  name: String!
+  content: String
+  type: String
+  status: String
+  expirationTime: DateTime
+  notBefore: DateTime
+  claims: JSON
+  audience: String
+}
+
+# ─── Metrics ──────────────────────────────────────────────────────────────────
+
+type MetricIndex {
+  name: String!
+  datatype: String!
+  minTime: DateTime
+  maxTime: DateTime
+  totalEventCount: Long
+  dimensions: [String!]
+  metrics: [String!]
+}
+
+type MetricTimeseries {
+  metric: String!
+  dimensions: JSON
+  series: [MetricPoint!]!
+}
+
+type MetricPoint {
+  timestamp: DateTime!
+  value: Float!
+}
+
+# ─── Workflow Actions ─────────────────────────────────────────────────────────
+
+type WorkflowAction {
+  name: String!
+  type: WorkflowActionType!
+  disabled: Boolean
+  fields: [String!]
+  display_location: String
+  label: String
+  eventtypes: [String!]
+  link_uri: String
+  link_method: String
+  search_string: String
+}
+
+enum WorkflowActionType {
+  LINK
+  SEARCH
+}
+
+# ─── FTS / Search Configuration ───────────────────────────────────────────────
+
+type FTSConfig {
+  enabled: Boolean!
+  disabled_fields: [String!]
+  max_terms: Int
+  case_sensitive: Boolean
+}
+
+# ─── Clustering ───────────────────────────────────────────────────────────────
+
+type ClusterConfig {
+  mode: ClusterMode!
+  replication_factor: Int!
+  search_factor: Int!
+  site_replication_factor: String
+  site_search_factor: String
+  master_uri: String
+  pass4SymmKey: String
+  multisite: Boolean
+}
+
+enum ClusterMode {
+  MASTER
+  PEER
+  SEARCHHEAD
+  DISABLED
+}
+
+type ClusterNode {
+  name: String!
+  label: String
+  guid: String
+  site: String
+  status: ClusterNodeStatus!
+  is_searchable: Boolean
+  is_registered: Boolean
+  buckets: [ClusterBucket!]
+  host_port_pair: String
+  base_gen_id: Long
+}
+
+enum ClusterNodeStatus {
+  UP
+  DOWN
+  DECOMMISSIONING
+}
+
+type ClusterBundle {
+  bundlePath: String!
+  checksum: String
+  generationId: Long
+  timestamp: DateTime
+}
+
+type ClusterBucket {
+  bucketId: String!
+  path: String!
+  state: String
+  size: Long
+  indexName: String
+  earliestTime: DateTime
+  latestTime: DateTime
+}
+
+# ─── HEC Tokens ───────────────────────────────────────────────────────────────
+
+type HECToken {
+  name: String!
+  token: String!
+  disabled: Boolean
+  index: String
+  indexes: [String!]
+  source: String
+  sourcetype: String
+  host: String
+  useACK: Boolean
+  queueSize: Int
+}
+
+# ─── Forwarders and Inputs ────────────────────────────────────────────────────
+
+type Forwarder {
+  name: String!
+  ip: String
+  dns: String
+  tcp: String
+  os: String
+  arch: String
+  status: String
+  state: String
+  guid: String
+}
+
+type Input {
+  name: String!
+  type: InputType!
+  disabled: Boolean
+  index: String
+  sourcetype: String
+  host: String
+}
+
+enum InputType {
+  MONITOR
+  TCP
+  UDP
+  SCRIPT
+  WINDOWS_EVENT_LOG
+  SYSLOG
+  MODULAR
+}
+
+type Monitor {
+  name: String!
+  path: String!
+  disabled: Boolean
+  index: String
+  sourcetype: String
+  host: String
+  recursive: Boolean
+  followTail: Boolean
+  ignoreOlderThan: String
+  whitelist: String
+  blacklist: String
+  crcSalt: String
+}
+
+type WinEventLog {
+  name: String!
+  disabled: Boolean
+  index: String
+  sourcetype: String
+  lookup_host: String
+  hosts: [String!]
+  logs: [String!]
+  start_from: String
+  current_only: Boolean
+  renderXml: Boolean
+  suppress_sourcename: Boolean
+}
+
+type Script {
+  name: String!
+  disabled: Boolean
+  index: String
+  sourcetype: String
+  host: String
+  interval: String
+  passAuth: String
+}
+
+type TCP {
+  name: String!
+  disabled: Boolean
+  index: String
+  sourcetype: String
+  host: String
+  connection_host: String
+  rawTcpDoneTimeout: Int
+  restrictToHost: String
+}
+
+type UDP {
+  name: String!
+  disabled: Boolean
+  index: String
+  sourcetype: String
+  host: String
+  no_priority_stripping: Boolean
+  no_appending_timestamp: Boolean
+  connection_host: String
+}
+
+type Syslog {
+  name: String!
+  type: String
+  priority: String
+  disabled: Boolean
+}
+
+type ModularInput {
+  name: String!
+  scheme: JSON
+  disabled: Boolean
+  index: String
+  sourcetype: String
+  host: String
+  parameters: JSON
+}
+
+# ─── Deployment ───────────────────────────────────────────────────────────────
+
+type DeploymentServer {
+  name: String!
+  disabled: Boolean
+  clientCount: Int
+  repositoryLocation: String
+  serverclass: [String!]
+}
+
+type DeploymentApp {
+  name: String!
+  disabled: Boolean
+  repositoryLocation: String
+  restartRequired: Boolean
+  serverclass: [String!]
+  stateOnClient: String
+}
+
+# ─── Licensing ────────────────────────────────────────────────────────────────
+
+type LicensePool {
+  name: String!
+  slaves_usage_bytes: Long
+  quota: Long
+  used_bytes: Long
+  stack_id: String
+  slaves: [String!]
+  warnings: [String!]
+}
+
+type LicenseSlave {
+  name: String!
+  label: String
+  pool: String
+  stack_id: String
+  warning_count: Int
+  active_license_subgroup_name: String
+}
+
+# ─── Health and Diagnostics ───────────────────────────────────────────────────
+
+type HealthReport {
+  disabled: Boolean!
+  health: HealthStatus!
+  reasons: [HealthReason!]
+  features: JSON
+}
+
+enum HealthStatus {
+  GREEN
+  YELLOW
+  RED
+}
+
+type HealthReason {
+  description: String!
+  indicator: String
+  published_settings: JSON
+}
+
+type DiagBundle {
+  bundlePath: String
+  status: String
+  created: DateTime
+  size: Long
+  logs: [String!]
+}
+
+# ─── Root Operations ──────────────────────────────────────────────────────────
+
+type Query {
+  # Search
+  searchJob(sid: ID!): SearchJob
+  searchJobs(count: Int, offset: Int, search: String): [SearchJob!]!
+  searchResults(sid: ID!, count: Int, offset: Int, field_list: String): SearchResults
+
+  # Indexes
+  index(name: String!): Index
+  indexes(count: Int, offset: Int, datatype: IndexDatatype): [Index!]!
+  indexSummary(name: String!, earliestTime: String, latestTime: String): IndexSummary
+
+  # Metadata
+  sourcetype(name: String!): Sourcetype
+  sourcetypes(count: Int, offset: Int, search: String): [Sourcetype!]!
+  hosts(index: String, earliestTime: String, latestTime: String): [Host!]!
+  sources(index: String, earliestTime: String, latestTime: String): [Source!]!
+
+  # Apps
+  app(name: String!): App
+  apps(count: Int, offset: Int, search: String): [App!]!
+
+  # Users and Roles
+  user(name: String!): User
+  users(count: Int, offset: Int): [User!]!
+  role(name: String!): Role
+  roles(count: Int, offset: Int): [Role!]!
+  capabilities: [Capability!]!
+
+  # KV Store
+  kvStoreCollections(app: String!): [KVStore!]!
+  kvStoreData(app: String!, collection: String!, query: JSON, limit: Int, skip: Int): [KVStoreData!]!
+  kvStoreRecord(app: String!, collection: String!, key: ID!): KVStoreData
+
+  # Dashboards
+  dashboard(app: String!, name: String!): Dashboard
+  dashboards(app: String, count: Int, offset: Int): [Dashboard!]!
+
+  # Saved Searches
+  savedSearch(app: String!, name: String!): SavedSearch
+  savedSearches(app: String, count: Int, offset: Int): [SavedSearch!]!
+  alerts(count: Int, offset: Int): [Alert!]!
+
+  # Data Models
+  datamodel(app: String!, name: String!): Datamodel
+  datamodels(app: String, count: Int, offset: Int): [Datamodel!]!
+
+  # Lookups
+  lookup(app: String!, name: String!): Lookup
+  lookups(app: String, count: Int, offset: Int): [Lookup!]!
+
+  # Macros and Event Types
+  macro(app: String!, name: String!): MacroDefinition
+  macros(app: String, count: Int): [MacroDefinition!]!
+  eventType(app: String!, name: String!): EventType
+  eventTypes(app: String, count: Int): [EventType!]!
+
+  # Metrics
+  metricIndex(name: String!): MetricIndex
+  metricIndexes: [MetricIndex!]!
+  metricTimeseries(index: String!, metric: String!, dimensions: JSON, earliestTime: String, latestTime: String): MetricTimeseries
+
+  # Clustering
+  clusterConfig: ClusterConfig
+  clusterNodes(count: Int, offset: Int): [ClusterNode!]!
+  clusterBundles: [ClusterBundle!]!
+
+  # HEC
+  hecToken(name: String!): HECToken
+  hecTokens(count: Int, offset: Int): [HECToken!]!
+
+  # Forwarders and Inputs
+  forwarder(name: String!): Forwarder
+  forwarders(count: Int, offset: Int): [Forwarder!]!
+  monitors(count: Int, offset: Int): [Monitor!]!
+  tcpInputs(count: Int, offset: Int): [TCP!]!
+  udpInputs(count: Int, offset: Int): [UDP!]!
+
+  # Licensing
+  licensePools: [LicensePool!]!
+  licenseSlaves: [LicenseSlave!]!
+
+  # Health
+  healthReport: HealthReport
+  diagBundles: [DiagBundle!]!
+
+  # Tokens
+  tokens(count: Int, offset: Int): [Token!]!
+}
+
+type Mutation {
+  # Search
+  createSearchJob(search: String!, earliestTime: String, latestTime: String, maxCount: Int, timeout: Int): SearchJob!
+  finalizeSearchJob(sid: ID!): SearchJob!
+  cancelSearchJob(sid: ID!): Boolean!
+  pauseSearchJob(sid: ID!): SearchJob!
+  unpauseSearchJob(sid: ID!): SearchJob!
+
+  # Indexes
+  createIndex(name: String!, datatype: IndexDatatype, maxTotalDataSizeMB: Long, homePath: String, coldPath: String): Index!
+  updateIndex(name: String!, maxTotalDataSizeMB: Long, disabled: Boolean): Index!
+  deleteIndex(name: String!): Boolean!
+
+  # Apps
+  enableApp(name: String!): App!
+  disableApp(name: String!): App!
+
+  # Users
+  createUser(name: String!, password: String!, roles: [String!]!, realname: String, email: String, defaultApp: String): User!
+  updateUser(name: String!, password: String, roles: [String!], realname: String, email: String): User!
+  deleteUser(name: String!): Boolean!
+
+  # Roles
+  createRole(name: String!, capabilities: [String!], srchIndexesAllowed: [String!]): Role!
+  updateRole(name: String!, capabilities: [String!], srchIndexesAllowed: [String!]): Role!
+  deleteRole(name: String!): Boolean!
+
+  # KV Store
+  createKVStoreCollection(app: String!, name: String!, fields: JSON): KVStore!
+  insertKVStoreRecord(app: String!, collection: String!, data: JSON!): KVStoreData!
+  updateKVStoreRecord(app: String!, collection: String!, key: ID!, data: JSON!): KVStoreData!
+  deleteKVStoreRecord(app: String!, collection: String!, key: ID!): Boolean!
+
+  # Saved Searches
+  createSavedSearch(app: String!, name: String!, search: String!, description: String, cron_schedule: String): SavedSearch!
+  updateSavedSearch(app: String!, name: String!, search: String, cron_schedule: String, disabled: Boolean): SavedSearch!
+  deleteSavedSearch(app: String!, name: String!): Boolean!
+  runSavedSearch(app: String!, name: String!): SearchJob!
+
+  # HEC Tokens
+  createHECToken(name: String!, index: String, sourcetype: String, useACK: Boolean): HECToken!
+  updateHECToken(name: String!, disabled: Boolean, index: String): HECToken!
+  deleteHECToken(name: String!): Boolean!
+
+  # Inputs
+  createMonitor(path: String!, index: String, sourcetype: String, host: String, recursive: Boolean): Monitor!
+  updateMonitor(name: String!, disabled: Boolean, index: String): Monitor!
+  deleteMonitor(name: String!): Boolean!
+
+  # Tokens
+  createToken(name: String!, audience: String, expirationTime: DateTime, notBefore: DateTime): Token!
+  deleteToken(id: ID!): Boolean!
+}
+
+type Subscription {
+  searchJobStatus(sid: ID!): SearchJob!
+  searchResultsReady(sid: ID!): SearchResults!
+  alertFired(savedSearch: String): Alert!
+  healthStatusChanged: HealthReport!
+}

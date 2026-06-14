@@ -1,6 +1,7 @@
 aid: splunk
 name: Splunk
-description: Splunk is a platform for searching, monitoring, and analyzing machine-generated big data via a web-style interface.
+description: Splunk is a platform for searching, monitoring, and analyzing machine-generated
+  big data via a web-style interface.
 image: https://www.splunk.com/content/dam/splunk2/images/icons/favicons/favicon.ico
 url: https://raw.githubusercontent.com/api-evangelist/splunk/refs/heads/main/apis.yml
 created: '2025-01-08'
@@ -22,16 +23,20 @@ tags:
 apis:
 - aid: splunk:splunk
   name: Splunk
-  description: API monitoring checks to see if API-connected resources are available, working properly and responding to calls.
+  description: API monitoring checks to see if API-connected resources are available,
+    working properly and responding to calls.
   humanURL: https://www.splunk.com/en_us/blog/learn/api-monitoring.html
   tags: []
   properties:
   - type: Documentation
     url: https://www.splunk.com/en_us/blog/learn/api-monitoring.html
+  - url: graphql/splunk-graphql.md
+    type: GraphQL
 - aid: splunk:splunk-enterprise-rest-api
   name: Splunk Enterprise REST API
-  description: The Splunk Enterprise REST API provides programmatic access to the same information and functionality available
-    to core system software and Splunk Web. It supports GET, POST, and DELETE operations over HTTPS on the splunkd management
+  description: The Splunk Enterprise REST API provides programmatic access to the
+    same information and functionality available to core system software and Splunk
+    Web. It supports GET, POST, and DELETE operations over HTTPS on the splunkd management
     port 8089.
   humanURL: https://docs.splunk.com/Documentation/Splunk/latest/RESTREF/RESTprolog
   tags:
@@ -63,16 +68,11 @@ apis:
     url: json-schema/splunk-event-schema.json
   - type: JSONLD
     url: json-ld/splunk-context.jsonld
-  - type: NaftikoCapability
-    url: capabilities/enterprise-rest-data-inputs.yaml
-  - type: NaftikoCapability
-    url: capabilities/enterprise-rest-index.yaml
-  - type: NaftikoCapability
-    url: capabilities/enterprise-rest-search.yaml
 - aid: splunk:splunk-cloud-platform-rest-api
   name: Splunk Cloud Platform REST API
-  description: The Splunk Cloud Platform REST API provides a subset of the Splunk Enterprise REST API endpoints for managing
-    and interacting with your Splunk Cloud Platform deployment. Access requires port 8089 to be opened by Splunk Support.
+  description: The Splunk Cloud Platform REST API provides a subset of the Splunk
+    Enterprise REST API endpoints for managing and interacting with your Splunk Cloud
+    Platform deployment. Access requires port 8089 to be opened by Splunk Support.
   humanURL: https://help.splunk.com/en/splunk-cloud-platform/rest-api-reference
   tags:
   - Cloud
@@ -89,9 +89,11 @@ apis:
     url: https://docs.splunk.com/Documentation/SplunkCloud/latest/RESTREF/RESTprolog
 - aid: splunk:splunk-cloud-admin-config-service-api
   name: Splunk Cloud Admin Config Service (ACS) API
-  description: The Admin Config Service (ACS) is a cloud-native API that provides programmatic self-service administration
-    capabilities for Splunk Cloud Platform. Administrators can use the ACS API to manage indexes, IP allow lists, HEC tokens,
-    users, and roles without assistance from Splunk Support. ACS provides an OpenAPI 3.0 specification.
+  description: The Admin Config Service (ACS) is a cloud-native API that provides
+    programmatic self-service administration capabilities for Splunk Cloud Platform.
+    Administrators can use the ACS API to manage indexes, IP allow lists, HEC tokens,
+    users, and roles without assistance from Splunk Support. ACS provides an OpenAPI
+    3.0 specification.
   humanURL: https://docs.splunk.com/Documentation/SplunkCloud/latest/Config/ACSIntro
   tags:
   - Administration
@@ -107,8 +109,9 @@ apis:
     url: https://docs.splunk.com/Documentation/SplunkCloud/latest/Config/ACSREF
 - aid: splunk:splunk-cloud-admin-config-service-openapi
   name: Splunk Cloud ACS OpenAPI Specification
-  description: The OpenAPI 3.0 specification for the Splunk Cloud Admin Config Service (ACS) API. It includes all parameters,
-    response codes, and other metadata needed to send requests to the ACS API endpoint.
+  description: The OpenAPI 3.0 specification for the Splunk Cloud Admin Config Service
+    (ACS) API. It includes all parameters, response codes, and other metadata needed
+    to send requests to the ACS API endpoint.
   humanURL: https://admin.splunk.com/service/info/specs/v2/openapi.json
   tags:
   - Administration
@@ -119,9 +122,10 @@ apis:
     url: https://admin.splunk.com/service/info/specs/v2/openapi.json
 - aid: splunk:splunk-observability-cloud-api
   name: Splunk Observability Cloud API
-  description: The Splunk Observability Cloud API provides REST endpoints for sending and managing metrics, traces, and events.
-    It supports infrastructure monitoring, application performance monitoring (APM), real user monitoring, and synthetic monitoring
-    use cases.
+  description: The Splunk Observability Cloud API provides REST endpoints for sending
+    and managing metrics, traces, and events. It supports infrastructure monitoring,
+    application performance monitoring (APM), real user monitoring, and synthetic
+    monitoring use cases.
   humanURL: https://dev.splunk.com/observability/
   tags:
   - APM
@@ -150,8 +154,9 @@ apis:
     title: Auth Tokens
 - aid: splunk:splunk-soar-rest-api
   name: Splunk SOAR REST API
-  description: The Splunk SOAR REST API enables programmatic creation, updating, and management of security automation objects
-    including containers, assets, playbooks, indicators, lists, and audit records. REST API requests must be performed over
+  description: The Splunk SOAR REST API enables programmatic creation, updating, and
+    management of security automation objects including containers, assets, playbooks,
+    indicators, lists, and audit records. REST API requests must be performed over
     HTTPS with token-based or basic authentication.
   humanURL: https://docs.splunk.com/Documentation/SOAR/current/PlatformAPI/Using
   tags:
@@ -177,8 +182,9 @@ apis:
     title: SOAR On-Premises REST API Reference
 - aid: splunk:splunk-enterprise-security-api
   name: Splunk Enterprise Security API
-  description: The Splunk Enterprise Security API provides REST endpoints for accessing and modifying findings, investigations,
-    risk scores, assets, and identities in Splunk Enterprise Security. It includes an OpenAPI specification for download.
+  description: The Splunk Enterprise Security API provides REST endpoints for accessing
+    and modifying findings, investigations, risk scores, assets, and identities in
+    Splunk Enterprise Security. It includes an OpenAPI specification for download.
   humanURL: https://help.splunk.com/en/splunk-enterprise-security-8/api-reference
   tags:
   - Enterprise Security
@@ -201,8 +207,9 @@ apis:
     title: Threat Intelligence Framework
 - aid: splunk:splunk-itsi-rest-api
   name: Splunk IT Service Intelligence (ITSI) REST API
-  description: The Splunk IT Service Intelligence (ITSI) REST API allows bulk creation and updating of ITOA interface objects
-    such as entities, services, and KPI base searches. ITSI is a monitoring and analytics solution powered by artificial intelligence
+  description: The Splunk IT Service Intelligence (ITSI) REST API allows bulk creation
+    and updating of ITOA interface objects such as entities, services, and KPI base
+    searches. ITSI is a monitoring and analytics solution powered by artificial intelligence
     for IT Operations (AIOps).
   humanURL: https://help.splunk.com/en/splunk-it-service-intelligence/splunk-it-service-intelligence/leverage-rest-apis/4.19/itsi-rest-api-schema/itsi-rest-api-schema
   tags:
@@ -217,8 +224,9 @@ apis:
     url: https://help.splunk.com/en/splunk-it-service-intelligence/splunk-it-service-intelligence/leverage-rest-apis/4.18/itsi-rest-api-reference/itsi-rest-api-reference
 - aid: splunk:splunk-http-event-collector-api
   name: Splunk HTTP Event Collector (HEC) API
-  description: The Splunk HTTP Event Collector (HEC) is a high-performance REST API data input that accepts JSON or raw text
-    data sent over HTTP or HTTPS. It uses token-based authentication and provides endpoints for sending events (/services/collector/event),
+  description: The Splunk HTTP Event Collector (HEC) is a high-performance REST API
+    data input that accepts JSON or raw text data sent over HTTP or HTTPS. It uses
+    token-based authentication and provides endpoints for sending events (/services/collector/event),
     raw data (/services/collector/raw), and checking indexing status (/services/collector/ack).
   humanURL: https://docs.splunk.com/Documentation/Splunk/latest/Data/UsetheHTTPEventCollector
   tags:
@@ -242,8 +250,9 @@ apis:
     url: https://dev.splunk.com/view/event-collector/SP-CAAAE6M
 - aid: splunk:splunk-intelligence-management-api
   name: Splunk Intelligence Management API
-  description: The Splunk Intelligence Management (formerly ThreatStream) API provides REST v2.0 endpoints for managing threat
-    intelligence data including indicators, observables, and intelligence sources. It supports STIX and TAXII formats for
+  description: The Splunk Intelligence Management (formerly ThreatStream) API provides
+    REST v2.0 endpoints for managing threat intelligence data including indicators,
+    observables, and intelligence sources. It supports STIX and TAXII formats for
     sharing cyber threat intelligence over HTTPS.
   humanURL: https://docs.splunk.com/Documentation/SIM/current/Develop/RESTv20
   tags:
@@ -263,8 +272,9 @@ apis:
     title: Usage Policy
 - aid: splunk:splunk-soar-playbook-automation-api
   name: Splunk SOAR Playbook Automation API
-  description: The Splunk SOAR Playbook Automation API provides Python APIs for developing playbooks and automation within
-    Splunk SOAR. It includes container, playbook, data access, vault, network, and session automation APIs for building detailed
+  description: The Splunk SOAR Playbook Automation API provides Python APIs for developing
+    playbooks and automation within Splunk SOAR. It includes container, playbook,
+    data access, vault, network, and session automation APIs for building detailed
     security orchestration workflows.
   humanURL: https://help.splunk.com/en/splunk-soar/soar-cloud/develop-apps/python-playbook-api-reference/overview/about-splunk-soar-cloud-playbook-automation-apis
   tags:
@@ -290,9 +300,9 @@ apis:
     title: Vault Automation
 - aid: splunk:splunk-appinspect-api
   name: Splunk AppInspect API
-  description: The Splunk AppInspect API validates Splunk apps and add-ons against Splunk best practices and requirements
-    for publishing to Splunkbase or installing on Splunk Cloud Platform. It provides automated app vetting through a REST
-    API.
+  description: The Splunk AppInspect API validates Splunk apps and add-ons against
+    Splunk best practices and requirements for publishing to Splunkbase or installing
+    on Splunk Cloud Platform. It provides automated app vetting through a REST API.
   humanURL: https://dev.splunk.com/enterprise/docs/relnotes/relnotes-appinspectapi/whatsnew
   tags:
   - Apps
@@ -311,27 +321,35 @@ maintainers:
   email: devinfo@splunk.com
   url: https://www.splunk.com
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/splunk/overview
 - type: ArazzoWorkflows
   url: arazzo/
   workflows:
   - url: arazzo/splunk-control-and-cleanup-search-workflow.yml
     name: Splunk Finalize, Read, and Clean Up a Search Job
-    summary: Dispatch a long search, finalize it early, read partial results, then delete the job.
+    summary: Dispatch a long search, finalize it early, read partial results, then
+      delete the job.
   - url: arazzo/splunk-hec-ingest-and-acknowledge-workflow.yml
     name: Splunk HEC Ingest an Event and Confirm Indexing
-    summary: Provision a HEC token with acknowledgment, send a JSON event, and confirm it was indexed.
+    summary: Provision a HEC token with acknowledgment, send a JSON event, and confirm
+      it was indexed.
   - url: arazzo/splunk-provision-index-and-monitor-workflow.yml
     name: Splunk Provision an Index and Attach a Monitor Input
-    summary: Create an event index, verify it, then create a file monitor input that feeds it.
+    summary: Create an event index, verify it, then create a file monitor input that
+      feeds it.
   - url: arazzo/splunk-raw-ingest-and-search-workflow.yml
     name: Splunk Ingest Raw Data then Search for It
-    summary: Send raw text to HEC, then run an SPL search and poll it to confirm the data landed.
+    summary: Send raw text to HEC, then run an SPL search and poll it to confirm the
+      data landed.
   - url: arazzo/splunk-run-search-job-workflow.yml
     name: Splunk Run a Search Job and Retrieve Results
-    summary: Dispatch an SPL search, poll the job until it finishes, then read the results.
+    summary: Dispatch an SPL search, poll the job until it finishes, then read the
+      results.
   - url: arazzo/splunk-search-events-workflow.yml
     name: Splunk Search and Retrieve Raw Events
-    summary: Run an SPL search, wait for it to finish, then pull the untransformed events.
+    summary: Run an SPL search, wait for it to finish, then pull the untransformed
+      events.
 - type: DeveloperPortal
   url: https://dev.splunk.com/
 - type: Blog
@@ -435,36 +453,50 @@ common:
   url: https://www.splunk.com/en_us/solutions.html
   data:
   - name: Security Information and Event Management
-    description: Centralize security event data for real-time threat detection, investigation, and compliance reporting.
+    description: Centralize security event data for real-time threat detection, investigation,
+      and compliance reporting.
   - name: IT Operations Monitoring
-    description: Monitor infrastructure health, application performance, and service availability across hybrid environments.
+    description: Monitor infrastructure health, application performance, and service
+      availability across hybrid environments.
   - name: Log Management
-    description: Collect, index, and analyze log data from servers, applications, and network devices for troubleshooting.
+    description: Collect, index, and analyze log data from servers, applications,
+      and network devices for troubleshooting.
   - name: Incident Response Automation
-    description: Automate security incident triage, enrichment, and response using SOAR playbooks and integrations.
+    description: Automate security incident triage, enrichment, and response using
+      SOAR playbooks and integrations.
   - name: Application Performance Monitoring
-    description: Trace application requests end-to-end to identify bottlenecks and optimize performance.
+    description: Trace application requests end-to-end to identify bottlenecks and
+      optimize performance.
   - name: Compliance and Audit
-    description: Generate compliance reports and audit trails from indexed data to meet regulatory requirements.
+    description: Generate compliance reports and audit trails from indexed data to
+      meet regulatory requirements.
 - type: Integrations
   url: https://splunkbase.splunk.com/
   data:
   - name: AWS
-    description: Ingest and analyze AWS CloudTrail, CloudWatch, VPC Flow Logs, and other AWS service data.
+    description: Ingest and analyze AWS CloudTrail, CloudWatch, VPC Flow Logs, and
+      other AWS service data.
   - name: Azure
-    description: Collect and analyze Azure activity logs, metrics, and diagnostic data.
+    description: Collect and analyze Azure activity logs, metrics, and diagnostic
+      data.
   - name: Google Cloud
-    description: Ingest Google Cloud audit logs, metrics, and Pub/Sub messages for cloud monitoring.
+    description: Ingest Google Cloud audit logs, metrics, and Pub/Sub messages for
+      cloud monitoring.
   - name: Kubernetes
-    description: Monitor Kubernetes clusters with metrics, logs, and events from containers and orchestration.
+    description: Monitor Kubernetes clusters with metrics, logs, and events from containers
+      and orchestration.
   - name: ServiceNow
-    description: Integrate Splunk alerts and incidents with ServiceNow ITSM for ticketing and workflow automation.
+    description: Integrate Splunk alerts and incidents with ServiceNow ITSM for ticketing
+      and workflow automation.
   - name: PagerDuty
-    description: Trigger PagerDuty incidents from Splunk alerts for on-call notification and escalation.
+    description: Trigger PagerDuty incidents from Splunk alerts for on-call notification
+      and escalation.
   - name: Cisco
-    description: Collect and analyze Cisco network device logs, firewall events, and security telemetry.
+    description: Collect and analyze Cisco network device logs, firewall events, and
+      security telemetry.
   - name: CrowdStrike
-    description: Ingest CrowdStrike Falcon endpoint detection data for correlated threat analysis.
+    description: Ingest CrowdStrike Falcon endpoint detection data for correlated
+      threat analysis.
 - name: MCP Server
   url: https://github.com/splunk/splunk-mcp-server2
   type: MCPServer
