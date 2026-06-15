@@ -1,235 +1,365 @@
 # Splunk (splunk)
+
 Splunk is a platform for searching, monitoring, and analyzing machine-generated big data via a web-style interface.
 
-**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/splunk/refs/heads/main/apis.yml)
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/splunk/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/splunk/refs/heads/main/apis.yml)
 
-**Run:** [Capabilities Using Naftiko](https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=company-api-evangelist&utm_content=repo)
+## Scope
 
-## Tags:
+- **Type:** Index
+- **Position:** Consumer
+- **Access:** 3rd-Party
 
- - Analytics, Data Analysis, Logging, Machine Data, Monitoring, Observability, Platform, Security, SIEM
+## Tags
+
+- Analytics
+- Data Analysis
+- Logging
+- Machine Data
+- Monitoring
+- Observability
+- Platform
+- Security
+- SIEM
 
 ## Timestamps
 
 - **Created:** 2025-01-08
-- **Modified:** 2026-04-18
+- **Modified:** 2026-05-19
 
 ## APIs
 
 ### Splunk
+
 API monitoring checks to see if API-connected resources are available, working properly and responding to calls.
 
-**Human URL:** [https://www.splunk.com/en_us/blog/learn/api-monitoring.html](https://www.splunk.com/en_us/blog/learn/api-monitoring.html)
+- **Human URL:** [https://www.splunk.com/en_us/blog/learn/api-monitoring.html](https://www.splunk.com/en_us/blog/learn/api-monitoring.html)
+
+#### Properties
+
+- [Documentation](https://www.splunk.com/en_us/blog/learn/api-monitoring.html)
+- [Postman Collection](collections/splunk-enterprise-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/splunk-enterprise-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Splunk Enterprise REST API
-The Splunk Enterprise REST API provides programmatic access to the same information and functionality available to core system software and Splunk Web.
 
-**Human URL:** [https://docs.splunk.com/Documentation/Splunk/latest/RESTREF/RESTprolog](https://docs.splunk.com/Documentation/Splunk/latest/RESTREF/RESTprolog)
+The Splunk Enterprise REST API provides programmatic access to the same information and functionality available to core system software and Splunk Web. It supports GET, POST, and DELETE operations over HTTPS on the splunkd management port 8089.
 
-#### Tags:
+- **Human URL:** [https://docs.splunk.com/Documentation/Splunk/latest/RESTREF/RESTprolog](https://docs.splunk.com/Documentation/Splunk/latest/RESTREF/RESTprolog)
 
- - Data, Enterprise, Management, REST, Search
+#### Tags
+
+- Data
+- Enterprise
+- Management
+- REST
+- Search
 
 #### Properties
 
 - [Documentation](https://docs.splunk.com/Documentation/Splunk/latest/RESTREF/RESTprolog)
-- [GettingStarted](https://docs.splunk.com/Documentation/Splunk/latest/RESTUM/RESTusing)
-- [APIReference](https://dev.splunk.com/enterprise/reference)
+- [Getting Started](https://docs.splunk.com/Documentation/Splunk/latest/RESTUM/RESTusing)
+- [API Reference](https://dev.splunk.com/enterprise/reference)
+- [API Reference](https://help.splunk.com/en/splunk-enterprise/leverage-rest-apis/rest-api-reference/10.2/introduction/endpoints-reference-list)
 - [Authentication](https://docs.splunk.com/Documentation/Splunk/latest/RESTUM/RESTusing)
-- [OpenAPI](openapi/splunk-enterprise-rest-api.yml)
-- [JSONSchema](json-schema/splunk-search-job-schema.json)
-- [JSONLD](json-ld/splunk-context.jsonld)
+- [Documentation](https://docs.splunk.com/Documentation/Splunk/latest/RESTREF/RESTsearch)
+- [OpenAPI](openapi/splunk-enterprise-rest-api.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/splunk-enterprise-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/splunk-enterprise-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [JSON Schema](json-schema/splunk-search-job-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/splunk-event-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON-LD](json-ld/splunk-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
 
 ### Splunk Cloud Platform REST API
-The Splunk Cloud Platform REST API provides a subset of the Splunk Enterprise REST API endpoints.
 
-**Human URL:** [https://help.splunk.com/en/splunk-cloud-platform/rest-api-reference](https://help.splunk.com/en/splunk-cloud-platform/rest-api-reference)
+The Splunk Cloud Platform REST API provides a subset of the Splunk Enterprise REST API endpoints for managing and interacting with your Splunk Cloud Platform deployment. Access requires port 8089 to be opened by Splunk Support.
 
-#### Tags:
+- **Human URL:** [https://help.splunk.com/en/splunk-cloud-platform/rest-api-reference](https://help.splunk.com/en/splunk-cloud-platform/rest-api-reference)
 
- - Cloud, Data, Management, REST, Search
+#### Tags
+
+- Cloud
+- Data
+- Management
+- REST
+- Search
+
+#### Properties
+
+- [Documentation](https://help.splunk.com/en/splunk-cloud-platform/rest-api-reference)
+- [Getting Started](https://docs.splunk.com/Documentation/SplunkCloud/latest/RESTTUT/RESTandCloud)
+- [API Reference](https://docs.splunk.com/Documentation/SplunkCloud/latest/RESTREF/RESTprolog)
+- [Postman Collection](collections/splunk-enterprise-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/splunk-enterprise-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Splunk Cloud Admin Config Service (ACS) API
-Cloud-native API providing programmatic self-service administration capabilities.
 
-**Human URL:** [https://docs.splunk.com/Documentation/SplunkCloud/latest/Config/ACSIntro](https://docs.splunk.com/Documentation/SplunkCloud/latest/Config/ACSIntro)
+The Admin Config Service (ACS) is a cloud-native API that provides programmatic self-service administration capabilities for Splunk Cloud Platform. Administrators can use the ACS API to manage indexes, IP allow lists, HEC tokens, users, and roles without assistance from Splunk Support. ACS provides an OpenAPI 3.0 specification.
 
-#### Tags:
+- **Human URL:** [https://docs.splunk.com/Documentation/SplunkCloud/latest/Config/ACSIntro](https://docs.splunk.com/Documentation/SplunkCloud/latest/Config/ACSIntro)
 
- - Administration, Cloud, Configuration, Management
+#### Tags
+
+- Administration
+- Cloud
+- Configuration
+- Management
+
+#### Properties
+
+- [Documentation](https://docs.splunk.com/Documentation/SplunkCloud/latest/Config/ACSIntro)
+- [Getting Started](https://docs.splunk.com/Documentation/SplunkCloud/latest/Config/ACSusage)
+- [API Reference](https://docs.splunk.com/Documentation/SplunkCloud/latest/Config/ACSREF)
+- [Postman Collection](collections/splunk-enterprise-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/splunk-enterprise-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+### Splunk Cloud ACS OpenAPI Specification
+
+The OpenAPI 3.0 specification for the Splunk Cloud Admin Config Service (ACS) API. It includes all parameters, response codes, and other metadata needed to send requests to the ACS API endpoint.
+
+- **Human URL:** [https://admin.splunk.com/service/info/specs/v2/openapi.json](https://admin.splunk.com/service/info/specs/v2/openapi.json)
+
+#### Tags
+
+- Administration
+- Cloud
+- OpenAPI
+
+#### Properties
+
+- [OpenAPI](https://admin.splunk.com/service/info/specs/v2/openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/splunk-enterprise-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/splunk-enterprise-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Splunk Observability Cloud API
-REST endpoints for sending and managing metrics, traces, and events.
 
-**Human URL:** [https://dev.splunk.com/observability/](https://dev.splunk.com/observability/)
+The Splunk Observability Cloud API provides REST endpoints for sending and managing metrics, traces, and events. It supports infrastructure monitoring, application performance monitoring (APM), real user monitoring, and synthetic monitoring use cases.
 
-#### Tags:
+- **Human URL:** [https://dev.splunk.com/observability/](https://dev.splunk.com/observability/)
 
- - APM, Metrics, Monitoring, Observability, Traces
+#### Tags
+
+- APM
+- Metrics
+- Monitoring
+- Observability
+- Traces
+
+#### Properties
+
+- [Documentation](https://dev.splunk.com/observability/docs)
+- [API Reference](https://dev.splunk.com/observability/reference)
+- [API Reference](https://dev.splunk.com/observability/docs/apibasics/api_list/)
+- [Authentication](https://dev.splunk.com/observability/docs/apibasics/authentication_basics/)
+- [Documentation](https://dev.splunk.com/observability/docs/datamodel/ingest/)
+- [API Reference](https://dev.splunk.com/observability/reference/api/ingest_data/latest)
+- [Documentation](https://dev.splunk.com/observability/docs/administration/authtokens)
+- [Postman Collection](collections/splunk-enterprise-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/splunk-enterprise-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Splunk SOAR REST API
-Programmatic creation, updating, and management of security automation objects.
 
-**Human URL:** [https://docs.splunk.com/Documentation/SOAR/current/PlatformAPI/Using](https://docs.splunk.com/Documentation/SOAR/current/PlatformAPI/Using)
+The Splunk SOAR REST API enables programmatic creation, updating, and management of security automation objects including containers, assets, playbooks, indicators, lists, and audit records. REST API requests must be performed over HTTPS with token-based or basic authentication.
 
-#### Tags:
+- **Human URL:** [https://docs.splunk.com/Documentation/SOAR/current/PlatformAPI/Using](https://docs.splunk.com/Documentation/SOAR/current/PlatformAPI/Using)
 
- - Automation, Orchestration, Playbooks, Security, SOAR
+#### Tags
+
+- Automation
+- Orchestration
+- Playbooks
+- Security
+- SOAR
+
+#### Properties
+
+- [Documentation](https://docs.splunk.com/Documentation/SOAR/current/PlatformAPI/Using)
+- [Documentation](https://help.splunk.com/en/splunk-soar/soar-cloud/rest-api-reference/using-the-splunk-soar-rest-api/using-the-rest-api-reference-for-splunk-soar-cloud)
+- [API Reference](https://help.splunk.com/en/splunk-soar/soar-cloud/rest-api-reference/container-endpoints/rest-containers)
+- [API Reference](https://help.splunk.com/en/splunk-soar/soar-cloud/rest-api-reference/artifact-endpoints/rest-artifact)
+- [Documentation](https://help.splunk.com/en/splunk-soar/soar-on-premises/rest-api-reference/7.1.0/using-the-splunk-soar-rest-api/using-the-rest-api-reference-for-splunk-soar-on-premises)
+- [Postman Collection](collections/splunk-enterprise-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/splunk-enterprise-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Splunk Enterprise Security API
-REST endpoints for findings, investigations, risk scores, assets, and identities.
 
-**Human URL:** [https://help.splunk.com/en/splunk-enterprise-security-8/api-reference](https://help.splunk.com/en/splunk-enterprise-security-8/api-reference)
+The Splunk Enterprise Security API provides REST endpoints for accessing and modifying findings, investigations, risk scores, assets, and identities in Splunk Enterprise Security. It includes an OpenAPI specification for download.
 
-#### Tags:
+- **Human URL:** [https://help.splunk.com/en/splunk-enterprise-security-8/api-reference](https://help.splunk.com/en/splunk-enterprise-security-8/api-reference)
 
- - Enterprise Security, Findings, Investigations, Security, SIEM
+#### Tags
+
+- Enterprise Security
+- Findings
+- Investigations
+- Security
+- SIEM
+
+#### Properties
+
+- [Documentation](https://help.splunk.com/en/splunk-enterprise-security-8/api-reference)
+- [API Reference](https://help.splunk.com/en/splunk-enterprise-security-8/rest-api-reference)
+- [Getting Started](https://dev.splunk.com/enterprise/docs/devtools/enterprisesecurity)
+- [API Reference](https://help.splunk.com/en/splunk-enterprise-security-8/rest-api-reference/8.0/threat-intelligence-endpoints/threat-intelligence-api-reference)
+- [Documentation](https://dev.splunk.com/enterprise/docs/devtools/enterprisesecurity/threatintelligenceframework/)
+- [Postman Collection](collections/splunk-enterprise-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/splunk-enterprise-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Splunk IT Service Intelligence (ITSI) REST API
-Bulk creation and updating of ITOA interface objects including entities, services, and KPIs.
 
-**Human URL:** [https://help.splunk.com/en/splunk-it-service-intelligence/splunk-it-service-intelligence/leverage-rest-apis/4.19/itsi-rest-api-schema/itsi-rest-api-schema](https://help.splunk.com/en/splunk-it-service-intelligence/splunk-it-service-intelligence/leverage-rest-apis/4.19/itsi-rest-api-schema/itsi-rest-api-schema)
+The Splunk IT Service Intelligence (ITSI) REST API allows bulk creation and updating of ITOA interface objects such as entities, services, and KPI base searches. ITSI is a monitoring and analytics solution powered by artificial intelligence for IT Operations (AIOps).
 
-#### Tags:
+- **Human URL:** [https://help.splunk.com/en/splunk-it-service-intelligence/splunk-it-service-intelligence/leverage-rest-apis/4.19/itsi-rest-api-schema/itsi-rest-api-schema](https://help.splunk.com/en/splunk-it-service-intelligence/splunk-it-service-intelligence/leverage-rest-apis/4.19/itsi-rest-api-schema/itsi-rest-api-schema)
 
- - AIOps, IT Service Intelligence, ITSI, Monitoring
+#### Tags
+
+- AIOps
+- IT Service Intelligence
+- ITSI
+- Monitoring
+
+#### Properties
+
+- [Documentation](https://help.splunk.com/en/splunk-it-service-intelligence/splunk-it-service-intelligence/leverage-rest-apis/4.19/itsi-rest-api-schema/itsi-rest-api-schema)
+- [API Reference](https://help.splunk.com/en/splunk-it-service-intelligence/splunk-it-service-intelligence/leverage-rest-apis/4.18/itsi-rest-api-reference/itsi-rest-api-reference)
+- [Postman Collection](collections/splunk-enterprise-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/splunk-enterprise-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Splunk HTTP Event Collector (HEC) API
-High-performance REST API data input for JSON or raw text data over HTTPS.
 
-**Human URL:** [https://docs.splunk.com/Documentation/Splunk/latest/Data/UsetheHTTPEventCollector](https://docs.splunk.com/Documentation/Splunk/latest/Data/UsetheHTTPEventCollector)
+The Splunk HTTP Event Collector (HEC) is a high-performance REST API data input that accepts JSON or raw text data sent over HTTP or HTTPS. It uses token-based authentication and provides endpoints for sending events (/services/collector/event), raw data (/services/collector/raw), and checking indexing status (/services/collector/ack).
 
-#### Tags:
+- **Human URL:** [https://docs.splunk.com/Documentation/Splunk/latest/Data/UsetheHTTPEventCollector](https://docs.splunk.com/Documentation/Splunk/latest/Data/UsetheHTTPEventCollector)
 
- - Data Ingestion, Events, HEC, Logging, REST
+#### Tags
+
+- Data Ingestion
+- Events
+- HEC
+- Logging
+- REST
+
+#### Properties
+
+- [Documentation](https://docs.splunk.com/Documentation/Splunk/latest/Data/UsetheHTTPEventCollector)
+- [API Reference](https://docs.splunk.com/Documentation/SplunkCloud/latest/Data/HECRESTendpoints)
+- [Documentation](https://docs.splunk.com/Documentation/SplunkCloud/latest/Data/FormateventsforHTTPEventCollector)
+- [Documentation](https://docs.splunk.com/Documentation/SplunkCloud/latest/Data/HECExamples)
+- [Getting Started](https://dev.splunk.com/view/event-collector/SP-CAAAE6M)
+- [Postman Collection](collections/splunk-enterprise-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/splunk-enterprise-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Splunk Intelligence Management API
-REST v2.0 endpoints for managing threat intelligence data.
 
-**Human URL:** [https://docs.splunk.com/Documentation/SIM/current/Develop/RESTv20](https://docs.splunk.com/Documentation/SIM/current/Develop/RESTv20)
+The Splunk Intelligence Management (formerly ThreatStream) API provides REST v2.0 endpoints for managing threat intelligence data including indicators, observables, and intelligence sources. It supports STIX and TAXII formats for sharing cyber threat intelligence over HTTPS.
 
-#### Tags:
+- **Human URL:** [https://docs.splunk.com/Documentation/SIM/current/Develop/RESTv20](https://docs.splunk.com/Documentation/SIM/current/Develop/RESTv20)
 
- - Indicators, Security, STIX, TAXII, Threat Intelligence
+#### Tags
+
+- Indicators
+- Security
+- STIX
+- TAXII
+- Threat Intelligence
+
+#### Properties
+
+- [Documentation](https://docs.splunk.com/Documentation/SIM/current/Develop/RESTv20)
+- [Documentation](https://docs.splunk.com/Documentation/SIM/current/User/Threatintelsources)
+- [Documentation](https://docs.splunk.com/Documentation/SIM/current/Intro/UsagePolicy)
+- [Postman Collection](collections/splunk-enterprise-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/splunk-enterprise-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Splunk SOAR Playbook Automation API
-Python APIs for developing playbooks and automation within Splunk SOAR.
 
-**Human URL:** [https://help.splunk.com/en/splunk-soar/soar-cloud/develop-apps/python-playbook-api-reference/overview/about-splunk-soar-cloud-playbook-automation-apis](https://help.splunk.com/en/splunk-soar/soar-cloud/develop-apps/python-playbook-api-reference/overview/about-splunk-soar-cloud-playbook-automation-apis)
+The Splunk SOAR Playbook Automation API provides Python APIs for developing playbooks and automation within Splunk SOAR. It includes container, playbook, data access, vault, network, and session automation APIs for building detailed security orchestration workflows.
 
-#### Tags:
+- **Human URL:** [https://help.splunk.com/en/splunk-soar/soar-cloud/develop-apps/python-playbook-api-reference/overview/about-splunk-soar-cloud-playbook-automation-apis](https://help.splunk.com/en/splunk-soar/soar-cloud/develop-apps/python-playbook-api-reference/overview/about-splunk-soar-cloud-playbook-automation-apis)
 
- - Automation, Orchestration, Playbooks, Security, SOAR
+#### Tags
+
+- Automation
+- Orchestration
+- Playbooks
+- Security
+- SOAR
+
+#### Properties
+
+- [Documentation](https://help.splunk.com/en/splunk-soar/soar-cloud/develop-apps/python-playbook-api-reference/overview/about-splunk-soar-cloud-playbook-automation-apis)
+- [API Reference](https://help.splunk.com/en/splunk-soar/soar-cloud/develop-apps/python-playbook-api-reference/automation-api/container-automation-api)
+- [API Reference](https://help.splunk.com/en/splunk-soar/soar-cloud/develop-apps/python-playbook-api-reference/automation-api/playbook-automation-api)
+- [API Reference](https://help.splunk.com/en/splunk-soar/soar-cloud/develop-apps/python-playbook-api-reference/automation-api/data-access-automation-api)
+- [API Reference](https://help.splunk.com/en/splunk-soar/soar-cloud/develop-apps/python-playbook-api-reference/automation-api/vault-automation-api)
+- [Postman Collection](collections/splunk-enterprise-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/splunk-enterprise-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Splunk AppInspect API
-Validates Splunk apps and add-ons against best practices and requirements.
 
-**Human URL:** [https://dev.splunk.com/enterprise/docs/relnotes/relnotes-appinspectapi/whatsnew](https://dev.splunk.com/enterprise/docs/relnotes/relnotes-appinspectapi/whatsnew)
+The Splunk AppInspect API validates Splunk apps and add-ons against Splunk best practices and requirements for publishing to Splunkbase or installing on Splunk Cloud Platform. It provides automated app vetting through a REST API.
 
-#### Tags:
+- **Human URL:** [https://dev.splunk.com/enterprise/docs/relnotes/relnotes-appinspectapi/whatsnew](https://dev.splunk.com/enterprise/docs/relnotes/relnotes-appinspectapi/whatsnew)
 
- - Apps, Cloud, Splunkbase, Validation
+#### Tags
+
+- Apps
+- Cloud
+- Splunkbase
+- Validation
+
+#### Properties
+
+- [Changelog](https://dev.splunk.com/enterprise/docs/relnotes/relnotes-appinspectapi/whatsnew)
+- [API Reference](https://dev.splunk.com/enterprise/reference)
+- [Postman Collection](collections/splunk-enterprise-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/splunk-enterprise-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ## Common Properties
 
-- [DeveloperPortal](https://dev.splunk.com/)
+- [Arazzo Workflows](arazzo/) — [Arazzo Specification](https://spec.openapis.org/arazzo/latest.html)
+- [Developer Portal](https://dev.splunk.com/)
 - [Blog](https://www.splunk.com/en_us/blog)
 - [Support](https://www.splunk.com/en_us/support-and-services.html)
-- [StatusPage](https://www.splunk.com/en_us/customer-success/splunk-services-status.html)
-- [GitHubOrganization](https://github.com/splunk)
+- [Status Page](https://www.splunk.com/en_us/customer-success/splunk-services-status.html)
+- [Documentation](https://community.splunk.com/)
+- [GitHub Organization](https://github.com/splunk)
 - [Documentation](https://docs.splunk.com/Documentation)
-- [GettingStarted](https://dev.splunk.com/enterprise/docs)
+- [Documentation](https://help.splunk.com/en)
+- [Getting Started](https://dev.splunk.com/enterprise/docs)
+- [Documentation](https://dev.splunk.com/enterprise/docs/devtools/)
+- [Documentation](https://dev.splunk.com/enterprise/downloads)
 - [Marketplace](https://splunkbase.splunk.com/)
 - [Pricing](https://www.splunk.com/en_us/products/pricing.html)
-- [TermsOfService](https://www.splunk.com/en_us/legal/terms/terms-of-use.html)
-- [ChangeLog](https://help.splunk.com/en/splunk-enterprise/release-notes-and-updates)
-- [Python SDK](https://github.com/splunk/splunk-sdk-python)
-- [Java SDK](https://github.com/splunk/splunk-sdk-java)
-- [JavaScript SDK](https://github.com/splunk/splunk-sdk-javascript)
-- [C# SDK](https://github.com/splunk/splunk-sdk-csharp-pcl)
-- [PrivacyPolicy](https://www.splunk.com/en_us/legal/privacy-policy.html)
+- [Sign Up](https://www.splunk.com/en_us/download/splunk-cloud.html)
+- [Sign Up](https://dev.splunk.com/enterprise/dev_license/)
+- [Terms of Service](https://www.splunk.com/en_us/legal/terms/terms-of-use.html)
+- [Terms of Service](https://www.splunk.com/en_us/legal/splunk-general-terms.html)
+- [Changelog](https://help.splunk.com/en/splunk-enterprise/release-notes-and-updates)
+- [Authentication](https://docs.splunk.com/Documentation/Splunk/latest/RESTUM/RESTusing)
+- [SDK](https://github.com/splunk/splunk-sdk-python)
+- [SDK](https://github.com/splunk/splunk-sdk-java)
+- [SDK](https://github.com/splunk/splunk-sdk-javascript)
+- [SDK](https://github.com/splunk/splunk-sdk-csharp-pcl)
+- [SDK](https://dev.splunk.com/enterprise/docs/devtools/csharp)
+- [Changelog](https://dev.splunk.com/enterprise/docs/whatsnew/)
+- [Changelog](https://dev.splunk.com/enterprise/docs/relnotes)
+- [Documentation](https://dev.splunk.com/enterprise/docs/devtools/customrestendpoints)
+- [Authentication](https://docs.splunk.com/Documentation/Splunk/latest/Security/UseAuthTokens)
+- [Privacy Policy](https://www.splunk.com/en_us/legal/privacy-policy.html)
 - [Security](https://www.splunk.com/en_us/about-splunk/splunk-data-security-and-privacy.html)
+- [GitHub Repository](https://github.com/signalfx/splunk-otel-collector)
 - [LinkedIn](https://www.linkedin.com/company/splunk)
-- [X](https://twitter.com/splunk)
-
-## Features
-
-| Name | Description |
-|------|-------------|
-| Search and Investigation | Run SPL queries to search, correlate, and analyze machine data across all indexed sources. |
-| Index Management | Create and manage indexes to organize and retain data with configurable storage and retention. |
-| Data Ingestion | Ingest data from file monitors, TCP/UDP inputs, scripted inputs, and HTTP Event Collector. |
-| HTTP Event Collector | High-performance REST API for sending JSON or raw text events over HTTPS. |
-| Security Operations | Detect threats, investigate incidents, and automate response with SIEM and SOAR. |
-| Observability | Monitor infrastructure, applications, and real user experience with metrics, traces, and logs. |
-| IT Service Intelligence | AIOps-powered monitoring and analytics for IT operations with service-level visibility. |
-| Threat Intelligence | Manage threat indicators, observables, and intelligence sources in STIX/TAXII formats. |
-| Security Orchestration | Automate security workflows with SOAR playbooks for incident response. |
-
-## Use Cases
-
-| Name | Description |
-|------|-------------|
-| Security Information and Event Management | Centralize security event data for real-time threat detection and compliance. |
-| IT Operations Monitoring | Monitor infrastructure health and application performance across hybrid environments. |
-| Log Management | Collect, index, and analyze log data from servers, applications, and network devices. |
-| Incident Response Automation | Automate security incident triage, enrichment, and response using SOAR playbooks. |
-| Application Performance Monitoring | Trace application requests end-to-end to identify bottlenecks. |
-| Compliance and Audit | Generate compliance reports and audit trails from indexed data. |
-
-## Integrations
-
-| Name | Description |
-|------|-------------|
-| AWS | Ingest and analyze AWS CloudTrail, CloudWatch, VPC Flow Logs, and other AWS service data. |
-| Azure | Collect and analyze Azure activity logs, metrics, and diagnostic data. |
-| Google Cloud | Ingest Google Cloud audit logs, metrics, and Pub/Sub messages. |
-| Kubernetes | Monitor Kubernetes clusters with metrics, logs, and events from containers. |
-| ServiceNow | Integrate Splunk alerts with ServiceNow ITSM for ticketing and workflow automation. |
-| PagerDuty | Trigger PagerDuty incidents from Splunk alerts for on-call notification. |
-| Cisco | Collect and analyze Cisco network device logs and security telemetry. |
-| CrowdStrike | Ingest CrowdStrike Falcon endpoint detection data for correlated threat analysis. |
-
-## Artifacts
-
-Machine-readable API specifications organized by format.
-
-### OpenAPI
-
-- [Splunk Enterprise REST API](openapi/splunk-enterprise-rest-api.yml)
-
-### JSON Schema
-
-- [Search Job Schema](json-schema/splunk-search-job-schema.json)
-- [Event Schema](json-schema/splunk-event-schema.json)
-- [Enterprise REST Search Job](json-schema/splunk-enterprise-rest-search-job-schema.json)
-- [Enterprise REST Index](json-schema/splunk-enterprise-rest-index-schema.json)
-- [Enterprise REST HEC Token](json-schema/splunk-enterprise-rest-hec-token-schema.json)
-
-### JSON-LD
-
-- [Splunk Context](json-ld/splunk-context.jsonld)
-
-## Capabilities
-
-Naftiko capabilities organized as shared per-API definitions composed into customer-facing workflows.
-
-### Shared Per-API Definitions
-
-- [Splunk Enterprise REST API](capabilities/shared/enterprise-rest.yaml) -- 27 operations for search, indexing, data inputs, and HTTP Event Collector
-
-### Workflow Capabilities
-
-| Workflow | APIs Combined | Tools | Persona |
-|----------|--------------|-------|---------|
-| [Search and Analytics](capabilities/search-and-analytics.yaml) | Enterprise REST | 22 | SOC Analyst |
-
-## Rules
-
-- [Splunk Spectral Rules](rules/splunk-spectral-rules.yml) -- 7 rules enforcing Splunk Enterprise REST API conventions
+- [X (Twitter)](https://twitter.com/splunk)
+- [Spectral Rules](rules/splunk-spectral-rules.yml)
+- [Features](https://www.splunk.com/en_us/products.html)
+- [Use Cases](https://www.splunk.com/en_us/solutions.html)
+- [Integrations](https://splunkbase.splunk.com/)
+- [M C P Server](https://github.com/splunk/splunk-mcp-server2)
 
 ## Maintainers
 
 **FN:** Kin Lane
-
 **Email:** kin@apievangelist.com
+**Email:** devinfo@splunk.com
+**URL:** https://www.splunk.com

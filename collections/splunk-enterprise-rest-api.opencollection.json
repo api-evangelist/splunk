@@ -1,0 +1,891 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Splunk Enterprise REST API",
+    "version": "9.4.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Search Jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/services/search/jobs",
+            "params": [
+              {
+                "name": "output_mode",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return. A value of 0 returns all items."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Index of the first item to return. Used with count for pagination."
+              },
+              {
+                "name": "search",
+                "value": "example_value",
+                "type": "query",
+                "description": "Filter search jobs by search string"
+              },
+              {
+                "name": "sort_key",
+                "value": "example_value",
+                "type": "query",
+                "description": "Field to sort by"
+              },
+              {
+                "name": "sort_dir",
+                "value": "asc",
+                "type": "query",
+                "description": "Sort direction"
+              }
+            ]
+          },
+          "docs": "Returns a list of current search jobs for the authenticated user. Includes job status, progress, and metadata for each job."
+        },
+        {
+          "info": {
+            "name": "Create a Search Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/services/search/jobs",
+            "params": [
+              {
+                "name": "output_mode",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Creates a new search job. The search job runs asynchronously. Use the returned search ID (sid) to check job status and retrieve results. Searches use the Splunk Search Processing Language (SPL)."
+        },
+        {
+          "info": {
+            "name": "Get Search Job Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/services/search/jobs/:search_id",
+            "params": [
+              {
+                "name": "search_id",
+                "value": "",
+                "type": "path",
+                "description": "The search ID (sid) of the search job"
+              },
+              {
+                "name": "output_mode",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              }
+            ]
+          },
+          "docs": "Returns detailed information about a specific search job including its status, progress, performance metrics, and configuration."
+        },
+        {
+          "info": {
+            "name": "Delete a Search Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}:{port}/services/search/jobs/:search_id",
+            "params": [
+              {
+                "name": "search_id",
+                "value": "",
+                "type": "path",
+                "description": "The search ID (sid) of the search job"
+              }
+            ]
+          },
+          "docs": "Cancels and deletes the specified search job and its results."
+        },
+        {
+          "info": {
+            "name": "Control a Search Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/services/search/jobs/:search_id/control",
+            "params": [
+              {
+                "name": "search_id",
+                "value": "",
+                "type": "path",
+                "description": "The search ID (sid) of the search job"
+              },
+              {
+                "name": "output_mode",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "action",
+                  "value": ""
+                },
+                {
+                  "name": "ttl",
+                  "value": ""
+                },
+                {
+                  "name": "priority",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Execute a control action on a search job such as pause, unpause, finalize, cancel, or touch (extend the job lifetime)."
+        },
+        {
+          "info": {
+            "name": "Get Search Results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/services/search/jobs/:search_id/results",
+            "params": [
+              {
+                "name": "search_id",
+                "value": "",
+                "type": "path",
+                "description": "The search ID (sid) of the search job"
+              },
+              {
+                "name": "output_mode",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return. A value of 0 returns all items."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Index of the first item to return. Used with count for pagination."
+              },
+              {
+                "name": "search",
+                "value": "example_value",
+                "type": "query",
+                "description": "Post-processing search string to filter results"
+              },
+              {
+                "name": "field_list",
+                "value": "example_value",
+                "type": "query",
+                "description": "Comma-separated list of fields to return"
+              }
+            ]
+          },
+          "docs": "Returns the results of a completed search job. Results are available only after the search job has finished. Use the count and offset parameters for pagination."
+        },
+        {
+          "info": {
+            "name": "Get Search Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/services/search/jobs/:search_id/events",
+            "params": [
+              {
+                "name": "search_id",
+                "value": "",
+                "type": "path",
+                "description": "The search ID (sid) of the search job"
+              },
+              {
+                "name": "output_mode",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return. A value of 0 returns all items."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Index of the first item to return. Used with count for pagination."
+              },
+              {
+                "name": "earliest_time",
+                "value": "example_value",
+                "type": "query",
+                "description": "Earliest time boundary for events"
+              },
+              {
+                "name": "latest_time",
+                "value": "example_value",
+                "type": "query",
+                "description": "Latest time boundary for events"
+              },
+              {
+                "name": "search",
+                "value": "example_value",
+                "type": "query",
+                "description": "Post-processing search to filter events"
+              },
+              {
+                "name": "field_list",
+                "value": "example_value",
+                "type": "query",
+                "description": "Comma-separated list of fields to return"
+              },
+              {
+                "name": "truncation_mode",
+                "value": "abstract",
+                "type": "query",
+                "description": "How to truncate long lines"
+              },
+              {
+                "name": "max_lines",
+                "value": "10",
+                "type": "query",
+                "description": "Maximum number of lines per event"
+              }
+            ]
+          },
+          "docs": "Returns the untransformed events of a search job. Unlike results, events return the raw data before any transforming commands are applied. Available for searches that include non-transforming commands."
+        },
+        {
+          "info": {
+            "name": "Export Search Results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/services/search/jobs/export",
+            "params": [
+              {
+                "name": "search",
+                "value": "example_value",
+                "type": "query",
+                "description": "The SPL search query to execute"
+              },
+              {
+                "name": "output_mode",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "earliest_time",
+                "value": "example_value",
+                "type": "query",
+                "description": "Earliest time for the search"
+              },
+              {
+                "name": "latest_time",
+                "value": "example_value",
+                "type": "query",
+                "description": "Latest time for the search"
+              },
+              {
+                "name": "auto_cancel",
+                "value": "10",
+                "type": "query",
+                "description": "Seconds of inactivity after which the search is cancelled"
+              },
+              {
+                "name": "enable_lookups",
+                "value": "true",
+                "type": "query",
+                "description": "Whether to enable lookups during the search"
+              }
+            ]
+          },
+          "docs": "Runs a search and streams results back as they become available, rather than waiting for the search to complete. This is a streaming endpoint suitable for long-running searches or real-time searches. The search runs synchronously and results stream back in the response."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Index",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Indexes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/services/data/indexes",
+            "params": [
+              {
+                "name": "output_mode",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return. A value of 0 returns all items."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Index of the first item to return. Used with count for pagination."
+              },
+              {
+                "name": "search",
+                "value": "example_value",
+                "type": "query",
+                "description": "Filter indexes by name or properties"
+              },
+              {
+                "name": "sort_key",
+                "value": "example_value",
+                "type": "query",
+                "description": "Field to sort by"
+              },
+              {
+                "name": "sort_dir",
+                "value": "asc",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "datatype",
+                "value": "all",
+                "type": "query",
+                "description": "Filter by data type"
+              }
+            ]
+          },
+          "docs": "Returns a list of all indexes accessible to the authenticated user. Includes index configuration, storage paths, and data retention settings."
+        },
+        {
+          "info": {
+            "name": "Create a New Index",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/services/data/indexes",
+            "params": [
+              {
+                "name": "output_mode",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Creates a new index with the specified configuration. The index name must be unique and conform to Splunk naming conventions."
+        },
+        {
+          "info": {
+            "name": "Get Index Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/services/data/indexes/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the index"
+              },
+              {
+                "name": "output_mode",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              }
+            ]
+          },
+          "docs": "Returns detailed configuration and status information for a specific index including storage paths, retention settings, and current size."
+        },
+        {
+          "info": {
+            "name": "Update Index Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/services/data/indexes/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the index"
+              },
+              {
+                "name": "output_mode",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Updates the configuration of an existing index. Not all index properties can be modified after creation."
+        },
+        {
+          "info": {
+            "name": "Delete an Index",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}:{port}/services/data/indexes/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the index"
+              }
+            ]
+          },
+          "docs": "Marks an index for deletion. The index data is removed according to the configured retention policy. Requires the admin role."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Data Inputs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List File and Directory Monitor Inputs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/services/data/inputs/monitor",
+            "params": [
+              {
+                "name": "output_mode",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return. A value of 0 returns all items."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Index of the first item to return. Used with count for pagination."
+              },
+              {
+                "name": "search",
+                "value": "example_value",
+                "type": "query",
+                "description": "Filter inputs by search string"
+              }
+            ]
+          },
+          "docs": "Returns a list of file and directory monitoring inputs. Monitor inputs continuously watch files and directories for new data."
+        },
+        {
+          "info": {
+            "name": "Create a File or Directory Monitor Input",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/services/data/inputs/monitor",
+            "params": [
+              {
+                "name": "output_mode",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Creates a new file or directory monitoring input. The specified path will be monitored for new data and ingested into the specified index."
+        },
+        {
+          "info": {
+            "name": "Get Monitor Input Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/services/data/inputs/monitor/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "Example Title",
+                "type": "path",
+                "description": "The name (path) of the monitor input"
+              },
+              {
+                "name": "output_mode",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              }
+            ]
+          },
+          "docs": "Returns configuration details for a specific file or directory monitoring input."
+        },
+        {
+          "info": {
+            "name": "Update a Monitor Input",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/services/data/inputs/monitor/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "Example Title",
+                "type": "path",
+                "description": "The name (path) of the monitor input"
+              },
+              {
+                "name": "output_mode",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Updates the configuration of an existing monitor input."
+        },
+        {
+          "info": {
+            "name": "Delete a Monitor Input",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}:{port}/services/data/inputs/monitor/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "Example Title",
+                "type": "path",
+                "description": "The name (path) of the monitor input"
+              }
+            ]
+          },
+          "docs": "Deletes the specified monitor input. Splunk stops monitoring the associated file or directory."
+        },
+        {
+          "info": {
+            "name": "List Cooked Tcp Inputs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/services/data/inputs/tcp/cooked",
+            "params": [
+              {
+                "name": "output_mode",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return. A value of 0 returns all items."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Index of the first item to return. Used with count for pagination."
+              }
+            ]
+          },
+          "docs": "Returns a list of TCP cooked data inputs. Cooked TCP inputs receive data from Splunk forwarders."
+        },
+        {
+          "info": {
+            "name": "List Raw Tcp Inputs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/services/data/inputs/tcp/raw",
+            "params": [
+              {
+                "name": "output_mode",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return. A value of 0 returns all items."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Index of the first item to return. Used with count for pagination."
+              }
+            ]
+          },
+          "docs": "Returns a list of raw TCP data inputs. Raw TCP inputs receive data directly over a TCP port without Splunk protocol framing."
+        },
+        {
+          "info": {
+            "name": "List Udp Inputs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/services/data/inputs/udp",
+            "params": [
+              {
+                "name": "output_mode",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return. A value of 0 returns all items."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Index of the first item to return. Used with count for pagination."
+              }
+            ]
+          },
+          "docs": "Returns a list of UDP data inputs. UDP inputs receive data over a UDP port."
+        },
+        {
+          "info": {
+            "name": "List Http Event Collector Tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/services/data/inputs/http",
+            "params": [
+              {
+                "name": "output_mode",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return. A value of 0 returns all items."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Index of the first item to return. Used with count for pagination."
+              }
+            ]
+          },
+          "docs": "Returns a list of HTTP Event Collector (HEC) tokens configured on the Splunk instance. Each token defines an input channel for receiving data over HTTP/HTTPS."
+        },
+        {
+          "info": {
+            "name": "Create an Http Event Collector Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/services/data/inputs/http",
+            "params": [
+              {
+                "name": "output_mode",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Creates a new HTTP Event Collector (HEC) token for data ingestion over HTTP/HTTPS."
+        },
+        {
+          "info": {
+            "name": "Send Events via Http Event Collector",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/services/collector/event",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Sends one or more events to Splunk via HTTP Event Collector. Events are submitted as JSON objects. Multiple events can be sent in a single request by concatenating JSON objects."
+        },
+        {
+          "info": {
+            "name": "Send Raw Data via Http Event Collector",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/services/collector/raw",
+            "params": [
+              {
+                "name": "channel",
+                "value": "example_value",
+                "type": "query",
+                "description": "Channel identifier (GUID) for event ordering. Required if indexer acknowledgment is enabled."
+              },
+              {
+                "name": "sourcetype",
+                "value": "example_value",
+                "type": "query",
+                "description": "Override the sourcetype for the event data"
+              },
+              {
+                "name": "source",
+                "value": "example_value",
+                "type": "query",
+                "description": "Override the source for the event data"
+              },
+              {
+                "name": "host",
+                "value": "example_value",
+                "type": "query",
+                "description": "Override the host for the event data"
+              },
+              {
+                "name": "index",
+                "value": "example_value",
+                "type": "query",
+                "description": "Override the destination index for the event data"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Sends raw event data to Splunk via HTTP Event Collector. The raw data is ingested as-is without requiring JSON formatting. Useful for log file data and other unstructured text."
+        },
+        {
+          "info": {
+            "name": "Check Indexer Acknowledgment Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/services/collector/ack",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Queries the indexer acknowledgment status for events sent via HTTP Event Collector. Returns whether events with specified ack IDs have been indexed."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
