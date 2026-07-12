@@ -1,0 +1,32 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/splunk-enterprise-rest-api.yml
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+schemes:
+- name: BearerAuth
+  type: http
+  scheme: bearer
+  description: Splunk authentication token. Obtain a session key by authenticating to /services/auth/login
+    or use a pre-configured bearer token from Settings > Tokens in Splunk Web.
+  sources:
+  - openapi/splunk-enterprise-rest-api.yml
+- name: BasicAuth
+  type: http
+  scheme: basic
+  description: HTTP Basic authentication with a valid Splunk username and password. The credentials
+    are sent as a Base64-encoded string in the Authorization header.
+  sources:
+  - openapi/splunk-enterprise-rest-api.yml
+- name: HecToken
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: HTTP Event Collector token. Send as "Splunk <token>" in the Authorization header.
+    Tokens are configured in Splunk Web under Settings > Data Inputs > HTTP Event Collector.
+  sources:
+  - openapi/splunk-enterprise-rest-api.yml

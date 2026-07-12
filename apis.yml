@@ -321,6 +321,14 @@ maintainers:
   email: devinfo@splunk.com
   url: https://www.splunk.com
 common:
+- type: TrustCenter
+  url: security/splunk-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/splunk-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/splunk-domain-security.yml
+- type: Authentication
+  url: authentication/splunk-authentication.yml
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/splunk/overview
 - type: Arazzo
