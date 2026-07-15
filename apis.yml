@@ -321,6 +321,8 @@ maintainers:
   email: devinfo@splunk.com
   url: https://www.splunk.com
 common:
+- type: AgenticAccess
+  url: agentic-access/splunk-agentic-access.yml
 - type: TrustCenter
   url: security/splunk-trust-center.yml
 - type: VulnerabilityDisclosure
