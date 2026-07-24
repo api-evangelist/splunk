@@ -1,0 +1,1282 @@
+openapi: 3.1.0
+info:
+  title: Splunk Enterprise REST Data Inputs API
+  description: The Splunk Enterprise REST API provides programmatic access to Splunk Enterprise functionality including search, indexing, data inputs, and system management. All requests are made over HTTPS to the splunkd management port (default 8089). Authentication is required via Splunk authentication tokens or HTTP Basic authentication with a valid Splunk username and password. Responses are available in JSON and XML formats.
+  version: 9.4.0
+  contact:
+    name: Splunk Inc.
+    url: https://www.splunk.com
+    email: devinfo@splunk.com
+  license:
+    name: Splunk Terms of Service
+    url: https://www.splunk.com/en_us/legal/splunk-general-terms.html
+  x-apisguru-categories:
+  - analytics
+  - monitoring
+  - security
+  x-logo:
+    url: https://www.splunk.com/content/dam/splunk2/images/icons/favicons/favicon.ico
+servers:
+- url: https://{host}:{port}
+  description: Splunk Enterprise management endpoint
+  variables:
+    host:
+      default: localhost
+      description: Hostname or IP address of the Splunk Enterprise instance
+    port:
+      default: '8089'
+      description: splunkd management port
+security:
+- BearerAuth: []
+- BasicAuth: []
+tags:
+- name: Data Inputs
+  description: Endpoints for configuring and managing data inputs including monitors, TCP/UDP inputs, scripted inputs, and HTTP Event Collector (HEC) tokens. Data inputs define how Splunk ingests data.
+  externalDocs:
+    url: https://docs.splunk.com/Documentation/Splunk/latest/RESTREF/RESTinput
+paths:
+  /services/data/inputs/monitor:
+    get:
+      operationId: listMonitorInputs
+      summary: List File and Directory Monitor Inputs
+      description: Returns a list of file and directory monitoring inputs. Monitor inputs continuously watch files and directories for new data.
+      tags:
+      - Data Inputs
+      parameters:
+      - $ref: '#/components/parameters/OutputMode'
+      - $ref: '#/components/parameters/Count'
+      - $ref: '#/components/parameters/Offset'
+      - name: search
+        in: query
+        description: Filter inputs by search string
+        schema:
+          type: string
+        example: example_value
+      responses:
+        '200':
+          description: Monitor inputs listed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MonitorInputList'
+              examples:
+                Listmonitorinputs200Example:
+                  summary: Default listMonitorInputs 200 response
+                  x-microcks-default: true
+                  value:
+                    origin: example_value
+                    updated: '2026-01-15T10:30:00Z'
+                    entry:
+                    - name: Example Title
+                      content: {}
+                    paging:
+                      total: 10
+                      perPage: 10
+                      offset: 10
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createMonitorInput
+      summary: Create a File or Directory Monitor Input
+      description: Creates a new file or directory monitoring input. The specified path will be monitored for new data and ingested into the specified index.
+      tags:
+      - Data Inputs
+      parameters:
+      - $ref: '#/components/parameters/OutputMode'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/MonitorInputCreateRequest'
+            examples:
+              CreatemonitorinputRequestExample:
+                summary: Default createMonitorInput request
+                x-microcks-default: true
+                value:
+                  name: Example Title
+                  index: example_value
+                  sourcetype: example_value
+                  source: example_value
+                  host: example_value
+                  disabled: true
+                  followTail: true
+                  recursive: true
+                  whitelist: example_value
+                  blacklist: example_value
+      responses:
+        '201':
+          description: Monitor input created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MonitorInput'
+              examples:
+                Createmonitorinput201Example:
+                  summary: Default createMonitorInput 201 response
+                  x-microcks-default: true
+                  value:
+                    name: Example Title
+                    content:
+                      index: example_value
+                      sourcetype: example_value
+                      source: example_value
+                      host: example_value
+                      disabled: true
+                      followTail: true
+                      recursive: true
+                      whitelist: example_value
+                      blacklist: example_value
+                      crcSalt: example_value
+                      ignoreOlderThan: example_value
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '409':
+          description: A monitor input for this path already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Createmonitorinput409Example:
+                  summary: Default createMonitorInput 409 response
+                  x-microcks-default: true
+                  value:
+                    messages:
+                    - type: ERROR
+                      text: example_value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /services/data/inputs/monitor/{name}:
+    get:
+      operationId: getMonitorInput
+      summary: Get Monitor Input Details
+      description: Returns configuration details for a specific file or directory monitoring input.
+      tags:
+      - Data Inputs
+      parameters:
+      - name: name
+        in: path
+        required: true
+        description: The name (path) of the monitor input
+        schema:
+          type: string
+        example: Example Title
+      - $ref: '#/components/parameters/OutputMode'
+      responses:
+        '200':
+          description: Monitor input details returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MonitorInput'
+              examples:
+                Getmonitorinput200Example:
+                  summary: Default getMonitorInput 200 response
+                  x-microcks-default: true
+                  value:
+                    name: Example Title
+                    content:
+                      index: example_value
+                      sourcetype: example_value
+                      source: example_value
+                      host: example_value
+                      disabled: true
+                      followTail: true
+                      recursive: true
+                      whitelist: example_value
+                      blacklist: example_value
+                      crcSalt: example_value
+                      ignoreOlderThan: example_value
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: updateMonitorInput
+      summary: Update a Monitor Input
+      description: Updates the configuration of an existing monitor input.
+      tags:
+      - Data Inputs
+      parameters:
+      - name: name
+        in: path
+        required: true
+        description: The name (path) of the monitor input
+        schema:
+          type: string
+        example: Example Title
+      - $ref: '#/components/parameters/OutputMode'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/MonitorInputUpdateRequest'
+            examples:
+              UpdatemonitorinputRequestExample:
+                summary: Default updateMonitorInput request
+                x-microcks-default: true
+                value:
+                  index: example_value
+                  sourcetype: example_value
+                  source: example_value
+                  host: example_value
+                  disabled: true
+      responses:
+        '200':
+          description: Monitor input updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MonitorInput'
+              examples:
+                Updatemonitorinput200Example:
+                  summary: Default updateMonitorInput 200 response
+                  x-microcks-default: true
+                  value:
+                    name: Example Title
+                    content:
+                      index: example_value
+                      sourcetype: example_value
+                      source: example_value
+                      host: example_value
+                      disabled: true
+                      followTail: true
+                      recursive: true
+                      whitelist: example_value
+                      blacklist: example_value
+                      crcSalt: example_value
+                      ignoreOlderThan: example_value
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteMonitorInput
+      summary: Delete a Monitor Input
+      description: Deletes the specified monitor input. Splunk stops monitoring the associated file or directory.
+      tags:
+      - Data Inputs
+      parameters:
+      - name: name
+        in: path
+        required: true
+        description: The name (path) of the monitor input
+        schema:
+          type: string
+        example: Example Title
+      responses:
+        '200':
+          description: Monitor input deleted successfully
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /services/data/inputs/tcp/cooked:
+    get:
+      operationId: listTcpCookedInputs
+      summary: List Cooked Tcp Inputs
+      description: Returns a list of TCP cooked data inputs. Cooked TCP inputs receive data from Splunk forwarders.
+      tags:
+      - Data Inputs
+      parameters:
+      - $ref: '#/components/parameters/OutputMode'
+      - $ref: '#/components/parameters/Count'
+      - $ref: '#/components/parameters/Offset'
+      responses:
+        '200':
+          description: TCP cooked inputs listed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TcpInputList'
+              examples:
+                Listtcpcookedinputs200Example:
+                  summary: Default listTcpCookedInputs 200 response
+                  x-microcks-default: true
+                  value:
+                    origin: example_value
+                    updated: '2026-01-15T10:30:00Z'
+                    entry:
+                    - name: Example Title
+                      content: {}
+                    paging:
+                      total: 10
+                      perPage: 10
+                      offset: 10
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /services/data/inputs/tcp/raw:
+    get:
+      operationId: listTcpRawInputs
+      summary: List Raw Tcp Inputs
+      description: Returns a list of raw TCP data inputs. Raw TCP inputs receive data directly over a TCP port without Splunk protocol framing.
+      tags:
+      - Data Inputs
+      parameters:
+      - $ref: '#/components/parameters/OutputMode'
+      - $ref: '#/components/parameters/Count'
+      - $ref: '#/components/parameters/Offset'
+      responses:
+        '200':
+          description: TCP raw inputs listed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TcpInputList'
+              examples:
+                Listtcprawinputs200Example:
+                  summary: Default listTcpRawInputs 200 response
+                  x-microcks-default: true
+                  value:
+                    origin: example_value
+                    updated: '2026-01-15T10:30:00Z'
+                    entry:
+                    - name: Example Title
+                      content: {}
+                    paging:
+                      total: 10
+                      perPage: 10
+                      offset: 10
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /services/data/inputs/udp:
+    get:
+      operationId: listUdpInputs
+      summary: List Udp Inputs
+      description: Returns a list of UDP data inputs. UDP inputs receive data over a UDP port.
+      tags:
+      - Data Inputs
+      parameters:
+      - $ref: '#/components/parameters/OutputMode'
+      - $ref: '#/components/parameters/Count'
+      - $ref: '#/components/parameters/Offset'
+      responses:
+        '200':
+          description: UDP inputs listed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UdpInputList'
+              examples:
+                Listudpinputs200Example:
+                  summary: Default listUdpInputs 200 response
+                  x-microcks-default: true
+                  value:
+                    origin: example_value
+                    updated: '2026-01-15T10:30:00Z'
+                    entry:
+                    - name: Example Title
+                      content: {}
+                    paging:
+                      total: 10
+                      perPage: 10
+                      offset: 10
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /services/data/inputs/http:
+    get:
+      operationId: listHttpInputTokens
+      summary: List Http Event Collector Tokens
+      description: Returns a list of HTTP Event Collector (HEC) tokens configured on the Splunk instance. Each token defines an input channel for receiving data over HTTP/HTTPS.
+      tags:
+      - Data Inputs
+      parameters:
+      - $ref: '#/components/parameters/OutputMode'
+      - $ref: '#/components/parameters/Count'
+      - $ref: '#/components/parameters/Offset'
+      responses:
+        '200':
+          description: HEC tokens listed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HecTokenList'
+              examples:
+                Listhttpinputtokens200Example:
+                  summary: Default listHttpInputTokens 200 response
+                  x-microcks-default: true
+                  value:
+                    origin: example_value
+                    updated: '2026-01-15T10:30:00Z'
+                    entry:
+                    - name: Example Title
+                      content: {}
+                    paging:
+                      total: 10
+                      perPage: 10
+                      offset: 10
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createHttpInputToken
+      summary: Create an Http Event Collector Token
+      description: Creates a new HTTP Event Collector (HEC) token for data ingestion over HTTP/HTTPS.
+      tags:
+      - Data Inputs
+      parameters:
+      - $ref: '#/components/parameters/OutputMode'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/HecTokenCreateRequest'
+            examples:
+              CreatehttpinputtokenRequestExample:
+                summary: Default createHttpInputToken request
+                x-microcks-default: true
+                value:
+                  name: Example Title
+                  index: example_value
+                  indexes: example_value
+                  sourcetype: example_value
+                  source: example_value
+                  host: example_value
+                  disabled: true
+                  useACK: true
+      responses:
+        '201':
+          description: HEC token created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HecToken'
+              examples:
+                Createhttpinputtoken201Example:
+                  summary: Default createHttpInputToken 201 response
+                  x-microcks-default: true
+                  value:
+                    name: Example Title
+                    content:
+                      token: example_value
+                      index: example_value
+                      indexes:
+                      - example_value
+                      sourcetype: example_value
+                      source: example_value
+                      host: example_value
+                      disabled: true
+                      useACK: true
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '409':
+          description: A token with that name already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Createhttpinputtoken409Example:
+                  summary: Default createHttpInputToken 409 response
+                  x-microcks-default: true
+                  value:
+                    messages:
+                    - type: ERROR
+                      text: example_value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /services/collector/event:
+    post:
+      operationId: sendEvent
+      summary: Send Events via Http Event Collector
+      description: Sends one or more events to Splunk via HTTP Event Collector. Events are submitted as JSON objects. Multiple events can be sent in a single request by concatenating JSON objects.
+      tags:
+      - Data Inputs
+      security:
+      - HecToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HecEvent'
+            examples:
+              SendeventRequestExample:
+                summary: Default sendEvent request
+                x-microcks-default: true
+                value:
+                  time: example_value
+                  host: example_value
+                  source: example_value
+                  sourcetype: example_value
+                  index: example_value
+                  event: example_value
+                  fields: example_value
+      responses:
+        '200':
+          description: Events received successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HecResponse'
+              examples:
+                Sendevent200Example:
+                  summary: Default sendEvent 200 response
+                  x-microcks-default: true
+                  value:
+                    text: example_value
+                    code: 10
+                    invalid-event-number: 10
+                    ackId: '500123'
+        '400':
+          description: Invalid data format or missing required fields
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HecResponse'
+              examples:
+                Sendevent400Example:
+                  summary: Default sendEvent 400 response
+                  x-microcks-default: true
+                  value:
+                    text: example_value
+                    code: 10
+                    invalid-event-number: 10
+                    ackId: '500123'
+        '401':
+          description: Token is disabled or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HecResponse'
+              examples:
+                Sendevent401Example:
+                  summary: Default sendEvent 401 response
+                  x-microcks-default: true
+                  value:
+                    text: example_value
+                    code: 10
+                    invalid-event-number: 10
+                    ackId: '500123'
+        '403':
+          description: Insufficient permissions for the token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HecResponse'
+              examples:
+                Sendevent403Example:
+                  summary: Default sendEvent 403 response
+                  x-microcks-default: true
+                  value:
+                    text: example_value
+                    code: 10
+                    invalid-event-number: 10
+                    ackId: '500123'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /services/collector/raw:
+    post:
+      operationId: sendRawEvent
+      summary: Send Raw Data via Http Event Collector
+      description: Sends raw event data to Splunk via HTTP Event Collector. The raw data is ingested as-is without requiring JSON formatting. Useful for log file data and other unstructured text.
+      tags:
+      - Data Inputs
+      security:
+      - HecToken: []
+      parameters:
+      - name: channel
+        in: query
+        description: Channel identifier (GUID) for event ordering. Required if indexer acknowledgment is enabled.
+        schema:
+          type: string
+          format: uuid
+        example: example_value
+      - name: sourcetype
+        in: query
+        description: Override the sourcetype for the event data
+        schema:
+          type: string
+        example: example_value
+      - name: source
+        in: query
+        description: Override the source for the event data
+        schema:
+          type: string
+        example: example_value
+      - name: host
+        in: query
+        description: Override the host for the event data
+        schema:
+          type: string
+        example: example_value
+      - name: index
+        in: query
+        description: Override the destination index for the event data
+        schema:
+          type: string
+        example: example_value
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+              description: Raw event data
+            examples:
+              SendraweventRequestExample:
+                summary: Default sendRawEvent request
+                x-microcks-default: true
+                value: example_value
+      responses:
+        '200':
+          description: Raw data received successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HecResponse'
+              examples:
+                Sendrawevent200Example:
+                  summary: Default sendRawEvent 200 response
+                  x-microcks-default: true
+                  value:
+                    text: example_value
+                    code: 10
+                    invalid-event-number: 10
+                    ackId: '500123'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HecResponse'
+              examples:
+                Sendrawevent400Example:
+                  summary: Default sendRawEvent 400 response
+                  x-microcks-default: true
+                  value:
+                    text: example_value
+                    code: 10
+                    invalid-event-number: 10
+                    ackId: '500123'
+        '401':
+          description: Token is disabled or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HecResponse'
+              examples:
+                Sendrawevent401Example:
+                  summary: Default sendRawEvent 401 response
+                  x-microcks-default: true
+                  value:
+                    text: example_value
+                    code: 10
+                    invalid-event-number: 10
+                    ackId: '500123'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /services/collector/ack:
+    post:
+      operationId: checkAckStatus
+      summary: Check Indexer Acknowledgment Status
+      description: Queries the indexer acknowledgment status for events sent via HTTP Event Collector. Returns whether events with specified ack IDs have been indexed.
+      tags:
+      - Data Inputs
+      security:
+      - HecToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - acks
+              properties:
+                acks:
+                  type: array
+                  description: List of ack IDs to check
+                  items:
+                    type: integer
+                  examples:
+                  - - 1
+                    - 2
+                    - 3
+            examples:
+              CheckackstatusRequestExample:
+                summary: Default checkAckStatus request
+                x-microcks-default: true
+                value:
+                  acks:
+                  - 10
+      responses:
+        '200':
+          description: Acknowledgment status returned
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  acks:
+                    type: object
+                    description: Map of ack ID to boolean indexed status
+                    additionalProperties:
+                      type: boolean
+              examples:
+                Checkackstatus200Example:
+                  summary: Default checkAckStatus 200 response
+                  x-microcks-default: true
+                  value:
+                    acks: example_value
+        '400':
+          description: Invalid request format
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HecResponse'
+              examples:
+                Checkackstatus400Example:
+                  summary: Default checkAckStatus 400 response
+                  x-microcks-default: true
+                  value:
+                    text: example_value
+                    code: 10
+                    invalid-event-number: 10
+                    ackId: '500123'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    HecResponse:
+      type: object
+      properties:
+        text:
+          type: string
+          description: Human-readable status message
+          examples:
+          - Success
+        code:
+          type: integer
+          description: Numeric status code
+          examples:
+          - 0
+        invalid-event-number:
+          type: integer
+          description: For batched events, the index of the first invalid event
+          example: 10
+        ackId:
+          type: integer
+          description: Acknowledgment ID for tracking indexing status (when indexer acknowledgment is enabled)
+          example: '500123'
+    HecToken:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The token name
+          example: Example Title
+        content:
+          type: object
+          properties:
+            token:
+              type: string
+              description: The token value (GUID)
+            index:
+              type: string
+              description: Default destination index
+            indexes:
+              type: array
+              description: List of allowed indexes
+              items:
+                type: string
+            sourcetype:
+              type: string
+              description: Default sourcetype
+            source:
+              type: string
+              description: Default source value
+            host:
+              type: string
+              description: Default host value
+            disabled:
+              type: boolean
+              description: Whether the token is disabled
+            useACK:
+              type: boolean
+              description: Whether indexer acknowledgment is enabled
+          example: example_value
+    MonitorInput:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The monitored file or directory path
+          example: Example Title
+        content:
+          type: object
+          properties:
+            index:
+              type: string
+              description: Destination index for the monitored data
+              default: default
+            sourcetype:
+              type: string
+              description: Source type assigned to the monitored data
+            source:
+              type: string
+              description: Source value assigned to the monitored data
+            host:
+              type: string
+              description: Host value assigned to the monitored data
+            disabled:
+              type: boolean
+              description: Whether the monitor input is disabled
+            followTail:
+              type: boolean
+              description: If true, monitoring starts at the end of file. If false, monitoring starts from the beginning.
+            recursive:
+              type: boolean
+              description: Whether to recursively monitor subdirectories
+            whitelist:
+              type: string
+              description: Regex pattern for files to include
+            blacklist:
+              type: string
+              description: Regex pattern for files to exclude
+            crcSalt:
+              type: string
+              description: String to add to the CRC calculation
+            ignoreOlderThan:
+              type: string
+              description: Time modifier to skip files that have not been modified within the specified time
+          example: example_value
+    MonitorInputUpdateRequest:
+      type: object
+      properties:
+        index:
+          type: string
+          description: Destination index
+          example: example_value
+        sourcetype:
+          type: string
+          description: Source type to assign
+          example: example_value
+        source:
+          type: string
+          description: Source value to assign
+          example: example_value
+        host:
+          type: string
+          description: Host value to assign
+          example: example_value
+        disabled:
+          type: boolean
+          description: Whether to disable the input
+          example: true
+    ErrorResponse:
+      type: object
+      properties:
+        messages:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                enum:
+                - ERROR
+                - WARN
+                - INFO
+              text:
+                type: string
+                description: Error message text
+          example: []
+    HecTokenList:
+      type: object
+      properties:
+        origin:
+          type: string
+          example: example_value
+        updated:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        entry:
+          type: array
+          items:
+            $ref: '#/components/schemas/HecToken'
+          example: []
+        paging:
+          $ref: '#/components/schemas/Paging'
+    TcpInput:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The TCP port number
+          example: Example Title
+        content:
+          type: object
+          properties:
+            index:
+              type: string
+              description: Destination index
+            sourcetype:
+              type: string
+              description: Source type for incoming data
+            source:
+              type: string
+              description: Source value for incoming data
+            host:
+              type: string
+              description: Host value for incoming data
+            disabled:
+              type: boolean
+            restrictToHost:
+              type: string
+              description: Accept connections only from this host
+            connection_host:
+              type: string
+              description: How to determine the host value
+              enum:
+              - ip
+              - dns
+              - none
+            ssl:
+              type: boolean
+              description: Whether SSL is enabled for this input
+          example: example_value
+    UdpInputList:
+      type: object
+      properties:
+        origin:
+          type: string
+          example: example_value
+        updated:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        entry:
+          type: array
+          items:
+            $ref: '#/components/schemas/UdpInput'
+          example: []
+        paging:
+          $ref: '#/components/schemas/Paging'
+    MonitorInputCreateRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: The file or directory path to monitor
+          examples:
+          - /var/log/syslog
+        index:
+          type: string
+          description: Destination index
+          default: default
+          example: example_value
+        sourcetype:
+          type: string
+          description: Source type to assign
+          example: example_value
+        source:
+          type: string
+          description: Source value to assign
+          example: example_value
+        host:
+          type: string
+          description: Host value to assign
+          example: example_value
+        disabled:
+          type: boolean
+          description: Whether to create the input in disabled state
+          default: false
+          example: true
+        followTail:
+          type: boolean
+          description: Start monitoring from end of file
+          default: false
+          example: true
+        recursive:
+          type: boolean
+          description: Recursively monitor subdirectories
+          default: true
+          example: true
+        whitelist:
+          type: string
+          description: Regex pattern for files to include
+          example: example_value
+        blacklist:
+          type: string
+          description: Regex pattern for files to exclude
+          example: example_value
+    Paging:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total number of items available
+          example: 10
+        perPage:
+          type: integer
+          description: Number of items per page
+          example: 10
+        offset:
+          type: integer
+          description: Current offset
+          example: 10
+    UdpInput:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The UDP port number
+          example: Example Title
+        content:
+          type: object
+          properties:
+            index:
+              type: string
+              description: Destination index
+            sourcetype:
+              type: string
+              description: Source type for incoming data
+            source:
+              type: string
+              description: Source value for incoming data
+            host:
+              type: string
+              description: Host value for incoming data
+            disabled:
+              type: boolean
+            connection_host:
+              type: string
+              description: How to determine the host value
+              enum:
+              - ip
+              - dns
+              - none
+            no_appending_timestamp:
+              type: boolean
+              description: Whether to prevent Splunk from appending a timestamp
+            no_priority_stripping:
+              type: boolean
+              description: Whether to prevent Splunk from stripping priority
+          example: example_value
+    MonitorInputList:
+      type: object
+      properties:
+        origin:
+          type: string
+          example: example_value
+        updated:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        entry:
+          type: array
+          items:
+            $ref: '#/components/schemas/MonitorInput'
+          example: []
+        paging:
+          $ref: '#/components/schemas/Paging'
+    HecTokenCreateRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Name for the new HEC token
+          example: Example Title
+        index:
+          type: string
+          description: Default destination index
+          default: main
+          example: example_value
+        indexes:
+          type: string
+          description: Comma-separated list of allowed indexes
+          example: example_value
+        sourcetype:
+          type: string
+          description: Default sourcetype
+          example: example_value
+        source:
+          type: string
+          description: Default source value
+          example: example_value
+        host:
+          type: string
+          description: Default host value
+          example: example_value
+        disabled:
+          type: boolean
+          description: Whether to create the token in disabled state
+          default: false
+          example: true
+        useACK:
+          type: boolean
+          description: Whether to enable indexer acknowledgment
+          default: false
+          example: true
+    TcpInputList:
+      type: object
+      properties:
+        origin:
+          type: string
+          example: example_value
+        updated:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        entry:
+          type: array
+          items:
+            $ref: '#/components/schemas/TcpInput'
+          example: []
+        paging:
+          $ref: '#/components/schemas/Paging'
+    HecEvent:
+      type: object
+      required:
+      - event
+      properties:
+        time:
+          oneOf:
+          - type: number
+          - type: string
+          description: Event timestamp in epoch time (seconds since 1970-01-01). If omitted, Splunk uses the current time.
+          examples:
+          - 1704067200.0
+        host:
+          type: string
+          description: Hostname or IP address of the event source
+          examples:
+          - webserver01
+        source:
+          type: string
+          description: Source of the event
+          examples:
+          - /var/log/application.log
+        sourcetype:
+          type: string
+          description: Source type for the event
+          examples:
+          - _json
+        index:
+          type: string
+          description: Destination index for the event
+          examples:
+          - main
+        event:
+          description: The event data. Can be a string or a JSON object. This is the actual data payload to be indexed.
+          oneOf:
+          - type: string
+          - type: object
+            additionalProperties: true
+          examples:
+          - message: User logged in
+            user: admin
+            action: login
+        fields:
+          type: object
+          description: Additional metadata fields to associate with the event. These fields are indexed as metadata and can be searched.
+          additionalProperties:
+            type: string
+          example: example_value
+  parameters:
+    Offset:
+      name: offset
+      in: query
+      description: Index of the first item to return. Used with count for pagination.
+      schema:
+        type: integer
+        default: 0
+        minimum: 0
+    Count:
+      name: count
+      in: query
+      description: Maximum number of items to return. A value of 0 returns all items.
+      schema:
+        type: integer
+        default: 30
+        minimum: 0
+    OutputMode:
+      name: output_mode
+      in: query
+      description: Response format
+      schema:
+        type: string
+        enum:
+        - json
+        - xml
+        - csv
+        default: xml
+  responses:
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication credentials are missing, invalid, or expired
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: The request is malformed or contains invalid parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Splunk authentication token. Obtain a session key by authenticating to /services/auth/login or use a pre-configured bearer token from Settings > Tokens in Splunk Web.
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication with a valid Splunk username and password. The credentials are sent as a Base64-encoded string in the Authorization header.
+    HecToken:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: HTTP Event Collector token. Send as "Splunk <token>" in the Authorization header. Tokens are configured in Splunk Web under Settings > Data Inputs > HTTP Event Collector.
+externalDocs:
+  description: Splunk Enterprise REST API Reference
+  url: https://docs.splunk.com/Documentation/Splunk/latest/RESTREF/RESTprolog

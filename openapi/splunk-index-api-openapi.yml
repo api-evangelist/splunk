@@ -1,0 +1,624 @@
+openapi: 3.1.0
+info:
+  title: Splunk Enterprise REST Data Inputs Index API
+  description: The Splunk Enterprise REST API provides programmatic access to Splunk Enterprise functionality including search, indexing, data inputs, and system management. All requests are made over HTTPS to the splunkd management port (default 8089). Authentication is required via Splunk authentication tokens or HTTP Basic authentication with a valid Splunk username and password. Responses are available in JSON and XML formats.
+  version: 9.4.0
+  contact:
+    name: Splunk Inc.
+    url: https://www.splunk.com
+    email: devinfo@splunk.com
+  license:
+    name: Splunk Terms of Service
+    url: https://www.splunk.com/en_us/legal/splunk-general-terms.html
+  x-apisguru-categories:
+  - analytics
+  - monitoring
+  - security
+  x-logo:
+    url: https://www.splunk.com/content/dam/splunk2/images/icons/favicons/favicon.ico
+servers:
+- url: https://{host}:{port}
+  description: Splunk Enterprise management endpoint
+  variables:
+    host:
+      default: localhost
+      description: Hostname or IP address of the Splunk Enterprise instance
+    port:
+      default: '8089'
+      description: splunkd management port
+security:
+- BearerAuth: []
+- BasicAuth: []
+tags:
+- name: Index
+  description: Endpoints for managing Splunk indexes, which store and organize ingested data. Indexes can be created, modified, listed, and configured for retention and storage policies.
+  externalDocs:
+    url: https://docs.splunk.com/Documentation/Splunk/latest/RESTREF/RESTindex
+paths:
+  /services/data/indexes:
+    get:
+      operationId: listIndexes
+      summary: List Indexes
+      description: Returns a list of all indexes accessible to the authenticated user. Includes index configuration, storage paths, and data retention settings.
+      tags:
+      - Index
+      parameters:
+      - $ref: '#/components/parameters/OutputMode'
+      - $ref: '#/components/parameters/Count'
+      - $ref: '#/components/parameters/Offset'
+      - name: search
+        in: query
+        description: Filter indexes by name or properties
+        schema:
+          type: string
+        example: example_value
+      - name: sort_key
+        in: query
+        description: Field to sort by
+        schema:
+          type: string
+        example: example_value
+      - name: sort_dir
+        in: query
+        description: Sort direction
+        schema:
+          type: string
+          enum:
+          - asc
+          - desc
+        example: asc
+      - name: datatype
+        in: query
+        description: Filter by data type
+        schema:
+          type: string
+          enum:
+          - all
+          - event
+          - metric
+        example: all
+      responses:
+        '200':
+          description: Index list returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IndexList'
+              examples:
+                Listindexes200Example:
+                  summary: Default listIndexes 200 response
+                  x-microcks-default: true
+                  value:
+                    origin: example_value
+                    updated: '2026-01-15T10:30:00Z'
+                    entry:
+                    - name: Example Title
+                      content: {}
+                    paging:
+                      total: 10
+                      perPage: 10
+                      offset: 10
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createIndex
+      summary: Create a New Index
+      description: Creates a new index with the specified configuration. The index name must be unique and conform to Splunk naming conventions.
+      tags:
+      - Index
+      parameters:
+      - $ref: '#/components/parameters/OutputMode'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/IndexCreateRequest'
+            examples:
+              CreateindexRequestExample:
+                summary: Default createIndex request
+                x-microcks-default: true
+                value:
+                  name: Example Title
+                  datatype: event
+                  homePath: example_value
+                  coldPath: example_value
+                  thawedPath: example_value
+                  maxTotalDataSizeMB: 10
+                  maxDataSize: example_value
+                  frozenTimePeriodInSecs: 10
+                  maxHotBuckets: 10
+                  maxWarmDBCount: 10
+      responses:
+        '201':
+          description: Index created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Index'
+              examples:
+                Createindex201Example:
+                  summary: Default createIndex 201 response
+                  x-microcks-default: true
+                  value:
+                    name: Example Title
+                    content:
+                      datatype: event
+                      totalEventCount: 10
+                      currentDBSizeMB: 10
+                      maxDataSize: auto
+                      maxTotalDataSizeMB: 10
+                      maxHotBuckets: 10
+                      maxWarmDBCount: 10
+                      frozenTimePeriodInSecs: 10
+                      homePath: example_value
+                      coldPath: example_value
+                      thawedPath: example_value
+                      disabled: true
+                      isInternal: true
+                      minTime: example_value
+                      maxTime: example_value
+                      repFactor: example_value
+                      enableOnlineBucketRepair: true
+                      quarantinePastSecs: 10
+                      quarantineFutureSecs: 10
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '409':
+          description: An index with the specified name already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Createindex409Example:
+                  summary: Default createIndex 409 response
+                  x-microcks-default: true
+                  value:
+                    messages:
+                    - type: ERROR
+                      text: example_value
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /services/data/indexes/{name}:
+    get:
+      operationId: getIndex
+      summary: Get Index Details
+      description: Returns detailed configuration and status information for a specific index including storage paths, retention settings, and current size.
+      tags:
+      - Index
+      parameters:
+      - $ref: '#/components/parameters/IndexName'
+      - $ref: '#/components/parameters/OutputMode'
+      responses:
+        '200':
+          description: Index details returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Index'
+              examples:
+                Getindex200Example:
+                  summary: Default getIndex 200 response
+                  x-microcks-default: true
+                  value:
+                    name: Example Title
+                    content:
+                      datatype: event
+                      totalEventCount: 10
+                      currentDBSizeMB: 10
+                      maxDataSize: auto
+                      maxTotalDataSizeMB: 10
+                      maxHotBuckets: 10
+                      maxWarmDBCount: 10
+                      frozenTimePeriodInSecs: 10
+                      homePath: example_value
+                      coldPath: example_value
+                      thawedPath: example_value
+                      disabled: true
+                      isInternal: true
+                      minTime: example_value
+                      maxTime: example_value
+                      repFactor: example_value
+                      enableOnlineBucketRepair: true
+                      quarantinePastSecs: 10
+                      quarantineFutureSecs: 10
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: updateIndex
+      summary: Update Index Configuration
+      description: Updates the configuration of an existing index. Not all index properties can be modified after creation.
+      tags:
+      - Index
+      parameters:
+      - $ref: '#/components/parameters/IndexName'
+      - $ref: '#/components/parameters/OutputMode'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/IndexUpdateRequest'
+            examples:
+              UpdateindexRequestExample:
+                summary: Default updateIndex request
+                x-microcks-default: true
+                value:
+                  maxTotalDataSizeMB: 10
+                  frozenTimePeriodInSecs: 10
+                  maxHotBuckets: 10
+                  maxWarmDBCount: 10
+                  disabled: true
+                  coldToFrozenDir: example_value
+                  coldToFrozenScript: example_value
+      responses:
+        '200':
+          description: Index updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Index'
+              examples:
+                Updateindex200Example:
+                  summary: Default updateIndex 200 response
+                  x-microcks-default: true
+                  value:
+                    name: Example Title
+                    content:
+                      datatype: event
+                      totalEventCount: 10
+                      currentDBSizeMB: 10
+                      maxDataSize: auto
+                      maxTotalDataSizeMB: 10
+                      maxHotBuckets: 10
+                      maxWarmDBCount: 10
+                      frozenTimePeriodInSecs: 10
+                      homePath: example_value
+                      coldPath: example_value
+                      thawedPath: example_value
+                      disabled: true
+                      isInternal: true
+                      minTime: example_value
+                      maxTime: example_value
+                      repFactor: example_value
+                      enableOnlineBucketRepair: true
+                      quarantinePastSecs: 10
+                      quarantineFutureSecs: 10
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteIndex
+      summary: Delete an Index
+      description: Marks an index for deletion. The index data is removed according to the configured retention policy. Requires the admin role.
+      tags:
+      - Index
+      parameters:
+      - $ref: '#/components/parameters/IndexName'
+      responses:
+        '200':
+          description: Index marked for deletion
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    IndexList:
+      type: object
+      properties:
+        origin:
+          type: string
+          example: example_value
+        updated:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        entry:
+          type: array
+          items:
+            $ref: '#/components/schemas/Index'
+          example: []
+        paging:
+          $ref: '#/components/schemas/Paging'
+    Paging:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total number of items available
+          example: 10
+        perPage:
+          type: integer
+          description: Number of items per page
+          example: 10
+        offset:
+          type: integer
+          description: Current offset
+          example: 10
+    ErrorResponse:
+      type: object
+      properties:
+        messages:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                enum:
+                - ERROR
+                - WARN
+                - INFO
+              text:
+                type: string
+                description: Error message text
+          example: []
+    IndexUpdateRequest:
+      type: object
+      properties:
+        maxTotalDataSizeMB:
+          type: integer
+          description: Maximum total size of the index in MB
+          example: 10
+        frozenTimePeriodInSecs:
+          type: integer
+          description: Seconds until data is frozen
+          example: 10
+        maxHotBuckets:
+          type: integer
+          description: Maximum number of hot buckets
+          example: 10
+        maxWarmDBCount:
+          type: integer
+          description: Maximum number of warm buckets
+          example: 10
+        disabled:
+          type: boolean
+          description: Whether to disable the index
+          example: true
+        coldToFrozenDir:
+          type: string
+          description: Path to archive frozen buckets to. If not set, frozen data is deleted.
+          example: example_value
+        coldToFrozenScript:
+          type: string
+          description: Script to run when freezing buckets
+          example: example_value
+    Index:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The index name
+          example: Example Title
+        content:
+          type: object
+          properties:
+            datatype:
+              type: string
+              description: The type of data stored in the index
+              enum:
+              - event
+              - metric
+            totalEventCount:
+              type: integer
+              description: Total number of events in the index
+            currentDBSizeMB:
+              type: integer
+              description: Current database size in megabytes
+            maxDataSize:
+              type: string
+              description: Maximum size of a hot bucket
+              enum:
+              - auto
+              - auto_high_volume
+              default: auto
+            maxTotalDataSizeMB:
+              type: integer
+              description: Maximum total size of the index in MB
+              default: 500000
+            maxHotBuckets:
+              type: integer
+              description: Maximum number of hot buckets for the index
+              default: 3
+            maxWarmDBCount:
+              type: integer
+              description: Maximum number of warm buckets
+              default: 300
+            frozenTimePeriodInSecs:
+              type: integer
+              description: Number of seconds after which data is frozen (archived or deleted). Default is 188697600 (6 years).
+              default: 188697600
+            homePath:
+              type: string
+              description: Path for hot and warm buckets
+            coldPath:
+              type: string
+              description: Path for cold buckets
+            thawedPath:
+              type: string
+              description: Path for thawed (restored) buckets
+            disabled:
+              type: boolean
+              description: Whether the index is disabled
+            isInternal:
+              type: boolean
+              description: Whether this is an internal Splunk index
+            minTime:
+              type: string
+              description: Earliest time of data in the index
+            maxTime:
+              type: string
+              description: Latest time of data in the index
+            repFactor:
+              type: string
+              description: Replication factor for clustered environments
+            enableOnlineBucketRepair:
+              type: boolean
+            quarantinePastSecs:
+              type: integer
+              description: Events with timestamps this many seconds in the past are quarantined
+            quarantineFutureSecs:
+              type: integer
+              description: Events with timestamps this many seconds in the future are quarantined
+          example: example_value
+    IndexCreateRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: The name for the new index
+          examples:
+          - my_new_index
+        datatype:
+          type: string
+          description: Type of data the index will hold
+          enum:
+          - event
+          - metric
+          default: event
+          example: event
+        homePath:
+          type: string
+          description: Absolute path for hot and warm bucket storage
+          example: example_value
+        coldPath:
+          type: string
+          description: Absolute path for cold bucket storage
+          example: example_value
+        thawedPath:
+          type: string
+          description: Absolute path for thawed bucket storage
+          example: example_value
+        maxTotalDataSizeMB:
+          type: integer
+          description: Maximum total size of the index in MB
+          default: 500000
+          example: 10
+        maxDataSize:
+          type: string
+          description: Maximum size of a hot bucket
+          default: auto
+          example: example_value
+        frozenTimePeriodInSecs:
+          type: integer
+          description: Seconds until data is frozen
+          default: 188697600
+          example: 10
+        maxHotBuckets:
+          type: integer
+          description: Maximum number of hot buckets
+          default: 3
+          example: 10
+        maxWarmDBCount:
+          type: integer
+          description: Maximum number of warm buckets
+          default: 300
+          example: 10
+  parameters:
+    Count:
+      name: count
+      in: query
+      description: Maximum number of items to return. A value of 0 returns all items.
+      schema:
+        type: integer
+        default: 30
+        minimum: 0
+    Offset:
+      name: offset
+      in: query
+      description: Index of the first item to return. Used with count for pagination.
+      schema:
+        type: integer
+        default: 0
+        minimum: 0
+    IndexName:
+      name: name
+      in: path
+      required: true
+      description: The name of the index
+      schema:
+        type: string
+    OutputMode:
+      name: output_mode
+      in: query
+      description: Response format
+      schema:
+        type: string
+        enum:
+        - json
+        - xml
+        - csv
+        default: xml
+  responses:
+    Forbidden:
+      description: The authenticated user does not have permission to perform this operation
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication credentials are missing, invalid, or expired
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: The request is malformed or contains invalid parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Splunk authentication token. Obtain a session key by authenticating to /services/auth/login or use a pre-configured bearer token from Settings > Tokens in Splunk Web.
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication with a valid Splunk username and password. The credentials are sent as a Base64-encoded string in the Authorization header.
+    HecToken:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: HTTP Event Collector token. Send as "Splunk <token>" in the Authorization header. Tokens are configured in Splunk Web under Settings > Data Inputs > HTTP Event Collector.
+externalDocs:
+  description: Splunk Enterprise REST API Reference
+  url: https://docs.splunk.com/Documentation/Splunk/latest/RESTREF/RESTprolog
