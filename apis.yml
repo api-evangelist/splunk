@@ -396,6 +396,9 @@ maintainers:
   email: devinfo@splunk.com
   url: https://www.splunk.com
 common:
+- type: License
+  name: Apache-2.0
+  url: https://github.com/signalfx/splunk-otel-collector/blob/main/LICENSE
 - type: AgenticAccess
   url: agentic-access/splunk-agentic-access.yml
 - type: TrustCenter
