@@ -1,7 +1,10 @@
 openapi: 3.1.0
 info:
   title: Splunk Enterprise REST Data Inputs Index API
-  description: The Splunk Enterprise REST API provides programmatic access to Splunk Enterprise functionality including search, indexing, data inputs, and system management. All requests are made over HTTPS to the splunkd management port (default 8089). Authentication is required via Splunk authentication tokens or HTTP Basic authentication with a valid Splunk username and password. Responses are available in JSON and XML formats.
+  description: The Splunk Enterprise REST API provides programmatic access to Splunk Enterprise functionality including search,
+    indexing, data inputs, and system management. All requests are made over HTTPS to the splunkd management port (default
+    8089). Authentication is required via Splunk authentication tokens or HTTP Basic authentication with a valid Splunk username
+    and password. Responses are available in JSON and XML formats.
   version: 9.4.0
   contact:
     name: Splunk Inc.
@@ -16,6 +19,15 @@ info:
   - security
   x-logo:
     url: https://www.splunk.com/content/dam/splunk2/images/icons/favicons/favicon.ico
+  x-provenance:
+    method: derived
+    authored_by: API Evangelist
+    derived_on: '2026-08-19'
+    first_party: false
+    provider_published: false
+    source: Modelled from the provider's public HTML documentation.
+    note: 'Not published by the provider. Probed 2026-08-19: no anonymously fetchable first-party contract. dev.splunk.com
+      answers 200 with an identical 6,638-byte SPA shell for every path including invented ones.'
 servers:
 - url: https://{host}:{port}
   description: Splunk Enterprise management endpoint
@@ -31,7 +43,8 @@ security:
 - BasicAuth: []
 tags:
 - name: Index
-  description: Endpoints for managing Splunk indexes, which store and organize ingested data. Indexes can be created, modified, listed, and configured for retention and storage policies.
+  description: Endpoints for managing Splunk indexes, which store and organize ingested data. Indexes can be created, modified,
+    listed, and configured for retention and storage policies.
   externalDocs:
     url: https://docs.splunk.com/Documentation/Splunk/latest/RESTREF/RESTindex
 paths:
@@ -39,7 +52,8 @@ paths:
     get:
       operationId: listIndexes
       summary: List Indexes
-      description: Returns a list of all indexes accessible to the authenticated user. Includes index configuration, storage paths, and data retention settings.
+      description: Returns a list of all indexes accessible to the authenticated user. Includes index configuration, storage
+        paths, and data retention settings.
       tags:
       - Index
       parameters:
@@ -108,7 +122,8 @@ paths:
     post:
       operationId: createIndex
       summary: Create a New Index
-      description: Creates a new index with the specified configuration. The index name must be unique and conform to Splunk naming conventions.
+      description: Creates a new index with the specified configuration. The index name must be unique and conform to Splunk
+        naming conventions.
       tags:
       - Index
       parameters:
@@ -194,7 +209,8 @@ paths:
     get:
       operationId: getIndex
       summary: Get Index Details
-      description: Returns detailed configuration and status information for a specific index including storage paths, retention settings, and current size.
+      description: Returns detailed configuration and status information for a specific index including storage paths, retention
+        settings, and current size.
       tags:
       - Index
       parameters:
@@ -312,7 +328,8 @@ paths:
     delete:
       operationId: deleteIndex
       summary: Delete an Index
-      description: Marks an index for deletion. The index data is removed according to the configured retention policy. Requires the admin role.
+      description: Marks an index for deletion. The index data is removed according to the configured retention policy. Requires
+        the admin role.
       tags:
       - Index
       parameters:
@@ -609,16 +626,19 @@ components:
     BearerAuth:
       type: http
       scheme: bearer
-      description: Splunk authentication token. Obtain a session key by authenticating to /services/auth/login or use a pre-configured bearer token from Settings > Tokens in Splunk Web.
+      description: Splunk authentication token. Obtain a session key by authenticating to /services/auth/login or use a pre-configured
+        bearer token from Settings > Tokens in Splunk Web.
     BasicAuth:
       type: http
       scheme: basic
-      description: HTTP Basic authentication with a valid Splunk username and password. The credentials are sent as a Base64-encoded string in the Authorization header.
+      description: HTTP Basic authentication with a valid Splunk username and password. The credentials are sent as a Base64-encoded
+        string in the Authorization header.
     HecToken:
       type: apiKey
       in: header
       name: Authorization
-      description: HTTP Event Collector token. Send as "Splunk <token>" in the Authorization header. Tokens are configured in Splunk Web under Settings > Data Inputs > HTTP Event Collector.
+      description: HTTP Event Collector token. Send as "Splunk <token>" in the Authorization header. Tokens are configured
+        in Splunk Web under Settings > Data Inputs > HTTP Event Collector.
 externalDocs:
   description: Splunk Enterprise REST API Reference
   url: https://docs.splunk.com/Documentation/Splunk/latest/RESTREF/RESTprolog

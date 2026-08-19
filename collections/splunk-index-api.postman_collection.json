@@ -1,0 +1,2588 @@
+{
+  "item": [
+    {
+      "id": "e8fb5976-4cb5-4582-854a-7118ce5b99ff",
+      "name": "Index",
+      "description": {
+        "content": "Endpoints for managing Splunk indexes, which store and organize ingested data. Indexes can be created, modified, listed, and configured for retention and storage policies.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6098a2b1-aa36-449e-ba37-20c2bc3ad524",
+          "name": "List Indexes",
+          "request": {
+            "name": "List Indexes",
+            "description": {
+              "content": "Returns a list of all indexes accessible to the authenticated user. Includes index configuration, storage paths, and data retention settings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                "data",
+                "indexes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output_mode",
+                  "value": "xml",
+                  "description": "Response format"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "30",
+                  "description": "Maximum number of items to return. A value of 0 returns all items."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Index of the first item to return. Used with count for pagination."
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Filter indexes by name or properties"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_key",
+                  "value": "<string>",
+                  "description": "Field to sort by"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_dir",
+                  "value": "<string>",
+                  "description": "Sort direction"
+                },
+                {
+                  "disabled": false,
+                  "key": "datatype",
+                  "value": "<string>",
+                  "description": "Filter by data type"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Splunk Enterprise instance",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                },
+                {
+                  "description": "splunkd management port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "679a0252-6c8e-45d8-9b88-706becafb1db",
+              "name": "Index list returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "data",
+                    "indexes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    },
+                    {
+                      "key": "count",
+                      "value": "30"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "search",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "sort_key",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "sort_dir",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "datatype",
+                      "value": "all"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"origin\": \"example_value\",\n  \"updated\": \"2026-01-15T10:30:00Z\",\n  \"entry\": [\n    {\n      \"name\": \"Example Title\",\n      \"content\": {}\n    }\n  ],\n  \"paging\": {\n    \"total\": 10,\n    \"perPage\": 10,\n    \"offset\": 10\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e39fea43-6cc5-48c4-9429-506a68afca1b",
+              "name": "Authentication credentials are missing, invalid, or expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "data",
+                    "indexes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    },
+                    {
+                      "key": "count",
+                      "value": "30"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "search",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "sort_key",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "sort_dir",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "datatype",
+                      "value": "all"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7ce3ee3d-7f41-4c58-a137-68c14af7bd83",
+              "name": "The authenticated user does not have permission to perform this operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "data",
+                    "indexes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    },
+                    {
+                      "key": "count",
+                      "value": "30"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "search",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "sort_key",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "sort_dir",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "datatype",
+                      "value": "all"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "277c5a84-a33d-406b-8507-7529e548d1af",
+          "name": "Create a New Index",
+          "request": {
+            "name": "Create a New Index",
+            "description": {
+              "content": "Creates a new index with the specified configuration. The index name must be unique and conform to Splunk naming conventions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                "data",
+                "indexes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output_mode",
+                  "value": "xml",
+                  "description": "Response format"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Splunk Enterprise instance",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                },
+                {
+                  "description": "splunkd management port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "(Required) The name for the new index"
+                },
+                {
+                  "disabled": false,
+                  "key": "datatype",
+                  "value": "event",
+                  "description": "Type of data the index will hold"
+                },
+                {
+                  "disabled": false,
+                  "key": "homePath",
+                  "value": "<string>",
+                  "description": "Absolute path for hot and warm bucket storage"
+                },
+                {
+                  "disabled": false,
+                  "key": "coldPath",
+                  "value": "<string>",
+                  "description": "Absolute path for cold bucket storage"
+                },
+                {
+                  "disabled": false,
+                  "key": "thawedPath",
+                  "value": "<string>",
+                  "description": "Absolute path for thawed bucket storage"
+                },
+                {
+                  "disabled": false,
+                  "key": "maxTotalDataSizeMB",
+                  "value": "500000",
+                  "description": "Maximum total size of the index in MB"
+                },
+                {
+                  "disabled": false,
+                  "key": "maxDataSize",
+                  "value": "auto",
+                  "description": "Maximum size of a hot bucket"
+                },
+                {
+                  "disabled": false,
+                  "key": "frozenTimePeriodInSecs",
+                  "value": "188697600",
+                  "description": "Seconds until data is frozen"
+                },
+                {
+                  "disabled": false,
+                  "key": "maxHotBuckets",
+                  "value": "3",
+                  "description": "Maximum number of hot buckets"
+                },
+                {
+                  "disabled": false,
+                  "key": "maxWarmDBCount",
+                  "value": "300",
+                  "description": "Maximum number of warm buckets"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8b8c3091-44ca-48e9-b278-2addf8d15480",
+              "name": "Index created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "data",
+                    "indexes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The name for the new index",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "Example Title"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Type of data the index will hold",
+                        "type": "text/plain"
+                      },
+                      "key": "datatype",
+                      "value": "event"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Absolute path for hot and warm bucket storage",
+                        "type": "text/plain"
+                      },
+                      "key": "homePath",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Absolute path for cold bucket storage",
+                        "type": "text/plain"
+                      },
+                      "key": "coldPath",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Absolute path for thawed bucket storage",
+                        "type": "text/plain"
+                      },
+                      "key": "thawedPath",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Maximum total size of the index in MB",
+                        "type": "text/plain"
+                      },
+                      "key": "maxTotalDataSizeMB",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Maximum size of a hot bucket",
+                        "type": "text/plain"
+                      },
+                      "key": "maxDataSize",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Seconds until data is frozen",
+                        "type": "text/plain"
+                      },
+                      "key": "frozenTimePeriodInSecs",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Maximum number of hot buckets",
+                        "type": "text/plain"
+                      },
+                      "key": "maxHotBuckets",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Maximum number of warm buckets",
+                        "type": "text/plain"
+                      },
+                      "key": "maxWarmDBCount",
+                      "value": "10"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"Example Title\",\n  \"content\": {\n    \"datatype\": \"event\",\n    \"totalEventCount\": 10,\n    \"currentDBSizeMB\": 10,\n    \"maxDataSize\": \"auto\",\n    \"maxTotalDataSizeMB\": 10,\n    \"maxHotBuckets\": 10,\n    \"maxWarmDBCount\": 10,\n    \"frozenTimePeriodInSecs\": 10,\n    \"homePath\": \"example_value\",\n    \"coldPath\": \"example_value\",\n    \"thawedPath\": \"example_value\",\n    \"disabled\": true,\n    \"isInternal\": true,\n    \"minTime\": \"example_value\",\n    \"maxTime\": \"example_value\",\n    \"repFactor\": \"example_value\",\n    \"enableOnlineBucketRepair\": true,\n    \"quarantinePastSecs\": 10,\n    \"quarantineFutureSecs\": 10\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "62aa2bfc-1e4b-48d6-8bba-f1d7f6c796b0",
+              "name": "The request is malformed or contains invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "data",
+                    "indexes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The name for the new index",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "Example Title"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Type of data the index will hold",
+                        "type": "text/plain"
+                      },
+                      "key": "datatype",
+                      "value": "event"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Absolute path for hot and warm bucket storage",
+                        "type": "text/plain"
+                      },
+                      "key": "homePath",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Absolute path for cold bucket storage",
+                        "type": "text/plain"
+                      },
+                      "key": "coldPath",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Absolute path for thawed bucket storage",
+                        "type": "text/plain"
+                      },
+                      "key": "thawedPath",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Maximum total size of the index in MB",
+                        "type": "text/plain"
+                      },
+                      "key": "maxTotalDataSizeMB",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Maximum size of a hot bucket",
+                        "type": "text/plain"
+                      },
+                      "key": "maxDataSize",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Seconds until data is frozen",
+                        "type": "text/plain"
+                      },
+                      "key": "frozenTimePeriodInSecs",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Maximum number of hot buckets",
+                        "type": "text/plain"
+                      },
+                      "key": "maxHotBuckets",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Maximum number of warm buckets",
+                        "type": "text/plain"
+                      },
+                      "key": "maxWarmDBCount",
+                      "value": "10"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0a0bbb19-6c77-40fc-866f-0d26ed2a80b3",
+              "name": "Authentication credentials are missing, invalid, or expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "data",
+                    "indexes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The name for the new index",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "Example Title"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Type of data the index will hold",
+                        "type": "text/plain"
+                      },
+                      "key": "datatype",
+                      "value": "event"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Absolute path for hot and warm bucket storage",
+                        "type": "text/plain"
+                      },
+                      "key": "homePath",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Absolute path for cold bucket storage",
+                        "type": "text/plain"
+                      },
+                      "key": "coldPath",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Absolute path for thawed bucket storage",
+                        "type": "text/plain"
+                      },
+                      "key": "thawedPath",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Maximum total size of the index in MB",
+                        "type": "text/plain"
+                      },
+                      "key": "maxTotalDataSizeMB",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Maximum size of a hot bucket",
+                        "type": "text/plain"
+                      },
+                      "key": "maxDataSize",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Seconds until data is frozen",
+                        "type": "text/plain"
+                      },
+                      "key": "frozenTimePeriodInSecs",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Maximum number of hot buckets",
+                        "type": "text/plain"
+                      },
+                      "key": "maxHotBuckets",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Maximum number of warm buckets",
+                        "type": "text/plain"
+                      },
+                      "key": "maxWarmDBCount",
+                      "value": "10"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "63127ee0-15e1-4483-8579-2d077cbbc8f3",
+              "name": "The authenticated user does not have permission to perform this operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "data",
+                    "indexes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The name for the new index",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "Example Title"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Type of data the index will hold",
+                        "type": "text/plain"
+                      },
+                      "key": "datatype",
+                      "value": "event"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Absolute path for hot and warm bucket storage",
+                        "type": "text/plain"
+                      },
+                      "key": "homePath",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Absolute path for cold bucket storage",
+                        "type": "text/plain"
+                      },
+                      "key": "coldPath",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Absolute path for thawed bucket storage",
+                        "type": "text/plain"
+                      },
+                      "key": "thawedPath",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Maximum total size of the index in MB",
+                        "type": "text/plain"
+                      },
+                      "key": "maxTotalDataSizeMB",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Maximum size of a hot bucket",
+                        "type": "text/plain"
+                      },
+                      "key": "maxDataSize",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Seconds until data is frozen",
+                        "type": "text/plain"
+                      },
+                      "key": "frozenTimePeriodInSecs",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Maximum number of hot buckets",
+                        "type": "text/plain"
+                      },
+                      "key": "maxHotBuckets",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Maximum number of warm buckets",
+                        "type": "text/plain"
+                      },
+                      "key": "maxWarmDBCount",
+                      "value": "10"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c5f4d5c5-d992-41d2-a1cf-887256ea3e36",
+              "name": "An index with the specified name already exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "data",
+                    "indexes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The name for the new index",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "Example Title"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Type of data the index will hold",
+                        "type": "text/plain"
+                      },
+                      "key": "datatype",
+                      "value": "event"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Absolute path for hot and warm bucket storage",
+                        "type": "text/plain"
+                      },
+                      "key": "homePath",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Absolute path for cold bucket storage",
+                        "type": "text/plain"
+                      },
+                      "key": "coldPath",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Absolute path for thawed bucket storage",
+                        "type": "text/plain"
+                      },
+                      "key": "thawedPath",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Maximum total size of the index in MB",
+                        "type": "text/plain"
+                      },
+                      "key": "maxTotalDataSizeMB",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Maximum size of a hot bucket",
+                        "type": "text/plain"
+                      },
+                      "key": "maxDataSize",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Seconds until data is frozen",
+                        "type": "text/plain"
+                      },
+                      "key": "frozenTimePeriodInSecs",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Maximum number of hot buckets",
+                        "type": "text/plain"
+                      },
+                      "key": "maxHotBuckets",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Maximum number of warm buckets",
+                        "type": "text/plain"
+                      },
+                      "key": "maxWarmDBCount",
+                      "value": "10"
+                    }
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": [\n    {\n      \"type\": \"ERROR\",\n      \"text\": \"example_value\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "36354da7-898d-49a1-97e4-da001739b9b8",
+          "name": "Get Index Details",
+          "request": {
+            "name": "Get Index Details",
+            "description": {
+              "content": "Returns detailed configuration and status information for a specific index including storage paths, retention settings, and current size.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                "data",
+                "indexes",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output_mode",
+                  "value": "xml",
+                  "description": "Response format"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The name of the index"
+                },
+                {
+                  "description": "Hostname or IP address of the Splunk Enterprise instance",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                },
+                {
+                  "description": "splunkd management port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "077ff919-5c06-4753-90d9-40850560bcda",
+              "name": "Index details returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "data",
+                    "indexes",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The name of the index"
+                    },
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"Example Title\",\n  \"content\": {\n    \"datatype\": \"event\",\n    \"totalEventCount\": 10,\n    \"currentDBSizeMB\": 10,\n    \"maxDataSize\": \"auto\",\n    \"maxTotalDataSizeMB\": 10,\n    \"maxHotBuckets\": 10,\n    \"maxWarmDBCount\": 10,\n    \"frozenTimePeriodInSecs\": 10,\n    \"homePath\": \"example_value\",\n    \"coldPath\": \"example_value\",\n    \"thawedPath\": \"example_value\",\n    \"disabled\": true,\n    \"isInternal\": true,\n    \"minTime\": \"example_value\",\n    \"maxTime\": \"example_value\",\n    \"repFactor\": \"example_value\",\n    \"enableOnlineBucketRepair\": true,\n    \"quarantinePastSecs\": 10,\n    \"quarantineFutureSecs\": 10\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0ec30c98-4266-4789-ace5-e8335890b20a",
+              "name": "Authentication credentials are missing, invalid, or expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "data",
+                    "indexes",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The name of the index"
+                    },
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d843dfac-77d4-4ffe-b462-36a118e49317",
+              "name": "The requested resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "data",
+                    "indexes",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The name of the index"
+                    },
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "796d52c0-60b5-400c-824d-8360ee6860cc",
+          "name": "Update Index Configuration",
+          "request": {
+            "name": "Update Index Configuration",
+            "description": {
+              "content": "Updates the configuration of an existing index. Not all index properties can be modified after creation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                "data",
+                "indexes",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output_mode",
+                  "value": "xml",
+                  "description": "Response format"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The name of the index"
+                },
+                {
+                  "description": "Hostname or IP address of the Splunk Enterprise instance",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                },
+                {
+                  "description": "splunkd management port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "maxTotalDataSizeMB",
+                  "value": "<integer>",
+                  "description": "Maximum total size of the index in MB"
+                },
+                {
+                  "disabled": false,
+                  "key": "frozenTimePeriodInSecs",
+                  "value": "<integer>",
+                  "description": "Seconds until data is frozen"
+                },
+                {
+                  "disabled": false,
+                  "key": "maxHotBuckets",
+                  "value": "<integer>",
+                  "description": "Maximum number of hot buckets"
+                },
+                {
+                  "disabled": false,
+                  "key": "maxWarmDBCount",
+                  "value": "<integer>",
+                  "description": "Maximum number of warm buckets"
+                },
+                {
+                  "disabled": false,
+                  "key": "disabled",
+                  "value": "<boolean>",
+                  "description": "Whether to disable the index"
+                },
+                {
+                  "disabled": false,
+                  "key": "coldToFrozenDir",
+                  "value": "<string>",
+                  "description": "Path to archive frozen buckets to. If not set, frozen data is deleted."
+                },
+                {
+                  "disabled": false,
+                  "key": "coldToFrozenScript",
+                  "value": "<string>",
+                  "description": "Script to run when freezing buckets"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "34b9523b-d2db-4b33-b7b9-04c2a65f4d4f",
+              "name": "Index updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "data",
+                    "indexes",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The name of the index"
+                    },
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Maximum total size of the index in MB",
+                        "type": "text/plain"
+                      },
+                      "key": "maxTotalDataSizeMB",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Seconds until data is frozen",
+                        "type": "text/plain"
+                      },
+                      "key": "frozenTimePeriodInSecs",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Maximum number of hot buckets",
+                        "type": "text/plain"
+                      },
+                      "key": "maxHotBuckets",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Maximum number of warm buckets",
+                        "type": "text/plain"
+                      },
+                      "key": "maxWarmDBCount",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Whether to disable the index",
+                        "type": "text/plain"
+                      },
+                      "key": "disabled",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Path to archive frozen buckets to. If not set, frozen data is deleted.",
+                        "type": "text/plain"
+                      },
+                      "key": "coldToFrozenDir",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Script to run when freezing buckets",
+                        "type": "text/plain"
+                      },
+                      "key": "coldToFrozenScript",
+                      "value": "example_value"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"Example Title\",\n  \"content\": {\n    \"datatype\": \"event\",\n    \"totalEventCount\": 10,\n    \"currentDBSizeMB\": 10,\n    \"maxDataSize\": \"auto\",\n    \"maxTotalDataSizeMB\": 10,\n    \"maxHotBuckets\": 10,\n    \"maxWarmDBCount\": 10,\n    \"frozenTimePeriodInSecs\": 10,\n    \"homePath\": \"example_value\",\n    \"coldPath\": \"example_value\",\n    \"thawedPath\": \"example_value\",\n    \"disabled\": true,\n    \"isInternal\": true,\n    \"minTime\": \"example_value\",\n    \"maxTime\": \"example_value\",\n    \"repFactor\": \"example_value\",\n    \"enableOnlineBucketRepair\": true,\n    \"quarantinePastSecs\": 10,\n    \"quarantineFutureSecs\": 10\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "daa1d194-4a8b-43e5-91a7-53c7f3e9e3d4",
+              "name": "The request is malformed or contains invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "data",
+                    "indexes",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The name of the index"
+                    },
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Maximum total size of the index in MB",
+                        "type": "text/plain"
+                      },
+                      "key": "maxTotalDataSizeMB",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Seconds until data is frozen",
+                        "type": "text/plain"
+                      },
+                      "key": "frozenTimePeriodInSecs",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Maximum number of hot buckets",
+                        "type": "text/plain"
+                      },
+                      "key": "maxHotBuckets",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Maximum number of warm buckets",
+                        "type": "text/plain"
+                      },
+                      "key": "maxWarmDBCount",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Whether to disable the index",
+                        "type": "text/plain"
+                      },
+                      "key": "disabled",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Path to archive frozen buckets to. If not set, frozen data is deleted.",
+                        "type": "text/plain"
+                      },
+                      "key": "coldToFrozenDir",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Script to run when freezing buckets",
+                        "type": "text/plain"
+                      },
+                      "key": "coldToFrozenScript",
+                      "value": "example_value"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b4ff6004-1af8-4d4c-831e-1f389fc020ca",
+              "name": "Authentication credentials are missing, invalid, or expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "data",
+                    "indexes",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The name of the index"
+                    },
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Maximum total size of the index in MB",
+                        "type": "text/plain"
+                      },
+                      "key": "maxTotalDataSizeMB",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Seconds until data is frozen",
+                        "type": "text/plain"
+                      },
+                      "key": "frozenTimePeriodInSecs",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Maximum number of hot buckets",
+                        "type": "text/plain"
+                      },
+                      "key": "maxHotBuckets",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Maximum number of warm buckets",
+                        "type": "text/plain"
+                      },
+                      "key": "maxWarmDBCount",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Whether to disable the index",
+                        "type": "text/plain"
+                      },
+                      "key": "disabled",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Path to archive frozen buckets to. If not set, frozen data is deleted.",
+                        "type": "text/plain"
+                      },
+                      "key": "coldToFrozenDir",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Script to run when freezing buckets",
+                        "type": "text/plain"
+                      },
+                      "key": "coldToFrozenScript",
+                      "value": "example_value"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "797f8b61-7c02-41ae-ac18-e3bb0c8ec381",
+              "name": "The requested resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "data",
+                    "indexes",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The name of the index"
+                    },
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Maximum total size of the index in MB",
+                        "type": "text/plain"
+                      },
+                      "key": "maxTotalDataSizeMB",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Seconds until data is frozen",
+                        "type": "text/plain"
+                      },
+                      "key": "frozenTimePeriodInSecs",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Maximum number of hot buckets",
+                        "type": "text/plain"
+                      },
+                      "key": "maxHotBuckets",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Maximum number of warm buckets",
+                        "type": "text/plain"
+                      },
+                      "key": "maxWarmDBCount",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Whether to disable the index",
+                        "type": "text/plain"
+                      },
+                      "key": "disabled",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Path to archive frozen buckets to. If not set, frozen data is deleted.",
+                        "type": "text/plain"
+                      },
+                      "key": "coldToFrozenDir",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Script to run when freezing buckets",
+                        "type": "text/plain"
+                      },
+                      "key": "coldToFrozenScript",
+                      "value": "example_value"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "04f04dda-fce9-462b-a621-05c2ef166229",
+          "name": "Delete an Index",
+          "request": {
+            "name": "Delete an Index",
+            "description": {
+              "content": "Marks an index for deletion. The index data is removed according to the configured retention policy. Requires the admin role.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                "data",
+                "indexes",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The name of the index"
+                },
+                {
+                  "description": "Hostname or IP address of the Splunk Enterprise instance",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                },
+                {
+                  "description": "splunkd management port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f8c24103-f53e-4225-8b98-8a4d1ce441a9",
+              "name": "Index marked for deletion",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "data",
+                    "indexes",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The name of the index"
+                    },
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4dc7c552-45e3-4796-a118-66ebd60c5853",
+              "name": "Authentication credentials are missing, invalid, or expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "data",
+                    "indexes",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The name of the index"
+                    },
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "07902a38-4028-4679-bf75-bed170bd29d7",
+              "name": "The authenticated user does not have permission to perform this operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "data",
+                    "indexes",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The name of the index"
+                    },
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "57344002-2ab5-4de9-a2fa-e35523444e74",
+              "name": "The requested resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "data",
+                    "indexes",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The name of the index"
+                    },
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname or IP address of the Splunk Enterprise instance",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "localhost",
+      "key": "host"
+    },
+    {
+      "description": {
+        "content": "splunkd management port",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "8089",
+      "key": "port"
+    },
+    {
+      "type": "string",
+      "value": "https://{{host}}:{{port}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3f4e8386-ebf0-486b-8b53-c992c26f6161",
+    "name": "Splunk Enterprise REST Data Inputs Index API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Splunk Enterprise REST API provides programmatic access to Splunk Enterprise functionality including search, indexing, data inputs, and system management. All requests are made over HTTPS to the splunkd management port (default 8089). Authentication is required via Splunk authentication tokens or HTTP Basic authentication with a valid Splunk username and password. Responses are available in JSON and XML formats.\n\nContact Support:\n Name: Splunk Inc.\n Email: devinfo@splunk.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,395 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Splunk Enterprise REST Data Inputs API",
+    "version": "9.4.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Data Inputs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List File and Directory Monitor Inputs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/services/data/inputs/monitor",
+            "params": [
+              {
+                "name": "output_mode",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return. A value of 0 returns all items."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Index of the first item to return. Used with count for pagination."
+              },
+              {
+                "name": "search",
+                "value": "example_value",
+                "type": "query",
+                "description": "Filter inputs by search string"
+              }
+            ]
+          },
+          "docs": "Returns a list of file and directory monitoring inputs. Monitor inputs continuously watch files and directories for new data."
+        },
+        {
+          "info": {
+            "name": "Create a File or Directory Monitor Input",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/services/data/inputs/monitor",
+            "params": [
+              {
+                "name": "output_mode",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Creates a new file or directory monitoring input. The specified path will be monitored for new data and ingested into the specified index."
+        },
+        {
+          "info": {
+            "name": "Get Monitor Input Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/services/data/inputs/monitor/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "Example Title",
+                "type": "path",
+                "description": "The name (path) of the monitor input"
+              },
+              {
+                "name": "output_mode",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              }
+            ]
+          },
+          "docs": "Returns configuration details for a specific file or directory monitoring input."
+        },
+        {
+          "info": {
+            "name": "Update a Monitor Input",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/services/data/inputs/monitor/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "Example Title",
+                "type": "path",
+                "description": "The name (path) of the monitor input"
+              },
+              {
+                "name": "output_mode",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Updates the configuration of an existing monitor input."
+        },
+        {
+          "info": {
+            "name": "Delete a Monitor Input",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}:{port}/services/data/inputs/monitor/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "Example Title",
+                "type": "path",
+                "description": "The name (path) of the monitor input"
+              }
+            ]
+          },
+          "docs": "Deletes the specified monitor input. Splunk stops monitoring the associated file or directory."
+        },
+        {
+          "info": {
+            "name": "List Cooked Tcp Inputs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/services/data/inputs/tcp/cooked",
+            "params": [
+              {
+                "name": "output_mode",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return. A value of 0 returns all items."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Index of the first item to return. Used with count for pagination."
+              }
+            ]
+          },
+          "docs": "Returns a list of TCP cooked data inputs. Cooked TCP inputs receive data from Splunk forwarders."
+        },
+        {
+          "info": {
+            "name": "List Raw Tcp Inputs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/services/data/inputs/tcp/raw",
+            "params": [
+              {
+                "name": "output_mode",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return. A value of 0 returns all items."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Index of the first item to return. Used with count for pagination."
+              }
+            ]
+          },
+          "docs": "Returns a list of raw TCP data inputs. Raw TCP inputs receive data directly over a TCP port without Splunk protocol framing."
+        },
+        {
+          "info": {
+            "name": "List Udp Inputs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/services/data/inputs/udp",
+            "params": [
+              {
+                "name": "output_mode",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return. A value of 0 returns all items."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Index of the first item to return. Used with count for pagination."
+              }
+            ]
+          },
+          "docs": "Returns a list of UDP data inputs. UDP inputs receive data over a UDP port."
+        },
+        {
+          "info": {
+            "name": "List Http Event Collector Tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/services/data/inputs/http",
+            "params": [
+              {
+                "name": "output_mode",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return. A value of 0 returns all items."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Index of the first item to return. Used with count for pagination."
+              }
+            ]
+          },
+          "docs": "Returns a list of HTTP Event Collector (HEC) tokens configured on the Splunk instance. Each token defines an input channel for receiving data over HTTP/HTTPS."
+        },
+        {
+          "info": {
+            "name": "Create an Http Event Collector Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/services/data/inputs/http",
+            "params": [
+              {
+                "name": "output_mode",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Creates a new HTTP Event Collector (HEC) token for data ingestion over HTTP/HTTPS."
+        },
+        {
+          "info": {
+            "name": "Send Events via Http Event Collector",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/services/collector/event",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Sends one or more events to Splunk via HTTP Event Collector. Events are submitted as JSON objects. Multiple events can be sent in a single request by concatenating JSON objects."
+        },
+        {
+          "info": {
+            "name": "Send Raw Data via Http Event Collector",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/services/collector/raw",
+            "params": [
+              {
+                "name": "channel",
+                "value": "example_value",
+                "type": "query",
+                "description": "Channel identifier (GUID) for event ordering. Required if indexer acknowledgment is enabled."
+              },
+              {
+                "name": "sourcetype",
+                "value": "example_value",
+                "type": "query",
+                "description": "Override the sourcetype for the event data"
+              },
+              {
+                "name": "source",
+                "value": "example_value",
+                "type": "query",
+                "description": "Override the source for the event data"
+              },
+              {
+                "name": "host",
+                "value": "example_value",
+                "type": "query",
+                "description": "Override the host for the event data"
+              },
+              {
+                "name": "index",
+                "value": "example_value",
+                "type": "query",
+                "description": "Override the destination index for the event data"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Sends raw event data to Splunk via HTTP Event Collector. The raw data is ingested as-is without requiring JSON formatting. Useful for log file data and other unstructured text."
+        },
+        {
+          "info": {
+            "name": "Check Indexer Acknowledgment Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/services/collector/ack",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Queries the indexer acknowledgment status for events sent via HTTP Event Collector. Returns whether events with specified ack IDs have been indexed."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

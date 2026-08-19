@@ -1,0 +1,3759 @@
+{
+  "item": [
+    {
+      "id": "3eb3fff4-8276-44de-9cb0-d8462847ba7d",
+      "name": "Search",
+      "description": {
+        "content": "Endpoints for creating, managing, and retrieving search jobs and their results. Splunk search processing language (SPL) queries are submitted as search jobs that run asynchronously.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5b5a6fd6-473e-45db-a757-67b9a2ee84a9",
+          "name": "List Search Jobs",
+          "request": {
+            "name": "List Search Jobs",
+            "description": {
+              "content": "Returns a list of current search jobs for the authenticated user. Includes job status, progress, and metadata for each job.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                "search",
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output_mode",
+                  "value": "xml",
+                  "description": "Response format"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "30",
+                  "description": "Maximum number of items to return. A value of 0 returns all items."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Index of the first item to return. Used with count for pagination."
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Filter search jobs by search string"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_key",
+                  "value": "dispatch_time",
+                  "description": "Field to sort by"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_dir",
+                  "value": "desc",
+                  "description": "Sort direction"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Splunk Enterprise instance",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                },
+                {
+                  "description": "splunkd management port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "03a03dff-c182-4344-854f-1119a8fa023b",
+              "name": "List of search jobs returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "search",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    },
+                    {
+                      "key": "count",
+                      "value": "30"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "search",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "sort_key",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "sort_dir",
+                      "value": "asc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"origin\": \"example_value\",\n  \"updated\": \"2026-01-15T10:30:00Z\",\n  \"generator\": {\n    \"build\": \"example_value\",\n    \"version\": \"example_value\"\n  },\n  \"entry\": [\n    {\n      \"sid\": \"500123\",\n      \"content\": {}\n    }\n  ],\n  \"paging\": {\n    \"total\": 10,\n    \"perPage\": 10,\n    \"offset\": 10\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "38f59d11-7606-4eac-98e3-e4d78a5acf19",
+              "name": "Authentication credentials are missing, invalid, or expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "search",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    },
+                    {
+                      "key": "count",
+                      "value": "30"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "search",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "sort_key",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "sort_dir",
+                      "value": "asc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2df48113-61ae-4dbe-83a2-762ccb65645b",
+              "name": "The authenticated user does not have permission to perform this operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "search",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    },
+                    {
+                      "key": "count",
+                      "value": "30"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "search",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "sort_key",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "sort_dir",
+                      "value": "asc"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f06b5b7c-5f2c-4fa0-bc1f-3e569984bbfe",
+          "name": "Create a Search Job",
+          "request": {
+            "name": "Create a Search Job",
+            "description": {
+              "content": "Creates a new search job. The search job runs asynchronously. Use the returned search ID (sid) to check job status and retrieve results. Searches use the Splunk Search Processing Language (SPL).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                "search",
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output_mode",
+                  "value": "xml",
+                  "description": "Response format"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Splunk Enterprise instance",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                },
+                {
+                  "description": "splunkd management port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "(Required) The SPL search query to execute"
+                },
+                {
+                  "disabled": false,
+                  "key": "earliest_time",
+                  "value": "<string>",
+                  "description": "Earliest time for the search using relative or absolute time format"
+                },
+                {
+                  "disabled": false,
+                  "key": "latest_time",
+                  "value": "<string>",
+                  "description": "Latest time for the search"
+                },
+                {
+                  "disabled": false,
+                  "key": "search_mode",
+                  "value": "normal",
+                  "description": "The search mode"
+                },
+                {
+                  "disabled": false,
+                  "key": "exec_mode",
+                  "value": "normal",
+                  "description": "Execution mode. Normal runs asynchronously, oneshot runs synchronously, blocking waits for completion."
+                },
+                {
+                  "disabled": false,
+                  "key": "max_count",
+                  "value": "10000",
+                  "description": "Maximum number of results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "max_time",
+                  "value": "0",
+                  "description": "Maximum time in seconds before the search is finalized"
+                },
+                {
+                  "disabled": false,
+                  "key": "timeout",
+                  "value": "86400",
+                  "description": "Number of seconds to keep the search after processing has stopped"
+                },
+                {
+                  "disabled": false,
+                  "key": "rf",
+                  "value": "<string>",
+                  "description": "Comma-separated list of required fields to include in results"
+                },
+                {
+                  "disabled": false,
+                  "key": "namespace",
+                  "value": "<string>",
+                  "description": "Application namespace for the search"
+                },
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "Optional custom search ID. If not specified, Splunk generates one automatically."
+                },
+                {
+                  "disabled": false,
+                  "key": "status_buckets",
+                  "value": "0",
+                  "description": "Number of status buckets to generate for the search timeline. Set to a value greater than 0 to enable timeline."
+                },
+                {
+                  "disabled": false,
+                  "key": "auto_cancel",
+                  "value": "0",
+                  "description": "Seconds of inactivity after which the search is automatically cancelled. 0 means never auto-cancel."
+                },
+                {
+                  "disabled": false,
+                  "key": "auto_finalize_ec",
+                  "value": "0",
+                  "description": "Auto-finalize the search after this number of events have been processed. 0 disables auto-finalize."
+                },
+                {
+                  "disabled": false,
+                  "key": "auto_pause",
+                  "value": "0",
+                  "description": "Seconds of inactivity after which the search is automatically paused. 0 means never auto-pause."
+                },
+                {
+                  "disabled": false,
+                  "key": "enable_lookups",
+                  "value": "true",
+                  "description": "Whether to enable lookups during the search"
+                },
+                {
+                  "disabled": false,
+                  "key": "reload_macros",
+                  "value": "true",
+                  "description": "Whether to reload macro definitions before the search"
+                },
+                {
+                  "disabled": false,
+                  "key": "reduce_freq",
+                  "value": "0",
+                  "description": "How frequently to invoke the reduce phase (seconds)"
+                },
+                {
+                  "disabled": false,
+                  "key": "spawn_process",
+                  "value": "true",
+                  "description": "Whether to run the search in a separate process"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b96808ef-eef9-4313-83b6-b17ff739e93c",
+              "name": "Search job created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "search",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The SPL search query to execute",
+                        "type": "text/plain"
+                      },
+                      "key": "search",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Earliest time for the search using relative or absolute time format",
+                        "type": "text/plain"
+                      },
+                      "key": "earliest_time",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Latest time for the search",
+                        "type": "text/plain"
+                      },
+                      "key": "latest_time",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The search mode",
+                        "type": "text/plain"
+                      },
+                      "key": "search_mode",
+                      "value": "normal"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Execution mode. Normal runs asynchronously, oneshot runs synchronously, blocking waits for completion.",
+                        "type": "text/plain"
+                      },
+                      "key": "exec_mode",
+                      "value": "normal"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Maximum number of results to return",
+                        "type": "text/plain"
+                      },
+                      "key": "max_count",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Maximum time in seconds before the search is finalized",
+                        "type": "text/plain"
+                      },
+                      "key": "max_time",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Number of seconds to keep the search after processing has stopped",
+                        "type": "text/plain"
+                      },
+                      "key": "timeout",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Comma-separated list of required fields to include in results",
+                        "type": "text/plain"
+                      },
+                      "key": "rf",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Application namespace for the search",
+                        "type": "text/plain"
+                      },
+                      "key": "namespace",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Optional custom search ID. If not specified, Splunk generates one automatically.",
+                        "type": "text/plain"
+                      },
+                      "key": "id",
+                      "value": "abc123"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Number of status buckets to generate for the search timeline. Set to a value greater than 0 to enable timeline.",
+                        "type": "text/plain"
+                      },
+                      "key": "status_buckets",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Seconds of inactivity after which the search is automatically cancelled. 0 means never auto-cancel.",
+                        "type": "text/plain"
+                      },
+                      "key": "auto_cancel",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Auto-finalize the search after this number of events have been processed. 0 disables auto-finalize.",
+                        "type": "text/plain"
+                      },
+                      "key": "auto_finalize_ec",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Seconds of inactivity after which the search is automatically paused. 0 means never auto-pause.",
+                        "type": "text/plain"
+                      },
+                      "key": "auto_pause",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Whether to enable lookups during the search",
+                        "type": "text/plain"
+                      },
+                      "key": "enable_lookups",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Whether to reload macro definitions before the search",
+                        "type": "text/plain"
+                      },
+                      "key": "reload_macros",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "How frequently to invoke the reduce phase (seconds)",
+                        "type": "text/plain"
+                      },
+                      "key": "reduce_freq",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Whether to run the search in a separate process",
+                        "type": "text/plain"
+                      },
+                      "key": "spawn_process",
+                      "value": "true"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sid\": \"500123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8c412a8b-bdec-45ad-a22e-be6d6a32e568",
+              "name": "The request is malformed or contains invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "search",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The SPL search query to execute",
+                        "type": "text/plain"
+                      },
+                      "key": "search",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Earliest time for the search using relative or absolute time format",
+                        "type": "text/plain"
+                      },
+                      "key": "earliest_time",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Latest time for the search",
+                        "type": "text/plain"
+                      },
+                      "key": "latest_time",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The search mode",
+                        "type": "text/plain"
+                      },
+                      "key": "search_mode",
+                      "value": "normal"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Execution mode. Normal runs asynchronously, oneshot runs synchronously, blocking waits for completion.",
+                        "type": "text/plain"
+                      },
+                      "key": "exec_mode",
+                      "value": "normal"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Maximum number of results to return",
+                        "type": "text/plain"
+                      },
+                      "key": "max_count",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Maximum time in seconds before the search is finalized",
+                        "type": "text/plain"
+                      },
+                      "key": "max_time",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Number of seconds to keep the search after processing has stopped",
+                        "type": "text/plain"
+                      },
+                      "key": "timeout",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Comma-separated list of required fields to include in results",
+                        "type": "text/plain"
+                      },
+                      "key": "rf",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Application namespace for the search",
+                        "type": "text/plain"
+                      },
+                      "key": "namespace",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Optional custom search ID. If not specified, Splunk generates one automatically.",
+                        "type": "text/plain"
+                      },
+                      "key": "id",
+                      "value": "abc123"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Number of status buckets to generate for the search timeline. Set to a value greater than 0 to enable timeline.",
+                        "type": "text/plain"
+                      },
+                      "key": "status_buckets",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Seconds of inactivity after which the search is automatically cancelled. 0 means never auto-cancel.",
+                        "type": "text/plain"
+                      },
+                      "key": "auto_cancel",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Auto-finalize the search after this number of events have been processed. 0 disables auto-finalize.",
+                        "type": "text/plain"
+                      },
+                      "key": "auto_finalize_ec",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Seconds of inactivity after which the search is automatically paused. 0 means never auto-pause.",
+                        "type": "text/plain"
+                      },
+                      "key": "auto_pause",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Whether to enable lookups during the search",
+                        "type": "text/plain"
+                      },
+                      "key": "enable_lookups",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Whether to reload macro definitions before the search",
+                        "type": "text/plain"
+                      },
+                      "key": "reload_macros",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "How frequently to invoke the reduce phase (seconds)",
+                        "type": "text/plain"
+                      },
+                      "key": "reduce_freq",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Whether to run the search in a separate process",
+                        "type": "text/plain"
+                      },
+                      "key": "spawn_process",
+                      "value": "true"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bae515a2-2a2c-4408-8cd2-fd37027012b3",
+              "name": "Authentication credentials are missing, invalid, or expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "search",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The SPL search query to execute",
+                        "type": "text/plain"
+                      },
+                      "key": "search",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Earliest time for the search using relative or absolute time format",
+                        "type": "text/plain"
+                      },
+                      "key": "earliest_time",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Latest time for the search",
+                        "type": "text/plain"
+                      },
+                      "key": "latest_time",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The search mode",
+                        "type": "text/plain"
+                      },
+                      "key": "search_mode",
+                      "value": "normal"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Execution mode. Normal runs asynchronously, oneshot runs synchronously, blocking waits for completion.",
+                        "type": "text/plain"
+                      },
+                      "key": "exec_mode",
+                      "value": "normal"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Maximum number of results to return",
+                        "type": "text/plain"
+                      },
+                      "key": "max_count",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Maximum time in seconds before the search is finalized",
+                        "type": "text/plain"
+                      },
+                      "key": "max_time",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Number of seconds to keep the search after processing has stopped",
+                        "type": "text/plain"
+                      },
+                      "key": "timeout",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Comma-separated list of required fields to include in results",
+                        "type": "text/plain"
+                      },
+                      "key": "rf",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Application namespace for the search",
+                        "type": "text/plain"
+                      },
+                      "key": "namespace",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Optional custom search ID. If not specified, Splunk generates one automatically.",
+                        "type": "text/plain"
+                      },
+                      "key": "id",
+                      "value": "abc123"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Number of status buckets to generate for the search timeline. Set to a value greater than 0 to enable timeline.",
+                        "type": "text/plain"
+                      },
+                      "key": "status_buckets",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Seconds of inactivity after which the search is automatically cancelled. 0 means never auto-cancel.",
+                        "type": "text/plain"
+                      },
+                      "key": "auto_cancel",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Auto-finalize the search after this number of events have been processed. 0 disables auto-finalize.",
+                        "type": "text/plain"
+                      },
+                      "key": "auto_finalize_ec",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Seconds of inactivity after which the search is automatically paused. 0 means never auto-pause.",
+                        "type": "text/plain"
+                      },
+                      "key": "auto_pause",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Whether to enable lookups during the search",
+                        "type": "text/plain"
+                      },
+                      "key": "enable_lookups",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Whether to reload macro definitions before the search",
+                        "type": "text/plain"
+                      },
+                      "key": "reload_macros",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "How frequently to invoke the reduce phase (seconds)",
+                        "type": "text/plain"
+                      },
+                      "key": "reduce_freq",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Whether to run the search in a separate process",
+                        "type": "text/plain"
+                      },
+                      "key": "spawn_process",
+                      "value": "true"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2201ccd8-4fce-47d2-ba8c-f8da7a977a15",
+              "name": "The authenticated user does not have permission to perform this operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "search",
+                    "jobs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The SPL search query to execute",
+                        "type": "text/plain"
+                      },
+                      "key": "search",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Earliest time for the search using relative or absolute time format",
+                        "type": "text/plain"
+                      },
+                      "key": "earliest_time",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Latest time for the search",
+                        "type": "text/plain"
+                      },
+                      "key": "latest_time",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The search mode",
+                        "type": "text/plain"
+                      },
+                      "key": "search_mode",
+                      "value": "normal"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Execution mode. Normal runs asynchronously, oneshot runs synchronously, blocking waits for completion.",
+                        "type": "text/plain"
+                      },
+                      "key": "exec_mode",
+                      "value": "normal"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Maximum number of results to return",
+                        "type": "text/plain"
+                      },
+                      "key": "max_count",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Maximum time in seconds before the search is finalized",
+                        "type": "text/plain"
+                      },
+                      "key": "max_time",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Number of seconds to keep the search after processing has stopped",
+                        "type": "text/plain"
+                      },
+                      "key": "timeout",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Comma-separated list of required fields to include in results",
+                        "type": "text/plain"
+                      },
+                      "key": "rf",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Application namespace for the search",
+                        "type": "text/plain"
+                      },
+                      "key": "namespace",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Optional custom search ID. If not specified, Splunk generates one automatically.",
+                        "type": "text/plain"
+                      },
+                      "key": "id",
+                      "value": "abc123"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Number of status buckets to generate for the search timeline. Set to a value greater than 0 to enable timeline.",
+                        "type": "text/plain"
+                      },
+                      "key": "status_buckets",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Seconds of inactivity after which the search is automatically cancelled. 0 means never auto-cancel.",
+                        "type": "text/plain"
+                      },
+                      "key": "auto_cancel",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Auto-finalize the search after this number of events have been processed. 0 disables auto-finalize.",
+                        "type": "text/plain"
+                      },
+                      "key": "auto_finalize_ec",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Seconds of inactivity after which the search is automatically paused. 0 means never auto-pause.",
+                        "type": "text/plain"
+                      },
+                      "key": "auto_pause",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Whether to enable lookups during the search",
+                        "type": "text/plain"
+                      },
+                      "key": "enable_lookups",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Whether to reload macro definitions before the search",
+                        "type": "text/plain"
+                      },
+                      "key": "reload_macros",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "How frequently to invoke the reduce phase (seconds)",
+                        "type": "text/plain"
+                      },
+                      "key": "reduce_freq",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Whether to run the search in a separate process",
+                        "type": "text/plain"
+                      },
+                      "key": "spawn_process",
+                      "value": "true"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "05baf572-3072-47dc-a299-aaa6e002f56f",
+          "name": "Get Search Job Details",
+          "request": {
+            "name": "Get Search Job Details",
+            "description": {
+              "content": "Returns detailed information about a specific search job including its status, progress, performance metrics, and configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                "search",
+                "jobs",
+                ":search_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output_mode",
+                  "value": "xml",
+                  "description": "Response format"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "search_id",
+                  "description": "(Required) The search ID (sid) of the search job"
+                },
+                {
+                  "description": "Hostname or IP address of the Splunk Enterprise instance",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                },
+                {
+                  "description": "splunkd management port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "200aaa46-3960-4cf0-b588-74866ae10e63",
+              "name": "Search job details returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "search",
+                    "jobs",
+                    ":search_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "search_id",
+                      "description": "(Required) The search ID (sid) of the search job"
+                    },
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sid\": \"500123\",\n  \"content\": {\n    \"sid\": \"500123\",\n    \"dispatchState\": \"QUEUED\",\n    \"doneProgress\": 42.5,\n    \"scanCount\": 10,\n    \"eventCount\": 10,\n    \"resultCount\": 10,\n    \"runDuration\": 42.5,\n    \"earliestTime\": \"2026-01-15T10:30:00Z\",\n    \"latestTime\": \"2026-01-15T10:30:00Z\",\n    \"cursorTime\": \"2026-01-15T10:30:00Z\",\n    \"eventSearch\": \"example_value\",\n    \"reportSearch\": \"example_value\",\n    \"isSaved\": true,\n    \"isFinalized\": true,\n    \"isPaused\": true,\n    \"isZombie\": true,\n    \"isDone\": true,\n    \"isFailed\": true,\n    \"isPreviewEnabled\": true,\n    \"isRealTimeSearch\": true,\n    \"isSavedSearch\": true,\n    \"isRemoteTimeline\": true,\n    \"priority\": 10,\n    \"ttl\": 10,\n    \"request\": \"example_value\",\n    \"performance\": \"example_value\",\n    \"messages\": [\n      {\n        \"type\": \"DEBUG\",\n        \"text\": \"example_value\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "19df9ce4-0e23-47df-b1f5-3c27f67ab8a7",
+              "name": "Authentication credentials are missing, invalid, or expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "search",
+                    "jobs",
+                    ":search_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "search_id",
+                      "description": "(Required) The search ID (sid) of the search job"
+                    },
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "55c56227-d271-4adb-a5dd-83c26944f861",
+              "name": "The requested resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "search",
+                    "jobs",
+                    ":search_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "search_id",
+                      "description": "(Required) The search ID (sid) of the search job"
+                    },
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "522ef5de-f2dd-493d-8f98-2b583417cc14",
+          "name": "Delete a Search Job",
+          "request": {
+            "name": "Delete a Search Job",
+            "description": {
+              "content": "Cancels and deletes the specified search job and its results.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                "search",
+                "jobs",
+                ":search_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "search_id",
+                  "description": "(Required) The search ID (sid) of the search job"
+                },
+                {
+                  "description": "Hostname or IP address of the Splunk Enterprise instance",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                },
+                {
+                  "description": "splunkd management port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9784466c-67ed-4958-b305-860c9022f6d2",
+              "name": "Search job deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "search",
+                    "jobs",
+                    ":search_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "search_id",
+                      "description": "(Required) The search ID (sid) of the search job"
+                    },
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4a224957-b8ab-46c7-8247-fc2f97b50fb0",
+              "name": "Authentication credentials are missing, invalid, or expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "search",
+                    "jobs",
+                    ":search_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "search_id",
+                      "description": "(Required) The search ID (sid) of the search job"
+                    },
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f71f7892-1da1-4c3b-9247-b28aca55b26e",
+              "name": "The requested resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "search",
+                    "jobs",
+                    ":search_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "search_id",
+                      "description": "(Required) The search ID (sid) of the search job"
+                    },
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "34072e0e-238f-4448-8241-68eeb1af8aa7",
+          "name": "Control a Search Job",
+          "request": {
+            "name": "Control a Search Job",
+            "description": {
+              "content": "Execute a control action on a search job such as pause, unpause, finalize, cancel, or touch (extend the job lifetime).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                "search",
+                "jobs",
+                ":search_id",
+                "control"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output_mode",
+                  "value": "xml",
+                  "description": "Response format"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "search_id",
+                  "description": "(Required) The search ID (sid) of the search job"
+                },
+                {
+                  "description": "Hostname or IP address of the Splunk Enterprise instance",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                },
+                {
+                  "description": "splunkd management port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "action",
+                  "value": "<string>",
+                  "description": "(Required) The control action to execute"
+                },
+                {
+                  "disabled": false,
+                  "key": "ttl",
+                  "value": "<integer>",
+                  "description": "Time to live in seconds (used with setttl action)"
+                },
+                {
+                  "disabled": false,
+                  "key": "priority",
+                  "value": "<integer>",
+                  "description": "Priority value 0-10 (used with setpriority action)"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "23e428f3-64ec-4ea3-905d-1d9c8ea68d4e",
+              "name": "Control action executed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "search",
+                    "jobs",
+                    ":search_id",
+                    "control"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "search_id",
+                      "description": "(Required) The search ID (sid) of the search job"
+                    },
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The control action to execute",
+                        "type": "text/plain"
+                      },
+                      "key": "action",
+                      "value": "pause"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Time to live in seconds (used with setttl action)",
+                        "type": "text/plain"
+                      },
+                      "key": "ttl",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Priority value 0-10 (used with setpriority action)",
+                        "type": "text/plain"
+                      },
+                      "key": "priority",
+                      "value": "10"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "886a018c-41ee-403a-b15c-c3f2218dba93",
+              "name": "Authentication credentials are missing, invalid, or expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "search",
+                    "jobs",
+                    ":search_id",
+                    "control"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "search_id",
+                      "description": "(Required) The search ID (sid) of the search job"
+                    },
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The control action to execute",
+                        "type": "text/plain"
+                      },
+                      "key": "action",
+                      "value": "pause"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Time to live in seconds (used with setttl action)",
+                        "type": "text/plain"
+                      },
+                      "key": "ttl",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Priority value 0-10 (used with setpriority action)",
+                        "type": "text/plain"
+                      },
+                      "key": "priority",
+                      "value": "10"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dc4cd897-e4f1-4a03-8fd1-3bbfec37e237",
+              "name": "The requested resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "search",
+                    "jobs",
+                    ":search_id",
+                    "control"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "search_id",
+                      "description": "(Required) The search ID (sid) of the search job"
+                    },
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The control action to execute",
+                        "type": "text/plain"
+                      },
+                      "key": "action",
+                      "value": "pause"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Time to live in seconds (used with setttl action)",
+                        "type": "text/plain"
+                      },
+                      "key": "ttl",
+                      "value": "10"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Priority value 0-10 (used with setpriority action)",
+                        "type": "text/plain"
+                      },
+                      "key": "priority",
+                      "value": "10"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1c718b50-b801-41d3-a947-2306a9068d7e",
+          "name": "Get Search Results",
+          "request": {
+            "name": "Get Search Results",
+            "description": {
+              "content": "Returns the results of a completed search job. Results are available only after the search job has finished. Use the count and offset parameters for pagination.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                "search",
+                "jobs",
+                ":search_id",
+                "results"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output_mode",
+                  "value": "xml",
+                  "description": "Response format"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "30",
+                  "description": "Maximum number of items to return. A value of 0 returns all items."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Index of the first item to return. Used with count for pagination."
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Post-processing search string to filter results"
+                },
+                {
+                  "disabled": false,
+                  "key": "field_list",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to return"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "search_id",
+                  "description": "(Required) The search ID (sid) of the search job"
+                },
+                {
+                  "description": "Hostname or IP address of the Splunk Enterprise instance",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                },
+                {
+                  "description": "splunkd management port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7f648bf0-2036-411e-8f35-fe7a0c100bb0",
+              "name": "Search results returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "search",
+                    "jobs",
+                    ":search_id",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    },
+                    {
+                      "key": "count",
+                      "value": "30"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "search",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "field_list",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "search_id",
+                      "description": "(Required) The search ID (sid) of the search job"
+                    },
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"init_offset\": 10,\n  \"results\": [\n    {}\n  ],\n  \"fields\": [\n    {\n      \"name\": \"Example Title\",\n      \"type\": \"example_value\"\n    }\n  ],\n  \"messages\": [\n    {\n      \"type\": \"example_value\",\n      \"text\": \"example_value\"\n    }\n  ],\n  \"preview\": true,\n  \"highlighted\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "64c9def2-8c9c-42d5-8b21-30863cb5cd80",
+              "name": "Search job has not yet finished; no results available",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "search",
+                    "jobs",
+                    ":search_id",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    },
+                    {
+                      "key": "count",
+                      "value": "30"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "search",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "field_list",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "search_id",
+                      "description": "(Required) The search ID (sid) of the search job"
+                    },
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8c1d0395-cee4-42f6-ac49-9f200568535a",
+              "name": "Authentication credentials are missing, invalid, or expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "search",
+                    "jobs",
+                    ":search_id",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    },
+                    {
+                      "key": "count",
+                      "value": "30"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "search",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "field_list",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "search_id",
+                      "description": "(Required) The search ID (sid) of the search job"
+                    },
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d5fdcbfc-c69c-410a-8e13-f46f12b17f5c",
+              "name": "The requested resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "search",
+                    "jobs",
+                    ":search_id",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    },
+                    {
+                      "key": "count",
+                      "value": "30"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "search",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "field_list",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "search_id",
+                      "description": "(Required) The search ID (sid) of the search job"
+                    },
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b3d21098-6d0b-45c9-b92f-b66e21e1c9f6",
+          "name": "Get Search Events",
+          "request": {
+            "name": "Get Search Events",
+            "description": {
+              "content": "Returns the untransformed events of a search job. Unlike results, events return the raw data before any transforming commands are applied. Available for searches that include non-transforming commands.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                "search",
+                "jobs",
+                ":search_id",
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output_mode",
+                  "value": "xml",
+                  "description": "Response format"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "30",
+                  "description": "Maximum number of items to return. A value of 0 returns all items."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Index of the first item to return. Used with count for pagination."
+                },
+                {
+                  "disabled": false,
+                  "key": "earliest_time",
+                  "value": "<string>",
+                  "description": "Earliest time boundary for events"
+                },
+                {
+                  "disabled": false,
+                  "key": "latest_time",
+                  "value": "<string>",
+                  "description": "Latest time boundary for events"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Post-processing search to filter events"
+                },
+                {
+                  "disabled": false,
+                  "key": "field_list",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "truncation_mode",
+                  "value": "<string>",
+                  "description": "How to truncate long lines"
+                },
+                {
+                  "disabled": false,
+                  "key": "max_lines",
+                  "value": "0",
+                  "description": "Maximum number of lines per event"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "search_id",
+                  "description": "(Required) The search ID (sid) of the search job"
+                },
+                {
+                  "description": "Hostname or IP address of the Splunk Enterprise instance",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                },
+                {
+                  "description": "splunkd management port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5a46fb47-d95a-4e59-89cf-ac06a56b2579",
+              "name": "Search events returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "search",
+                    "jobs",
+                    ":search_id",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    },
+                    {
+                      "key": "count",
+                      "value": "30"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "earliest_time",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "latest_time",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "search",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "field_list",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "truncation_mode",
+                      "value": "abstract"
+                    },
+                    {
+                      "key": "max_lines",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "search_id",
+                      "description": "(Required) The search ID (sid) of the search job"
+                    },
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"init_offset\": 10,\n  \"results\": [\n    {}\n  ],\n  \"fields\": [\n    {\n      \"name\": \"Example Title\",\n      \"type\": \"example_value\"\n    }\n  ],\n  \"messages\": [\n    {\n      \"type\": \"example_value\",\n      \"text\": \"example_value\"\n    }\n  ],\n  \"preview\": true,\n  \"highlighted\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "045a6287-a5ae-4a57-8e65-f440f65ee615",
+              "name": "No events available yet",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "search",
+                    "jobs",
+                    ":search_id",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    },
+                    {
+                      "key": "count",
+                      "value": "30"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "earliest_time",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "latest_time",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "search",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "field_list",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "truncation_mode",
+                      "value": "abstract"
+                    },
+                    {
+                      "key": "max_lines",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "search_id",
+                      "description": "(Required) The search ID (sid) of the search job"
+                    },
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dea2d04d-2cf2-4076-aaf5-4afbf6338182",
+              "name": "Authentication credentials are missing, invalid, or expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "search",
+                    "jobs",
+                    ":search_id",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    },
+                    {
+                      "key": "count",
+                      "value": "30"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "earliest_time",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "latest_time",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "search",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "field_list",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "truncation_mode",
+                      "value": "abstract"
+                    },
+                    {
+                      "key": "max_lines",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "search_id",
+                      "description": "(Required) The search ID (sid) of the search job"
+                    },
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5710c167-20f4-40cf-967d-a8f8e1f19805",
+              "name": "The requested resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "search",
+                    "jobs",
+                    ":search_id",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    },
+                    {
+                      "key": "count",
+                      "value": "30"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "earliest_time",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "latest_time",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "search",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "field_list",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "truncation_mode",
+                      "value": "abstract"
+                    },
+                    {
+                      "key": "max_lines",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "search_id",
+                      "description": "(Required) The search ID (sid) of the search job"
+                    },
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "078f0508-cea7-4729-a54c-c973bd64533f",
+          "name": "Export Search Results",
+          "request": {
+            "name": "Export Search Results",
+            "description": {
+              "content": "Runs a search and streams results back as they become available, rather than waiting for the search to complete. This is a streaming endpoint suitable for long-running searches or real-time searches. The search runs synchronously and results stream back in the response.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                "search",
+                "jobs",
+                "export"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "(Required) The SPL search query to execute"
+                },
+                {
+                  "disabled": false,
+                  "key": "output_mode",
+                  "value": "xml",
+                  "description": "Response format"
+                },
+                {
+                  "disabled": false,
+                  "key": "earliest_time",
+                  "value": "<string>",
+                  "description": "Earliest time for the search"
+                },
+                {
+                  "disabled": false,
+                  "key": "latest_time",
+                  "value": "<string>",
+                  "description": "Latest time for the search"
+                },
+                {
+                  "disabled": false,
+                  "key": "auto_cancel",
+                  "value": "<integer>",
+                  "description": "Seconds of inactivity after which the search is cancelled"
+                },
+                {
+                  "disabled": false,
+                  "key": "enable_lookups",
+                  "value": "true",
+                  "description": "Whether to enable lookups during the search"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Splunk Enterprise instance",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                },
+                {
+                  "description": "splunkd management port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cf3069a0-2434-491a-8bac-766d7058c679",
+              "name": "Search results streaming successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "search",
+                    "jobs",
+                    "export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    },
+                    {
+                      "key": "earliest_time",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "latest_time",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "auto_cancel",
+                      "value": "10"
+                    },
+                    {
+                      "key": "enable_lookups",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"init_offset\": 10,\n  \"results\": [\n    {}\n  ],\n  \"fields\": [\n    {\n      \"name\": \"Example Title\",\n      \"type\": \"example_value\"\n    }\n  ],\n  \"messages\": [\n    {\n      \"type\": \"example_value\",\n      \"text\": \"example_value\"\n    }\n  ],\n  \"preview\": true,\n  \"highlighted\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "31bddf74-b680-4d71-bb1c-02c8159f7b07",
+              "name": "The request is malformed or contains invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "search",
+                    "jobs",
+                    "export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    },
+                    {
+                      "key": "earliest_time",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "latest_time",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "auto_cancel",
+                      "value": "10"
+                    },
+                    {
+                      "key": "enable_lookups",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d3a6b506-0fb8-4434-a1c7-23f1ee833f5d",
+              "name": "Authentication credentials are missing, invalid, or expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "search",
+                    "jobs",
+                    "export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    },
+                    {
+                      "key": "earliest_time",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "latest_time",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "auto_cancel",
+                      "value": "10"
+                    },
+                    {
+                      "key": "enable_lookups",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname or IP address of the Splunk Enterprise instance",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "localhost",
+      "key": "host"
+    },
+    {
+      "description": {
+        "content": "splunkd management port",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "8089",
+      "key": "port"
+    },
+    {
+      "type": "string",
+      "value": "https://{{host}}:{{port}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0b261d56-c587-4b3e-9859-e4be0b727bf7",
+    "name": "Splunk Enterprise REST Data Inputs Search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Splunk Enterprise REST API provides programmatic access to Splunk Enterprise functionality including search, indexing, data inputs, and system management. All requests are made over HTTPS to the splunkd management port (default 8089). Authentication is required via Splunk authentication tokens or HTTP Basic authentication with a valid Splunk username and password. Responses are available in JSON and XML formats.\n\nContact Support:\n Name: Splunk Inc.\n Email: devinfo@splunk.com",
+      "type": "text/plain"
+    }
+  }
+}

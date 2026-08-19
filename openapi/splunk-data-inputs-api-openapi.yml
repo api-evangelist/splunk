@@ -1,7 +1,10 @@
 openapi: 3.1.0
 info:
   title: Splunk Enterprise REST Data Inputs API
-  description: The Splunk Enterprise REST API provides programmatic access to Splunk Enterprise functionality including search, indexing, data inputs, and system management. All requests are made over HTTPS to the splunkd management port (default 8089). Authentication is required via Splunk authentication tokens or HTTP Basic authentication with a valid Splunk username and password. Responses are available in JSON and XML formats.
+  description: The Splunk Enterprise REST API provides programmatic access to Splunk Enterprise functionality including search,
+    indexing, data inputs, and system management. All requests are made over HTTPS to the splunkd management port (default
+    8089). Authentication is required via Splunk authentication tokens or HTTP Basic authentication with a valid Splunk username
+    and password. Responses are available in JSON and XML formats.
   version: 9.4.0
   contact:
     name: Splunk Inc.
@@ -16,6 +19,15 @@ info:
   - security
   x-logo:
     url: https://www.splunk.com/content/dam/splunk2/images/icons/favicons/favicon.ico
+  x-provenance:
+    method: derived
+    authored_by: API Evangelist
+    derived_on: '2026-08-19'
+    first_party: false
+    provider_published: false
+    source: Modelled from the provider's public HTML documentation.
+    note: 'Not published by the provider. Probed 2026-08-19: no anonymously fetchable first-party contract. dev.splunk.com
+      answers 200 with an identical 6,638-byte SPA shell for every path including invented ones.'
 servers:
 - url: https://{host}:{port}
   description: Splunk Enterprise management endpoint
@@ -31,7 +43,8 @@ security:
 - BasicAuth: []
 tags:
 - name: Data Inputs
-  description: Endpoints for configuring and managing data inputs including monitors, TCP/UDP inputs, scripted inputs, and HTTP Event Collector (HEC) tokens. Data inputs define how Splunk ingests data.
+  description: Endpoints for configuring and managing data inputs including monitors, TCP/UDP inputs, scripted inputs, and
+    HTTP Event Collector (HEC) tokens. Data inputs define how Splunk ingests data.
   externalDocs:
     url: https://docs.splunk.com/Documentation/Splunk/latest/RESTREF/RESTinput
 paths:
@@ -39,7 +52,8 @@ paths:
     get:
       operationId: listMonitorInputs
       summary: List File and Directory Monitor Inputs
-      description: Returns a list of file and directory monitoring inputs. Monitor inputs continuously watch files and directories for new data.
+      description: Returns a list of file and directory monitoring inputs. Monitor inputs continuously watch files and directories
+        for new data.
       tags:
       - Data Inputs
       parameters:
@@ -81,7 +95,8 @@ paths:
     post:
       operationId: createMonitorInput
       summary: Create a File or Directory Monitor Input
-      description: Creates a new file or directory monitoring input. The specified path will be monitored for new data and ingested into the specified index.
+      description: Creates a new file or directory monitoring input. The specified path will be monitored for new data and
+        ingested into the specified index.
       tags:
       - Data Inputs
       parameters:
@@ -331,7 +346,8 @@ paths:
     get:
       operationId: listTcpRawInputs
       summary: List Raw Tcp Inputs
-      description: Returns a list of raw TCP data inputs. Raw TCP inputs receive data directly over a TCP port without Splunk protocol framing.
+      description: Returns a list of raw TCP data inputs. Raw TCP inputs receive data directly over a TCP port without Splunk
+        protocol framing.
       tags:
       - Data Inputs
       parameters:
@@ -405,7 +421,8 @@ paths:
     get:
       operationId: listHttpInputTokens
       summary: List Http Event Collector Tokens
-      description: Returns a list of HTTP Event Collector (HEC) tokens configured on the Splunk instance. Each token defines an input channel for receiving data over HTTP/HTTPS.
+      description: Returns a list of HTTP Event Collector (HEC) tokens configured on the Splunk instance. Each token defines
+        an input channel for receiving data over HTTP/HTTPS.
       tags:
       - Data Inputs
       parameters:
@@ -513,7 +530,8 @@ paths:
     post:
       operationId: sendEvent
       summary: Send Events via Http Event Collector
-      description: Sends one or more events to Splunk via HTTP Event Collector. Events are submitted as JSON objects. Multiple events can be sent in a single request by concatenating JSON objects.
+      description: Sends one or more events to Splunk via HTTP Event Collector. Events are submitted as JSON objects. Multiple
+        events can be sent in a single request by concatenating JSON objects.
       tags:
       - Data Inputs
       security:
@@ -604,7 +622,8 @@ paths:
     post:
       operationId: sendRawEvent
       summary: Send Raw Data via Http Event Collector
-      description: Sends raw event data to Splunk via HTTP Event Collector. The raw data is ingested as-is without requiring JSON formatting. Useful for log file data and other unstructured text.
+      description: Sends raw event data to Splunk via HTTP Event Collector. The raw data is ingested as-is without requiring
+        JSON formatting. Useful for log file data and other unstructured text.
       tags:
       - Data Inputs
       security:
@@ -706,7 +725,8 @@ paths:
     post:
       operationId: checkAckStatus
       summary: Check Indexer Acknowledgment Status
-      description: Queries the indexer acknowledgment status for events sent via HTTP Event Collector. Returns whether events with specified ack IDs have been indexed.
+      description: Queries the indexer acknowledgment status for events sent via HTTP Event Collector. Returns whether events
+        with specified ack IDs have been indexed.
       tags:
       - Data Inputs
       security:
@@ -1212,7 +1232,8 @@ components:
             action: login
         fields:
           type: object
-          description: Additional metadata fields to associate with the event. These fields are indexed as metadata and can be searched.
+          description: Additional metadata fields to associate with the event. These fields are indexed as metadata and can
+            be searched.
           additionalProperties:
             type: string
           example: example_value
@@ -1267,16 +1288,19 @@ components:
     BearerAuth:
       type: http
       scheme: bearer
-      description: Splunk authentication token. Obtain a session key by authenticating to /services/auth/login or use a pre-configured bearer token from Settings > Tokens in Splunk Web.
+      description: Splunk authentication token. Obtain a session key by authenticating to /services/auth/login or use a pre-configured
+        bearer token from Settings > Tokens in Splunk Web.
     BasicAuth:
       type: http
       scheme: basic
-      description: HTTP Basic authentication with a valid Splunk username and password. The credentials are sent as a Base64-encoded string in the Authorization header.
+      description: HTTP Basic authentication with a valid Splunk username and password. The credentials are sent as a Base64-encoded
+        string in the Authorization header.
     HecToken:
       type: apiKey
       in: header
       name: Authorization
-      description: HTTP Event Collector token. Send as "Splunk <token>" in the Authorization header. Tokens are configured in Splunk Web under Settings > Data Inputs > HTTP Event Collector.
+      description: HTTP Event Collector token. Send as "Splunk <token>" in the Authorization header. Tokens are configured
+        in Splunk Web under Settings > Data Inputs > HTTP Event Collector.
 externalDocs:
   description: Splunk Enterprise REST API Reference
   url: https://docs.splunk.com/Documentation/Splunk/latest/RESTREF/RESTprolog

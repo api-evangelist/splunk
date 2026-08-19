@@ -1,0 +1,175 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Splunk Enterprise REST Data Inputs Index API",
+    "version": "9.4.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Index",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Indexes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/services/data/indexes",
+            "params": [
+              {
+                "name": "output_mode",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return. A value of 0 returns all items."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Index of the first item to return. Used with count for pagination."
+              },
+              {
+                "name": "search",
+                "value": "example_value",
+                "type": "query",
+                "description": "Filter indexes by name or properties"
+              },
+              {
+                "name": "sort_key",
+                "value": "example_value",
+                "type": "query",
+                "description": "Field to sort by"
+              },
+              {
+                "name": "sort_dir",
+                "value": "asc",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "datatype",
+                "value": "all",
+                "type": "query",
+                "description": "Filter by data type"
+              }
+            ]
+          },
+          "docs": "Returns a list of all indexes accessible to the authenticated user. Includes index configuration, storage paths, and data retention settings."
+        },
+        {
+          "info": {
+            "name": "Create a New Index",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/services/data/indexes",
+            "params": [
+              {
+                "name": "output_mode",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Creates a new index with the specified configuration. The index name must be unique and conform to Splunk naming conventions."
+        },
+        {
+          "info": {
+            "name": "Get Index Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/services/data/indexes/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the index"
+              },
+              {
+                "name": "output_mode",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              }
+            ]
+          },
+          "docs": "Returns detailed configuration and status information for a specific index including storage paths, retention settings, and current size."
+        },
+        {
+          "info": {
+            "name": "Update Index Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/services/data/indexes/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the index"
+              },
+              {
+                "name": "output_mode",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "Updates the configuration of an existing index. Not all index properties can be modified after creation."
+        },
+        {
+          "info": {
+            "name": "Delete an Index",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}:{port}/services/data/indexes/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the index"
+              }
+            ]
+          },
+          "docs": "Marks an index for deletion. The index data is removed according to the configured retention policy. Requires the admin role."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

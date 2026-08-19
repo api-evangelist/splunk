@@ -1,0 +1,4615 @@
+{
+  "item": [
+    {
+      "id": "1d57197b-38ad-4a61-b2bc-fc4fb55d9d8d",
+      "name": "Data Inputs",
+      "description": {
+        "content": "Endpoints for configuring and managing data inputs including monitors, TCP/UDP inputs, scripted inputs, and HTTP Event Collector (HEC) tokens. Data inputs define how Splunk ingests data.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "051f46ff-1c77-49ba-afe2-a0b37be886bc",
+          "name": "List File and Directory Monitor Inputs",
+          "request": {
+            "name": "List File and Directory Monitor Inputs",
+            "description": {
+              "content": "Returns a list of file and directory monitoring inputs. Monitor inputs continuously watch files and directories for new data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                "data",
+                "inputs",
+                "monitor"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output_mode",
+                  "value": "xml",
+                  "description": "Response format"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "30",
+                  "description": "Maximum number of items to return. A value of 0 returns all items."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Index of the first item to return. Used with count for pagination."
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Filter inputs by search string"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Splunk Enterprise instance",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                },
+                {
+                  "description": "splunkd management port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1c1c2651-9ac4-4b4a-95cc-6eedd28648a1",
+              "name": "Monitor inputs listed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "data",
+                    "inputs",
+                    "monitor"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    },
+                    {
+                      "key": "count",
+                      "value": "30"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "search",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"origin\": \"example_value\",\n  \"updated\": \"2026-01-15T10:30:00Z\",\n  \"entry\": [\n    {\n      \"name\": \"Example Title\",\n      \"content\": {}\n    }\n  ],\n  \"paging\": {\n    \"total\": 10,\n    \"perPage\": 10,\n    \"offset\": 10\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d1b8e395-fa6c-43cf-8934-55c68aeed7ea",
+              "name": "Authentication credentials are missing, invalid, or expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "data",
+                    "inputs",
+                    "monitor"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    },
+                    {
+                      "key": "count",
+                      "value": "30"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "search",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eaab84f2-baf5-48e9-a249-bbe8342d508b",
+          "name": "Create a File or Directory Monitor Input",
+          "request": {
+            "name": "Create a File or Directory Monitor Input",
+            "description": {
+              "content": "Creates a new file or directory monitoring input. The specified path will be monitored for new data and ingested into the specified index.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                "data",
+                "inputs",
+                "monitor"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output_mode",
+                  "value": "xml",
+                  "description": "Response format"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Splunk Enterprise instance",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                },
+                {
+                  "description": "splunkd management port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "(Required) The file or directory path to monitor"
+                },
+                {
+                  "disabled": false,
+                  "key": "index",
+                  "value": "default",
+                  "description": "Destination index"
+                },
+                {
+                  "disabled": false,
+                  "key": "sourcetype",
+                  "value": "<string>",
+                  "description": "Source type to assign"
+                },
+                {
+                  "disabled": false,
+                  "key": "source",
+                  "value": "<string>",
+                  "description": "Source value to assign"
+                },
+                {
+                  "disabled": false,
+                  "key": "host",
+                  "value": "<string>",
+                  "description": "Host value to assign"
+                },
+                {
+                  "disabled": false,
+                  "key": "disabled",
+                  "value": "false",
+                  "description": "Whether to create the input in disabled state"
+                },
+                {
+                  "disabled": false,
+                  "key": "followTail",
+                  "value": "false",
+                  "description": "Start monitoring from end of file"
+                },
+                {
+                  "disabled": false,
+                  "key": "recursive",
+                  "value": "true",
+                  "description": "Recursively monitor subdirectories"
+                },
+                {
+                  "disabled": false,
+                  "key": "whitelist",
+                  "value": "<string>",
+                  "description": "Regex pattern for files to include"
+                },
+                {
+                  "disabled": false,
+                  "key": "blacklist",
+                  "value": "<string>",
+                  "description": "Regex pattern for files to exclude"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b8384e4a-4566-474a-91ca-a247115a1132",
+              "name": "Monitor input created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "data",
+                    "inputs",
+                    "monitor"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The file or directory path to monitor",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "Example Title"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Destination index",
+                        "type": "text/plain"
+                      },
+                      "key": "index",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Source type to assign",
+                        "type": "text/plain"
+                      },
+                      "key": "sourcetype",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Source value to assign",
+                        "type": "text/plain"
+                      },
+                      "key": "source",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Host value to assign",
+                        "type": "text/plain"
+                      },
+                      "key": "host",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Whether to create the input in disabled state",
+                        "type": "text/plain"
+                      },
+                      "key": "disabled",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Start monitoring from end of file",
+                        "type": "text/plain"
+                      },
+                      "key": "followTail",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Recursively monitor subdirectories",
+                        "type": "text/plain"
+                      },
+                      "key": "recursive",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Regex pattern for files to include",
+                        "type": "text/plain"
+                      },
+                      "key": "whitelist",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Regex pattern for files to exclude",
+                        "type": "text/plain"
+                      },
+                      "key": "blacklist",
+                      "value": "example_value"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"Example Title\",\n  \"content\": {\n    \"index\": \"example_value\",\n    \"sourcetype\": \"example_value\",\n    \"source\": \"example_value\",\n    \"host\": \"example_value\",\n    \"disabled\": true,\n    \"followTail\": true,\n    \"recursive\": true,\n    \"whitelist\": \"example_value\",\n    \"blacklist\": \"example_value\",\n    \"crcSalt\": \"example_value\",\n    \"ignoreOlderThan\": \"example_value\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7a5f2d6e-f5a7-4918-9a3e-3e2bd013f200",
+              "name": "The request is malformed or contains invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "data",
+                    "inputs",
+                    "monitor"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The file or directory path to monitor",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "Example Title"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Destination index",
+                        "type": "text/plain"
+                      },
+                      "key": "index",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Source type to assign",
+                        "type": "text/plain"
+                      },
+                      "key": "sourcetype",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Source value to assign",
+                        "type": "text/plain"
+                      },
+                      "key": "source",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Host value to assign",
+                        "type": "text/plain"
+                      },
+                      "key": "host",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Whether to create the input in disabled state",
+                        "type": "text/plain"
+                      },
+                      "key": "disabled",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Start monitoring from end of file",
+                        "type": "text/plain"
+                      },
+                      "key": "followTail",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Recursively monitor subdirectories",
+                        "type": "text/plain"
+                      },
+                      "key": "recursive",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Regex pattern for files to include",
+                        "type": "text/plain"
+                      },
+                      "key": "whitelist",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Regex pattern for files to exclude",
+                        "type": "text/plain"
+                      },
+                      "key": "blacklist",
+                      "value": "example_value"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b5c856c1-fd40-42d3-8d42-ed3ad617ff13",
+              "name": "Authentication credentials are missing, invalid, or expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "data",
+                    "inputs",
+                    "monitor"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The file or directory path to monitor",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "Example Title"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Destination index",
+                        "type": "text/plain"
+                      },
+                      "key": "index",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Source type to assign",
+                        "type": "text/plain"
+                      },
+                      "key": "sourcetype",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Source value to assign",
+                        "type": "text/plain"
+                      },
+                      "key": "source",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Host value to assign",
+                        "type": "text/plain"
+                      },
+                      "key": "host",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Whether to create the input in disabled state",
+                        "type": "text/plain"
+                      },
+                      "key": "disabled",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Start monitoring from end of file",
+                        "type": "text/plain"
+                      },
+                      "key": "followTail",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Recursively monitor subdirectories",
+                        "type": "text/plain"
+                      },
+                      "key": "recursive",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Regex pattern for files to include",
+                        "type": "text/plain"
+                      },
+                      "key": "whitelist",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Regex pattern for files to exclude",
+                        "type": "text/plain"
+                      },
+                      "key": "blacklist",
+                      "value": "example_value"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "67acd5f5-c279-4170-9e19-857183e300fb",
+              "name": "A monitor input for this path already exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "data",
+                    "inputs",
+                    "monitor"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The file or directory path to monitor",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "Example Title"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Destination index",
+                        "type": "text/plain"
+                      },
+                      "key": "index",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Source type to assign",
+                        "type": "text/plain"
+                      },
+                      "key": "sourcetype",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Source value to assign",
+                        "type": "text/plain"
+                      },
+                      "key": "source",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Host value to assign",
+                        "type": "text/plain"
+                      },
+                      "key": "host",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Whether to create the input in disabled state",
+                        "type": "text/plain"
+                      },
+                      "key": "disabled",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Start monitoring from end of file",
+                        "type": "text/plain"
+                      },
+                      "key": "followTail",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Recursively monitor subdirectories",
+                        "type": "text/plain"
+                      },
+                      "key": "recursive",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Regex pattern for files to include",
+                        "type": "text/plain"
+                      },
+                      "key": "whitelist",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Regex pattern for files to exclude",
+                        "type": "text/plain"
+                      },
+                      "key": "blacklist",
+                      "value": "example_value"
+                    }
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": [\n    {\n      \"type\": \"ERROR\",\n      \"text\": \"example_value\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1d6cef33-2e2b-4f9b-855e-90a9cecffa30",
+          "name": "Get Monitor Input Details",
+          "request": {
+            "name": "Get Monitor Input Details",
+            "description": {
+              "content": "Returns configuration details for a specific file or directory monitoring input.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                "data",
+                "inputs",
+                "monitor",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output_mode",
+                  "value": "xml",
+                  "description": "Response format"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The name (path) of the monitor input"
+                },
+                {
+                  "description": "Hostname or IP address of the Splunk Enterprise instance",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                },
+                {
+                  "description": "splunkd management port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "56c4b9c9-e2dd-498c-9ea5-cb2157fc526b",
+              "name": "Monitor input details returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "data",
+                    "inputs",
+                    "monitor",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The name (path) of the monitor input"
+                    },
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"Example Title\",\n  \"content\": {\n    \"index\": \"example_value\",\n    \"sourcetype\": \"example_value\",\n    \"source\": \"example_value\",\n    \"host\": \"example_value\",\n    \"disabled\": true,\n    \"followTail\": true,\n    \"recursive\": true,\n    \"whitelist\": \"example_value\",\n    \"blacklist\": \"example_value\",\n    \"crcSalt\": \"example_value\",\n    \"ignoreOlderThan\": \"example_value\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e18ed127-f883-466d-bf5b-9f7bdd94004a",
+              "name": "Authentication credentials are missing, invalid, or expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "data",
+                    "inputs",
+                    "monitor",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The name (path) of the monitor input"
+                    },
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "efde1768-8b5f-4eac-a114-fd2d80b4d827",
+              "name": "The requested resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "data",
+                    "inputs",
+                    "monitor",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The name (path) of the monitor input"
+                    },
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6310fa00-74ad-42bb-b74c-85fffa33db11",
+          "name": "Update a Monitor Input",
+          "request": {
+            "name": "Update a Monitor Input",
+            "description": {
+              "content": "Updates the configuration of an existing monitor input.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                "data",
+                "inputs",
+                "monitor",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output_mode",
+                  "value": "xml",
+                  "description": "Response format"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The name (path) of the monitor input"
+                },
+                {
+                  "description": "Hostname or IP address of the Splunk Enterprise instance",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                },
+                {
+                  "description": "splunkd management port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "index",
+                  "value": "<string>",
+                  "description": "Destination index"
+                },
+                {
+                  "disabled": false,
+                  "key": "sourcetype",
+                  "value": "<string>",
+                  "description": "Source type to assign"
+                },
+                {
+                  "disabled": false,
+                  "key": "source",
+                  "value": "<string>",
+                  "description": "Source value to assign"
+                },
+                {
+                  "disabled": false,
+                  "key": "host",
+                  "value": "<string>",
+                  "description": "Host value to assign"
+                },
+                {
+                  "disabled": false,
+                  "key": "disabled",
+                  "value": "<boolean>",
+                  "description": "Whether to disable the input"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f87d264c-db25-46ee-9468-ce3ec43f9bbe",
+              "name": "Monitor input updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "data",
+                    "inputs",
+                    "monitor",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The name (path) of the monitor input"
+                    },
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Destination index",
+                        "type": "text/plain"
+                      },
+                      "key": "index",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Source type to assign",
+                        "type": "text/plain"
+                      },
+                      "key": "sourcetype",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Source value to assign",
+                        "type": "text/plain"
+                      },
+                      "key": "source",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Host value to assign",
+                        "type": "text/plain"
+                      },
+                      "key": "host",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Whether to disable the input",
+                        "type": "text/plain"
+                      },
+                      "key": "disabled",
+                      "value": "true"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"Example Title\",\n  \"content\": {\n    \"index\": \"example_value\",\n    \"sourcetype\": \"example_value\",\n    \"source\": \"example_value\",\n    \"host\": \"example_value\",\n    \"disabled\": true,\n    \"followTail\": true,\n    \"recursive\": true,\n    \"whitelist\": \"example_value\",\n    \"blacklist\": \"example_value\",\n    \"crcSalt\": \"example_value\",\n    \"ignoreOlderThan\": \"example_value\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1d39f5d5-c5ce-4215-b30c-dda5dc4e2506",
+              "name": "The request is malformed or contains invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "data",
+                    "inputs",
+                    "monitor",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The name (path) of the monitor input"
+                    },
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Destination index",
+                        "type": "text/plain"
+                      },
+                      "key": "index",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Source type to assign",
+                        "type": "text/plain"
+                      },
+                      "key": "sourcetype",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Source value to assign",
+                        "type": "text/plain"
+                      },
+                      "key": "source",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Host value to assign",
+                        "type": "text/plain"
+                      },
+                      "key": "host",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Whether to disable the input",
+                        "type": "text/plain"
+                      },
+                      "key": "disabled",
+                      "value": "true"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3d0d235c-4ae3-44a2-a4a7-5e6aa2686083",
+              "name": "Authentication credentials are missing, invalid, or expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "data",
+                    "inputs",
+                    "monitor",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The name (path) of the monitor input"
+                    },
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Destination index",
+                        "type": "text/plain"
+                      },
+                      "key": "index",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Source type to assign",
+                        "type": "text/plain"
+                      },
+                      "key": "sourcetype",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Source value to assign",
+                        "type": "text/plain"
+                      },
+                      "key": "source",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Host value to assign",
+                        "type": "text/plain"
+                      },
+                      "key": "host",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Whether to disable the input",
+                        "type": "text/plain"
+                      },
+                      "key": "disabled",
+                      "value": "true"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1a085472-d244-47eb-951b-5bd141e17c0a",
+              "name": "The requested resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "data",
+                    "inputs",
+                    "monitor",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The name (path) of the monitor input"
+                    },
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Destination index",
+                        "type": "text/plain"
+                      },
+                      "key": "index",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Source type to assign",
+                        "type": "text/plain"
+                      },
+                      "key": "sourcetype",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Source value to assign",
+                        "type": "text/plain"
+                      },
+                      "key": "source",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Host value to assign",
+                        "type": "text/plain"
+                      },
+                      "key": "host",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Whether to disable the input",
+                        "type": "text/plain"
+                      },
+                      "key": "disabled",
+                      "value": "true"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "69570fa9-4246-4f49-9683-3175f6aae572",
+          "name": "Delete a Monitor Input",
+          "request": {
+            "name": "Delete a Monitor Input",
+            "description": {
+              "content": "Deletes the specified monitor input. Splunk stops monitoring the associated file or directory.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                "data",
+                "inputs",
+                "monitor",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The name (path) of the monitor input"
+                },
+                {
+                  "description": "Hostname or IP address of the Splunk Enterprise instance",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                },
+                {
+                  "description": "splunkd management port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0e771ee0-6ee2-4d51-92d3-c257c54bc348",
+              "name": "Monitor input deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "data",
+                    "inputs",
+                    "monitor",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The name (path) of the monitor input"
+                    },
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e46b8c7f-9e7c-46b9-88d8-5b02807a71a2",
+              "name": "Authentication credentials are missing, invalid, or expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "data",
+                    "inputs",
+                    "monitor",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The name (path) of the monitor input"
+                    },
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a3c69feb-7538-4235-bd22-c33fd793cf77",
+              "name": "The requested resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "data",
+                    "inputs",
+                    "monitor",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The name (path) of the monitor input"
+                    },
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "27ff9aea-22a2-4e48-a3b7-2be843004abd",
+          "name": "List Cooked Tcp Inputs",
+          "request": {
+            "name": "List Cooked Tcp Inputs",
+            "description": {
+              "content": "Returns a list of TCP cooked data inputs. Cooked TCP inputs receive data from Splunk forwarders.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                "data",
+                "inputs",
+                "tcp",
+                "cooked"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output_mode",
+                  "value": "xml",
+                  "description": "Response format"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "30",
+                  "description": "Maximum number of items to return. A value of 0 returns all items."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Index of the first item to return. Used with count for pagination."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Splunk Enterprise instance",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                },
+                {
+                  "description": "splunkd management port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e054f843-d1cf-4e71-be3c-a474e8f685e0",
+              "name": "TCP cooked inputs listed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "data",
+                    "inputs",
+                    "tcp",
+                    "cooked"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    },
+                    {
+                      "key": "count",
+                      "value": "30"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"origin\": \"example_value\",\n  \"updated\": \"2026-01-15T10:30:00Z\",\n  \"entry\": [\n    {\n      \"name\": \"Example Title\",\n      \"content\": {}\n    }\n  ],\n  \"paging\": {\n    \"total\": 10,\n    \"perPage\": 10,\n    \"offset\": 10\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e5cb8420-afb7-4f36-8e4a-134b3c091866",
+              "name": "Authentication credentials are missing, invalid, or expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "data",
+                    "inputs",
+                    "tcp",
+                    "cooked"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    },
+                    {
+                      "key": "count",
+                      "value": "30"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "25729be8-ff95-4573-97e2-9e3314e523f4",
+          "name": "List Raw Tcp Inputs",
+          "request": {
+            "name": "List Raw Tcp Inputs",
+            "description": {
+              "content": "Returns a list of raw TCP data inputs. Raw TCP inputs receive data directly over a TCP port without Splunk protocol framing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                "data",
+                "inputs",
+                "tcp",
+                "raw"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output_mode",
+                  "value": "xml",
+                  "description": "Response format"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "30",
+                  "description": "Maximum number of items to return. A value of 0 returns all items."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Index of the first item to return. Used with count for pagination."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Splunk Enterprise instance",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                },
+                {
+                  "description": "splunkd management port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "462c87e5-54a4-43cb-8cce-1b8974bf2a27",
+              "name": "TCP raw inputs listed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "data",
+                    "inputs",
+                    "tcp",
+                    "raw"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    },
+                    {
+                      "key": "count",
+                      "value": "30"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"origin\": \"example_value\",\n  \"updated\": \"2026-01-15T10:30:00Z\",\n  \"entry\": [\n    {\n      \"name\": \"Example Title\",\n      \"content\": {}\n    }\n  ],\n  \"paging\": {\n    \"total\": 10,\n    \"perPage\": 10,\n    \"offset\": 10\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "77884fb0-1051-4689-a9e6-f3ceca1862a8",
+              "name": "Authentication credentials are missing, invalid, or expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "data",
+                    "inputs",
+                    "tcp",
+                    "raw"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    },
+                    {
+                      "key": "count",
+                      "value": "30"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "55e54beb-5811-4e2e-b145-70f8bb111828",
+          "name": "List Udp Inputs",
+          "request": {
+            "name": "List Udp Inputs",
+            "description": {
+              "content": "Returns a list of UDP data inputs. UDP inputs receive data over a UDP port.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                "data",
+                "inputs",
+                "udp"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output_mode",
+                  "value": "xml",
+                  "description": "Response format"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "30",
+                  "description": "Maximum number of items to return. A value of 0 returns all items."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Index of the first item to return. Used with count for pagination."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Splunk Enterprise instance",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                },
+                {
+                  "description": "splunkd management port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8db3e609-3ae5-44c3-99e2-c21f10512ccc",
+              "name": "UDP inputs listed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "data",
+                    "inputs",
+                    "udp"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    },
+                    {
+                      "key": "count",
+                      "value": "30"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"origin\": \"example_value\",\n  \"updated\": \"2026-01-15T10:30:00Z\",\n  \"entry\": [\n    {\n      \"name\": \"Example Title\",\n      \"content\": {}\n    }\n  ],\n  \"paging\": {\n    \"total\": 10,\n    \"perPage\": 10,\n    \"offset\": 10\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "839ad803-5897-4ce8-a995-20a26411e6da",
+              "name": "Authentication credentials are missing, invalid, or expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "data",
+                    "inputs",
+                    "udp"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    },
+                    {
+                      "key": "count",
+                      "value": "30"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "feb1556f-a210-4664-9154-ad27535059aa",
+          "name": "List Http Event Collector Tokens",
+          "request": {
+            "name": "List Http Event Collector Tokens",
+            "description": {
+              "content": "Returns a list of HTTP Event Collector (HEC) tokens configured on the Splunk instance. Each token defines an input channel for receiving data over HTTP/HTTPS.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                "data",
+                "inputs",
+                "http"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output_mode",
+                  "value": "xml",
+                  "description": "Response format"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "30",
+                  "description": "Maximum number of items to return. A value of 0 returns all items."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Index of the first item to return. Used with count for pagination."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Splunk Enterprise instance",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                },
+                {
+                  "description": "splunkd management port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0f675032-244b-4361-9ade-5bb830de5c0d",
+              "name": "HEC tokens listed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "data",
+                    "inputs",
+                    "http"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    },
+                    {
+                      "key": "count",
+                      "value": "30"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"origin\": \"example_value\",\n  \"updated\": \"2026-01-15T10:30:00Z\",\n  \"entry\": [\n    {\n      \"name\": \"Example Title\",\n      \"content\": {}\n    }\n  ],\n  \"paging\": {\n    \"total\": 10,\n    \"perPage\": 10,\n    \"offset\": 10\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5259c16b-247a-40e7-9573-62c259769ef5",
+              "name": "Authentication credentials are missing, invalid, or expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "data",
+                    "inputs",
+                    "http"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    },
+                    {
+                      "key": "count",
+                      "value": "30"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7e20dcf5-5a76-4445-b2cd-f7d9cbedf1ce",
+          "name": "Create an Http Event Collector Token",
+          "request": {
+            "name": "Create an Http Event Collector Token",
+            "description": {
+              "content": "Creates a new HTTP Event Collector (HEC) token for data ingestion over HTTP/HTTPS.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                "data",
+                "inputs",
+                "http"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "output_mode",
+                  "value": "xml",
+                  "description": "Response format"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Splunk Enterprise instance",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                },
+                {
+                  "description": "splunkd management port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "(Required) Name for the new HEC token"
+                },
+                {
+                  "disabled": false,
+                  "key": "index",
+                  "value": "main",
+                  "description": "Default destination index"
+                },
+                {
+                  "disabled": false,
+                  "key": "indexes",
+                  "value": "<string>",
+                  "description": "Comma-separated list of allowed indexes"
+                },
+                {
+                  "disabled": false,
+                  "key": "sourcetype",
+                  "value": "<string>",
+                  "description": "Default sourcetype"
+                },
+                {
+                  "disabled": false,
+                  "key": "source",
+                  "value": "<string>",
+                  "description": "Default source value"
+                },
+                {
+                  "disabled": false,
+                  "key": "host",
+                  "value": "<string>",
+                  "description": "Default host value"
+                },
+                {
+                  "disabled": false,
+                  "key": "disabled",
+                  "value": "false",
+                  "description": "Whether to create the token in disabled state"
+                },
+                {
+                  "disabled": false,
+                  "key": "useACK",
+                  "value": "false",
+                  "description": "Whether to enable indexer acknowledgment"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1c024812-6650-4cac-bba1-e5e585f967ba",
+              "name": "HEC token created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "data",
+                    "inputs",
+                    "http"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Name for the new HEC token",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "Example Title"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Default destination index",
+                        "type": "text/plain"
+                      },
+                      "key": "index",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Comma-separated list of allowed indexes",
+                        "type": "text/plain"
+                      },
+                      "key": "indexes",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Default sourcetype",
+                        "type": "text/plain"
+                      },
+                      "key": "sourcetype",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Default source value",
+                        "type": "text/plain"
+                      },
+                      "key": "source",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Default host value",
+                        "type": "text/plain"
+                      },
+                      "key": "host",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Whether to create the token in disabled state",
+                        "type": "text/plain"
+                      },
+                      "key": "disabled",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Whether to enable indexer acknowledgment",
+                        "type": "text/plain"
+                      },
+                      "key": "useACK",
+                      "value": "true"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"Example Title\",\n  \"content\": {\n    \"token\": \"example_value\",\n    \"index\": \"example_value\",\n    \"indexes\": [\n      \"example_value\"\n    ],\n    \"sourcetype\": \"example_value\",\n    \"source\": \"example_value\",\n    \"host\": \"example_value\",\n    \"disabled\": true,\n    \"useACK\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f7fac0d1-1d8b-41b4-9c69-e6e313323096",
+              "name": "The request is malformed or contains invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "data",
+                    "inputs",
+                    "http"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Name for the new HEC token",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "Example Title"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Default destination index",
+                        "type": "text/plain"
+                      },
+                      "key": "index",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Comma-separated list of allowed indexes",
+                        "type": "text/plain"
+                      },
+                      "key": "indexes",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Default sourcetype",
+                        "type": "text/plain"
+                      },
+                      "key": "sourcetype",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Default source value",
+                        "type": "text/plain"
+                      },
+                      "key": "source",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Default host value",
+                        "type": "text/plain"
+                      },
+                      "key": "host",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Whether to create the token in disabled state",
+                        "type": "text/plain"
+                      },
+                      "key": "disabled",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Whether to enable indexer acknowledgment",
+                        "type": "text/plain"
+                      },
+                      "key": "useACK",
+                      "value": "true"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aff1fd59-f9d5-4839-a8ed-189b96f02856",
+              "name": "Authentication credentials are missing, invalid, or expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "data",
+                    "inputs",
+                    "http"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Name for the new HEC token",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "Example Title"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Default destination index",
+                        "type": "text/plain"
+                      },
+                      "key": "index",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Comma-separated list of allowed indexes",
+                        "type": "text/plain"
+                      },
+                      "key": "indexes",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Default sourcetype",
+                        "type": "text/plain"
+                      },
+                      "key": "sourcetype",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Default source value",
+                        "type": "text/plain"
+                      },
+                      "key": "source",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Default host value",
+                        "type": "text/plain"
+                      },
+                      "key": "host",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Whether to create the token in disabled state",
+                        "type": "text/plain"
+                      },
+                      "key": "disabled",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Whether to enable indexer acknowledgment",
+                        "type": "text/plain"
+                      },
+                      "key": "useACK",
+                      "value": "true"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2c5376c9-fd92-4476-8d45-36b0364023d2",
+              "name": "A token with that name already exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "data",
+                    "inputs",
+                    "http"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "output_mode",
+                      "value": "xml"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Name for the new HEC token",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "Example Title"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Default destination index",
+                        "type": "text/plain"
+                      },
+                      "key": "index",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Comma-separated list of allowed indexes",
+                        "type": "text/plain"
+                      },
+                      "key": "indexes",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Default sourcetype",
+                        "type": "text/plain"
+                      },
+                      "key": "sourcetype",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Default source value",
+                        "type": "text/plain"
+                      },
+                      "key": "source",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Default host value",
+                        "type": "text/plain"
+                      },
+                      "key": "host",
+                      "value": "example_value"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Whether to create the token in disabled state",
+                        "type": "text/plain"
+                      },
+                      "key": "disabled",
+                      "value": "true"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Whether to enable indexer acknowledgment",
+                        "type": "text/plain"
+                      },
+                      "key": "useACK",
+                      "value": "true"
+                    }
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": [\n    {\n      \"type\": \"ERROR\",\n      \"text\": \"example_value\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "44cece91-cf75-4906-8765-4468d1daa59a",
+          "name": "Send Events via Http Event Collector",
+          "request": {
+            "name": "Send Events via Http Event Collector",
+            "description": {
+              "content": "Sends one or more events to Splunk via HTTP Event Collector. Events are submitted as JSON objects. Multiple events can be sent in a single request by concatenating JSON objects.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                "collector",
+                "event"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Splunk Enterprise instance",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                },
+                {
+                  "description": "splunkd management port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"event\": \"<string>\",\n  \"time\": \"<number>\",\n  \"host\": \"<string>\",\n  \"source\": \"<string>\",\n  \"sourcetype\": \"<string>\",\n  \"index\": \"<string>\",\n  \"fields\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d1000bb4-6fc1-4432-b4fa-b1c3477e6a31",
+              "name": "Events received successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "collector",
+                    "event"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"time\": \"example_value\",\n  \"host\": \"example_value\",\n  \"source\": \"example_value\",\n  \"sourcetype\": \"example_value\",\n  \"index\": \"example_value\",\n  \"event\": \"example_value\",\n  \"fields\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"text\": \"example_value\",\n  \"code\": 10,\n  \"invalid-event-number\": 10,\n  \"ackId\": \"500123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2b214791-ce71-47db-8221-1cc8ee1a528e",
+              "name": "Invalid data format or missing required fields",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "collector",
+                    "event"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"time\": \"example_value\",\n  \"host\": \"example_value\",\n  \"source\": \"example_value\",\n  \"sourcetype\": \"example_value\",\n  \"index\": \"example_value\",\n  \"event\": \"example_value\",\n  \"fields\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"text\": \"example_value\",\n  \"code\": 10,\n  \"invalid-event-number\": 10,\n  \"ackId\": \"500123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b5be5d1c-2b66-49bb-997a-ff9493eff69e",
+              "name": "Token is disabled or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "collector",
+                    "event"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"time\": \"example_value\",\n  \"host\": \"example_value\",\n  \"source\": \"example_value\",\n  \"sourcetype\": \"example_value\",\n  \"index\": \"example_value\",\n  \"event\": \"example_value\",\n  \"fields\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"text\": \"example_value\",\n  \"code\": 10,\n  \"invalid-event-number\": 10,\n  \"ackId\": \"500123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "69864ae2-cd10-4cd8-bf0d-7a2775773ba5",
+              "name": "Insufficient permissions for the token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "collector",
+                    "event"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"time\": \"example_value\",\n  \"host\": \"example_value\",\n  \"source\": \"example_value\",\n  \"sourcetype\": \"example_value\",\n  \"index\": \"example_value\",\n  \"event\": \"example_value\",\n  \"fields\": \"example_value\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"text\": \"example_value\",\n  \"code\": 10,\n  \"invalid-event-number\": 10,\n  \"ackId\": \"500123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "888af5d0-f615-4334-97ca-d673b2047a3a",
+          "name": "Send Raw Data via Http Event Collector",
+          "request": {
+            "name": "Send Raw Data via Http Event Collector",
+            "description": {
+              "content": "Sends raw event data to Splunk via HTTP Event Collector. The raw data is ingested as-is without requiring JSON formatting. Useful for log file data and other unstructured text.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                "collector",
+                "raw"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "channel",
+                  "value": "<uuid>",
+                  "description": "Channel identifier (GUID) for event ordering. Required if indexer acknowledgment is enabled."
+                },
+                {
+                  "disabled": false,
+                  "key": "sourcetype",
+                  "value": "<string>",
+                  "description": "Override the sourcetype for the event data"
+                },
+                {
+                  "disabled": false,
+                  "key": "source",
+                  "value": "<string>",
+                  "description": "Override the source for the event data"
+                },
+                {
+                  "disabled": false,
+                  "key": "host",
+                  "value": "<string>",
+                  "description": "Override the host for the event data"
+                },
+                {
+                  "disabled": false,
+                  "key": "index",
+                  "value": "<string>",
+                  "description": "Override the destination index for the event data"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Splunk Enterprise instance",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                },
+                {
+                  "description": "splunkd management port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/plain"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<string>"
+            }
+          },
+          "response": [
+            {
+              "id": "72f8db79-25e6-4f7b-afe7-bdbe9b4ab452",
+              "name": "Raw data received successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "collector",
+                    "raw"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "channel",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "sourcetype",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "source",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "host",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "index",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "example_value"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"text\": \"example_value\",\n  \"code\": 10,\n  \"invalid-event-number\": 10,\n  \"ackId\": \"500123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a18e83b3-0e69-4ea7-934c-64fc55f24dff",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "collector",
+                    "raw"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "channel",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "sourcetype",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "source",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "host",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "index",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "example_value"
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"text\": \"example_value\",\n  \"code\": 10,\n  \"invalid-event-number\": 10,\n  \"ackId\": \"500123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fd33bf1f-9874-48e1-9a57-18b3011f7826",
+              "name": "Token is disabled or invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "collector",
+                    "raw"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "channel",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "sourcetype",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "source",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "host",
+                      "value": "example_value"
+                    },
+                    {
+                      "key": "index",
+                      "value": "example_value"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "example_value"
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"text\": \"example_value\",\n  \"code\": 10,\n  \"invalid-event-number\": 10,\n  \"ackId\": \"500123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "34b9b670-ebfc-4e77-9a27-0171684864d5",
+          "name": "Check Indexer Acknowledgment Status",
+          "request": {
+            "name": "Check Indexer Acknowledgment Status",
+            "description": {
+              "content": "Queries the indexer acknowledgment status for events sent via HTTP Event Collector. Returns whether events with specified ack IDs have been indexed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "services",
+                "collector",
+                "ack"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the Splunk Enterprise instance",
+                  "type": "any",
+                  "value": "{{host}}",
+                  "key": "host"
+                },
+                {
+                  "description": "splunkd management port",
+                  "type": "any",
+                  "value": "{{port}}",
+                  "key": "port"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"acks\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2ec4ace9-a570-4d7e-a81d-f6514849bc82",
+              "name": "Acknowledgment status returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "collector",
+                    "ack"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"acks\": [\n    10\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"acks\": \"example_value\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eb7a482d-52cc-4c17-a032-d2d442274947",
+              "name": "Invalid request format",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "services",
+                    "collector",
+                    "ack"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the Splunk Enterprise instance",
+                      "type": "any",
+                      "value": "{{host}}",
+                      "key": "host"
+                    },
+                    {
+                      "description": "splunkd management port",
+                      "type": "any",
+                      "value": "{{port}}",
+                      "key": "port"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"acks\": [\n    10\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"text\": \"example_value\",\n  \"code\": 10,\n  \"invalid-event-number\": 10,\n  \"ackId\": \"500123\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname or IP address of the Splunk Enterprise instance",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "localhost",
+      "key": "host"
+    },
+    {
+      "description": {
+        "content": "splunkd management port",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "8089",
+      "key": "port"
+    },
+    {
+      "type": "string",
+      "value": "https://{{host}}:{{port}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e6962806-c492-4883-8c25-769e22b26905",
+    "name": "Splunk Enterprise REST Data Inputs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Splunk Enterprise REST API provides programmatic access to Splunk Enterprise functionality including search, indexing, data inputs, and system management. All requests are made over HTTPS to the splunkd management port (default 8089). Authentication is required via Splunk authentication tokens or HTTP Basic authentication with a valid Splunk username and password. Responses are available in JSON and XML formats.\n\nContact Support:\n Name: Splunk Inc.\n Email: devinfo@splunk.com",
+      "type": "text/plain"
+    }
+  }
+}
