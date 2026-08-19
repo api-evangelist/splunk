@@ -19,7 +19,7 @@ image: https://www.splunk.com/content/dam/splunk2/images/icons/favicons/favicon.
 url: https://raw.githubusercontent.com/api-evangelist/splunk/refs/heads/main/apis.yml
 created: '2025-01-08'
 modified: '2026-05-19'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 type: Index
 access: 3rd-Party
 position: Consumer
