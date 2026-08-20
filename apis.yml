@@ -189,6 +189,12 @@ apis:
   humanURL: https://docs.splunk.com/Documentation/Splunk/latest/Data/UsetheHTTPEventCollector
   tags:
   - Data Ingestion
+  - Event
+  - HEC
+  - Logging
+  - REST
+  tags_raw:
+  - Data Ingestion
   - Events
   - HEC
   - Logging
@@ -261,6 +267,11 @@ apis:
     a REST API.
   humanURL: https://dev.splunk.com/enterprise/docs/relnotes/relnotes-appinspectapi/whatsnew
   tags:
+  - Application
+  - Cloud
+  - Splunkbase
+  - Validation
+  tags_raw:
   - Apps
   - Cloud
   - Splunkbase
