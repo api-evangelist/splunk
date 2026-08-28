@@ -10,8 +10,8 @@ info:
     and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: splunkApi
-  url: ../openapi/splunk-enterprise-rest-api.yml
+- name: searchApi
+  url: ../openapi/splunk-search-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: run-search-job

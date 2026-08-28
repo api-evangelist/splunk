@@ -11,8 +11,11 @@ info:
     description.
   version: 1.0.0
 sourceDescriptions:
-- name: splunkApi
-  url: ../openapi/splunk-enterprise-rest-api.yml
+- name: dataInputsApi
+  url: ../openapi/splunk-data-inputs-api-openapi.yml
+  type: openapi
+- name: searchApi
+  url: ../openapi/splunk-search-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: raw-ingest-and-search

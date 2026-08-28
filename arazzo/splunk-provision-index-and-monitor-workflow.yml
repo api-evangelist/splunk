@@ -10,8 +10,11 @@ info:
     read and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: splunkApi
-  url: ../openapi/splunk-enterprise-rest-api.yml
+- name: dataInputsApi
+  url: ../openapi/splunk-data-inputs-api-openapi.yml
+  type: openapi
+- name: indexApi
+  url: ../openapi/splunk-index-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: provision-index-and-monitor
