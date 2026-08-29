@@ -2,6 +2,20 @@ aid: splunk
 name: Splunk
 description: Splunk is a platform for searching, monitoring, and analyzing machine-generated big data via a web-style
   interface.
+deliveryModel:
+  model: open-core
+  license: Apache-2.0
+  open_source: true
+  commercial: true
+  callable_host: false
+  label: Open core · an OSS project plus a commercial hosted product
+  confidence: high
+  source:
+  - license
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: free
   onboarding: self-serve
@@ -372,6 +386,14 @@ maintainers:
   email: devinfo@splunk.com
   url: https://www.splunk.com
 common:
+- type: IssueTracker
+  url: https://github.com/signalfx/splunk-otel-collector/issues
+- type: Releases
+  url: https://github.com/signalfx/splunk-otel-collector/releases
+- type: CodeOfConduct
+  url: https://github.com/signalfx/splunk-otel-collector/blob/main/CODE_OF_CONDUCT.md
+- type: ContributionGuide
+  url: https://github.com/signalfx/splunk-otel-collector/blob/main/CONTRIBUTING.md
 - type: ParentCompany
   url: https://apis.io/providers/cisco/
   name: Cisco
