@@ -23,11 +23,12 @@ accessModel:
   try_now: true
   public: false
   label: Free · Self-serve signup
-  confidence: high
+  confidence: medium
   source:
   - plans
   - authentication
-  generated: '2026-07-22'
+  - security
+  generated: '2026-09-03'
   method: derived
 image: https://www.splunk.com/content/dam/splunk2/images/icons/favicons/favicon.ico
 url: https://raw.githubusercontent.com/api-evangelist/splunk/refs/heads/main/apis.yml
@@ -36,7 +37,7 @@ modified: '2026-08-19'
 specificationVersion: '0.23'
 type: Index
 access: 3rd-Party
-position: Consumer
+position: Consuming
 tags:
 - Analytics
 - Data Analysis
