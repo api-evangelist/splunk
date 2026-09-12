@@ -387,6 +387,8 @@ maintainers:
   email: devinfo@splunk.com
   url: https://www.splunk.com
 common:
+- type: Website
+  url: https://www.splunk.com/
 - type: IssueTracker
   url: https://github.com/signalfx/splunk-otel-collector/issues
 - type: Releases
