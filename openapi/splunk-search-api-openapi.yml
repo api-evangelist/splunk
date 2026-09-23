@@ -1,10 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Splunk Enterprise REST Data Inputs Search API
-  description: The Splunk Enterprise REST API provides programmatic access to Splunk Enterprise functionality including search,
-    indexing, data inputs, and system management. All requests are made over HTTPS to the splunkd management port (default
-    8089). Authentication is required via Splunk authentication tokens or HTTP Basic authentication with a valid Splunk username
-    and password. Responses are available in JSON and XML formats.
+  title: Splunk Enterprise REST Search API
+  description: The Splunk Enterprise REST API provides programmatic access to Splunk Enterprise functionality including search, indexing, data inputs, and system management. All requests are made over HTTPS to the splunkd management port (default 8089). Authentication is required via Splunk authentication tokens or HTTP Basic authentication with a valid Splunk username and password. Responses are available in JSON and XML formats.
   version: 9.4.0
   contact:
     name: Splunk Inc.
@@ -19,15 +16,6 @@ info:
   - security
   x-logo:
     url: https://www.splunk.com/content/dam/splunk2/images/icons/favicons/favicon.ico
-  x-provenance:
-    method: derived
-    authored_by: API Evangelist
-    derived_on: '2026-08-19'
-    first_party: false
-    provider_published: false
-    source: Modelled from the provider's public HTML documentation.
-    note: 'Not published by the provider. Probed 2026-08-19: no anonymously fetchable first-party contract. dev.splunk.com
-      answers 200 with an identical 6,638-byte SPA shell for every path including invented ones.'
 servers:
 - url: https://{host}:{port}
   description: Splunk Enterprise management endpoint
@@ -43,8 +31,7 @@ security:
 - BasicAuth: []
 tags:
 - name: Search
-  description: Endpoints for creating, managing, and retrieving search jobs and their results. Splunk search processing language
-    (SPL) queries are submitted as search jobs that run asynchronously.
+  description: Endpoints for creating, managing, and retrieving search jobs and their results. Splunk search processing language (SPL) queries are submitted as search jobs that run asynchronously.
   externalDocs:
     url: https://docs.splunk.com/Documentation/Splunk/latest/RESTREF/RESTsearch
 paths:
@@ -52,8 +39,7 @@ paths:
     get:
       operationId: listSearchJobs
       summary: List Search Jobs
-      description: Returns a list of current search jobs for the authenticated user. Includes job status, progress, and metadata
-        for each job.
+      description: Returns a list of current search jobs for the authenticated user. Includes job status, progress, and metadata for each job.
       tags:
       - Search
       parameters:
@@ -117,8 +103,7 @@ paths:
     post:
       operationId: createSearchJob
       summary: Create a Search Job
-      description: Creates a new search job. The search job runs asynchronously. Use the returned search ID (sid) to check
-        job status and retrieve results. Searches use the Splunk Search Processing Language (SPL).
+      description: Creates a new search job. The search job runs asynchronously. Use the returned search ID (sid) to check job status and retrieve results. Searches use the Splunk Search Processing Language (SPL).
       tags:
       - Search
       parameters:
@@ -185,8 +170,7 @@ paths:
     get:
       operationId: getSearchJob
       summary: Get Search Job Details
-      description: Returns detailed information about a specific search job including its status, progress, performance metrics,
-        and configuration.
+      description: Returns detailed information about a specific search job including its status, progress, performance metrics, and configuration.
       tags:
       - Search
       parameters:
@@ -264,8 +248,7 @@ paths:
     post:
       operationId: controlSearchJob
       summary: Control a Search Job
-      description: Execute a control action on a search job such as pause, unpause, finalize, cancel, or touch (extend the
-        job lifetime).
+      description: Execute a control action on a search job such as pause, unpause, finalize, cancel, or touch (extend the job lifetime).
       tags:
       - Search
       parameters:
@@ -323,8 +306,7 @@ paths:
     get:
       operationId: getSearchResults
       summary: Get Search Results
-      description: Returns the results of a completed search job. Results are available only after the search job has finished.
-        Use the count and offset parameters for pagination.
+      description: Returns the results of a completed search job. Results are available only after the search job has finished. Use the count and offset parameters for pagination.
       tags:
       - Search
       parameters:
@@ -380,8 +362,7 @@ paths:
     get:
       operationId: getSearchEvents
       summary: Get Search Events
-      description: Returns the untransformed events of a search job. Unlike results, events return the raw data before any
-        transforming commands are applied. Available for searches that include non-transforming commands.
+      description: Returns the untransformed events of a search job. Unlike results, events return the raw data before any transforming commands are applied. Available for searches that include non-transforming commands.
       tags:
       - Search
       parameters:
@@ -465,9 +446,7 @@ paths:
     get:
       operationId: exportSearchResults
       summary: Export Search Results
-      description: Runs a search and streams results back as they become available, rather than waiting for the search to
-        complete. This is a streaming endpoint suitable for long-running searches or real-time searches. The search runs synchronously
-        and results stream back in the response.
+      description: Runs a search and streams results back as they become available, rather than waiting for the search to complete. This is a streaming endpoint suitable for long-running searches or real-time searches. The search runs synchronously and results stream back in the response.
       tags:
       - Search
       parameters:
@@ -535,7 +514,94 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  responses:
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: The request is malformed or contains invalid parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication credentials are missing, invalid, or expired
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: The authenticated user does not have permission to perform this operation
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        messages:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                enum:
+                - ERROR
+                - WARN
+                - INFO
+              text:
+                type: string
+                description: Error message text
+          example: []
+    SearchResults:
+      type: object
+      properties:
+        init_offset:
+          type: integer
+          description: Starting offset of results
+          example: 10
+        results:
+          type: array
+          description: Array of result rows
+          items:
+            type: object
+            additionalProperties: true
+            description: Each result is a key-value object where keys are field names and values are field values
+          example: []
+        fields:
+          type: array
+          description: Metadata about the fields in the results
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              type:
+                type: string
+          example: []
+        messages:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+              text:
+                type: string
+          example: []
+        preview:
+          type: boolean
+          description: Whether results are preview (partial) results
+          example: true
+        highlighted:
+          type: object
+          description: Highlighted terms in results
+          example: example_value
     SearchJob:
       type: object
       properties:
@@ -657,6 +723,32 @@ components:
           type: integer
           description: Current offset
           example: 10
+    SearchJobList:
+      type: object
+      properties:
+        origin:
+          type: string
+          description: URI of the request
+          example: example_value
+        updated:
+          type: string
+          format: date-time
+          example: '2026-01-15T10:30:00Z'
+        generator:
+          type: object
+          properties:
+            build:
+              type: string
+            version:
+              type: string
+          example: example_value
+        entry:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchJob'
+          example: []
+        paging:
+          $ref: '#/components/schemas/Paging'
     SearchJobCreateRequest:
       type: object
       required:
@@ -724,8 +816,7 @@ components:
           example: abc123
         status_buckets:
           type: integer
-          description: Number of status buckets to generate for the search timeline. Set to a value greater than 0 to enable
-            timeline.
+          description: Number of status buckets to generate for the search timeline. Set to a value greater than 0 to enable timeline.
           default: 0
           example: 10
         auto_cancel:
@@ -763,103 +854,7 @@ components:
           description: Whether to run the search in a separate process
           default: true
           example: true
-    ErrorResponse:
-      type: object
-      properties:
-        messages:
-          type: array
-          items:
-            type: object
-            properties:
-              type:
-                type: string
-                enum:
-                - ERROR
-                - WARN
-                - INFO
-              text:
-                type: string
-                description: Error message text
-          example: []
-    SearchResults:
-      type: object
-      properties:
-        init_offset:
-          type: integer
-          description: Starting offset of results
-          example: 10
-        results:
-          type: array
-          description: Array of result rows
-          items:
-            type: object
-            additionalProperties: true
-            description: Each result is a key-value object where keys are field names and values are field values
-          example: []
-        fields:
-          type: array
-          description: Metadata about the fields in the results
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-              type:
-                type: string
-          example: []
-        messages:
-          type: array
-          items:
-            type: object
-            properties:
-              type:
-                type: string
-              text:
-                type: string
-          example: []
-        preview:
-          type: boolean
-          description: Whether results are preview (partial) results
-          example: true
-        highlighted:
-          type: object
-          description: Highlighted terms in results
-          example: example_value
-    SearchJobList:
-      type: object
-      properties:
-        origin:
-          type: string
-          description: URI of the request
-          example: example_value
-        updated:
-          type: string
-          format: date-time
-          example: '2026-01-15T10:30:00Z'
-        generator:
-          type: object
-          properties:
-            build:
-              type: string
-            version:
-              type: string
-          example: example_value
-        entry:
-          type: array
-          items:
-            $ref: '#/components/schemas/SearchJob'
-          example: []
-        paging:
-          $ref: '#/components/schemas/Paging'
   parameters:
-    Count:
-      name: count
-      in: query
-      description: Maximum number of items to return. A value of 0 returns all items.
-      schema:
-        type: integer
-        default: 30
-        minimum: 0
     Offset:
       name: offset
       in: query
@@ -886,48 +881,28 @@ components:
       description: The search ID (sid) of the search job
       schema:
         type: string
-  responses:
-    Forbidden:
-      description: The authenticated user does not have permission to perform this operation
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: The requested resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication credentials are missing, invalid, or expired
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: The request is malformed or contains invalid parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
+    Count:
+      name: count
+      in: query
+      description: Maximum number of items to return. A value of 0 returns all items.
+      schema:
+        type: integer
+        default: 30
+        minimum: 0
   securitySchemes:
     BearerAuth:
       type: http
       scheme: bearer
-      description: Splunk authentication token. Obtain a session key by authenticating to /services/auth/login or use a pre-configured
-        bearer token from Settings > Tokens in Splunk Web.
+      description: Splunk authentication token. Obtain a session key by authenticating to /services/auth/login or use a pre-configured bearer token from Settings > Tokens in Splunk Web.
     BasicAuth:
       type: http
       scheme: basic
-      description: HTTP Basic authentication with a valid Splunk username and password. The credentials are sent as a Base64-encoded
-        string in the Authorization header.
+      description: HTTP Basic authentication with a valid Splunk username and password. The credentials are sent as a Base64-encoded string in the Authorization header.
     HecToken:
       type: apiKey
       in: header
       name: Authorization
-      description: HTTP Event Collector token. Send as "Splunk <token>" in the Authorization header. Tokens are configured
-        in Splunk Web under Settings > Data Inputs > HTTP Event Collector.
+      description: HTTP Event Collector token. Send as "Splunk <token>" in the Authorization header. Tokens are configured in Splunk Web under Settings > Data Inputs > HTTP Event Collector.
 externalDocs:
   description: Splunk Enterprise REST API Reference
   url: https://docs.splunk.com/Documentation/Splunk/latest/RESTREF/RESTprolog
