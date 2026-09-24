@@ -58,8 +58,6 @@ apis:
   properties:
   - type: Documentation
     url: https://www.splunk.com/en_us/blog/learn/api-monitoring.html
-  - url: graphql/splunk-graphql.md
-    type: GraphQL
 - aid: splunk:splunk-cloud-platform-rest-api
   name: Splunk Cloud Platform REST API
   description: The Splunk Cloud Platform REST API provides a subset of the Splunk Enterprise REST API endpoints
