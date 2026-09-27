@@ -330,32 +330,73 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  responses:
-    NotFound:
-      description: The requested resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: The request is malformed or contains invalid parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication credentials are missing, invalid, or expired
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Forbidden:
-      description: The authenticated user does not have permission to perform this operation
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    IndexName:
+      name: name
+      in: path
+      required: true
+      description: The name of the index
+      schema:
+        type: string
+    Count:
+      name: count
+      in: query
+      description: Maximum number of items to return. A value of 0 returns all items.
+      schema:
+        type: integer
+        default: 30
+        minimum: 0
+    OutputMode:
+      name: output_mode
+      in: query
+      description: Response format
+      schema:
+        type: string
+        enum:
+        - json
+        - xml
+        - csv
+        default: xml
+    Offset:
+      name: offset
+      in: query
+      description: Index of the first item to return. Used with count for pagination.
+      schema:
+        type: integer
+        default: 0
+        minimum: 0
   schemas:
+    IndexUpdateRequest:
+      type: object
+      properties:
+        maxTotalDataSizeMB:
+          type: integer
+          description: Maximum total size of the index in MB
+          example: 10
+        frozenTimePeriodInSecs:
+          type: integer
+          description: Seconds until data is frozen
+          example: 10
+        maxHotBuckets:
+          type: integer
+          description: Maximum number of hot buckets
+          example: 10
+        maxWarmDBCount:
+          type: integer
+          description: Maximum number of warm buckets
+          example: 10
+        disabled:
+          type: boolean
+          description: Whether to disable the index
+          example: true
+        coldToFrozenDir:
+          type: string
+          description: Path to archive frozen buckets to. If not set, frozen data is deleted.
+          example: example_value
+        coldToFrozenScript:
+          type: string
+          description: Script to run when freezing buckets
+          example: example_value
     ErrorResponse:
       type: object
       properties:
@@ -507,52 +548,6 @@ components:
           description: Maximum number of warm buckets
           default: 300
           example: 10
-    Paging:
-      type: object
-      properties:
-        total:
-          type: integer
-          description: Total number of items available
-          example: 10
-        perPage:
-          type: integer
-          description: Number of items per page
-          example: 10
-        offset:
-          type: integer
-          description: Current offset
-          example: 10
-    IndexUpdateRequest:
-      type: object
-      properties:
-        maxTotalDataSizeMB:
-          type: integer
-          description: Maximum total size of the index in MB
-          example: 10
-        frozenTimePeriodInSecs:
-          type: integer
-          description: Seconds until data is frozen
-          example: 10
-        maxHotBuckets:
-          type: integer
-          description: Maximum number of hot buckets
-          example: 10
-        maxWarmDBCount:
-          type: integer
-          description: Maximum number of warm buckets
-          example: 10
-        disabled:
-          type: boolean
-          description: Whether to disable the index
-          example: true
-        coldToFrozenDir:
-          type: string
-          description: Path to archive frozen buckets to. If not set, frozen data is deleted.
-          example: example_value
-        coldToFrozenScript:
-          type: string
-          description: Script to run when freezing buckets
-          example: example_value
     IndexList:
       type: object
       properties:
@@ -570,41 +565,46 @@ components:
           example: []
         paging:
           $ref: '#/components/schemas/Paging'
-  parameters:
-    Offset:
-      name: offset
-      in: query
-      description: Index of the first item to return. Used with count for pagination.
-      schema:
-        type: integer
-        default: 0
-        minimum: 0
-    IndexName:
-      name: name
-      in: path
-      required: true
-      description: The name of the index
-      schema:
-        type: string
-    OutputMode:
-      name: output_mode
-      in: query
-      description: Response format
-      schema:
-        type: string
-        enum:
-        - json
-        - xml
-        - csv
-        default: xml
-    Count:
-      name: count
-      in: query
-      description: Maximum number of items to return. A value of 0 returns all items.
-      schema:
-        type: integer
-        default: 30
-        minimum: 0
+    Paging:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total number of items available
+          example: 10
+        perPage:
+          type: integer
+          description: Number of items per page
+          example: 10
+        offset:
+          type: integer
+          description: Current offset
+          example: 10
+  responses:
+    BadRequest:
+      description: The request is malformed or contains invalid parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication credentials are missing, invalid, or expired
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: The authenticated user does not have permission to perform this operation
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     BearerAuth:
       type: http
