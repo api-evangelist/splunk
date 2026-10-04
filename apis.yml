@@ -385,6 +385,9 @@ maintainers:
   email: devinfo@splunk.com
   url: https://www.splunk.com
 common:
+- type: CapabilityMap
+  url: capabilities/splunk-capability-edges.yml
+  name: Splunk Business Capability Map
 - type: Website
   url: https://www.splunk.com/
 - type: IssueTracker
