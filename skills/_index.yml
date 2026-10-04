@@ -1,0 +1,11 @@
+generated: '2026-10-03'
+method: generated
+generator: extract-docs-artifacts.py skills (local)
+source: openapi/splunk-data-inputs-api-openapi.yml
+skills:
+- file: skills/splunk-create-monitor-input.md
+  name: splunk-create-monitor-input
+  api: openapi/splunk-data-inputs-api-openapi.yml
+  operations:
+  - createMonitorInput
+  - getMonitorInput

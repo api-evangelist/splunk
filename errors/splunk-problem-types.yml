@@ -1,0 +1,50 @@
+generated: '2026-10-03'
+method: derived
+generator: derive-problem-types.py
+source:
+- openapi/splunk-data-inputs-api-openapi.yml
+- openapi/splunk-index-api-openapi.yml
+- openapi/splunk-search-api-openapi.yml
+format: custom
+envelope:
+  media_type: application/json
+  schema: ErrorResponse
+coverage:
+  operations: 26
+  statuses_declared: 5
+problems:
+- status: 400
+  title: Bad Request
+  description: The request is malformed or contains invalid parameters
+  operations: 10
+  media_types:
+  - application/json
+  schema: ErrorResponse
+- status: 401
+  title: Unauthorized
+  description: Authentication credentials are missing, invalid, or expired
+  operations: 25
+  media_types:
+  - application/json
+  schema: ErrorResponse
+- status: 403
+  title: Forbidden
+  description: The authenticated user does not have permission to perform this operation
+  operations: 6
+  media_types:
+  - application/json
+  schema: ErrorResponse
+- status: 404
+  title: Not Found
+  description: The requested resource was not found
+  operations: 11
+  media_types:
+  - application/json
+  schema: ErrorResponse
+- status: 409
+  title: Conflict
+  description: A monitor input for this path already exists
+  operations: 3
+  media_types:
+  - application/json
+  schema: ErrorResponse

@@ -1,0 +1,361 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://apis.io/",
+      "title": "APIs.io — API search engine + catalog",
+      "service-doc": [
+        { "href": "https://apis.io/", "type": "text/html", "title": "APIs.io search hub" },
+        { "href": "https://apis.io/developer/", "type": "text/html", "title": "Developer documentation" },
+        { "href": "https://apis.io/about/", "type": "text/html", "title": "About APIs.io" }
+      ],
+      "describedby": [
+        { "href": "https://apis.io/apis.json", "type": "application/json", "title": "APIs.json self-description" },
+        { "href": "https://apis.io/apis.yml", "type": "application/yaml", "title": "APIs.json self-description (YAML)" },
+        { "href": "https://apis.io/.well-known/agent-card.json", "type": "application/json", "title": "A2A agent card for APIs.io" },
+        { "href": "https://apis.io/.well-known/http-message-signatures-directory", "type": "application/http-message-signatures-directory", "title": "HTTP Message Signatures key directory" }
+      ]
+    },
+    {
+      "anchor": "https://apis.io/api/v1",
+      "title": "APIs.io API v1.11.0 — read-only discovery API over the catalog",
+      "service-desc": [
+        { "href": "https://raw.githubusercontent.com/api-evangelist/apis-io/refs/heads/main/openapi/apis-io-v1-openapi.yml", "type": "application/yaml", "title": "OpenAPI 3.1 contract" }
+      ],
+      "service-doc": [
+        { "href": "https://apis.io/developer/api/", "type": "text/html", "title": "Interactive API reference" }
+      ]
+    },
+    {
+      "anchor": "https://apis.io/mcp",
+      "title": "APIs.io API catalog MCP server v1.3.0 — agent tools over the catalog",
+      "service-desc": [
+        { "href": "https://apis.io/.well-known/mcp/server-card.json", "type": "application/json", "title": "MCP server card (Streamable HTTP)" }
+      ],
+      "service-doc": [
+        { "href": "https://apis.io/developer/mcp-server/", "type": "text/html", "title": "MCP server docs" }
+      ]
+    },
+    {
+      "anchor": "https://apis.io/skills/",
+      "title": "APIs.io agent skills",
+      "service-desc": [
+        { "href": "https://apis.io/.well-known/agent-skills/index.json", "type": "application/json", "title": "Agent Skills index" }
+      ],
+      "service-doc": [
+        { "href": "https://apis.io/skills/", "type": "text/html", "title": "Skills index" }
+      ]
+    },
+    {
+      "anchor": "https://apis.io/apis/",
+      "title": "APIs — individual API descriptions",
+      "service-doc": [
+        { "href": "https://apis.io/apis/", "type": "text/html", "title": "APIs index" }
+      ],
+      "describedby": [
+        { "href": "https://apis.io/apis.json", "type": "application/json" },
+        { "href": "https://apis.io/linkset/apis/index.json", "type": "application/linkset+json", "title": "Per-API linkset — sharded index of every API's specs and docs" }
+      ]
+    },
+    {
+      "anchor": "https://apis.io/providers/",
+      "title": "Providers — API provider profiles",
+      "service-doc": [
+        { "href": "https://apis.io/providers/", "type": "text/html", "title": "Providers index" }
+      ],
+      "describedby": [
+        { "href": "https://apis.io/apis.json", "type": "application/json" },
+        { "href": "https://apis.io/linkset/providers/index.json", "type": "application/linkset+json", "title": "Per-provider linkset — sharded index of every provider's specs and docs" }
+      ]
+    },
+    {
+      "anchor": "https://apis.io/tags/",
+      "title": "Tags — topic tags across the catalog",
+      "service-doc": [
+        { "href": "https://apis.io/tags/", "type": "text/html", "title": "Tags index" }
+      ]
+    },
+    {
+      "anchor": "https://apis.io/schemas/",
+      "title": "Schemas — JSON Schema definitions",
+      "service-doc": [
+        { "href": "https://apis.io/schemas/", "type": "text/html", "title": "Schemas index" }
+      ]
+    },
+    {
+      "anchor": "https://apis.io/asyncapis/",
+      "title": "AsyncAPI — event-driven API specs",
+      "service-doc": [
+        { "href": "https://apis.io/asyncapis/", "type": "text/html", "title": "AsyncAPI index" }
+      ]
+    },
+    {
+      "anchor": "https://apis.io/jsonld/",
+      "title": "JSON-LD — contexts for catalog vocabularies",
+      "service-doc": [
+        { "href": "https://apis.io/jsonld/", "type": "text/html", "title": "JSON-LD index" }
+      ]
+    },
+    {
+      "anchor": "https://apis.io/rules/",
+      "title": "Rules — governance rules for APIs and metadata",
+      "service-doc": [
+        { "href": "https://apis.io/rules/", "type": "text/html", "title": "Rules index" }
+      ]
+    },
+    {
+      "anchor": "https://apis.io/plans/",
+      "title": "Plans — API plan definitions",
+      "service-doc": [
+        { "href": "https://apis.io/plans/", "type": "text/html", "title": "Plans index" }
+      ]
+    },
+    {
+      "anchor": "https://apis.io/rate-limits/",
+      "title": "Rate limits — published rate-limit metadata",
+      "service-doc": [
+        { "href": "https://apis.io/rate-limits/", "type": "text/html", "title": "Rate limits index" }
+      ]
+    },
+    {
+      "anchor": "https://apis.io/finops/",
+      "title": "FinOps — pricing and cost metadata",
+      "service-doc": [
+        { "href": "https://apis.io/finops/", "type": "text/html", "title": "FinOps index" }
+      ]
+    },
+    {
+      "anchor": "https://apis.io/industries/",
+      "title": "Industries — providers grouped by industry",
+      "service-doc": [
+        { "href": "https://apis.io/industries/", "type": "text/html", "title": "Industries index" }
+      ]
+    },
+    {
+      "anchor": "https://apis.io/areas/",
+      "title": "Areas — functional areas of the API landscape",
+      "service-doc": [
+        { "href": "https://apis.io/areas/", "type": "text/html", "title": "Areas index" }
+      ]
+    },
+    {
+      "anchor": "https://apis.io/topics/",
+      "title": "Topics — concepts, standards and subject indexes (not companies)",
+      "service-doc": [
+        { "href": "https://apis.io/topics/", "type": "text/html", "title": "Topics index" }
+      ]
+    },
+    {
+      "anchor": "https://apis.io/capabilities/",
+      "title": "Business Capabilities — capability model over the catalog",
+      "service-doc": [
+        { "href": "https://apis.io/capabilities/", "type": "text/html", "title": "Business Capabilities index" }
+      ]
+    },
+    {
+      "anchor": "https://apis.io/use-cases/",
+      "title": "Use Cases — what the APIs in the catalog are used for",
+      "service-doc": [
+        { "href": "https://apis.io/use-cases/", "type": "text/html", "title": "Use Cases index" }
+      ]
+    },
+    {
+      "anchor": "https://apis.io/features/",
+      "title": "Features — product features exposed across APIs",
+      "service-doc": [
+        { "href": "https://apis.io/features/", "type": "text/html", "title": "Features index" }
+      ]
+    },
+    {
+      "anchor": "https://apis.io/regions/",
+      "title": "Regions — providers grouped by region",
+      "service-doc": [
+        { "href": "https://apis.io/regions/", "type": "text/html", "title": "Regions index" }
+      ]
+    },
+    {
+      "anchor": "https://apis.io/countries/",
+      "title": "Countries — providers grouped by country",
+      "service-doc": [
+        { "href": "https://apis.io/countries/", "type": "text/html", "title": "Countries index" }
+      ]
+    },
+    {
+      "anchor": "https://apis.io/regulations/",
+      "title": "Regulations — the laws that reach an API, joined to the countries, regions and industries each one binds",
+      "service-doc": [
+        { "href": "https://apis.io/regulations/", "type": "text/html", "title": "Regulations index" }
+      ]
+    },
+    {
+      "anchor": "https://apis.io/vcs/",
+      "title": "Venture Capital — investors and their API portfolios",
+      "service-doc": [
+        { "href": "https://apis.io/vcs/", "type": "text/html", "title": "Venture Capital index" }
+      ]
+    },
+    {
+      "anchor": "https://apis.io/secondary-market/",
+      "title": "Secondary Market — API marketplaces and resellers",
+      "service-doc": [
+        { "href": "https://apis.io/secondary-market/", "type": "text/html", "title": "Secondary Market index" }
+      ]
+    },
+    {
+      "anchor": "https://apis.io/estates/",
+      "title": "API Estates — a parent company's scattered API footprint",
+      "service-doc": [
+        { "href": "https://apis.io/estates/", "type": "text/html", "title": "API Estates index" }
+      ]
+    },
+    {
+      "anchor": "https://apis.io/standards/",
+      "title": "Standards from practice — interfaces that became standards by being copied rather than ratified",
+      "service-doc": [
+        { "href": "https://apis.io/standards/", "type": "text/html", "title": "Standards from practice index" }
+      ]
+    },
+    {
+      "anchor": "https://apis.io/extensions/",
+      "title": "OpenAPI Extensions — x- extensions used across the catalog",
+      "service-doc": [
+        { "href": "https://apis.io/extensions/", "type": "text/html", "title": "OpenAPI Extensions index" }
+      ]
+    },
+    {
+      "anchor": "https://apis.io/headers/",
+      "title": "HTTP Headers — headers observed across API contracts",
+      "service-doc": [
+        { "href": "https://apis.io/headers/", "type": "text/html", "title": "HTTP Headers index" }
+      ]
+    },
+    {
+      "anchor": "https://apis.io/json-structure/",
+      "title": "JSON Structure — structural definitions extracted from specs",
+      "service-doc": [
+        { "href": "https://apis.io/json-structure/", "type": "text/html", "title": "JSON Structure index" }
+      ]
+    },
+    {
+      "anchor": "https://apis.io/graphqls/",
+      "title": "GraphQL — GraphQL schemas and endpoints",
+      "service-doc": [
+        { "href": "https://apis.io/graphqls/", "type": "text/html", "title": "GraphQL index" }
+      ]
+    },
+    {
+      "anchor": "https://apis.io/examples/",
+      "title": "Examples — request and response examples",
+      "service-doc": [
+        { "href": "https://apis.io/examples/", "type": "text/html", "title": "Examples index" }
+      ]
+    },
+    {
+      "anchor": "https://apis.io/collections/",
+      "title": "Collections — Postman and other API collections",
+      "service-doc": [
+        { "href": "https://apis.io/collections/", "type": "text/html", "title": "Collections index" }
+      ]
+    },
+    {
+      "anchor": "https://apis.io/arazzos/",
+      "title": "Arazzo Workflows — multi-step API workflow definitions",
+      "service-doc": [
+        { "href": "https://apis.io/arazzos/", "type": "text/html", "title": "Arazzo Workflows index" }
+      ]
+    },
+    {
+      "anchor": "https://apis.io/channels/",
+      "title": "Event Channels — event-driven channels across AsyncAPIs",
+      "service-doc": [
+        { "href": "https://apis.io/channels/", "type": "text/html", "title": "Event Channels index" }
+      ]
+    },
+    {
+      "anchor": "https://apis.io/servers/",
+      "title": "MCP Servers — Model Context Protocol servers in the catalog",
+      "service-doc": [
+        { "href": "https://apis.io/servers/", "type": "text/html", "title": "MCP Servers index" }
+      ]
+    },
+    {
+      "anchor": "https://apis.io/agents/",
+      "title": "Agent Registry — agents that CONSUME APIs, registered by the agent itself",
+      "service-doc": [
+        { "href": "https://apis.io/agents/", "type": "text/html", "title": "Agent Registry index" }
+      ]
+    },
+    {
+      "anchor": "https://apis.io/a2a/",
+      "title": "A2A Agent Cards — agent cards published by providers",
+      "service-doc": [
+        { "href": "https://apis.io/a2a/", "type": "text/html", "title": "A2A Agent Cards index" }
+      ]
+    },
+    {
+      "anchor": "https://apis.io/ard/",
+      "title": "Agent Discovery — agent-readable discovery documents",
+      "service-doc": [
+        { "href": "https://apis.io/ard/", "type": "text/html", "title": "Agent Discovery index" }
+      ]
+    },
+    {
+      "anchor": "https://apis.io/agent-skills/",
+      "title": "Agent Skills — skills published by API providers",
+      "service-doc": [
+        { "href": "https://apis.io/agent-skills/", "type": "text/html", "title": "Agent Skills index" }
+      ]
+    },
+    {
+      "anchor": "https://apis.io/security/",
+      "title": "Security Posture — security schemes across the catalog",
+      "service-doc": [
+        { "href": "https://apis.io/security/", "type": "text/html", "title": "Security Posture index" }
+      ]
+    },
+    {
+      "anchor": "https://apis.io/scopes/",
+      "title": "OAuth Scopes — scopes declared across API contracts",
+      "service-doc": [
+        { "href": "https://apis.io/scopes/", "type": "text/html", "title": "OAuth Scopes index" }
+      ]
+    },
+    {
+      "anchor": "https://apis.io/agentic-access/",
+      "title": "Agentic Access — how providers admit or block AI agents",
+      "service-doc": [
+        { "href": "https://apis.io/agentic-access/", "type": "text/html", "title": "Agentic Access index" }
+      ]
+    },
+    {
+      "anchor": "https://apis.io/rating/",
+      "title": "Kin Score — the API Evangelist rating over every provider",
+      "service-doc": [
+        { "href": "https://apis.io/rating/", "type": "text/html", "title": "Kin Score index" }
+      ]
+    },
+    {
+      "anchor": "https://apis.io/stack/",
+      "title": "Stack — build an API stack from the catalog",
+      "service-doc": [
+        { "href": "https://apis.io/stack/", "type": "text/html", "title": "Stack index" }
+      ]
+    },
+    {
+      "anchor": "https://apis.io/trust/",
+      "title": "The Trust Layer — onboarding, identity and provenance",
+      "service-doc": [
+        { "href": "https://apis.io/trust/", "type": "text/html", "title": "The Trust Layer index" }
+      ]
+    },
+    {
+      "anchor": "https://apis.io/onboarding/",
+      "title": "Onboarding — how a consumer or agent gets access",
+      "service-doc": [
+        { "href": "https://apis.io/onboarding/", "type": "text/html", "title": "Onboarding index" }
+      ],
+      "describedby": [
+        { "href": "https://apis.io/.well-known/api-onboarding", "type": "application/json", "title": "API onboarding descriptor" }
+      ]
+    }
+  ]
+}

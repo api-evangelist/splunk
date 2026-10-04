@@ -1,0 +1,558 @@
+# Splunk Agent Observability
+
+> Documentation for Splunk Agent Observability, the leading observability, evaluation, and production guardrail platform for GenAI and agentic applications.
+
+- [What Is Splunk Agent Observability?](https://agent-observability-docs.splunk.com/what-is-splunk-agent-observability.md)
+- [Splunk Agent Observability (SaaS)](https://agent-observability-docs.splunk.com/saas/overview.md): Learn about the features and considerations for SaaS deployments
+- [Billing and Usage](https://agent-observability-docs.splunk.com/saas/billing-and-usage.md): Learn about the billing and usage details for SaaS deployments
+- [Capabilities](https://agent-observability-docs.splunk.com/saas/capabilities.md): Learn about capability-based access control for SaaS deployments
+- [Agent Observability in Cisco Cloud Control](https://agent-observability-docs.splunk.com/concepts/cisco-cloud-control.md): Learn how to use Agent Observability in Cisco Cloud Control
+- [Log Your First Trace](https://agent-observability-docs.splunk.com/getting-started/quickstart.md): Learn how to log your first trace into Splunk Agent Observability
+- [Evaluate Your Traces](https://agent-observability-docs.splunk.com/getting-started/evaluate-and-improve/evaluate-and-improve.md): Learn how to evaluate your logged trace with Splunk Agent Observability, and improve your application
+- [Run an Experiment](https://agent-observability-docs.splunk.com/getting-started/experiments.md): Learn how to run your first experiment using prompts and datasets
+- [Splunk Agent Observability MCP Server](https://agent-observability-docs.splunk.com/getting-started/mcp/setup-splunk-ao-mcp.md): Learn how to integrate Splunk Agent Observability's Model Context Protocol (MCP) server with AI-enabled IDEs like Cursor and VS Code
+- [Add Users and Assign Roles](https://agent-observability-docs.splunk.com/getting-started/add-users-and-assign-roles.md): Learn how to add users and assign roles in Splunk Agent Observability
+- [Overview](https://agent-observability-docs.splunk.com/getting-started/sample-projects/sample-projects.md): Learn how to get started with the Splunk Agent Observability sample projects that are included in every new account
+- [Preset Evaluator Examples](https://agent-observability-docs.splunk.com/getting-started/sample-projects/preset-evaluator-examples.md): Explore curated Agent Streams that show Splunk Agent Observability’s out-of-the-box evaluators in action
+- [Simple Chatbot](https://agent-observability-docs.splunk.com/getting-started/sample-projects/simple-chatbot.md): Get started with the simple chatbot sample project
+- [Multi-agent banking chatbot sample](https://agent-observability-docs.splunk.com/getting-started/sample-projects/multi-agent.md): Get started with the multi-agent banking chatbot sample project powered by LangGraph, with RAG using Pinecone
+- [Overview](https://agent-observability-docs.splunk.com/concepts/logging/overview.md): Core Observability concepts in Splunk Agent Observability
+- [Instrumentation](https://agent-observability-docs.splunk.com/sdk-api/logging/logging-basics.md): Learn the basics of instrumenting your application with Splunk Agent Observability using the Splunk Agent Observability SDKs
+- [Sessions Overview](https://agent-observability-docs.splunk.com/concepts/logging/sessions/sessions-overview.md): Learn about log sessions in Splunk Agent Observability
+- [Splunk Agent Observability Logger](https://agent-observability-docs.splunk.com/sdk-api/logging/splunk-ao-logger.md): Get granular control over logging with the SplunkAOLogger class
+- [Log Decorator](https://agent-observability-docs.splunk.com/sdk-api/logging/log-decorator/log-decorator.md): Easily capture function inputs and outputs as spans in your traces
+- [Splunk Agent Observability Context](https://agent-observability-docs.splunk.com/sdk-api/logging/splunk-ao-context.md): Manage trace context and control logging behavior with the Splunk Agent Observability Context Manager
+- [Multimodal Observability](https://agent-observability-docs.splunk.com/concepts/logging/multimodal-observability.md): Log, inspect, and evaluate images, audio, and documents alongside text in your traces
+- [Distributed Tracing](https://agent-observability-docs.splunk.com/sdk-api/logging/distributed-tracing.md): Log traces across multiple services
+- [Distributed Tracing with OpenTelemetry](https://agent-observability-docs.splunk.com/sdk-api/logging/distributed-tracing-otel.md): Stitch traces across two agents in different processes using OTel and the SplunkAOSpanProcessor.
+- [Tags and Metadata](https://agent-observability-docs.splunk.com/sdk-api/logging/tags-and-metadata.md): Learn to use tags and metadata in Splunk Agent Observability logging and monitoring
+- [Log Using the OpenAI Wrapper](https://agent-observability-docs.splunk.com/how-to-guides/basics/basic-example.md): Learn how to integrate and use OpenAI's API with Splunk Agent Observability's wrapper client
+- [Log Using the Log Decorator](https://agent-observability-docs.splunk.com/how-to-guides/basics/basic-logging-with-decorator/basic-logging-with-decorator.md): Learn how to use the Splunk Agent Observability log decorator to log functions to traces
+- [Create Traces and Spans](https://agent-observability-docs.splunk.com/how-to-guides/basics/manual-span-creation/manual-span-creation.md): Learn how to create log traces and spans manually in your AI apps
+- [Create and Use Sessions](https://agent-observability-docs.splunk.com/concepts/logging/sessions/using-sessions.md): Learn to create and use Sessions in Splunk Agent Observability
+- [Set Up Alerts on Logs](https://agent-observability-docs.splunk.com/how-to-guides/basics/set-up-alerts-on-logs.md): Learn how to set up alerts and be automatically notified when things go wrong
+- [Log MCP Server Tool Calls](https://agent-observability-docs.splunk.com/how-to-guides/basics/log-mcp-server-calls/log-mcp-server-calls.md): Learn how to log tool calls when calling MCP servers from your AI application
+- [Create and Manage Views](https://agent-observability-docs.splunk.com/how-to-guides/basics/create-views.md): Learn how to create and manage views in Agent Streams and experiments
+- [Evaluators Overview](https://agent-observability-docs.splunk.com/concepts/evaluators/overview.md): Explore Splunk Agent Observability's comprehensive evaluators framework for evaluating and improving AI system performance across multiple dimensions
+- [Agent Stream Evaluators](https://agent-observability-docs.splunk.com/concepts/logging/configure-evaluators/configure-evaluators.md): Learn how to configure evaluators for Agent Streams, including managing sampling rates
+- [Experiment Evaluators](https://agent-observability-docs.splunk.com/sdk-api/evaluators/evaluators.md): Learn how to use evaluators in your experiments
+- [Evaluators Comparison](https://agent-observability-docs.splunk.com/concepts/evaluators/evaluator-comparison.md): Explore Splunk Agent Observability's comprehensive out-of-the-box evaluators for evaluating and improving AI system performance across multiple dimensions
+- [Agentic Evaluators](https://agent-observability-docs.splunk.com/concepts/evaluators/agentic/agentic-overview.md): Understand and evaluate the performance of AI agents using Splunk Agent Observability's agentic evaluators
+- [Action Advancement](https://agent-observability-docs.splunk.com/concepts/evaluators/agentic/action-advancement.md): Understand how to measure and optimize the effectiveness of your AI agent's actions
+- [Action Completion](https://agent-observability-docs.splunk.com/concepts/evaluators/agentic/action-completion.md): Understand how to measure whether your agent accomplished a user's goals across a session
+- [Agent Efficiency](https://agent-observability-docs.splunk.com/concepts/evaluators/agentic/agent-efficiency.md): Learn how to measure the efficiency of your agentic workflows
+- [Agent Flow](https://agent-observability-docs.splunk.com/concepts/evaluators/agentic/agent-flow.md): Learn how to measure the correctness and coherence of an agentic trajectory by validating it against user-specified natural language tests
+- [Conversation Quality](https://agent-observability-docs.splunk.com/concepts/evaluators/agentic/conversation-quality.md): Learn how to measure the quality of a conversation between a user and an assistant
+- [Reasoning Coherence](https://agent-observability-docs.splunk.com/concepts/evaluators/agentic/reasoning-coherence.md): Evaluate whether an agent’s reasoning steps are logically consistent and aligned with its plan
+- [Tool Selection Quality](https://agent-observability-docs.splunk.com/concepts/evaluators/agentic/tool-selection-quality.md): Evaluate tool selection quality in AI agents using Splunk Agent Observability Guardrail Evaluators to ensure agents choose appropriate tools with correct parameters
+- [Tool Error](https://agent-observability-docs.splunk.com/concepts/evaluators/agentic/tool-error.md): Detect and analyze tool execution errors in AI agents using Splunk Agent Observability Guardrail Evaluators to ensure reliable tool usage in agentic workflows
+- [User Intent Change](https://agent-observability-docs.splunk.com/concepts/evaluators/agentic/intent-change.md): Learn how to measure if users use your agent system for different intents across multi-turn interactions
+- [Expression and Readability Evaluators](https://agent-observability-docs.splunk.com/concepts/evaluators/expression-and-readability/expression-and-readability-overview.md): Assess the style, tone, and clarity of your AI's generated content using Splunk Agent Observability's expression and readability evaluators
+- [Tone](https://agent-observability-docs.splunk.com/concepts/evaluators/expression-and-readability/tone.md): Analyze and optimize the emotional tone of AI responses using Splunk Agent Observability's Tone Evaluator to ensure appropriate emotional context and user engagement
+- [Multimodal Quality Evaluators](https://agent-observability-docs.splunk.com/concepts/evaluators/multimodal-quality/multimodal-quality-overview.md): Understand and evaluate multimodal elements (visual and audio) quality using Splunk Agent Observability's multimodal quality evaluators
+- [Visual Quality](https://agent-observability-docs.splunk.com/concepts/evaluators/multimodal-quality/visual-quality.md): Evaluate whether the quality of an input / PDF in an LLM span is sufficient for the associated text prompt task to be reliably performed
+- [Visual Fidelity](https://agent-observability-docs.splunk.com/concepts/evaluators/multimodal-quality/visual-fidelity.md): Evaluate whether a generated image in an LLM span complies with every applicable provided brand rule based on visible evidence
+- [Interruption Detection](https://agent-observability-docs.splunk.com/concepts/evaluators/multimodal-quality/interruption-detection.md): Detect turn-taking violations in audio-based agent conversations, including agent overlap, premature agent barge-in, and user barge-in
+- [Response Quality Evaluators](https://agent-observability-docs.splunk.com/concepts/evaluators/response-quality/response-quality-overview.md): Evaluate how correctly, consistently, and in line with ground truth your AI follows instructions and answers user queries
+- [Ground Truth Adherence](https://agent-observability-docs.splunk.com/concepts/evaluators/response-quality/ground-truth-adherence.md): Measure equivalence between model outputs and expected responses
+- [Correctness](https://agent-observability-docs.splunk.com/concepts/evaluators/response-quality/correctness.md): Evaluate factual accuracy in AI outputs using Splunk Agent Observability Guardrail Evaluators
+- [Instruction Adherence](https://agent-observability-docs.splunk.com/concepts/evaluators/response-quality/instruction-adherence.md): Assess instruction adherence in AI outputs using Splunk Agent Observability Guardrail Evaluators to ensure prompt-driven models generate precise and actionable results
+- [RAG Evaluators](https://agent-observability-docs.splunk.com/concepts/evaluators/rag/rag-overview.md): Evaluate retrieval and generation quality in your RAG pipeline using Splunk Agent Observability's RAG evaluators
+- [Chunk Relevance](https://agent-observability-docs.splunk.com/concepts/evaluators/rag/retrieval-quality/chunk-relevance.md): Understand how to measure and optimize the relevance of retrieved chunks to user queries in your RAG pipeline
+- [Context Relevance (Query Adherence)](https://agent-observability-docs.splunk.com/concepts/evaluators/rag/retrieval-quality/context-relevance.md): Understand how to measure the relevance of context provided to user queries
+- [Context Precision](https://agent-observability-docs.splunk.com/concepts/evaluators/rag/retrieval-quality/context-precision.md): Measure the percentage of relevant chunks in your retrieved context to evaluate retrieval quality in RAG systems
+- [Precision @ K](https://agent-observability-docs.splunk.com/concepts/evaluators/rag/retrieval-quality/precision-at-k.md): Evaluate the precision of your retrieval system at specific rank positions to optimize Top K and ranking strategies
+- [Context Adherence](https://agent-observability-docs.splunk.com/concepts/evaluators/rag/generation-quality/context-adherence.md): Understand Splunk Agent Observability's Context Adherence Evaluator
+- [Completeness](https://agent-observability-docs.splunk.com/concepts/evaluators/rag/generation-quality/completeness.md): Measure how thoroughly your model's response covers the relevant information available in the provided context
+- [Safety and Compliance Evaluators](https://agent-observability-docs.splunk.com/concepts/evaluators/safety-and-compliance/safety-and-compliance-overview.md): Identify risks, harmful content, and compliance issues in your AI with Splunk Agent Observability's safety and compliance evaluators
+- [Prompt Injection](https://agent-observability-docs.splunk.com/concepts/evaluators/safety-and-compliance/prompt-injection.md): Detect and prevent security vulnerabilities in AI systems using Splunk Agent Observability's Prompt Injection Evaluator to identify malicious inputs and protect your applications
+- [PII](https://agent-observability-docs.splunk.com/concepts/evaluators/safety-and-compliance/pii.md): Detect and protect personally identifiable information in AI systems using Splunk Agent Observability's PII Evaluator to identify sensitive data and implement appropriate safeguards
+- [Sexism](https://agent-observability-docs.splunk.com/concepts/evaluators/safety-and-compliance/sexism.md): Detect and prevent sexist content in AI systems using Splunk Agent Observability's Sexism Evaluator to identify and mitigate biased responses
+- [Toxicity](https://agent-observability-docs.splunk.com/concepts/evaluators/safety-and-compliance/toxicity.md): Detect and prevent toxic content in AI systems using Splunk Agent Observability's Toxicity Evaluator to identify and mitigate harmful responses
+- [Text-to-SQL Evaluators](https://agent-observability-docs.splunk.com/concepts/evaluators/text2sql/text2sql-overview.md): Evaluate the quality, safety, and efficiency of AI-generated SQL queries using Splunk Agent Observability's Text-to-SQL evaluators
+- [SQL Correctness](https://agent-observability-docs.splunk.com/concepts/evaluators/text2sql/sql-correctness.md): Evaluate whether generated SQL queries are syntactically valid and adhere to the provided database schema
+- [SQL Adherence](https://agent-observability-docs.splunk.com/concepts/evaluators/text2sql/sql-adherence.md): Evaluate whether generated SQL queries semantically align with the user's natural language intent
+- [SQL Injection](https://agent-observability-docs.splunk.com/concepts/evaluators/text2sql/sql-injection.md): Detect SQL injection attacks and security vulnerabilities in generated SQL queries
+- [SQL Efficiency](https://agent-observability-docs.splunk.com/concepts/evaluators/text2sql/sql-efficiency.md): Evaluate whether generated SQL queries are structured efficiently and avoid performance anti-patterns
+- [Custom LLM-as-a-Judge Evaluators](https://agent-observability-docs.splunk.com/concepts/evaluators/custom-evaluators/custom-evaluators-ui-llm.md): Learn how to create evaluators using LLMs to judge the quality of responses
+- [LLM-as-a-Judge Prompt Engineering Guide](https://agent-observability-docs.splunk.com/concepts/evaluators/custom-evaluators/prompt-engineering.md): Learn best practices for prompt engineering with custom LLM-as-a-judge evaluators
+- [Custom Code-Based Evaluators](https://agent-observability-docs.splunk.com/concepts/evaluators/custom-evaluators/custom-evaluators-ui-code.md): Learn how to create, register, and use custom code-based evaluators to evaluate your LLM applications
+- [Composite Evaluators](https://agent-observability-docs.splunk.com/concepts/evaluators/custom-evaluators/composite-evaluators.md): Learn how to create composite evaluators that leverage other evaluators to perform advanced evaluations
+- [Test Custom Evaluators](https://agent-observability-docs.splunk.com/concepts/evaluators/custom-evaluators/test-evaluators.md): Test a custom evaluator with manual input, against your current logs, or against a labeled dataset to measure how closely it matches your ground truth
+- [How LLM-as-a-judge is Calculated](https://agent-observability-docs.splunk.com/concepts/evaluators/how-llm-as-judge-evaluators-are-calculated.md): Understand how Splunk Agent Observability uses LLM judges to calculate evaluators for AI system performance assessment
+- [Improve LLM-as-a-Judge Evaluators with Autotune](https://agent-observability-docs.splunk.com/concepts/evaluators/autotune-llm-as-a-judge-evaluators.md): Use Autotune to turn feedback into prompt improvements that make LLM-as-a-judge evaluators more accurate for your use case.
+- [Luna-2 Overview](https://agent-observability-docs.splunk.com/concepts/luna/luna.md): Discover Splunk Agent Observability's Luna-2 Evaluation model, reducing the latency and cost for evaluations
+- [Luna Evaluators Comparison](https://agent-observability-docs.splunk.com/concepts/luna/luna-evaluator-comparison.md): Explore Splunk Agent Observability's preset Luna evaluators for measuring and improving AI system performance
+- [Fine-Tuning Luna-2 Models](https://agent-observability-docs.splunk.com/concepts/luna/fine-tuning.md): Understand the requirements and process for fine-tuning Luna-2 models based off your real-world scenarios
+- [Create a Local Evaluator](https://agent-observability-docs.splunk.com/how-to-guides/evaluators/create-local-evaluator/create-local-evaluator.md): Learn how to create a local evaluator in Python to use in your experiments
+- [Create Evaluators with the Luna-2 Model](https://agent-observability-docs.splunk.com/how-to-guides/luna/evaluate-with-luna/evaluate-with-luna.md): Learn how to create evaluators cheaper and faster using the Luna-2 model
+- [Use Luna-2 in Your Experiments](https://agent-observability-docs.splunk.com/how-to-guides/luna/experiments-with-luna/experiments-with-luna.md): Learn how to use Luna-2 evaluators when running experiments in code
+- [Tokenomics](https://agent-observability-docs.splunk.com/concepts/tokenomics/tokenomics.md): Monitor AI tool cost and adoption across your organization with Tokenomics
+- [Tokenomics concepts and metrics](https://agent-observability-docs.splunk.com/concepts/tokenomics/tokenomics-concepts.md): Key concepts, metrics, and data practices for Tokenomics.
+- [Signals](https://agent-observability-docs.splunk.com/concepts/signals.md): Proactively discover failure patterns across your AI agents that evaluators and manual searches might miss.
+- [AI Assistant](https://agent-observability-docs.splunk.com/concepts/ai-assistant.md): Ask about your agentic system in natural language. Splunk Agent Observability's AI Assistant combs through your traces, spans, sessions, and evaluation scores to surface the root cause, the evidence, and a concrete fix.
+- [Luna Studio](https://agent-observability-docs.splunk.com/luna-studio/index.md): Choose the Luna Studio UI or SDK path for building, training, and deploying custom Luna evaluators.
+- [Luna Studio UI](https://agent-observability-docs.splunk.com/luna-studio/ui/index.md): Use the Luna Studio web app to create, train, and register custom Luna evaluators.
+- [Availability and deployment](https://agent-observability-docs.splunk.com/luna-studio/ui/availability.md): Luna Studio is part of the enterprise tier of Splunk Agent Observability and is deployed by Splunk Agent Observability into your own cluster or cloud.
+- [Quickstart](https://agent-observability-docs.splunk.com/luna-studio/ui/quickstart.md): Sign up, configure your first integration, and launch a Luna Studio training run.
+- [Core concepts](https://agent-observability-docs.splunk.com/luna-studio/ui/core-concepts.md): How projects, runs, evaluators, datasets, and base models fit together in Luna Studio.
+- [Prerequisites](https://agent-observability-docs.splunk.com/luna-studio/ui/prerequisites.md): Dataset preparation to get optimal results from Luna fine-tuning
+- [Integrations overview](https://agent-observability-docs.splunk.com/luna-studio/ui/integrations/overview.md): Configure supported model providers, understand credential scopes, and identify deployment-managed infrastructure.
+- [LLM providers](https://agent-observability-docs.splunk.com/luna-studio/ui/integrations/llm-providers.md): Choose and configure the right LLM integration for the models you want to use in Luna Studio.
+- [Splunk Agent Observability integration](https://agent-observability-docs.splunk.com/luna-studio/ui/integrations/splunk-ao.md): Understand how the current release supplies Splunk Agent Observability credentials for dataset import and evaluator registration.
+- [Projects overview](https://agent-observability-docs.splunk.com/luna-studio/ui/projects/overview.md): Top-level containers for training runs tied to a GenAI use case.
+- [Training runs home](https://agent-observability-docs.splunk.com/luna-studio/ui/projects/training-runs-home.md): The main project workspace: status summary, filters, and the runs table.
+- [Creating a new run](https://agent-observability-docs.splunk.com/luna-studio/ui/runs/new-run/overview.md): Four steps to pick an evaluator and launch a fine-tuning job.
+- [Step 1 — Evaluator](https://agent-observability-docs.splunk.com/luna-studio/ui/runs/new-run/step-1-evaluator.md): Pick a predefined evaluator template or write a custom LLM-as-judge prompt.
+- [Step 2 — Test set](https://agent-observability-docs.splunk.com/luna-studio/ui/runs/new-run/step-2-test-set.md): Pick or upload the labelled dataset Luna Studio will evaluate the fine-tuned evaluator against.
+- [Step 3 — Training set](https://agent-observability-docs.splunk.com/luna-studio/ui/runs/new-run/step-3-training-set.md): Generate a training set from your test set or add your own training logs.
+- [Step 4 — Config and launch](https://agent-observability-docs.splunk.com/luna-studio/ui/runs/new-run/step-4-config-and-launch.md): Review the run summary and launch training.
+- [Run lifecycle](https://agent-observability-docs.splunk.com/luna-studio/ui/runs/lifecycle.md): The statuses a Luna Studio run can enter, and what each one means.
+- [Register an evaluator](https://agent-observability-docs.splunk.com/luna-studio/ui/runs/register-evaluator.md): Publish a fine-tuned evaluator to the Splunk Agent Observability evaluators store.
+- [Datasets overview](https://agent-observability-docs.splunk.com/luna-studio/ui/datasets/overview.md): Manage test sets and training sets across all your projects.
+- [Test sets](https://agent-observability-docs.splunk.com/luna-studio/ui/datasets/test-sets.md): Human-labelled datasets used to evaluate fine-tuned evaluators.
+- [Training sets](https://agent-observability-docs.splunk.com/luna-studio/ui/datasets/training-sets.md): The dataset used to fine-tune the Luna base model during a run.
+- [Add a dataset](https://agent-observability-docs.splunk.com/luna-studio/ui/datasets/add-a-dataset.md): Reference for the three dataset sources: Upload, Fetch from URL, and Import from Splunk Agent Observability.
+- [Dataset validation](https://agent-observability-docs.splunk.com/luna-studio/ui/datasets/validation.md): Evaluator-aware schema and content checks Luna Studio runs before using a dataset in a run.
+- [Evaluators overview](https://agent-observability-docs.splunk.com/luna-studio/ui/evaluators/overview.md): Browse and register custom evaluators across your project.
+- [Custom evaluators](https://agent-observability-docs.splunk.com/luna-studio/ui/evaluators/custom-evaluators.md): Define an evaluator with a custom LLM-as-judge prompt inside the run creation flow.
+- [FAQ](https://agent-observability-docs.splunk.com/luna-studio/ui/reference/faq.md): Common questions about Luna Studio — datasets, models, integrations, and more.
+- [Troubleshooting](https://agent-observability-docs.splunk.com/luna-studio/ui/reference/troubleshooting.md): Common errors and how to recover.
+- [Luna Studio SDK](https://agent-observability-docs.splunk.com/luna-studio/sdk/overview.md): Use the Luna Studio SDK to generate data, fine-tune custom Luna evaluators, and deploy them to Splunk Agent Observability.
+- [Installation](https://agent-observability-docs.splunk.com/luna-studio/sdk/installation.md): Install the Luna Studio SDK and optional extras.
+- [Overview](https://agent-observability-docs.splunk.com/luna-studio/sdk/how-to-train-your-luna-evaluator/overview.md): End-to-end guide for generating data and training your Luna evaluator with the Luna Studio SDK.
+- [Prerequisites](https://agent-observability-docs.splunk.com/luna-studio/sdk/how-to-train-your-luna-evaluator/prerequisites.md): Dataset preparation to get optimal results from Luna fine-tuning
+- [Understanding Config](https://agent-observability-docs.splunk.com/luna-studio/sdk/how-to-train-your-luna-evaluator/understanding-config.md): Understand the high-level structure of the run config file.
+- [Overview](https://agent-observability-docs.splunk.com/luna-studio/sdk/how-to-train-your-luna-evaluator/data-generation/overview.md): Generate a labeled training dataset for your evaluator.
+- [Config file](https://agent-observability-docs.splunk.com/luna-studio/sdk/how-to-train-your-luna-evaluator/data-generation/config/config.md): Complete reference for the data generation section of the config.
+- [Evaluator Input Types](https://agent-observability-docs.splunk.com/luna-studio/sdk/how-to-train-your-luna-evaluator/data-generation/config/evaluator-input-types.md): Understanding the different input types of evaluators supported by Luna Studio
+- [Evaluator Output Types](https://agent-observability-docs.splunk.com/luna-studio/sdk/how-to-train-your-luna-evaluator/data-generation/config/evaluator-output-types.md): Understanding the different output types of evaluators supported by Luna Studio
+- [Run Labelling only](https://agent-observability-docs.splunk.com/luna-studio/sdk/how-to-train-your-luna-evaluator/data-generation/run-labelling-only.md): Label an existing training dataset using your evaluator definition.
+- [Overview](https://agent-observability-docs.splunk.com/luna-studio/sdk/how-to-train-your-luna-evaluator/training/overview.md): Fine-tune a Luna evaluator from a labelled dataset.
+- [Config file](https://agent-observability-docs.splunk.com/luna-studio/sdk/how-to-train-your-luna-evaluator/training/config/config.md): Complete reference for the training section.
+- [Evaluator Input Types](https://agent-observability-docs.splunk.com/luna-studio/sdk/how-to-train-your-luna-evaluator/training/config/evaluator-input-types.md): Understanding the different input types of evaluators supported by Luna Studio
+- [Evaluator Output Types](https://agent-observability-docs.splunk.com/luna-studio/sdk/how-to-train-your-luna-evaluator/training/config/evaluator-output-types.md): Understanding the different output types of evaluators supported by Luna Studio
+- [Post Training artifacts](https://agent-observability-docs.splunk.com/luna-studio/sdk/how-to-train-your-luna-evaluator/training/output-artifacts.md): What training produces and which artifacts are saved.
+- [Evaluate](https://agent-observability-docs.splunk.com/luna-studio/sdk/how-to-train-your-luna-evaluator/training/evaluate.md): Run evaluation on a trained Luna evaluator.
+- [Overview](https://agent-observability-docs.splunk.com/luna-studio/sdk/deployment/overview.md): Deploy trained Luna evaluators from the Luna Studio SDK to Splunk Agent Observability.
+- [Register evaluator in Splunk Agent Observability](https://agent-observability-docs.splunk.com/luna-studio/sdk/deployment/register-evaluator-in-splunk-ao.md): Register your trained evaluator in the Splunk Agent Observability platform.
+- [Overview](https://agent-observability-docs.splunk.com/luna-studio/sdk/tutorials/overview.md): Hands-on Luna Studio SDK guides for each supported evaluator input category.
+- [LLM spans without RAG](https://agent-observability-docs.splunk.com/luna-studio/sdk/tutorials/llm-spans-without-rag.md): Build a span-level Luna evaluator from multi-field examples without retrieved documents.
+- [LLM spans with RAG](https://agent-observability-docs.splunk.com/luna-studio/sdk/tutorials/llm-spans-with-rag.md): Train a document-grounded Luna evaluator using retrieved context.
+- [LLM spans with tools (Agentic)](https://agent-observability-docs.splunk.com/luna-studio/sdk/tutorials/llm-spans-with-tools-agentic.md): Train a Luna evaluator that measures tool-aware assistant behavior.
+- [Retriever spans](https://agent-observability-docs.splunk.com/luna-studio/sdk/tutorials/retriever-spans.md): Train a Luna evaluator that measures retrieval quality or document sufficiency.
+- [Trace input / output only](https://agent-observability-docs.splunk.com/luna-studio/sdk/tutorials/trace-input-output-only.md): Train a trace-style Luna evaluator from a single serialized field.
+- [Using a preset evaluator](https://agent-observability-docs.splunk.com/luna-studio/sdk/tutorials/preset-evaluator.md): Use a packaged preset evaluator for a single-field trace-style input.
+- [Full traces](https://agent-observability-docs.splunk.com/luna-studio/sdk/tutorials/full-traces.md): Work with full trace-level Luna evaluators in advanced or label-only workflows.
+- [List of Trace inputs / outputs only](https://agent-observability-docs.splunk.com/luna-studio/sdk/tutorials/list-of-trace-inputs-outputs-only.md): Model session-like evaluators from repeated input/output pairs.
+- [Full Sessions](https://agent-observability-docs.splunk.com/luna-studio/sdk/tutorials/full-sessions.md): Work with full session-level Luna evaluators across multi-turn conversations.
+- [Experiments Basics](https://agent-observability-docs.splunk.com/sdk-api/experiments/experiments.md): Learn how to use datasets and experiments in code or the Splunk Agent Observability UI to evaluate and improve your application
+- [Datasets](https://agent-observability-docs.splunk.com/sdk-api/experiments/datasets.md): Learn how to create and manage datasets for use in your experiments with our SDKs
+- [Prompts](https://agent-observability-docs.splunk.com/sdk-api/experiments/prompts.md): Learn how to create and use prompt templates in experiments
+- [Run Experiments in Code](https://agent-observability-docs.splunk.com/sdk-api/experiments/running-experiments.md): Learn how to run experiments in Splunk Agent Observability using the Splunk Agent Observability SDKs
+- [Run Experiments in Playgrounds](https://agent-observability-docs.splunk.com/concepts/experiments/running-experiments-in-console.md): Learn about running experiments in the UI using Playgrounds and datasets
+- [Run Experiments in Unit Tests](https://agent-observability-docs.splunk.com/sdk-api/experiments/running-experiments-in-unit-tests.md): Learn how to run experiments in unit tests that you can use during development, or in your CI/CD pipelines
+- [Experiment Groups](https://agent-observability-docs.splunk.com/sdk-api/experiments/experiment-groups.md): Organize related experiment runs in the Splunk Agent Observability UI and with the SDK
+- [Compare Experiments](https://agent-observability-docs.splunk.com/concepts/experiments/compare.md): Learn how to compare multiple experiment runs in Splunk Agent Observability
+- [Run an experiment against a RAG app](https://agent-observability-docs.splunk.com/how-to-guides/experiments/rag-and-tools/rag-and-tools.md): Learn how to run experiments against RAG applications
+- [Run experiments with OpenTelemetry](https://agent-observability-docs.splunk.com/how-to-guides/experiments/otel-experiment/otel-experiment.md): Learn how to run experiments using OpenTelemetry-instrumented frameworks with Splunk Agent Observability
+- [Create and Manage Views](https://agent-observability-docs.splunk.com/how-to-guides/basics/create-views.md): Learn how to create and manage views in Agent Streams and experiments
+- [Agent Control](https://agent-observability-docs.splunk.com/concepts/agent-control/overview.md): Learn how to set up Agent Control to safeguard your AI applications.
+- [Create a control](https://agent-observability-docs.splunk.com/how-to-guides/agent-control/create-a-control.md): Learn how to create, configure, and attach a control to an Agent Stream.
+- [Initialize and configure Agent Control](https://agent-observability-docs.splunk.com/how-to-guides/agent-control/initialize-and-configure-agent-control.md): Learn how to set up Agent Control.
+- [Monitor a control](https://agent-observability-docs.splunk.com/how-to-guides/agent-control/monitor-a-control.md): Learn how to use the **Control View** to monitor controls and the **Traces** tab to investigate how a control executed in a trace.
+- [Annotations Overview](https://agent-observability-docs.splunk.com/concepts/annotations/overview.md)
+- [Integrations Overview](https://agent-observability-docs.splunk.com/sdk-api/third-party-integrations/overview.md): Learn about the Splunk Agent Observability integrations with third-party SDKs to automatically log your applications
+- [A2A](https://agent-observability-docs.splunk.com/sdk-api/third-party-integrations/a2a.md): Trace A2A (Agent2Agent) protocol interactions with Splunk Agent Observability for multi-agent observability
+- [Logging](https://agent-observability-docs.splunk.com/sdk-api/third-party-integrations/crewai/crewai.md): Learn about using the Splunk Agent Observability CrewAI logging integration to log agent traces
+- [Experiments](https://agent-observability-docs.splunk.com/sdk-api/third-party-integrations/crewai/experiments.md): Learn how to use CrewAI in an experiment
+- [Google ADK (Native)](https://agent-observability-docs.splunk.com/sdk-api/third-party-integrations/google-adk/google-adk-native.md): Learn how to use the native splunk-ao-adk package for automatic tracing of Google ADK agents
+- [Google ADK (OpenTelemetry)](https://agent-observability-docs.splunk.com/sdk-api/third-party-integrations/opentelemetry-and-openinference/google-adk.md): Learn how to integrate a Google ADK project with Splunk Agent Observability using OpenTelemetry and OpenInference
+- [Logging](https://agent-observability-docs.splunk.com/sdk-api/third-party-integrations/langchain/langchain.md): Learn about using the Splunk Agent Observability LangChain and LangGraph logging integration to log agent traces
+- [Command and Send](https://agent-observability-docs.splunk.com/sdk-api/third-party-integrations/langchain/command-and-send.md): Learn how Splunk Agent Observability logs LangGraph Command and Send types for advanced control flow
+- [Experiments](https://agent-observability-docs.splunk.com/sdk-api/third-party-integrations/langchain/experiments.md): Learn how to use LangChain or LangGraph in an experiment
+- [Middleware](https://agent-observability-docs.splunk.com/sdk-api/third-party-integrations/langchain/middleware.md): Learn about using SplunkAOMiddleware for automatic logging of LangChain agents
+- [AWS Bedrock Inference Profiles](https://agent-observability-docs.splunk.com/sdk-api/third-party-integrations/model-integrations/aws-bedrock/awsbedrock.md): Learn how to use AWS Bedrock Inference Profiles with Splunk Agent Observability in an on-premises, standalone, or custom deployment.
+- [Custom Model Integrations](https://agent-observability-docs.splunk.com/sdk-api/third-party-integrations/model-integrations/custom-model-integrations/custom-model-integrations.md): Learn about custom integrations, and how to set them up in Splunk Agent Observability
+- [Set up Gemini Enterprise credentials](https://agent-observability-docs.splunk.com/sdk-api/third-party-integrations/model-integrations/gemini-enterprise/gemini-enterprise-credentials.md): Create a Google Cloud service account JSON key and add it as a Gemini Enterprise integration in Splunk Agent Observability.
+- [Model Pricing Settings](https://agent-observability-docs.splunk.com/concepts/costs/model-pricing-settings.md)
+- [Integration Costs](https://agent-observability-docs.splunk.com/concepts/costs/integration-costs.md)
+- [Microsoft Agent Framework](https://agent-observability-docs.splunk.com/sdk-api/third-party-integrations/opentelemetry-and-openinference/microsoft-agent-framework.md): Learn how to integrate a Microsoft Agent Framework project with Splunk Agent Observability using OpenTelemetry
+- [OpenAI SDK](https://agent-observability-docs.splunk.com/sdk-api/third-party-integrations/openai/openai.md): Learn about the Splunk Agent Observability OpenAI integration
+- [OpenAI Agents SDK](https://agent-observability-docs.splunk.com/sdk-api/third-party-integrations/openai-agents/openai-agents.md): Learn how to send traces from the OpenAI Agents SDK to Splunk Agent Observability for evaluation
+- [Overview](https://agent-observability-docs.splunk.com/sdk-api/third-party-integrations/opentelemetry-and-openinference.md): Learn how to integrate Splunk Agent Observability with OpenTelemetry and OpenInference for comprehensive observability and tracing
+- [OpenTelemetry Integration Recommendations](https://agent-observability-docs.splunk.com/sdk-api/third-party-integrations/opentelemetry-and-openinference/integration-recommendations.md): Guidelines for instrumenting your spans to ensure they are valid and properly processed by Splunk Agent Observability's OTLP provider.
+- [Custom Spans](https://agent-observability-docs.splunk.com/sdk-api/third-party-integrations/opentelemetry-and-openinference/start-splunk-ao-span.md): Create OpenTelemetry spans enriched with Splunk Agent Observability-specific attributes using the start_splunk_ao_span context manager.
+- [Pydantic AI](https://agent-observability-docs.splunk.com/sdk-api/third-party-integrations/opentelemetry-and-openinference/pydantic-ai.md): Learn how to integrate a Pydantic AI project with Splunk Agent Observability using OpenTelemetry
+- [Strands Agents](https://agent-observability-docs.splunk.com/sdk-api/third-party-integrations/opentelemetry-and-openinference/strands-agents.md): Learn how to integrate a Strands Agents project with Splunk Agent Observability using OpenTelemetry
+- [Add Splunk Agent Observability to a CrewAI Application](https://agent-observability-docs.splunk.com/how-to-guides/third-party-integrations/add-splunk-ao-to-crewai/add-splunk-ao-to-crewai.md): Learn how to add logging and evaluations with Splunk Agent Observability to an existing CrewAI application
+- [Integrate NVIDIA NIM with Splunk Agent Observability](https://agent-observability-docs.splunk.com/how-to-guides/third-party-integrations/nvidia-nim-models.md): Learn how to connect your self-hosted NVIDIA NIM (NVIDIA Inference Microservices) to Splunk Agent Observability for comprehensive LLM performance assessment, playground experimentation, and enhanced generative AI model capabilities
+- [OpenAI Agent Integration](https://agent-observability-docs.splunk.com/how-to-guides/third-party-integrations/openai-agent-integration.md): Get hands on integrating Splunk Agent Observability into an agentic app using the OpenAI Agents SDK
+- [Log with OpenTelemetry, LangGraph, and OpenAI](https://agent-observability-docs.splunk.com/how-to-guides/third-party-integrations/otel.md): Learn how to integrate Splunk Agent Observability with OpenTelemetry and OpenInference for comprehensive observability and tracing.
+- [Projects](https://agent-observability-docs.splunk.com/concepts/projects.md): Organizational Units in Splunk Agent Observability
+- [Access Control](https://agent-observability-docs.splunk.com/concepts/access-control.md): Control access to projects via role-based access control and groups in Splunk Agent Observability
+- [SSO Integration](https://agent-observability-docs.splunk.com/security/sso.md): Learn how to set up SSO for your Splunk Agent Observability cluster
+- [FAQ](https://agent-observability-docs.splunk.com/references/faqs/faqs.md)
+- [Find Your Organization Keys](https://agent-observability-docs.splunk.com/references/faqs/find-keys.md): Learn about the environment variables used in Splunk Agent Observability
+- [Troubleshooting](https://agent-observability-docs.splunk.com/references/faqs/troubleshooting.md)
+- [Common Errors Guide](https://agent-observability-docs.splunk.com/references/faqs/errors.md)
+- [Error Catalog](https://agent-observability-docs.splunk.com/references/faqs/errors-catalog.md): Complete reference of Splunk Agent Observability platform error codes, messages, and recommended actions.
+- [Overview](https://agent-observability-docs.splunk.com/sdk-api/overview.md): An overview of the Splunk Agent Observability SDKs
+- [Overview](https://agent-observability-docs.splunk.com/sdk-api/python/sdk-reference.md): Get started using the Splunk AO Python SDK
+- [agent_control](https://agent-observability-docs.splunk.com/sdk-api/python/reference/agent_control.md)
+- [collaborator](https://agent-observability-docs.splunk.com/sdk-api/python/reference/collaborator.md)
+- [configuration](https://agent-observability-docs.splunk.com/sdk-api/python/reference/configuration.md)
+- [attribute_mapping](https://agent-observability-docs.splunk.com/sdk-api/python/reference/converter/attribute_mapping.md)
+- [span_converter](https://agent-observability-docs.splunk.com/sdk-api/python/reference/converter/span_converter.md)
+- [dataset](https://agent-observability-docs.splunk.com/sdk-api/python/reference/dataset.md)
+- [datasets](https://agent-observability-docs.splunk.com/sdk-api/python/reference/datasets.md)
+- [decorator](https://agent-observability-docs.splunk.com/sdk-api/python/reference/decorator.md)
+- [exceptions](https://agent-observability-docs.splunk.com/sdk-api/python/reference/exceptions.md)
+- [experiment](https://agent-observability-docs.splunk.com/sdk-api/python/reference/experiment.md)
+- [experiments](https://agent-observability-docs.splunk.com/sdk-api/python/reference/experiments.md)
+- [experiment_tags](https://agent-observability-docs.splunk.com/sdk-api/python/reference/experiment_tags.md)
+- [export](https://agent-observability-docs.splunk.com/sdk-api/python/reference/export.md)
+- [http_instrumentation](https://agent-observability-docs.splunk.com/sdk-api/python/reference/http_instrumentation.md)
+- [integration](https://agent-observability-docs.splunk.com/sdk-api/python/reference/integration.md)
+- [agent_stream](https://agent-observability-docs.splunk.com/sdk-api/python/reference/agent_stream.md)
+- [agent_streams](https://agent-observability-docs.splunk.com/sdk-api/python/reference/agent_streams.md)
+- [annotation_queues](https://agent-observability-docs.splunk.com/sdk-api/python/reference/annotation_queues.md)
+- [config](https://agent-observability-docs.splunk.com/sdk-api/python/reference/config.md)
+- [deployment](https://agent-observability-docs.splunk.com/sdk-api/python/reference/deployment.md)
+- [evaluator](https://agent-observability-docs.splunk.com/sdk-api/python/reference/evaluator.md)
+- [evaluators](https://agent-observability-docs.splunk.com/sdk-api/python/reference/evaluators.md)
+- [config](https://agent-observability-docs.splunk.com/sdk-api/python/reference/exporter/config.md)
+- [diagnostics](https://agent-observability-docs.splunk.com/sdk-api/python/reference/exporter/diagnostics.md)
+- [o11y](https://agent-observability-docs.splunk.com/sdk-api/python/reference/exporter/o11y.md)
+- [sink](https://agent-observability-docs.splunk.com/sdk-api/python/reference/exporter/sink.md)
+- [span_transform](https://agent-observability-docs.splunk.com/sdk-api/python/reference/exporter/span_transform.md)
+- [standalone](https://agent-observability-docs.splunk.com/sdk-api/python/reference/exporter/standalone.md)
+- [model](https://agent-observability-docs.splunk.com/sdk-api/python/reference/model.md)
+- [otel](https://agent-observability-docs.splunk.com/sdk-api/python/reference/otel.md)
+- [project](https://agent-observability-docs.splunk.com/sdk-api/python/reference/project.md)
+- [projects](https://agent-observability-docs.splunk.com/sdk-api/python/reference/projects.md)
+- [prompt](https://agent-observability-docs.splunk.com/sdk-api/python/reference/prompt.md)
+- [prompts](https://agent-observability-docs.splunk.com/sdk-api/python/reference/prompts.md)
+- [provider](https://agent-observability-docs.splunk.com/sdk-api/python/reference/provider.md)
+- [runs](https://agent-observability-docs.splunk.com/sdk-api/python/reference/runs.md)
+- [scorers](https://agent-observability-docs.splunk.com/sdk-api/python/reference/scorers.md)
+- [search](https://agent-observability-docs.splunk.com/sdk-api/python/reference/search.md)
+- [session_context](https://agent-observability-docs.splunk.com/sdk-api/python/reference/session_context.md)
+- [traces](https://agent-observability-docs.splunk.com/sdk-api/python/reference/traces.md)
+- [tracing](https://agent-observability-docs.splunk.com/sdk-api/python/reference/tracing.md)
+- [types](https://agent-observability-docs.splunk.com/sdk-api/python/reference/types.md)
+- [base_async_handler](https://agent-observability-docs.splunk.com/sdk-api/python/reference/handlers/base_async_handler.md)
+- [base_handler](https://agent-observability-docs.splunk.com/sdk-api/python/reference/handlers/base_handler.md)
+- [span_lifecycle](https://agent-observability-docs.splunk.com/sdk-api/python/reference/handlers/span_lifecycle.md)
+- [bridge](https://agent-observability-docs.splunk.com/sdk-api/python/reference/handlers/agent_control/bridge.md)
+- [handler](https://agent-observability-docs.splunk.com/sdk-api/python/reference/handlers/crewai/handler.md)
+- [handler](https://agent-observability-docs.splunk.com/sdk-api/python/reference/handlers/openai_agents/handler.md)
+- [async_handler](https://agent-observability-docs.splunk.com/sdk-api/python/reference/handlers/langchain/async_handler.md)
+- [handler](https://agent-observability-docs.splunk.com/sdk-api/python/reference/handlers/langchain/handler.md)
+- [logger](https://agent-observability-docs.splunk.com/sdk-api/python/reference/logger/logger.md)
+- [utils](https://agent-observability-docs.splunk.com/sdk-api/python/reference/logger/utils.md)
+- [tracing](https://agent-observability-docs.splunk.com/sdk-api/python/reference/middleware/tracing.md)
+- [extractors](https://agent-observability-docs.splunk.com/sdk-api/python/reference/openai/extractors.md)
+- [response_generator](https://agent-observability-docs.splunk.com/sdk-api/python/reference/openai/response_generator.md)
+- [base](https://agent-observability-docs.splunk.com/sdk-api/python/reference/shared/base.md)
+- [column](https://agent-observability-docs.splunk.com/sdk-api/python/reference/shared/column.md)
+- [exceptions](https://agent-observability-docs.splunk.com/sdk-api/python/reference/shared/exceptions.md)
+- [experiment_result](https://agent-observability-docs.splunk.com/sdk-api/python/reference/shared/experiment_result.md)
+- [filter](https://agent-observability-docs.splunk.com/sdk-api/python/reference/shared/filter.md)
+- [project_resolver](https://agent-observability-docs.splunk.com/sdk-api/python/reference/shared/project_resolver.md)
+- [query_result](https://agent-observability-docs.splunk.com/sdk-api/python/reference/shared/query_result.md)
+- [sort](https://agent-observability-docs.splunk.com/sdk-api/python/reference/shared/sort.md)
+- [utils](https://agent-observability-docs.splunk.com/sdk-api/python/reference/shared/utils.md)
+- [datasets](https://agent-observability-docs.splunk.com/sdk-api/python/reference/utils/datasets.md)
+- [env_helpers](https://agent-observability-docs.splunk.com/sdk-api/python/reference/utils/env_helpers.md)
+- [exceptions](https://agent-observability-docs.splunk.com/sdk-api/python/reference/utils/exceptions.md)
+- [headers_data](https://agent-observability-docs.splunk.com/sdk-api/python/reference/utils/headers_data.md)
+- [log_config](https://agent-observability-docs.splunk.com/sdk-api/python/reference/utils/log_config.md)
+- [metrics](https://agent-observability-docs.splunk.com/sdk-api/python/reference/utils/metrics.md)
+- [projects](https://agent-observability-docs.splunk.com/sdk-api/python/reference/utils/projects.md)
+- [prompts](https://agent-observability-docs.splunk.com/sdk-api/python/reference/utils/prompts.md)
+- [retrievers](https://agent-observability-docs.splunk.com/sdk-api/python/reference/utils/retrievers.md)
+- [serialization](https://agent-observability-docs.splunk.com/sdk-api/python/reference/utils/serialization.md)
+- [singleton](https://agent-observability-docs.splunk.com/sdk-api/python/reference/utils/singleton.md)
+- [span_utils](https://agent-observability-docs.splunk.com/sdk-api/python/reference/utils/span_utils.md)
+- [uuid_utils](https://agent-observability-docs.splunk.com/sdk-api/python/reference/utils/uuid_utils.md)
+- [validations](https://agent-observability-docs.splunk.com/sdk-api/python/reference/utils/validations.md)
+- [exception_handling](https://agent-observability-docs.splunk.com/sdk-api/python/reference/utils/decorators/exception_handling.md)
+- [telemetry_toggle](https://agent-observability-docs.splunk.com/sdk-api/python/reference/utils/decorators/telemetry_toggle.md)
+- [Overview](https://agent-observability-docs.splunk.com/api/getting-started.md): Learn how to get started with the Splunk Agent Observability REST API
+- [Experiments API Guide](https://agent-observability-docs.splunk.com/api/experiments-api-guide.md): Learn how to set up projects, evaluators, datasets, and experiments using Splunk Agent Observability's REST API
+- [Healthcheck](https://agent-observability-docs.splunk.com/api-reference/health/healthcheck.md)
+- [Get Token](https://agent-observability-docs.splunk.com/api-reference/auth/get-token.md): Issue an access token for the caller, optionally scoped to one of their organizations.
+- [Login Email](https://agent-observability-docs.splunk.com/api-reference/auth/login-email.md)
+- [Login Api Key](https://agent-observability-docs.splunk.com/api-reference/auth/login-api-key.md)
+- [Login Social](https://agent-observability-docs.splunk.com/api-reference/auth/login-social.md)
+- [Saml Login](https://agent-observability-docs.splunk.com/api-reference/auth/saml-login.md)
+- [Saml Acs](https://agent-observability-docs.splunk.com/api-reference/auth/saml-acs.md)
+- [Saml Metadata](https://agent-observability-docs.splunk.com/api-reference/auth/saml-metadata.md)
+- [Verify Email](https://agent-observability-docs.splunk.com/api-reference/auth/verify-email.md)
+- [Refresh Token](https://agent-observability-docs.splunk.com/api-reference/auth/refresh-token.md): Exchange a refresh token cookie for a fresh access token, rotating the refresh token.
+- [Create Or Verify User](https://agent-observability-docs.splunk.com/api-reference/system_users/create-or-verify-user.md): Create a new system user with an email and password.
+- [Create Or Verify User Social](https://agent-observability-docs.splunk.com/api-reference/system_users/create-or-verify-user-social.md): Create a user using a social login provider.
+- [Get Api Keys](https://agent-observability-docs.splunk.com/api-reference/api_keys/get-api-keys.md): List a user's API keys.
+- [Create Api Key](https://agent-observability-docs.splunk.com/api-reference/api_keys/create-api-key.md): Create an API key for the current user.
+- [Delete Api Key](https://agent-observability-docs.splunk.com/api-reference/api_keys/delete-api-key.md): Delete an API key.
+- [List Annotation Templates](https://agent-observability-docs.splunk.com/api-reference/annotation/list-annotation-templates.md): List all annotation templates for a project, each with its usage count.
+- [Create Annotation Template](https://agent-observability-docs.splunk.com/api-reference/annotation/create-annotation-template.md): Create an annotation template for a GenAI project.
+- [Get Annotation Template](https://agent-observability-docs.splunk.com/api-reference/annotation/get-annotation-template.md): Get an annotation template by ID, with its usage count.
+- [Delete Annotation Template](https://agent-observability-docs.splunk.com/api-reference/annotation/delete-annotation-template.md): Delete an annotation template.
+- [Update Annotation Template](https://agent-observability-docs.splunk.com/api-reference/annotation/update-annotation-template.md): Update an annotation template's name and/or rating constraints.
+- [Reorder Annotation Templates](https://agent-observability-docs.splunk.com/api-reference/annotation/reorder-annotation-templates.md): Reorder all annotation templates within a project.
+- [Get Annotation Rating](https://agent-observability-docs.splunk.com/api-reference/annotation/get-annotation-rating.md): Get an annotation rating for a trace.
+- [Create Annotation Rating](https://agent-observability-docs.splunk.com/api-reference/annotation/create-annotation-rating.md): Record an annotation rating for a trace.
+- [Delete Annotation Rating](https://agent-observability-docs.splunk.com/api-reference/annotation/delete-annotation-rating.md): Delete an annotation rating for a trace.
+- [Get Log Record Annotation Rating](https://agent-observability-docs.splunk.com/api-reference/annotation/get-log-record-annotation-rating.md): Get an annotation rating for a log record.
+- [Create Log Record Annotation Rating](https://agent-observability-docs.splunk.com/api-reference/annotation/create-log-record-annotation-rating.md): Record an annotation rating for a log record.
+- [Delete Log Record Annotation Rating](https://agent-observability-docs.splunk.com/api-reference/annotation/delete-log-record-annotation-rating.md): Delete an annotation rating for a log record.
+- [Apply Bulk Annotation](https://agent-observability-docs.splunk.com/api-reference/annotation/apply-bulk-annotation.md): Record multiple annotation ratings across traces in one request.
+- [List Datasets](https://agent-observability-docs.splunk.com/api-reference/datasets/list-datasets.md)
+- [Create Dataset](https://agent-observability-docs.splunk.com/api-reference/datasets/create-dataset.md): Creates a standalone dataset.
+- [Bulk Delete Datasets](https://agent-observability-docs.splunk.com/api-reference/datasets/bulk-delete-datasets.md): Delete multiple datasets in bulk.
+- [Count Datasets](https://agent-observability-docs.splunk.com/api-reference/datasets/count-datasets.md): Count datasets visible to the current user with filtering.
+- [Get Dataset](https://agent-observability-docs.splunk.com/api-reference/datasets/get-dataset.md)
+- [Delete Dataset](https://agent-observability-docs.splunk.com/api-reference/datasets/delete-dataset.md)
+- [Update Dataset](https://agent-observability-docs.splunk.com/api-reference/datasets/update-dataset.md)
+- [Query Datasets](https://agent-observability-docs.splunk.com/api-reference/datasets/query-datasets.md)
+- [Get Dataset Content](https://agent-observability-docs.splunk.com/api-reference/datasets/get-dataset-content.md)
+- [Upsert Dataset Content](https://agent-observability-docs.splunk.com/api-reference/datasets/upsert-dataset-content.md): Rollback the content of a dataset to a previous version.
+- [Update Dataset Content](https://agent-observability-docs.splunk.com/api-reference/datasets/update-dataset-content.md): Update the content of a dataset.
+- [Download Dataset](https://agent-observability-docs.splunk.com/api-reference/datasets/download-dataset.md)
+- [Preview Dataset](https://agent-observability-docs.splunk.com/api-reference/datasets/preview-dataset.md)
+- [Get Dataset Variable Preview](https://agent-observability-docs.splunk.com/api-reference/datasets/get-dataset-variable-preview.md): Return a variable preview derived from the sampled dataset input rows.
+- [Query Dataset Content](https://agent-observability-docs.splunk.com/api-reference/datasets/query-dataset-content.md)
+- [List User Dataset Collaborators](https://agent-observability-docs.splunk.com/api-reference/datasets/list-user-dataset-collaborators.md): List the users with which the dataset has been shared.
+- [Create User Dataset Collaborators](https://agent-observability-docs.splunk.com/api-reference/datasets/create-user-dataset-collaborators.md)
+- [List Group Dataset Collaborators](https://agent-observability-docs.splunk.com/api-reference/datasets/list-group-dataset-collaborators.md): List the groups with which the dataset has been shared.
+- [Create Group Dataset Collaborators](https://agent-observability-docs.splunk.com/api-reference/datasets/create-group-dataset-collaborators.md): Share a dataset with groups.
+- [Delete User Dataset Collaborator](https://agent-observability-docs.splunk.com/api-reference/datasets/delete-user-dataset-collaborator.md): Remove a user's access to a dataset.
+- [Update User Dataset Collaborator](https://agent-observability-docs.splunk.com/api-reference/datasets/update-user-dataset-collaborator.md): Update the sharing permissions of a user on a dataset.
+- [Delete Group Dataset Collaborator](https://agent-observability-docs.splunk.com/api-reference/datasets/delete-group-dataset-collaborator.md): Remove a group's access to a dataset.
+- [Update Group Dataset Collaborator](https://agent-observability-docs.splunk.com/api-reference/datasets/update-group-dataset-collaborator.md): Update the sharing permissions of a group on a dataset.
+- [Query Dataset Versions](https://agent-observability-docs.splunk.com/api-reference/datasets/query-dataset-versions.md)
+- [Get Dataset Version Content](https://agent-observability-docs.splunk.com/api-reference/datasets/get-dataset-version-content.md)
+- [Update Dataset Version](https://agent-observability-docs.splunk.com/api-reference/datasets/update-dataset-version.md)
+- [List Dataset Projects](https://agent-observability-docs.splunk.com/api-reference/datasets/list-dataset-projects.md)
+- [Extend Dataset Content](https://agent-observability-docs.splunk.com/api-reference/datasets/extend-dataset-content.md): Extends the dataset content
+- [Get Dataset Synthetic Extend Status](https://agent-observability-docs.splunk.com/api-reference/datasets/get-dataset-synthetic-extend-status.md)
+- [List Experiments](https://agent-observability-docs.splunk.com/api-reference/experiment/list-experiments.md): Retrieve all experiments for a project.
+- [Create Experiment](https://agent-observability-docs.splunk.com/api-reference/experiment/create-experiment.md): Create a new experiment for a project.
+- [List Experiments Paginated](https://agent-observability-docs.splunk.com/api-reference/experiment/list-experiments-paginated.md): Retrieve all experiments for a project with pagination.
+- [Search Experiments](https://agent-observability-docs.splunk.com/api-reference/experiment/search-experiments.md): Search experiments for a project.
+- [Get Experiment](https://agent-observability-docs.splunk.com/api-reference/experiment/get-experiment.md): Retrieve a specific experiment.
+- [Update Experiment](https://agent-observability-docs.splunk.com/api-reference/experiment/update-experiment.md): Update a specific experiment.
+- [Delete Experiment](https://agent-observability-docs.splunk.com/api-reference/experiment/delete-experiment.md): Delete a specific experiment.
+- [Experiments Available Columns](https://agent-observability-docs.splunk.com/api-reference/experiment/experiments-available-columns.md): Procures the column information for experiments.
+- [Get Experiment Metrics](https://agent-observability-docs.splunk.com/api-reference/experiment/get-experiment-metrics.md): Retrieve metrics for a specific experiment.
+- [List Feedback Templates V2](https://agent-observability-docs.splunk.com/api-reference/feedback/list-feedback-templates-v2.md): List all v2 feedback templates for a project, each with its usage count.
+- [Create Feedback Template V2](https://agent-observability-docs.splunk.com/api-reference/feedback/create-feedback-template-v2.md): Create a v2 feedback template for a GenAI project.
+- [Get Feedback Template V2](https://agent-observability-docs.splunk.com/api-reference/feedback/get-feedback-template-v2.md): Get a v2 feedback template with its usage count.
+- [Delete Feedback Template](https://agent-observability-docs.splunk.com/api-reference/feedback/delete-feedback-template.md): Delete a feedback template.
+- [Update Feedback Template](https://agent-observability-docs.splunk.com/api-reference/feedback/update-feedback-template.md): Update a feedback template's name and/or rating constraints.
+- [Reorder Feedback Templates](https://agent-observability-docs.splunk.com/api-reference/feedback/reorder-feedback-templates.md): Reorder all feedback templates within a project.
+- [Get Feedback Rating V2](https://agent-observability-docs.splunk.com/api-reference/feedback/get-feedback-rating-v2.md): Get a v2 feedback rating for a trace.
+- [Create Feedback Rating V2](https://agent-observability-docs.splunk.com/api-reference/feedback/create-feedback-rating-v2.md): Record a v2 feedback rating for a trace.
+- [Delete Feedback Rating V2](https://agent-observability-docs.splunk.com/api-reference/feedback/delete-feedback-rating-v2.md): Delete a v2 feedback rating for a trace.
+- [Apply Bulk Feedback V2](https://agent-observability-docs.splunk.com/api-reference/feedback/apply-bulk-feedback-v2.md): Record multiple v2 feedback ratings across traces in one request.
+- [Get Group Roles](https://agent-observability-docs.splunk.com/api-reference/groups/get-group-roles.md)
+- [List Groups](https://agent-observability-docs.splunk.com/api-reference/groups/list-groups.md)
+- [Create Group](https://agent-observability-docs.splunk.com/api-reference/groups/create-group.md)
+- [Get Group](https://agent-observability-docs.splunk.com/api-reference/groups/get-group.md)
+- [Delete Group](https://agent-observability-docs.splunk.com/api-reference/groups/delete-group.md)
+- [Update Group](https://agent-observability-docs.splunk.com/api-reference/groups/update-group.md)
+- [List Group Members](https://agent-observability-docs.splunk.com/api-reference/groups/list-group-members.md)
+- [Add User To Group](https://agent-observability-docs.splunk.com/api-reference/groups/add-user-to-group.md)
+- [Delete Group Member](https://agent-observability-docs.splunk.com/api-reference/groups/delete-group-member.md)
+- [Update Group Member](https://agent-observability-docs.splunk.com/api-reference/groups/update-group-member.md)
+- [List Current User Groups](https://agent-observability-docs.splunk.com/api-reference/groups/list-current-user-groups.md)
+- [List Integrations](https://agent-observability-docs.splunk.com/api-reference/integrations/list-integrations.md): List the created integrations for the requesting user.
+- [Get Integration Costs](https://agent-observability-docs.splunk.com/api-reference/integrations/get-integration-costs.md)
+- [Export Billing Usage](https://agent-observability-docs.splunk.com/api-reference/integrations/export-billing-usage.md): Export the project usage table as CSV using the same data source as /billing/usage/{metric}.
+- [Get Billing Usage](https://agent-observability-docs.splunk.com/api-reference/integrations/get-billing-usage.md)
+- [List Available Integrations](https://agent-observability-docs.splunk.com/api-reference/integrations/list-available-integrations.md): List the integration providers that can be created in Galileo.
+- [Get Integration](https://agent-observability-docs.splunk.com/api-reference/integrations/get-integration.md): Get the caller's integration for a provider, in that provider's own shape.
+- [Delete Integration](https://agent-observability-docs.splunk.com/api-reference/integrations/delete-integration.md): Delete an integration. Admins can delete integrations created by other admins in the same org.
+- [Get Integration Status](https://agent-observability-docs.splunk.com/api-reference/integrations/get-integration-status.md): Check that the caller's integration for a provider still authenticates.
+- [List User Integration Collaborators](https://agent-observability-docs.splunk.com/api-reference/integrations/list-user-integration-collaborators.md): List the users the integration has been shared with.
+- [Create User Integration Collaborators](https://agent-observability-docs.splunk.com/api-reference/integrations/create-user-integration-collaborators.md): Share an integration with users.
+- [Delete User Integration Collaborator](https://agent-observability-docs.splunk.com/api-reference/integrations/delete-user-integration-collaborator.md): Remove a user's access to an integration.
+- [Update User Integration Collaborator](https://agent-observability-docs.splunk.com/api-reference/integrations/update-user-integration-collaborator.md): Change a user's role on a shared integration.
+- [List Group Integration Collaborators](https://agent-observability-docs.splunk.com/api-reference/integrations/list-group-integration-collaborators.md): List the groups the integration has been shared with.
+- [Create Group Integration Collaborators](https://agent-observability-docs.splunk.com/api-reference/integrations/create-group-integration-collaborators.md): Share an integration with groups.
+- [Delete Group Integration Collaborator](https://agent-observability-docs.splunk.com/api-reference/integrations/delete-group-integration-collaborator.md): Remove a group's access to an integration.
+- [Update Group Integration Collaborator](https://agent-observability-docs.splunk.com/api-reference/integrations/update-group-integration-collaborator.md): Change a group's role on a shared integration.
+- [Create Or Update Integration Selection](https://agent-observability-docs.splunk.com/api-reference/integrations/create-or-update-integration-selection.md): Make an integration the caller's selection for its provider.
+- [Select Integration](https://agent-observability-docs.splunk.com/api-reference/integrations/select-integration.md): Select an integration for this user.
+- [Disable Integration](https://agent-observability-docs.splunk.com/api-reference/integrations/disable-integration.md): Disable an integration type for this user.
+- [Create or update Anthropic integration](https://agent-observability-docs.splunk.com/api-reference/integrations/create-or-update-anthropic-integration.md): Create or update an Anthropic integration for the caller.
+- [Create or update AWS Bedrock integration](https://agent-observability-docs.splunk.com/api-reference/integrations/create-or-update-aws-bedrock-integration.md): Create or update an AWS Bedrock integration for the caller.
+- [Create or update AWS SageMaker integration](https://agent-observability-docs.splunk.com/api-reference/integrations/create-or-update-aws-sagemaker-integration.md): Create or update an AWS SageMaker integration for the caller.
+- [Create or update Azure integration](https://agent-observability-docs.splunk.com/api-reference/integrations/create-or-update-azure-integration.md): Create or update an Azure integration for the caller.
+- [Create or update custom integration](https://agent-observability-docs.splunk.com/api-reference/integrations/create-or-update-custom-integration.md): Create or update the caller's unnamed custom integration.
+- [Get custom integration definition](https://agent-observability-docs.splunk.com/api-reference/integrations/get-custom-integration-definition.md): Return the full JSON definition of the custom integration, including decrypted secrets.
+- [Get a named custom integration](https://agent-observability-docs.splunk.com/api-reference/integrations/get-a-named-custom-integration.md)
+- [Create or update a named custom integration](https://agent-observability-docs.splunk.com/api-reference/integrations/create-or-update-a-named-custom-integration.md): Create or update one of the caller's named custom integrations.
+- [Delete a named custom integration](https://agent-observability-docs.splunk.com/api-reference/integrations/delete-a-named-custom-integration.md)
+- [Check status of a named custom integration](https://agent-observability-docs.splunk.com/api-reference/integrations/check-status-of-a-named-custom-integration.md)
+- [Get definition of a named custom integration](https://agent-observability-docs.splunk.com/api-reference/integrations/get-definition-of-a-named-custom-integration.md): Return the full JSON definition of a named custom integration, including decrypted secrets.
+- [Create or update Databricks integration (legacy)](https://agent-observability-docs.splunk.com/api-reference/integrations/create-or-update-databricks-integration-legacy.md): Create or update the caller's Databricks integration.
+- [Create or update Databricks integration](https://agent-observability-docs.splunk.com/api-reference/integrations/create-or-update-databricks-integration.md): Create or update the caller's Databricks integration.
+- [Get Databricks Catalogs](https://agent-observability-docs.splunk.com/api-reference/integrations/get-databricks-catalogs.md): List the catalogs reachable through the caller's Databricks integration.
+- [Get Databases For Cluster](https://agent-observability-docs.splunk.com/api-reference/integrations/get-databases-for-cluster.md): List the databases in a catalog of the caller's Databricks integration.
+- [Create or update Mistral integration](https://agent-observability-docs.splunk.com/api-reference/integrations/create-or-update-mistral-integration.md): Create or update a Mistral integration for the caller.
+- [Create or update NVIDIA integration](https://agent-observability-docs.splunk.com/api-reference/integrations/create-or-update-nvidia-integration.md): Create or update an Nvidia integration for the caller.
+- [Create or update OpenAI integration](https://agent-observability-docs.splunk.com/api-reference/integrations/create-or-update-openai-integration.md): Create or update an OpenAI integration for the caller.
+- [Create or update Vegas Gateway integration](https://agent-observability-docs.splunk.com/api-reference/integrations/create-or-update-vegas-gateway-integration.md): Create or update a Vegas Gateway integration for the caller.
+- [Create or update Vertex AI integration](https://agent-observability-docs.splunk.com/api-reference/integrations/create-or-update-vertex-ai-integration.md): Create or update a Google Vertex AI integration for the caller.
+- [Create or update Writer integration](https://agent-observability-docs.splunk.com/api-reference/integrations/create-or-update-writer-integration.md): Create or update a Writer integration for the caller.
+- [Get Collaborator Roles](https://agent-observability-docs.splunk.com/api-reference/projects/get-collaborator-roles.md): List the collaborator roles that can be assigned on a project.
+- [Create Project](https://agent-observability-docs.splunk.com/api-reference/projects/create-project.md): Create a new project.
+- [Get Project](https://agent-observability-docs.splunk.com/api-reference/projects/get-project.md)
+- [Update Project](https://agent-observability-docs.splunk.com/api-reference/projects/update-project.md): Rename a project while rejecting unsupported project field updates.
+- [Delete Project](https://agent-observability-docs.splunk.com/api-reference/projects/delete-project.md): Deletes a project and all associated runs and objects.
+- [List User Project Collaborators](https://agent-observability-docs.splunk.com/api-reference/projects/list-user-project-collaborators.md): List the users with which the project has been shared.
+- [Create User Project Collaborators](https://agent-observability-docs.splunk.com/api-reference/projects/create-user-project-collaborators.md): Share a project with users.
+- [List Group Project Collaborators](https://agent-observability-docs.splunk.com/api-reference/projects/list-group-project-collaborators.md): List the groups with which the project has been shared.
+- [Create Group Project Collaborators](https://agent-observability-docs.splunk.com/api-reference/projects/create-group-project-collaborators.md): Share a project with groups.
+- [Delete User Project Collaborator](https://agent-observability-docs.splunk.com/api-reference/projects/delete-user-project-collaborator.md): Remove a user's access to a project.
+- [Update User Project Collaborator](https://agent-observability-docs.splunk.com/api-reference/projects/update-user-project-collaborator.md): Update the sharing permissions of a user on a project.
+- [Delete Group Project Collaborator](https://agent-observability-docs.splunk.com/api-reference/projects/delete-group-project-collaborator.md): Remove a group's access to a project.
+- [Update Group Project Collaborator](https://agent-observability-docs.splunk.com/api-reference/projects/update-group-project-collaborator.md): Update the sharing permissions of a group on a project.
+- [Get Projects V2](https://agent-observability-docs.splunk.com/api-reference/projects/get-projects-v2.md): Gets projects optimized for V2 with pagination and server-side run counts.
+- [Get User Roles](https://agent-observability-docs.splunk.com/api-reference/users/get-user-roles.md): Get all user roles.
+- [Invite Users](https://agent-observability-docs.splunk.com/api-reference/users/invite-users.md)
+- [List Users Paginated](https://agent-observability-docs.splunk.com/api-reference/users/list-users-paginated.md)
+- [Get User](https://agent-observability-docs.splunk.com/api-reference/users/get-user.md)
+- [Update User](https://agent-observability-docs.splunk.com/api-reference/users/update-user.md)
+- [Delete User](https://agent-observability-docs.splunk.com/api-reference/users/delete-user.md)
+- [Current User](https://agent-observability-docs.splunk.com/api-reference/users/current-user.md): Return the authenticated user together with the permissions granted by their role.
+- [Get Settings](https://agent-observability-docs.splunk.com/api-reference/run_insights_settings/get-settings.md): Get the insights settings for a run.
+- [Upsert Insights Config](https://agent-observability-docs.splunk.com/api-reference/run_insights_settings/upsert-insights-config.md): Create or update the insights settings for a run.
+- [Invoke](https://agent-observability-docs.splunk.com/api-reference/protect/invoke.md)
+- [Get Org Job Status](https://agent-observability-docs.splunk.com/api-reference/organization-jobs/get-org-job-status.md): Get the status of an organization-level job.
+- [Delete By Metadata](https://agent-observability-docs.splunk.com/api-reference/organization-jobs/delete-by-metadata.md): Delete traces/sessions across all projects in the organization by metadata filters.
+- [Get Annotation Queue](https://agent-observability-docs.splunk.com/api-reference/annotation_queue/get-annotation-queue.md): Get an annotation queue by ID with templates and counts.
+- [Query Annotation Queues](https://agent-observability-docs.splunk.com/api-reference/annotation_queue/query-annotation-queues.md): Query annotation queues in the user's organization with filtering and sorting.
+- [Get Queue Templates](https://agent-observability-docs.splunk.com/api-reference/annotation_queue/get-queue-templates.md): Get all templates for an annotation queue.
+- [List Annotation Queue Users](https://agent-observability-docs.splunk.com/api-reference/annotation_queue/list-annotation-queue-users.md): List users who have access to an annotation queue with pagination.
+- [Create](https://agent-observability-docs.splunk.com/api-reference/data/create.md)
+- [Get Scorer](https://agent-observability-docs.splunk.com/api-reference/data/get-scorer.md)
+- [Delete Scorer](https://agent-observability-docs.splunk.com/api-reference/data/delete-scorer.md)
+- [Update](https://agent-observability-docs.splunk.com/api-reference/data/update.md)
+- [Create Llm Scorer Version](https://agent-observability-docs.splunk.com/api-reference/data/create-llm-scorer-version.md)
+- [Validate Code Scorer](https://agent-observability-docs.splunk.com/api-reference/data/validate-code-scorer.md): Validate a code scorer with optional simple input/output test.
+- [Validate Code Scorer Log Record](https://agent-observability-docs.splunk.com/api-reference/data/validate-code-scorer-log-record.md): Validate a code scorer using actual log records.
+- [Get Validate Code Scorer Task Result](https://agent-observability-docs.splunk.com/api-reference/data/get-validate-code-scorer-task-result.md): Poll for a code-scorer validation task result (returns status/result).
+- [Get Scorer Version Code](https://agent-observability-docs.splunk.com/api-reference/data/get-scorer-version-code.md)
+- [Create Code Scorer Version](https://agent-observability-docs.splunk.com/api-reference/data/create-code-scorer-version.md)
+- [Create Preset Scorer Version](https://agent-observability-docs.splunk.com/api-reference/data/create-preset-scorer-version.md): Create a preset scorer version.
+- [Create Luna Scorer Version](https://agent-observability-docs.splunk.com/api-reference/data/create-luna-scorer-version.md): Create a new custom Luna scorer version for the given scorer.
+- [Create Luna3 Scorer Version](https://agent-observability-docs.splunk.com/api-reference/data/create-luna3-scorer-version.md): Create a customer-authored LUNA 3 version for an existing Luna metric.
+- [List Scorers With Filters](https://agent-observability-docs.splunk.com/api-reference/data/list-scorers-with-filters.md)
+- [List Tags](https://agent-observability-docs.splunk.com/api-reference/data/list-tags.md)
+- [Get Scorer Version Or Latest](https://agent-observability-docs.splunk.com/api-reference/data/get-scorer-version-or-latest.md)
+- [List All Versions For Scorer](https://agent-observability-docs.splunk.com/api-reference/data/list-all-versions-for-scorer.md)
+- [Set Scorer Scope](https://agent-observability-docs.splunk.com/api-reference/data/set-scorer-scope.md): Full-replace a scorer's access scope (Share / manage visibility). metrics_rbac only.
+- [List Projects For Scorer Route](https://agent-observability-docs.splunk.com/api-reference/data/list-projects-for-scorer-route.md): List all projects associated with a specific scorer.
+- [List Projects For Scorer Version Route](https://agent-observability-docs.splunk.com/api-reference/data/list-projects-for-scorer-version-route.md): List all projects associated with a specific scorer version.
+- [Restore Scorer Version](https://agent-observability-docs.splunk.com/api-reference/data/restore-scorer-version.md): List all scorers.
+- [Autogen Llm Scorer](https://agent-observability-docs.splunk.com/api-reference/data/autogen-llm-scorer.md): Autogenerate an LLM scorer configuration.
+- [Manual Llm Validate](https://agent-observability-docs.splunk.com/api-reference/data/manual-llm-validate.md): Validate an LLM scorer manually, with query/response passed inline (no file uploads).
+- [Manual Llm Validate Multipart](https://agent-observability-docs.splunk.com/api-reference/data/manual-llm-validate-multipart.md): Validate an LLM scorer manually, with optional query/response file uploads.
+- [Validate Llm Scorer Log Record](https://agent-observability-docs.splunk.com/api-reference/data/validate-llm-scorer-log-record.md)
+- [Validate Llm Scorer Dataset](https://agent-observability-docs.splunk.com/api-reference/data/validate-llm-scorer-dataset.md)
+- [Validate Code Scorer Dataset](https://agent-observability-docs.splunk.com/api-reference/data/validate-code-scorer-dataset.md): Validate a code scorer against dataset rows.
+- [Compute Health Score Endpoint](https://agent-observability-docs.splunk.com/api-reference/data/compute-health-score-endpoint.md): Compute the health score metric for a metrics testing run.
+- [Get Scorer Health Scores](https://agent-observability-docs.splunk.com/api-reference/data/get-scorer-health-scores.md): Return all persisted health scores for a scorer against a dataset, ordered by version ASC.
+- [Write Scorer Version Health Score](https://agent-observability-docs.splunk.com/api-reference/data/write-scorer-version-health-score.md): Persist the health score for a scorer version against a dataset.
+- [Export Annotation Queue Records](https://agent-observability-docs.splunk.com/api-reference/annotation_queue_records/export-annotation-queue-records.md): Export selected records from an annotation queue.
+- [Export Annotation Queue Records Url](https://agent-observability-docs.splunk.com/api-reference/annotation_queue_records/export-annotation-queue-records-url.md): Export selected records from an annotation queue and return a presigned download URL.
+- [Get Trends](https://agent-observability-docs.splunk.com/api-reference/trends_dashboard/get-trends.md)
+- [Update Trends](https://agent-observability-docs.splunk.com/api-reference/trends_dashboard/update-trends.md)
+- [Create Widget](https://agent-observability-docs.splunk.com/api-reference/trends_dashboard/create-widget.md)
+- [Update Widget](https://agent-observability-docs.splunk.com/api-reference/trends_dashboard/update-widget.md)
+- [Delete Widget](https://agent-observability-docs.splunk.com/api-reference/trends_dashboard/delete-widget.md)
+- [Create Section](https://agent-observability-docs.splunk.com/api-reference/trends_dashboard/create-section.md)
+- [Update Section](https://agent-observability-docs.splunk.com/api-reference/trends_dashboard/update-section.md)
+- [Delete Section](https://agent-observability-docs.splunk.com/api-reference/trends_dashboard/delete-section.md): Delete section. If ungroup=True, keep widgets by moving them to dashboard top-level (clear section_id).
+- [List Dashboards](https://agent-observability-docs.splunk.com/api-reference/trends_dashboard/list-dashboards.md)
+- [Duplicate Dashboard](https://agent-observability-docs.splunk.com/api-reference/trends_dashboard/duplicate-dashboard.md)
+- [Favorite Dashboard](https://agent-observability-docs.splunk.com/api-reference/trends_dashboard/favorite-dashboard.md)
+- [Unfavorite Dashboard](https://agent-observability-docs.splunk.com/api-reference/trends_dashboard/unfavorite-dashboard.md)
+- [Delete Dashboard](https://agent-observability-docs.splunk.com/api-reference/trends_dashboard/delete-dashboard.md)
+- [Log Traces](https://agent-observability-docs.splunk.com/api-reference/trace/log-traces.md)
+- [Get Trace](https://agent-observability-docs.splunk.com/api-reference/trace/get-trace.md)
+- [Update Trace](https://agent-observability-docs.splunk.com/api-reference/trace/update-trace.md): Update a trace with the given ID.
+- [Get Span](https://agent-observability-docs.splunk.com/api-reference/trace/get-span.md)
+- [Update Span](https://agent-observability-docs.splunk.com/api-reference/trace/update-span.md): Update a span with the given ID.
+- [Traces Available Columns](https://agent-observability-docs.splunk.com/api-reference/trace/traces-available-columns.md)
+- [Metrics Testing Available Columns](https://agent-observability-docs.splunk.com/api-reference/trace/metrics-testing-available-columns.md)
+- [Spans Available Columns](https://agent-observability-docs.splunk.com/api-reference/trace/spans-available-columns.md)
+- [Sessions Available Columns](https://agent-observability-docs.splunk.com/api-reference/trace/sessions-available-columns.md)
+- [Query Traces](https://agent-observability-docs.splunk.com/api-reference/trace/query-traces.md)
+- [Query Partial Traces](https://agent-observability-docs.splunk.com/api-reference/trace/query-partial-traces.md)
+- [Count Traces](https://agent-observability-docs.splunk.com/api-reference/trace/count-traces.md): This endpoint may return a slightly inaccurate count due to the way records are filtered before deduplication.
+- [Log Spans](https://agent-observability-docs.splunk.com/api-reference/trace/log-spans.md)
+- [Query Spans](https://agent-observability-docs.splunk.com/api-reference/trace/query-spans.md)
+- [Query Partial Spans](https://agent-observability-docs.splunk.com/api-reference/trace/query-partial-spans.md)
+- [Count Spans](https://agent-observability-docs.splunk.com/api-reference/trace/count-spans.md)
+- [Query Metrics](https://agent-observability-docs.splunk.com/api-reference/trace/query-metrics.md)
+- [Query Metrics V2](https://agent-observability-docs.splunk.com/api-reference/trace/query-metrics-v2.md): Same as /metrics/search but returns metrics with node-type counts: trace (requests_count), session_count, and span_count in aggregate_metrics and in each bucket, similar to /metrics/custom_search.
+- [Query Custom Metrics](https://agent-observability-docs.splunk.com/api-reference/trace/query-custom-metrics.md)
+- [Create Session](https://agent-observability-docs.splunk.com/api-reference/trace/create-session.md)
+- [Query Sessions](https://agent-observability-docs.splunk.com/api-reference/trace/query-sessions.md)
+- [Query Partial Sessions](https://agent-observability-docs.splunk.com/api-reference/trace/query-partial-sessions.md)
+- [Count Sessions](https://agent-observability-docs.splunk.com/api-reference/trace/count-sessions.md)
+- [Get Session](https://agent-observability-docs.splunk.com/api-reference/trace/get-session.md)
+- [Get Aggregated Trace View](https://agent-observability-docs.splunk.com/api-reference/trace/get-aggregated-trace-view.md)
+- [Export Records](https://agent-observability-docs.splunk.com/api-reference/trace/export-records.md)
+- [Export Records Url](https://agent-observability-docs.splunk.com/api-reference/trace/export-records-url.md)
+- [Recompute Metrics](https://agent-observability-docs.splunk.com/api-reference/trace/recompute-metrics.md)
+- [Delete Traces](https://agent-observability-docs.splunk.com/api-reference/trace/delete-traces.md): Delete all trace records that match the provided filters.
+- [Delete Spans](https://agent-observability-docs.splunk.com/api-reference/trace/delete-spans.md): Delete all span records that match the provided filters.
+- [Delete Sessions](https://agent-observability-docs.splunk.com/api-reference/trace/delete-sessions.md): Delete all session records that match the provided filters.
+- [Get Logstream Insights Token Usages](https://agent-observability-docs.splunk.com/api-reference/logstream-insights/get-logstream-insights-token-usages.md): Get token usage records for a logstream insight.
+- [List Log Streams](https://agent-observability-docs.splunk.com/api-reference/log_stream/list-log-streams.md): Retrieve all log streams for a project.
+- [Create Log Stream](https://agent-observability-docs.splunk.com/api-reference/log_stream/create-log-stream.md): Create a new log stream for a project.
+- [List Log Streams Paginated](https://agent-observability-docs.splunk.com/api-reference/log_stream/list-log-streams-paginated.md): Retrieve all log streams for a project paginated.
+- [Search Log Streams](https://agent-observability-docs.splunk.com/api-reference/log_stream/search-log-streams.md): Search log streams for a project.
+- [Get Log Stream](https://agent-observability-docs.splunk.com/api-reference/log_stream/get-log-stream.md): Retrieve a specific log stream.
+- [Update Log Stream](https://agent-observability-docs.splunk.com/api-reference/log_stream/update-log-stream.md): Update a specific log stream.
+- [Delete Log Stream](https://agent-observability-docs.splunk.com/api-reference/log_stream/delete-log-stream.md): Delete a specific log stream.
+- [Get Metric Settings](https://agent-observability-docs.splunk.com/api-reference/log_stream/get-metric-settings.md)
+- [Update Metric Settings](https://agent-observability-docs.splunk.com/api-reference/log_stream/update-metric-settings.md)
+- [List Signals](https://agent-observability-docs.splunk.com/api-reference/signals-v2/list-signals.md): List top-level Signals for one log stream or experiment run.
+- [List Signal Scans](https://agent-observability-docs.splunk.com/api-reference/signals-v2/list-signal-scans.md): List Signal scans for one log stream or experiment run, newest first.
+- [Get Signal Scan](https://agent-observability-docs.splunk.com/api-reference/signals-v2/get-signal-scan.md): Read status, coverage, usage, and any terminal error for one Signal scan.
+- [Get Signals Configuration](https://agent-observability-docs.splunk.com/api-reference/signals-v2/get-signals-configuration.md): Read the Signals configuration for one log stream or experiment run.
+- [Put Signals Configuration](https://agent-observability-docs.splunk.com/api-reference/signals-v2/put-signals-configuration.md): Create or replace the Signals configuration for one log stream or experiment run.
+- [Delete Signals Configuration](https://agent-observability-docs.splunk.com/api-reference/signals-v2/delete-signals-configuration.md): Delete the Signals configuration for one log stream or experiment run.
+- [Get Signal](https://agent-observability-docs.splunk.com/api-reference/signals-v2/get-signal.md): Read one Signal with its impact history, remediations, and merge relationships.
+- [List Signal Affected Sessions](https://agent-observability-docs.splunk.com/api-reference/signals-v2/list-signal-affected-sessions.md): List affected sessions and stored evidence for one Signal and its merged Signals.
+- [Overview](https://agent-observability-docs.splunk.com/cookbooks/overview.md)
+- [Basic Agentic AI Example](https://agent-observability-docs.splunk.com/how-to-guides/agentic-ai/basic-example.md): Learn how to implement a basic agentic AI system using Splunk Agent Observability and OpenAI
+- [Weather Vibes Agent](https://agent-observability-docs.splunk.com/cookbooks/use-cases/agent-weather-vibes-app.md): Learn how to build an Agentic System for a smart weather application in a Python-based tech stack
+- [Monitor LangChain Agents with Splunk Agent Observability](https://agent-observability-docs.splunk.com/cookbooks/use-cases/agent-langchain.md): Learn how to build and monitor a LangChain AI Agent using Splunk Agent Observability for tracing and observability
+- [Add Evaluations to a Multi-Agent LangGraph Application](https://agent-observability-docs.splunk.com/cookbooks/use-cases/multi-agent-langgraph/multi-agent-langgraph.md): Learn how to add evaluations to a multi-agent LangGraph chat bot using Splunk Agent Observability
+- [Add Domain-Specific Custom Evaluators to your Application](https://agent-observability-docs.splunk.com/cookbooks/use-cases/custom-evaluator-startup-sim/custom-evaluator-startup-sim.md): Learn how to create custom LLM-as-a-Judge evaluators to evaluate domain-specific applications within Splunk Agent Observability
+- [Instrument LangGraph Agents with OpenTelemetry](https://agent-observability-docs.splunk.com/cookbooks/features/integrations/langgraph-otel-cookbook.md): Learn how to add comprehensive observability to your LangGraph agents using OpenTelemetry and Splunk Agent Observability
+- [Handling Ignored Instructions](https://agent-observability-docs.splunk.com/how-to-guides/conversational-ai/instruction-adherence.md): Learn how to handle ignored instructions and ensure that your AI models follow your instructions
+- [Fixing Hallucinations and Factual Errors](https://agent-observability-docs.splunk.com/how-to-guides/conversational-ai/fixing-hallucinations-and-factual-errors.md): Learn how to identify and address hallucinations and factual errors in your AI models
+- [Reducing Hesitation and Uncertainty](https://agent-observability-docs.splunk.com/how-to-guides/conversational-ai/reducing-hesitation-and-uncertainty.md): Learn how to reduce hesitation and uncertainty in your AI models
+- [Basic RAG Example](https://agent-observability-docs.splunk.com/how-to-guides/rag/basic-example.md): Learn how to implement a basic Retrieval-Augmented Generation (RAG) system using Splunk Agent Observability and OpenAI
+- [Preventing Out of Context Information](https://agent-observability-docs.splunk.com/how-to-guides/rag/preventing-out-of-context-information.md): Learn how to prevent out of context information from being generated by your AI models
+- [Completeness in RAG Systems](https://agent-observability-docs.splunk.com/how-to-guides/rag/ensuring-complete-use-of-retrieved-data.md): Learn how to ensure that your RAG systems provide complete answers using the Splunk Agent Observability completeness evaluator
+- [MongoDB Atlas Integration for Retrieval-Augmented Generation (RAG)](https://agent-observability-docs.splunk.com/cookbooks/use-cases/rag-mongodb-langchain-integration.md): Guide to using MongoDB Atlas Vector Search with LangGraph agents logging to Splunk Agent Observability
+- [Build a RAG Application with Elasticsearch, LangGraph, and Splunk Agent Observability](https://agent-observability-docs.splunk.com/cookbooks/use-cases/rag-elastic-langchain-integration.md): Guide to using Elasticsearch with LangGraph for the Chatbot RAG app, logging to Splunk Agent Observability
+- [Release Notes (On-premises)](https://agent-observability-docs.splunk.com/release-notes.md): Recent updates and enhancements for on-premises deployments of Splunk Agent Observability. For historical release notes, see the [Galileo](https://docs.galileo.ai/release-notes) documentation.
+- [Release Notes (SaaS)](https://agent-observability-docs.splunk.com/release-notes-saas.md): Recent updates and enhancements for SaaS deployments of Splunk Agent Observability. For historical release notes, see the [Galileo](https://docs.galileo.ai/release-notes) documentation.
+
+## OpenAPI Specs
+
+- [openapi](https://api.galileo.ai/public/v2/openapi.json)
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

@@ -1,0 +1,1188 @@
+{
+ "cardFormat": {
+  "note": "Pre-connect discovery document for this MCP server, tracking the SEP-2127 server-card proposal (still draft — no published schema, and its well-known path is not settled). Shape is stable here and mirrors what initialize/tools/list/prompts/list return.",
+  "proposal": "https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2127",
+  "protocolVersion": "2025-06-18",
+  "generatedBy": "network/scripts/build_mcp_discovery.mjs — do not hand-edit; run it instead"
+ },
+ "serverInfo": {
+  "name": "apis.io",
+  "title": "APIs.io API catalog MCP server",
+  "version": "1.3.0",
+  "description": "Discover, rate and compare APIs and providers in the APIs.io catalog; manage a listing you own.",
+  "access": "read-write",
+  "publisher": {
+   "name": "API Evangelist",
+   "url": "https://apievangelist.com"
+  },
+  "homepage": "https://apis.io",
+  "documentation": "https://apis.io/developer/mcp-server/"
+ },
+ "transport": {
+  "status": "active",
+  "type": "streamable-http",
+  "url": "https://apis.io/mcp",
+  "note": "This server READS AND WRITES: 124 of 141 tools read, 17 write, 2 of those destructive. Streamable HTTP JSON-RPC; call initialize, then tools/list, then tools/call. Every tool declares its own readOnlyHint, and every write declares destructiveHint. The write tools concern a listing you own or a request you are filing, and each returns 202 to be worked by a person — none publishes anything or moves a score on its own; save_search/create_list/add_to_list write only to your own workspace. Anonymous callers get the free catalog surface with no key: search, providers, apis, tags, taxonomy, artifacts, the playground, and everything about ONE provider. Synthesis across the catalog (ratings, cohorts, capabilities, operations, insights, stack design, resolve/enrich) needs the Understanding tier; agent-readiness across the catalog, vendor comparison, gap analysis and the own-your-listing surface need Influence (https://apis.io/developer/plans/).",
+  "authorization": {
+   "type": "oauth2",
+   "protectedResourceMetadata": "https://apis.io/.well-known/oauth-protected-resource",
+   "authorizationServerMetadata": "https://apis.io/.well-known/oauth-authorization-server",
+   "dynamicClientRegistration": true,
+   "scopesSupported": [
+    "apis:read",
+    "apis:pro",
+    "offline_access"
+   ],
+   "note": "Anonymous access is supported for the free tier; OAuth 2.1 authorization-code + PKCE (S256) with dynamic client registration raises the tier. An x-api-key header is accepted as an alternative and meters on the same per-user key."
+  }
+ },
+ "discovery": {
+  "restApi": "https://apis.io/api/v1",
+  "openapi": "https://raw.githubusercontent.com/api-evangelist/apis-io/refs/heads/main/openapi/apis-io-v1-openapi.yml",
+  "apiCatalog": "https://apis.io/.well-known/api-catalog",
+  "agentSkills": "https://apis.io/.well-known/agent-skills/index.json",
+  "apisJson": "https://apis.io/apis.json",
+  "registry": "https://registry.modelcontextprotocol.io",
+  "registryName": "io.apis/apis-io",
+  "sitemap": "https://apis.io/sitemap.xml"
+ },
+ "capabilities": {
+  "tools": {
+   "listChanged": false,
+   "count": 141,
+   "readCount": 124,
+   "writeCount": 17,
+   "destructiveCount": 2,
+   "available": [
+    {
+     "name": "add_to_list",
+     "title": "Add to list",
+     "description": "UNDERSTANDING — Add providers/APIs (by slug or aid) to one of your lists.",
+     "readOnlyHint": false,
+     "destructiveHint": false
+    },
+    {
+     "name": "agent_readiness_dimensions",
+     "title": "Agent readiness dimensions",
+     "description": "UNDERSTANDING — diffusion: for each agent-readiness dimension, how many scored providers satisfy it, out of how many, as a share.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "apis_io_search",
+     "title": "Search APIs.io",
+     "description": "Federated overview of the APIs.io catalog for a query: the top matching APIs, providers, AND tags in one call, each with its total match count.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "check_status",
+     "title": "Check a request status",
+     "description": "INFLUENCE — the status of a check request by id: queued, in_review, running, done, rejected or needs_info, with any notes shared by the reviewer.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "claim_listing",
+     "title": "Claim a listing you own",
+     "description": "INFLUENCE — ask to claim a listing as yours.",
+     "readOnlyHint": false,
+     "destructiveHint": false
+    },
+    {
+     "name": "cohort_capabilities",
+     "title": "Cohort capabilities",
+     "description": "UNDERSTANDING — what every member of a cohort actually publishes: artifact counts by type plus the agent-readiness dimensions each one satisfies.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "cohort_failures",
+     "title": "Cohort failures",
+     "description": "UNDERSTANDING — what a whole market gets WRONG: the agent-readiness checks its members most commonly fail, ranked by what fixing each would move the cohort mean.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "cohort_history",
+     "title": "Cohort history",
+     "description": "UNDERSTANDING — the SET-LEVEL time series: how a whole market's Kin Score and agent readiness moved, build by build.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "cohort_rankings",
+     "title": "Cohort rankings",
+     "description": "UNDERSTANDING — the leaderboard for a market, on TWO axes: rank by Kin Score composite AND rank by agent readiness.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "cohort_scores",
+     "title": "Cohort scores",
+     "description": "UNDERSTANDING — facet-level scores for every member of a cohort, each with the cohort average and the delta against it.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "cohort_stats",
+     "title": "Cohort stats",
+     "description": "UNDERSTANDING — the DISTRIBUTION for a whole market: Kin Score mean/median/min/max/stdev, agent-readiness spread, band split, per-facet averages, and artifact adoption rates.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "company_gaps",
+     "title": "Company gaps",
+     "description": "UNDERSTANDING — A company's weakest investment dimensions — where it is thin and a vendor could sell in.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "compare_cohorts",
+     "title": "Compare cohorts",
+     "description": "UNDERSTANDING — two markets side by side on one rubric: \"is US payments further along than UK banking?\" Returns both distributions plus the deltas on score, agent readiness, every facet and every adop",
+     "readOnlyHint": true
+    },
+    {
+     "name": "compare_providers",
+     "title": "Compare providers",
+     "description": "UNDERSTANDING — Compare 2+ providers side by side: composite/band, per-facet leaders, and an artifact-coverage matrix.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "correct_facts",
+     "title": "Correct facts on a listing you own",
+     "description": "INFLUENCE — propose corrections to what we say about you: name, description, url, industries, tags.",
+     "readOnlyHint": false,
+     "destructiveHint": false
+    },
+    {
+     "name": "create_list",
+     "title": "Create list",
+     "description": "UNDERSTANDING — Create a named, persistent list (a shortlist / stack you own) of providers or APIs.",
+     "readOnlyHint": false,
+     "destructiveHint": false
+    },
+    {
+     "name": "delete_list",
+     "title": "Delete list",
+     "description": "UNDERSTANDING — Delete a list you own.",
+     "readOnlyHint": false,
+     "destructiveHint": true
+    },
+    {
+     "name": "delete_saved_search",
+     "title": "Delete saved search",
+     "description": "UNDERSTANDING — Delete a saved search you own.",
+     "readOnlyHint": false,
+     "destructiveHint": true
+    },
+    {
+     "name": "deprecated_operations",
+     "title": "Deprecated operations",
+     "description": "UNDERSTANDING — every provider publishing at least one operation marked deprecated in its own OpenAPI, ranked by how many.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "dispute_finding",
+     "title": "Dispute a finding on a listing you own",
+     "description": "INFLUENCE — \"you say we lack X, here it is.\" Send the claim in words and a URL that evidences it.",
+     "readOnlyHint": false,
+     "destructiveHint": false
+    },
+    {
+     "name": "enrich_provider",
+     "title": "Enrich a provider (pick field groups)",
+     "description": "One call, pick your field groups — resolves a slug OR any identifier and returns exactly the groups you ask for, instead of chaining get_provider + get_provider_rating + get_provider_artifacts + get_p",
+     "readOnlyHint": true
+    },
+    {
+     "name": "export_dataset",
+     "title": "Export a dataset",
+     "description": "LICENCE (sold on the Influence plan) — the WHOLE dataset, not a 100-row page: `ratings` (every rated provider with facets, trend, rubric + provenance), `providers` (the catalog with coverage + score),",
+     "readOnlyHint": true
+    },
+    {
+     "name": "export_stack",
+     "title": "Export an API stack",
+     "description": "UNDERSTANDING — Export a designed capability stack as an adoptable APIs.json document (with an Arazzo hint) the team can commit.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "find_agent_readiness",
+     "title": "Find agent readiness",
+     "description": "UNDERSTANDING — the agent-readiness leaderboard across the whole catalog.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "find_agents",
+     "title": "Find agents",
+     "description": "FREE, no account — the A2A agent registry: agents that registered THEMSELVES by serving an agent card and calling register_agent.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "find_apis",
+     "title": "Find APIs",
+     "description": "Paginated, sortable list of APIs across providers — filter by tag, provider, artifact type, industry, region, or rating band.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "find_apis_json",
+     "title": "Find APIs.json artifacts",
+     "description": "APIs.json indexes across the catalog.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "find_arazzo",
+     "title": "Find Arazzo workflows",
+     "description": "Arazzo workflows across the catalog.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "find_areas",
+     "title": "Find areas",
+     "description": "Browse the API Evangelist areas taxonomy (authentication, webhooks, payments, …) — curated, scored provider indexes.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "find_artifacts",
+     "title": "Find artifacts",
+     "description": "Find artifacts of ANY one type across the catalog — the cross-type entry point.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "find_asyncapis",
+     "title": "Find AsyncAPIs",
+     "description": "AsyncAPI (event-driven) specifications across the catalog.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "find_capabilities",
+     "title": "Find capabilities",
+     "description": "START HERE for \"what can a business do with these APIs\".",
+     "readOnlyHint": true
+    },
+    {
+     "name": "find_channels",
+     "title": "Find event channels",
+     "description": "AsyncAPI event channels across the catalog.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "find_cohorts",
+     "title": "Find cohorts",
+     "description": "START HERE for market-level questions.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "find_collections",
+     "title": "Find collections",
+     "description": "Postman / Open collections across the catalog.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "find_company_insights",
+     "title": "Find company insights",
+     "description": "Browse profiled companies (Fortune 1000) by name or industry; ranked by overall technology-readiness signal.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "find_countries",
+     "title": "Find countries",
+     "description": "Browse the country dimension — the finest of the four place taxonomies, and the one a buyer usually names (\"who is in Germany\").",
+     "readOnlyHint": true
+    },
+    {
+     "name": "find_estates",
+     "title": "Find estates",
+     "description": "Browse corporate estates — one COMPANY whose API surface is spread across many provider records (Amazon 237, Salesforce 27, Cisco 37).",
+     "readOnlyHint": true
+    },
+    {
+     "name": "find_examples",
+     "title": "Find examples",
+     "description": "Example payloads across the catalog.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "find_extensions",
+     "title": "Find extensions",
+     "description": "Browse every OpenAPI `x-` specification extension harvested across the catalog, with the provenance the OpenAPI Initiative registry does not carry: who publishes it, in how many documents, where in th",
+     "readOnlyHint": true
+    },
+    {
+     "name": "find_finops",
+     "title": "Find FinOps artifacts",
+     "description": "FinOps / billing models across the catalog.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "find_graphql",
+     "title": "Find GraphQL APIs",
+     "description": "GraphQL schemas across the catalog.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "find_industries",
+     "title": "Find industries",
+     "description": "Browse industry verticals; sort by provider/API count.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "find_investors",
+     "title": "Find investors",
+     "description": "UNDERSTANDING — The reverse portfolio edge: which VC firms in the network back a given provider/company (by slug).",
+     "readOnlyHint": true
+    },
+    {
+     "name": "find_json_ld",
+     "title": "Find JSON-LD artifacts",
+     "description": "JSON-LD contexts across the catalog.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "find_json_schemas",
+     "title": "Find JSON schemas",
+     "description": "JSON Schemas across the catalog.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "find_json_structures",
+     "title": "Find JSON structures",
+     "description": "JSON Structures across the catalog.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "find_mcp",
+     "title": "Find MCP servers",
+     "description": "MCP servers across the catalog.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "find_openapis",
+     "title": "Find OpenAPIs",
+     "description": "OpenAPI specifications across the catalog.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "find_operations",
+     "title": "Find operations",
+     "description": "UNDERSTANDING — CATALOG-WIDE operation search: which providers expose a path matching your terms.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "find_plans",
+     "title": "Find pricing plans",
+     "description": "Pricing plans across the catalog.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "find_postman",
+     "title": "Find Postman collections",
+     "description": "Postman collections across the catalog.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "find_providers",
+     "title": "Find providers",
+     "description": "Paginated, sortable list of providers — filter by text, tag, artifact type, industry, region, rating band, access model (pricing/onboarding/try_now/public), or DIRECTION (accepts_writes/min_acting — w",
+     "readOnlyHint": true
+    },
+    {
+     "name": "find_rate_limits",
+     "title": "Find rate limits",
+     "description": "Rate-limit policies across the catalog.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "find_rating_movers",
+     "title": "Find rating movers",
+     "description": "UNDERSTANDING — The biggest rating movers (up and down) since the previous scoring build.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "find_ratings",
+     "title": "Find ratings",
+     "description": "Ranked ratings leaderboard — filter by band, score range, trend, or facet threshold.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "find_regions",
+     "title": "Find regions",
+     "description": "Browse geographic regions; sort by provider/API count.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "find_regulations",
+     "title": "Find regulations",
+     "description": "Browse the laws, statutes and accreditations the catalog tracks, each joined to the countries, regions and industries it binds.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "find_rules",
+     "title": "Find governance rule sets",
+     "description": "Spectral governance rulesets across the catalog.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "find_scopes",
+     "title": "Find OAuth scopes",
+     "description": "OAuth scope catalogs across the catalog.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "find_security",
+     "title": "Find security artifacts",
+     "description": "Security artifacts across the catalog.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "find_similar_apis",
+     "title": "Find similar APIs",
+     "description": "APIs similar to a given one (\"more like this\") by shared tags.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "find_similar_providers",
+     "title": "Find similar providers",
+     "description": "Providers similar to a given one (alternatives) by shared tags, areas, industry, region, and artifact coverage.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "find_skills",
+     "title": "Find agent skills",
+     "description": "Agent Skills across the catalog.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "find_tag_groups",
+     "title": "Find tag groups",
+     "description": "START HERE for capability-map questions.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "find_tags",
+     "title": "Find tags",
+     "description": "Paginated, sortable list of tags in the taxonomy.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "find_vcs",
+     "title": "Find VCs",
+     "description": "UNDERSTANDING — Find venture-capital firms by name, thesis tags, or category.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "gap_analysis",
+     "title": "Gap analysis",
+     "description": "UNDERSTANDING — For each provider: high-value artifacts it lacks (MCP, Arazzo, Rules, Skills…), what its peers commonly publish but it lacks, and its score vs the peer median — plus stack-level gaps a",
+     "readOnlyHint": true
+    },
+    {
+     "name": "generate_artifact",
+     "title": "Generate artifact",
+     "description": "INFLUENCE — REQUEST an artifact you are being marked down for not having: apis-json, agent-card, mcp (one tool per operation you already publish), arazzo, rules (a Spectral ruleset scoped to your own",
+     "readOnlyHint": false,
+     "destructiveHint": false
+    },
+    {
+     "name": "get_agent_readiness",
+     "title": "Get agent readiness",
+     "description": "EXPLORE — the agent-readiness dimensions and standalone score for ONE provider (spec presence, MCP server, auth clarity, idempotency, error semantics, rate-limit signal, well-known catalog, consent id",
+     "readOnlyHint": true
+    },
+    {
+     "name": "get_api",
+     "title": "Get API",
+     "description": "Full detail for one API by aid (provider:api-slug); set include=[\"content\"] to inline artifact bodies.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "get_api_artifacts",
+     "title": "Get API artifacts",
+     "description": "One API's artifacts grouped by type (by_type_counts is the full summary); pass `type` to scope the list to one type (synonym-aware: MCP matches MCPServer), include=[\"content\"] to inline the bodies.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "get_area",
+     "title": "Get area",
+     "description": "One area: metadata, its dedicated site link, and a top sample of member providers (with the total).",
+     "readOnlyHint": true
+    },
+    {
+     "name": "get_area_leaders",
+     "title": "Get area leaders",
+     "description": "UNDERSTANDING — Top-rated providers in a curated API Evangelist area.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "get_capability",
+     "title": "Get capability",
+     "description": "One business capability: its definition, its sub-capabilities, the external authorities it cites, and WHICH catalog providers reach it with their ratings.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "get_capability_edges",
+     "title": "Get capability edges",
+     "description": "UNDERSTANDING — the evidence behind a capability.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "get_cohort",
+     "title": "Get cohort",
+     "description": "One cohort: its identity, its population, and the full member roster with each provider's Kin Score and agent readiness.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "get_company_insight",
+     "title": "Get company insight",
+     "description": "UNDERSTANDING — Full demand-side profile for one company: 40-dimension readiness scores, adopted stack, and per-quarter history.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "get_country",
+     "title": "Get country",
+     "description": "One country: metadata, counts, and a top sample of member providers (with the total).",
+     "readOnlyHint": true
+    },
+    {
+     "name": "get_country_leaders",
+     "title": "Get country leaders",
+     "description": "UNDERSTANDING — Top-rated providers in one country.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "get_estate",
+     "title": "Get estate",
+     "description": "One estate: the owning provider, the full member roster with per-member API counts and bands, and the estate-wide rating.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "get_extension",
+     "title": "Get extension",
+     "description": "One OpenAPI specification extension: its publishers, occurrence and document counts, where it appears, and the value shapes observed.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "get_industry",
+     "title": "Get industry",
+     "description": "One industry: metadata + a top sample of its member providers (ranked, with the total).",
+     "readOnlyHint": true
+    },
+    {
+     "name": "get_industry_leaders",
+     "title": "Get industry leaders",
+     "description": "UNDERSTANDING — Top-rated providers in an industry vertical.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "get_list",
+     "title": "Get list",
+     "description": "UNDERSTANDING — Get a list you own, with each member resolved to its current name, band, and score.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "get_openapi",
+     "title": "Get OpenAPI",
+     "description": "An API's primary OpenAPI reference (url) — the top agent intent; set include=[\"content\"] to inline the spec body.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "get_playground_apis",
+     "title": "Playground APIs (free, no key)",
+     "description": "Curated APIs that are SAFE TO EXPERIMENT WITH — no key (or an instant, free, self-serve key), no cost, and no real-world side effects.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "get_prices",
+     "title": "Prices per call",
+     "description": "What one call costs on the pay-as-you-go plan, by cost band.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "get_provider",
+     "title": "Get provider",
+     "description": "Full detail for one provider: profile, rating, and the APIs it publishes.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "get_provider_apis",
+     "title": "Get provider APIs",
+     "description": "Every API one provider publishes, as a page you can filter — the provider's own catalog rather than the whole network's.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "get_provider_artifacts",
+     "title": "Get provider artifacts",
+     "description": "Every artifact a provider publishes — provider-level (MCP, security, scopes, rules, agentic-access) and per-API (OpenAPI, Arazzo, overlays, reference docs) — grouped by type with counts.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "get_provider_business_capabilities",
+     "title": "Get provider business capabilities",
+     "description": "UNDERSTANDING — what ONE vendor's published APIs let a business DO, rolled up by capability, with the tag-level evidence under each.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "get_provider_capabilities",
+     "title": "Get provider capabilities",
+     "description": "What one provider publishes, counted by artifact type, with the agent dimensions it satisfies.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "get_provider_estate",
+     "title": "Get provider estate",
+     "description": "Which corporate estate a provider belongs to, if any.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "get_provider_evidence",
+     "title": "Get provider evidence",
+     "description": "How a provider's score was established, part by part: first-party (they published it), verified (we fetched and confirmed it), or derived (we inferred it).",
+     "readOnlyHint": true
+    },
+    {
+     "name": "get_provider_facets",
+     "title": "Get provider facets",
+     "description": "UNDERSTANDING — one provider's score broken into its facets (discoverability, contract quality, governance, operational transparency, developer ergonomics, commercial clarity) plus any regulatory regi",
+     "readOnlyHint": true
+    },
+    {
+     "name": "get_provider_onboarding",
+     "title": "Get provider onboarding",
+     "description": "A getting-started view for a provider — website, portal, signup, docs, authentication, base URLs, and first steps assembled from its registered links.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "get_provider_operations",
+     "title": "Get provider operations",
+     "description": "Every operation a provider exposes, across all of its OpenAPIs — method, path, operationId, summary, which API it belongs to, and whether it is deprecated.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "get_provider_rating",
+     "title": "Get provider rating",
+     "description": "One provider's full rating breakdown (composite, band, trend, six facets).",
+     "readOnlyHint": true
+    },
+    {
+     "name": "get_provider_schema",
+     "title": "Get provider schema",
+     "description": "Every JSON Schema a provider publishes — the data shapes their API works in, in one list, without walking their artifacts.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "get_provider_tools",
+     "title": "Get provider tools",
+     "description": "Every MCP tool a provider ships, with the operation each one wraps and its auth.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "get_rating_history",
+     "title": "Get rating history",
+     "description": "UNDERSTANDING — A provider's REAL score time series: one point per scored build (composite + agent readiness on each date), plus a summary of the movement over the window — first/last, net change, dir",
+     "readOnlyHint": true
+    },
+    {
+     "name": "get_rating_rubric",
+     "title": "Get rating rubric",
+     "description": "UNDERSTANDING — the rubric: bands, facet weights, trend thresholds, so an agent can interpret any score.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "get_region",
+     "title": "Get region",
+     "description": "One region: metadata + a top sample of its member providers (ranked, with the total).",
+     "readOnlyHint": true
+    },
+    {
+     "name": "get_region_leaders",
+     "title": "Get region leaders",
+     "description": "UNDERSTANDING — Top-rated providers in a region.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "get_regulation",
+     "title": "Get regulation",
+     "description": "One regulation: what it is, its jurisdiction and scope, a link to the law itself, and reaches[] — the country, region and industry cohorts this regime binds.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "get_tag",
+     "title": "Get tag",
+     "description": "One tag: its metadata, neighbor tags, and a top sample of its providers and APIs (with totals).",
+     "readOnlyHint": true
+    },
+    {
+     "name": "get_tag_group",
+     "title": "Get tag group",
+     "description": "One tag group: its member tags and the full provider roster resolved from the catalog, each with Kin Score and agent readiness.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "get_vc",
+     "title": "Get a VC firm",
+     "description": "UNDERSTANDING — One VC firm: identity, fund facts, and portfolio summary (totals, band distribution, average rating).",
+     "readOnlyHint": true
+    },
+    {
+     "name": "industry_gap_analysis",
+     "title": "Industry gap analysis",
+     "description": "UNDERSTANDING — Valuable artifact types (MCP, Arazzo, Rules, Skills…) commonly missing across a whole industry — where the vertical is under-served.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "insights_adoption",
+     "title": "Insights adoption",
+     "description": "Services, tools, or standards ranked by how many companies adopt them across the profiled set.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "insights_dimensions",
+     "title": "Insights dimensions",
+     "description": "Cross-section ranking of the 40 tracked investment dimensions (AI, cloud, governance, security, …) by how many profiled companies show signal.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "insights_industries",
+     "title": "Insights industries",
+     "description": "UNDERSTANDING — the demand-side industry rollup: the sectors the profiled companies fall into.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "insights_overview",
+     "title": "Insights overview",
+     "description": "UNDERSTANDING — the Insights root: how many companies are profiled, over how many quarters, and the top investment dimensions across the whole set.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "list_lists",
+     "title": "List lists",
+     "description": "UNDERSTANDING — List the lists/shortlists you own.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "list_saved_searches",
+     "title": "List saved searches",
+     "description": "UNDERSTANDING — List the saved searches you own (name, criteria, when last run, how many matches are tracked).",
+     "readOnlyHint": true
+    },
+    {
+     "name": "list_watches",
+     "title": "List watched listings",
+     "description": "INFLUENCE — the listings you are watching, with the events registered for each and when you started.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "match_providers",
+     "title": "Match providers to a need",
+     "description": "UNDERSTANDING — The supply↔demand join: apis.io providers whose product appears in a company's adopted stack, ranked by rating.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "my_checks",
+     "title": "My checks",
+     "description": "INFLUENCE — the check requests you filed, newest first.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "my_workspace",
+     "title": "My workspace",
+     "description": "UNDERSTANDING — the workspace root: which plan you are on, how many saved searches and lists you hold, and where each lives.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "readiness_gates",
+     "title": "Agent readiness gates",
+     "description": "INFLUENCE — what blocks the next agent-readiness band, GATES BEFORE POINTS.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "recommend_stack",
+     "title": "Recommend an API stack",
+     "description": "Design an API stack — the best-rated catalog provider per capability, assembled into a stack.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "register_agent",
+     "title": "Register agent",
+     "description": "FREE, no account — register yourself in the A2A agent registry.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "report_correction",
+     "title": "Report a correction (free)",
+     "description": "Report that the catalog has a provider WRONG — a wrong website, a wrong logo, APIs that are not theirs, a count that does not match what they ship, a score computed from any of those.",
+     "readOnlyHint": false,
+     "destructiveHint": false
+    },
+    {
+     "name": "report_gap",
+     "title": "Report a gap in the catalog",
+     "description": "FREE, no account — tell the catalog what you looked for and could not find.",
+     "readOnlyHint": false,
+     "destructiveHint": false
+    },
+    {
+     "name": "request_check",
+     "title": "Request a re-check",
+     "description": "INFLUENCE — ask APIs.io to (re)check something.",
+     "readOnlyHint": false,
+     "destructiveHint": false
+    },
+    {
+     "name": "resolve",
+     "title": "Resolve an identifier to a provider",
+     "description": "Resolve ANY identifier — website URL, domain (stripe.com), or GitHub org (github.com/stripe) — to the apis.io provider it belongs to.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "run_saved_search",
+     "title": "Run saved search",
+     "description": "UNDERSTANDING — Re-run one of your saved searches against the live catalog and return current matching providers.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "save_search",
+     "title": "Save search",
+     "description": "UNDERSTANDING — Persist the current search criteria as a named saved search you own, so you can re-run it and get net-new results later.",
+     "readOnlyHint": false,
+     "destructiveHint": false
+    },
+    {
+     "name": "saved_search_net_new",
+     "title": "Saved search: new since last run",
+     "description": "UNDERSTANDING — What is NEW for a saved search since you last checked: providers that newly match your criteria.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "set_visibility",
+     "title": "Set visibility",
+     "description": "INFLUENCE — ask to be shown less, or not at all.",
+     "readOnlyHint": false,
+     "destructiveHint": false
+    },
+    {
+     "name": "simulate_fixes",
+     "title": "Simulate fixes",
+     "description": "INFLUENCE — project a set of fixes onto a provider's agent-readiness score and band before doing the work.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "story_leads",
+     "title": "Story leads",
+     "description": "OWNER — The weekly \"what's worth writing\" rollup: ranked story leads from the demand map crossed with rating movement — unmet demand (searched, no result), risers/fallers, and hot-but-thin capabilitie",
+     "readOnlyHint": true
+    },
+    {
+     "name": "submit_artifact",
+     "title": "Submit artifact",
+     "description": "INFLUENCE — tell us about an artifact you publish, rather than waiting for us to find it.",
+     "readOnlyHint": false,
+     "destructiveHint": false
+    },
+    {
+     "name": "submit_feedback",
+     "title": "Send feedback (free)",
+     "description": "Report something wrong with a result: wrong data, a filter that did not filter, a ranking that put off-topic results first, a number you could not reproduce, or an answer that was useless for your tas",
+     "readOnlyHint": false,
+     "destructiveHint": false
+    },
+    {
+     "name": "tag_group_tags",
+     "title": "Tags in a tag group",
+     "description": "The member tags of one tag group, each joined to its catalog record — provider count, api count, tag quality band and composite.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "unwatch_listing",
+     "title": "Unwatch listing",
+     "description": "INFLUENCE — stop watching a listing.",
+     "readOnlyHint": false,
+     "destructiveHint": false
+    },
+    {
+     "name": "vc_portfolio",
+     "title": "VC portfolio",
+     "description": "UNDERSTANDING — A VC firm's portfolio companies, each matched to the network and rated.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "watch_listing",
+     "title": "Watch listing",
+     "description": "INFLUENCE — be told when a listing you care about moves: score changes, band changes, agent-band changes, or a check closing.",
+     "readOnlyHint": false,
+     "destructiveHint": false
+    },
+    {
+     "name": "what_can_i_fix",
+     "title": "What can I fix?",
+     "description": "INFLUENCE — the ranked, gated punch list for one provider you own.",
+     "readOnlyHint": true
+    },
+    {
+     "name": "whats_changed",
+     "title": "What's changed",
+     "description": "UNDERSTANDING — What changed in the catalog since a date: providers added/updated, plus rating movement measured FROM THAT DATE — each provider's current score against its score at the first scored sn",
+     "readOnlyHint": true
+    }
+   ]
+  },
+  "prompts": {
+   "listChanged": false,
+   "count": 36,
+   "available": [
+    {
+     "name": "agent_readiness_scan",
+     "description": "Check whether an API/provider is ready for AI agents — MCP, Skills, llms.txt, OpenAPI, auth clarity.",
+     "gated": false
+    },
+    {
+     "name": "api_readiness_check",
+     "description": "Assess whether an API is ready to adopt — artifacts present, rating, and what is missing.",
+     "gated": false
+    },
+    {
+     "name": "audit_api_estate",
+     "description": "INFLUENCE — Inventory, score, and gap a set of providers: what they publish, how they rate, and what they lack.",
+     "gated": true
+    },
+    {
+     "name": "benchmark_against_peers",
+     "description": "INFLUENCE — Benchmark a provider against its closest peers, facet by facet.",
+     "gated": true
+    },
+    {
+     "name": "best_in_class",
+     "description": "Find the best-in-class APIs for an artifact quality — the most governed, the most MCP-ready, the most granular OAuth, and so on.",
+     "gated": false
+    },
+    {
+     "name": "build_agent_toolset",
+     "description": "UNDERSTANDING — Assemble the providers, MCP tools, and skills an agent needs for a job.",
+     "gated": true
+    },
+    {
+     "name": "category_leaderboard",
+     "description": "UNDERSTANDING — The ranked quality leaderboard for one industry, region, area, tag, or vc portfolio.",
+     "gated": true
+    },
+    {
+     "name": "claim_and_improve",
+     "description": "INFLUENCE — For a provider you own: your rating, the gap, and the ranked plan to close it.",
+     "gated": true
+    },
+    {
+     "name": "cohort_briefing",
+     "description": "INFLUENCE — Read a whole population: how it scores, how it has moved, and the specific checks it fails.",
+     "gated": true
+    },
+    {
+     "name": "company_readiness",
+     "description": "INFLUENCE — Assess a company's technology readiness from the demand-side data: where it invests, where it is thin, and which apis.io providers are already in its stack.",
+     "gated": true
+    },
+    {
+     "name": "demand_vs_supply",
+     "description": "Find where demand outruns catalog coverage — the gaps worth filling.",
+     "gated": false
+    },
+    {
+     "name": "deprecation_sweep",
+     "description": "UNDERSTANDING — Check what you depend on for deprecated operations, before a provider retires one under you.",
+     "gated": true
+    },
+    {
+     "name": "design_api_stack",
+     "description": "UNDERSTANDING — Design a recommended API stack for a team, domain, or company: a scored provider per capability, exportable as APIs.json.",
+     "gated": true
+    },
+    {
+     "name": "explain_artifact",
+     "description": "Explain one API artifact (OpenAPI, AsyncAPI, Arazzo, rules, …) and how to use it.",
+     "gated": false
+    },
+    {
+     "name": "explore_area",
+     "description": "Explore an API Evangelist topic area and its member providers.",
+     "gated": false
+    },
+    {
+     "name": "explore_industry",
+     "description": "Explore an industry vertical — its providers, leaders, and coverage.",
+     "gated": false
+    },
+    {
+     "name": "explore_region",
+     "description": "Explore a geographic region — its providers, leaders, and coverage.",
+     "gated": false
+    },
+    {
+     "name": "explore_tag",
+     "description": "Explore a tag — what it covers, its scored neighbors, and its strongest providers.",
+     "gated": false
+    },
+    {
+     "name": "find_alternatives",
+     "description": "INFLUENCE — Find and compare alternatives to a provider for a migration decision.",
+     "gated": true
+    },
+    {
+     "name": "find_api",
+     "description": "Find an API for a task or use case, ranked with links.",
+     "gated": false
+    },
+    {
+     "name": "improve_my_score",
+     "description": "Read your provider rating and turn it into a ranked, do-this-next punch list.",
+     "gated": false
+    },
+    {
+     "name": "insights_landscape",
+     "description": "Map where the market is investing — the demand-side landscape for a topic.",
+     "gated": false
+    },
+    {
+     "name": "integrate_provider",
+     "description": "Onboard a provider end-to-end: pull its OpenAPI + onboarding, then produce first-integration steps.",
+     "gated": false
+    },
+    {
+     "name": "manage_my_listing",
+     "description": "INFLUENCE — Run a listing you own end to end: claim it, see the gates, get artifacts drafted, submit what you publish, and watch the score.",
+     "gated": true
+    },
+    {
+     "name": "map_stack_to_capabilities",
+     "description": "UNDERSTANDING — Read a set of vendors as BUSINESS CAPABILITIES: what this stack lets the business actually do, evidenced from each vendor's own contracts, and where the holes are.",
+     "gated": true
+    },
+    {
+     "name": "movers_briefing",
+     "description": "UNDERSTANDING — A narrative briefing on the biggest rating movements, with the why behind each.",
+     "gated": true
+    },
+    {
+     "name": "my_workspace_tour",
+     "description": "UNDERSTANDING — What you have saved here, what is new since you last looked, and what to do next.",
+     "gated": true
+    },
+    {
+     "name": "network_pulse",
+     "description": "UNDERSTANDING — What moved across the catalog and why it matters.",
+     "gated": true
+    },
+    {
+     "name": "provider_overview",
+     "description": "Summarize what one provider offers — their APIs, artifacts, and links.",
+     "gated": false
+    },
+    {
+     "name": "rating_methodology",
+     "description": "Explain how apis.io scores an API — so you can cite or defend a rating.",
+     "gated": false
+    },
+    {
+     "name": "sell_upmarket",
+     "description": "INFLUENCE — Find which Fortune-1000 companies to approach for your API, and where they are thin.",
+     "gated": true
+    },
+    {
+     "name": "state_of_report",
+     "description": "INFLUENCE — Scaffold a data-report on the state of a category: ratings, movement, and demand.",
+     "gated": true
+    },
+    {
+     "name": "story_leads",
+     "description": "OWNER — What is worth writing about this week: rising demand x thin coverage x rating movement.",
+     "gated": true
+    },
+    {
+     "name": "track_provider_changes",
+     "description": "UNDERSTANDING — Monitor a chosen set of providers for catalog and rating movement.",
+     "gated": true
+    },
+    {
+     "name": "vendor_shortlist",
+     "description": "UNDERSTANDING — Build a scored vendor shortlist for one capability, with tradeoffs.",
+     "gated": true
+    },
+    {
+     "name": "who_exposes_operation",
+     "description": "UNDERSTANDING — Find every provider whose API actually exposes a given operation, by path rather than by tag.",
+     "gated": true
+    }
+   ]
+  },
+  "resources": {
+   "listChanged": false,
+   "count": 8,
+   "templateCount": 10,
+   "available": [
+    {
+     "uri": "apis://agent-readiness/dimensions",
+     "name": "Agent-readiness dimensions",
+     "description": "The agent-readiness vocabulary — every dimension id, what it measures and what it is worth."
+    },
+    {
+     "uri": "apis://catalog",
+     "name": "APIs.io catalog root",
+     "description": "Service root — network-wide artifact counts."
+    },
+    {
+     "uri": "apis://changes",
+     "name": "Catalog changes feed",
+     "description": "UNDERSTANDING — Recent catalog changes (last 30 days): providers added/updated plus rating movement, as an attachable feed."
+    },
+    {
+     "uri": "apis://deprecations",
+     "name": "Deprecated operations roll-up",
+     "description": "UNDERSTANDING — Operations providers across the catalog have marked deprecated, grouped by provider."
+    },
+    {
+     "uri": "apis://llms.txt",
+     "name": "Catalog llms.txt",
+     "description": "The apis.io llms.txt index — a machine-readable map of the network for grounding."
+    },
+    {
+     "uri": "apis://prices",
+     "name": "Per-call prices",
+     "description": "What each call costs on the pay-as-you-go plan, by band — free catalog reads, single-entity synthesis, cross-catalog synthesis, bulk."
+    },
+    {
+     "uri": "apis://ratings/rubric",
+     "name": "Rating rubric",
+     "description": "The scoring rubric — bands, facet weights, trend thresholds — so an agent can interpret any provider score."
+    },
+    {
+     "uri": "apis://workspace",
+     "name": "My workspace",
+     "description": "UNDERSTANDING — Your workspace root: plan, saved-search and list counts, and where each lives."
+    }
+   ]
+  }
+ },
+ "links": [
+  {
+   "rel": "service-desc",
+   "href": "https://raw.githubusercontent.com/api-evangelist/apis-io/refs/heads/main/openapi/apis-io-v1-openapi.yml",
+   "type": "application/yaml"
+  },
+  {
+   "rel": "api-catalog",
+   "href": "https://apis.io/.well-known/api-catalog",
+   "type": "application/linkset+json"
+  },
+  {
+   "rel": "agent-skills",
+   "href": "https://apis.io/.well-known/agent-skills/index.json",
+   "type": "application/json"
+  },
+  {
+   "rel": "terms-of-service",
+   "href": "https://apis.io/terms/",
+   "type": "text/html"
+  },
+  {
+   "rel": "privacy-policy",
+   "href": "https://apis.io/privacy/",
+   "type": "text/html"
+  },
+  {
+   "rel": "help",
+   "href": "https://apis.io/support/",
+   "type": "text/html"
+  }
+ ]
+}

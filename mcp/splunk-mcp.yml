@@ -1,0 +1,11 @@
+generated: '2026-10-03'
+method: derived
+source: preflight
+
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: unknown
+  verified: derived

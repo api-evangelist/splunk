@@ -1,0 +1,81 @@
+generated: '2026-10-03'
+method: searched
+generator: extract-docs-artifacts.py (local)
+source: https://agent-observability-docs.splunk.com/release-notes.md
+sources:
+- https://agent-observability-docs.splunk.com/release-notes.md
+- https://docs.galileo.ai/release-notes
+- https://agent-observability-docs.splunk.com/release-notes-saas.md
+entries:
+- breaking: false
+  highlights:
+  - Announcing Tokenomics in Splunk Agent Observability
+  - Monitor AI tool cost and adoption across your organization with Tokenomics.
+  - This feature brings usage data from supported AI third‑party providers into Splunk Agent Observability so you can understand cost, adoption,
+    and the teams behind them.
+  - Use Tokenomics to track active users and usage trends over time to see which tools your teams use most.
+  date: '2026-09-15'
+- breaking: false
+  highlights:
+  - Announcing Agent Observability for Splunk Observability Cloud
+  - Splunk Agent Observability is now available as a SaaS deployment integrated with Splunk Observability Cloud.
+  - To get started, contact your Splunk team for access.
+  - If you're a new user, get hands‑on with the Splunk Observability Cloud Free Edition today.
+  date: '2026-09-15'
+- breaking: false
+  highlights:
+  - Signals enhancements
+  - Signals is now available as a tab within an Agent Stream, making it easier to discover and investigate failure patterns across your AI agents.
+  - Within a signal, select Remediate with AI Assistant to send its context directly to the AI Assistant.
+  - AI Assistant is now generally available.
+  date: '2026-09-08'
+- breaking: false
+  highlights:
+  - Announcing Splunk Agent Observability for on‑premises deployments
+  - Splunk Agent Observability is the leading observability, evaluation, and guardrail platform for GenAI and agentic applications.
+  - Designed to empower engineers, product managers, and subject matter experts to build safe and reliable AI applications.
+  - To get started, contact support for access.
+  date: '2026-08-07'
+- breaking: false
+  highlights:
+  - Announcing Agent Observability for Splunk Observability Cloud
+  - Splunk Agent Observability is now available as a SaaS deployment integrated with Splunk Observability Cloud.
+  - Announcing Tokenomics in Splunk Agent Observability
+  - Announcing Agent Observability in Cisco Cloud Control
+  date: '2026-08-07'
+- breaking: false
+  highlights:
+  - Annotation Queues and dark mode now generally available, OpenAI model updates, AI Assistant (Beta) enhancement
+  - Annotation Queues now generally available
+  - AI Assistant (Beta) now available beyond Log Streams and Experiments
+  - 'OpenAI model updates: GPT 5.6 Sol, Terra, and Luna models are now available'
+  date: '2026-08-04'
+- breaking: false
+  highlights:
+  - AI‑assisted custom code‑based metrics, GA Model Pricing and Integration Costs pages, Billing Usage page, AI assistant enhancements, Trace
+    Count system metric, multimodal out‑of‑the‑box evaluation metrics
+  - Generate custom code‑based metrics with AI
+  - 'AI Assistant enhancements: AI Assistant now sorts signals by criticality'
+  - 'Metric roll‑up features: Span and Trace level metrics are now rolled up to the Session level'
+  date: '2026-07-21'
+- breaking: false
+  highlights:
+  - Galileo's Agent Control, OpenAI model update, Google ADK update, Python and TypeScript SDK updates
+  - Galileo’s Agent Control launched in open source
+  - 'OpenAI model update: the new GPT 5.4 model is now available'
+  - 'Python SDK update: new version with major enhancements'
+  date: '2026-03-13'
+- breaking: false
+  highlights:
+  - Galileo MCP Signals, model updates, support for Microsoft Agent Framework, new RAG metrics, new publications, security improvements, annotation
+    queues (enterprise beta)
+  - Galileo MCP Server can now be used with Signals
+  - 'Support for Microsoft Agent Framework: Galileo now supports logging traces from Microsoft Agent Framework applications'
+  - 'New RAG metrics: Chunk Relevance, Context Precision, Precision @ K'
+  date: '2026-02-27'
+- breaking: false
+  highlights:
+  - OpenAI Responses API support, new integrations, metric recomputation flow, performance benchmarks, SQL metrics
+  - OpenAI Responses API (with tracing) now supported
+  date: '2026-02-13'
+docs: https://agent-observability-docs.splunk.com/release-notes.md
