@@ -1,0 +1,241 @@
+generated: '2026-10-12'
+method: searched
+source:
+- https://zapier.com/apps/splunk/integrations
+- https://n8n.io/integrations/splunk/
+checked:
+- https://composio.dev/toolkits/splunk
+- https://monid.ai/tools/splunk
+- https://n8n.io/integrations/splunk/
+- https://zapier.com/apps/splunk/integrations
+summary: null
+marketplace_apps:
+- marketplace: zapier
+  channel: ipaas-listing
+  app: splunk
+  url: https://zapier.com/apps/splunk/integrations
+  external_url: https://splunk.com/
+  partner_tier: BRONZE
+  triggers:
+  - key: fired_alert
+    label: Fired Alert
+  - key: new_saved_search
+    label: New Saved Search
+  - key: search_job_completed
+    label: Search Job Completed
+  actions:
+  - key: create_saved_search
+    label: Create Saved Search
+  - key: create_search_job
+    label: Create Search Job
+  - key: run_saved_search
+    label: Run Saved Search
+  - key: send_event
+    label: Send Event
+  - key: send_raw_event
+    label: Send Raw Event
+  searches:
+  - key: find_saved_search
+    label: Find Saved Search
+  - key: find_search_results
+    label: Find Search Results
+  - key: run_search_query
+    label: Run Search Query
+- marketplace: n8n
+  channel: open-source-node
+  app: splunk
+  url: https://n8n.io/integrations/splunk/
+  identity: title
+  pair_pages: 134
+  pairs:
+  - spondyr
+  - spontit
+  - sportsdata
+  - spotify
+  - spydra
+  - sslmate-cert-spotter-api
+  - stackby
+  - stammerai
+  - starton
+  - statuscake
+  - storyblok
+  - strapi
+  - strava
+  - stripe
+  - studio-by-ai21-labs
+  - suitedash
+  - supabase
+  - supernormal
+  - superpowered
+  - supportivekoala
+  - survicate
+  - swagup
+  - switchboard
+  - syncly
+  - syncromsp
+  - synthesia
+  - taiga
+  - talentlms
+  - talknotes
+  - tapfiliate
+  - td-ameritrade
+  - teachable
+  - team-up
+  - teamdeck
+  - teamgate
+  - teknoir
+  - telegram
+  - testmonitor
+  - textcortex-ai
+  - textgain
+  - textkit
+  - textmagic
+  - thankster
+  - the-customer-factor
+  - the-leap
+  - thehive
+  - thehive-5
+  - thoughtfulgpt
+  - thrivecart
+  - tidb-cloud
+  - tierion
+  - tilda
+  - timescaledb
+  - timetonic
+  - tinyurl
+  - tisane-labs
+  - todoist
+  - token-metrics
+  - toket
+  - totango
+  - trackvia
+  - transifex
+  - travisci
+  - trellix-epo
+  - trello
+  - trengo
+  - trevorio
+  - turbohire
+  - tuskr
+  - tuulio
+  - twake
+  - twilio
+  - twist
+  - twitter
+  - unbounce
+  - unisender
+  - unleashed-software
+  - upkeep
+  - uplead
+  - uproc
+  - uptimerobot
+  - uptimetoolbox
+  - urlscanio
+  - uservoice
+  - venafi-tls-protect-cloud
+  - venafi-tls-protect-datacenter
+  - venly
+  - verifalia
+  - vero
+  - vimeo
+  - virustotal
+  - vivifyscrum
+  - voicit
+  - vonage
+  - vowel
+  - watchsignals
+  - waveline-extract
+  - webex-by-cisco
+  - webflow
+  - webscraperio
+  - wekan
+  - whal3s
+  - whatconverts
+  - whatsapp-business-cloud
+  - wise
+  - wizychat
+  - wonderchat
+  - wondercraft
+  - woocommerce
+  - woodpeckerco
+  - wordpress
+  - workast
+  - workboard
+  - woxo
+  - writesonic
+  - wubook-ratechecker
+  - xero
+  - xtractly
+  - ybug
+  - ycode
+  - yodiz
+  - yourls
+  - youtube
+  - zabbix
+  - zammad
+  - zendesk
+  - zenrows
+  - zoho-books
+  - zoho-crm
+  - zoho-desk
+  - zonka-feedback
+  - zoom
+  - zscaler-zia
+  - zulip
+edges:
+- partner_name: Slack
+  partner: slack
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/splunk/integrations/slack
+  direction: third-party
+  category: Team Chat
+  partner_url: https://slack.com/
+- partner_name: Salesforce
+  partner: salesforce
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/splunk/integrations/salesforce
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://www.salesforce.com/
+- partner_name: Google Ads
+  partner: google-ads
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/splunk/integrations/google-ads
+  direction: third-party
+  category: Ads & Conversion
+  partner_url: https://ads.google.com/
+- partner_name: Microsoft Teams
+  partner: microsoft-teams
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/splunk/integrations/microsoft-teams
+  direction: third-party
+  category: Microsoft
+  partner_url: https://products.office.com/en-us/microsoft-teams/group-chat-software
+- partner_name: ServiceNow
+  partner: servicenow
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/splunk/integrations/servicenow
+  direction: third-party
+  category: Developer Tools
+  partner_url: https://www.servicenow.com/
+templates: []
