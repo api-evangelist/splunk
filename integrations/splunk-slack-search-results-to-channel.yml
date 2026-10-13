@@ -1,0 +1,80 @@
+arazzo: 1.0.1
+info:
+  title: Splunk Slack search results to channel
+  summary: Run a Splunk search and post the first result to Slack
+  description: Creates a Splunk search job, reads its results, and posts the first result's raw event to a Slack channel. Recreated from the Splunk-Slack Zapier edge linked in x-integration.
+  version: 1.0.0
+sourceDescriptions:
+- name: splunkSearch
+  url: https://raw.githubusercontent.com/api-evangelist/splunk/refs/heads/main/openapi/splunk-search-api-openapi.yml
+  type: openapi
+- name: slackChat
+  url: https://raw.githubusercontent.com/api-evangelist/slack/refs/heads/main/openapi/slack-chat-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: splunk-search-to-slack
+  summary: Post Splunk search results to Slack
+  description: Runs an SPL search, fetches results, and posts them to Slack.
+  inputs:
+    type: object
+    properties:
+      search:
+        type: string
+        description: SPL search query
+      slackToken:
+        type: string
+      channel:
+        type: string
+  steps:
+  - stepId: create-search
+    description: Create the Splunk search job.
+    operationId: $sourceDescriptions.splunkSearch.createSearchJob
+    requestBody:
+      contentType: application/x-www-form-urlencoded
+      payload:
+        search: $inputs.search
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      sid: $response.body#/sid
+  - stepId: get-results
+    description: Read the search job results.
+    operationId: $sourceDescriptions.splunkSearch.getSearchResults
+    parameters:
+    - name: search_id
+      in: path
+      value: $steps.create-search.outputs.sid
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      firstRaw: $response.body#/results/0/_raw
+  - stepId: post-to-slack
+    description: Post the first result to Slack.
+    operationId: $sourceDescriptions.slackChat.postChatPostmessage
+    parameters:
+    - name: token
+      in: header
+      value: $inputs.slackToken
+    requestBody:
+      contentType: application/x-www-form-urlencoded
+      payload:
+        channel: $inputs.channel
+        text: $steps.get-results.outputs.firstRaw
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      ts: $response.body#/ts
+  outputs:
+    sid: $steps.create-search.outputs.sid
+    messageTs: $steps.post-to-slack.outputs.ts
+x-integration:
+  partner: slack
+  edge_evidence: https://zapier.com/apps/splunk/integrations/slack
+  edge_type: marketplace
+  method: generated
+  generated: '2026-10-13'
+  generator: claude-opus-5.5 market-workflows
+  guessed_steps:
+  - step: get-results
+    cause: provider-contract
+    why: the job may still be running when results are read (spec offers 204 for not-ready); the /results/0/_raw path assumes the SearchResults schema shape and a completed job

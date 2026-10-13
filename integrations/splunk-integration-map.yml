@@ -1,0 +1,58 @@
+# DERIVED by derive-integration-map.py (roadmap#949): each integration workflow, step by step,
+# resolved to spec file -> tag -> business capability (Turbo EA, CC BY 4.0) and the operation's
+# phrasing intent. Read from our own files; an unmapped link says why.
+slug: splunk
+workflows:
+- file: splunk-slack-search-results-to-channel.yml
+  title: Splunk Slack search results to channel
+  partner: slack
+  template: null
+  repos:
+  - splunk
+  - slack
+  steps:
+  - step: create-search
+    repo: splunk
+    spec_file: splunk-search-api-openapi.yml
+    operationId: createSearchJob
+    tag: Search
+    capability_id: BC-4220.20
+    capability: Observability Management
+    capability_l1: BC-4220
+    intent: null
+    effect: null
+    unmapped: null
+  - step: get-results
+    repo: splunk
+    spec_file: splunk-search-api-openapi.yml
+    operationId: getSearchResults
+    tag: Search
+    capability_id: BC-4220.20
+    capability: Observability Management
+    capability_l1: BC-4220
+    intent: null
+    effect: null
+    unmapped: null
+  - step: post-to-slack
+    repo: slack
+    spec_file: slack-chat-api-openapi.yml
+    operationId: postChatPostmessage
+    tag: Chat
+    capability_id: null
+    capability: null
+    capability_l1: null
+    intent: Send a message to a channel
+    effect: write
+    unmapped: no capability edge for this spec file
+  connects:
+    splunk:
+      capabilities:
+      - BC-4220.20
+      tags:
+      - Search
+    slack:
+      capabilities: []
+      tags:
+      - Chat
+  intents:
+  - Send a message to a channel

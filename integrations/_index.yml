@@ -13,8 +13,8 @@
   channel: ipaas-usage
   evidence: https://zapier.com/apps/splunk/integrations/slack
   source: edge
-  status: pending-generation
-  arazzo: null
+  arazzo: splunk-slack-search-results-to-channel.yml
+  status: arazzo
 - slug: splunk-salesforce
   label: Salesforce
   partner: salesforce
