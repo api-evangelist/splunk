@@ -1949,7 +1949,7 @@ edges:
   detected: '2026-10-13'
 - partner_name: Axiom for Splunk
   app: Axiom for Splunk
-  partner: axiom
+  partner: axiom-co
   partner_match: domain+name-among-holders
   partner_candidate: null
   type: marketplace

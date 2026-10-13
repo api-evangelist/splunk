@@ -1427,7 +1427,7 @@
   arazzo: null
 - slug: splunk-axiom-for-splunk
   label: Axiom for Splunk
-  partner: axiom
+  partner: axiom-co
   partner_name: Axiom for Splunk
   category: app
   type: marketplace
