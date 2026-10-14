@@ -7,6 +7,7 @@ checked:
 - https://composio.dev/toolkits/splunk
 - https://github.com/open-telemetry/opentelemetry.io/blob/main/data/ecosystem/vendors.yaml
 - https://github.com/open-telemetry/opentelemetry.io/blob/main/data/registry/
+- https://marketplace.visualstudio.com/vscode
 - https://monid.ai/tools/splunk
 - https://n8n.io/integrations/splunk/
 - https://splunkbase.splunk.com/
@@ -28107,4 +28108,22 @@ edges:
   partner_domain: null
   detected_by: sweep-observability.py
   detected: '2026-10-13'
+- partner_name: Visual Studio Code Marketplace
+  partner: vs-code-marketplace
+  partner_match: aggregator
+  type: marketplace
+  marketplace: vscode
+  channel: partner-built
+  relationship: platform-app
+  direction: third-party
+  evidence: https://marketplace.visualstudio.com/publishers/Splunk
+  listing_count: 1
+  apps:
+  - Splunk Extension
+  publisher_name: Splunk
+  badges:
+  - Verified publisher
+  - Verified domain
+  detected_by: sweep-devtools.py
+  detected: '2026-10-14'
 templates: []
