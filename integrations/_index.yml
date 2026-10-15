@@ -22124,7 +22124,7 @@
     app_slug: splunk
     beta: false
     builder: unknown (not in the directory record)
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
 - slug: splunk-n8n
   label: n8n
@@ -22151,7 +22151,7 @@
     builder: n8n (built-in node)
     other_nodes:
     - Splunk/v1
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
 - slug: splunk-pipedream
   label: Pipedream
@@ -22177,7 +22177,7 @@
     actions: true
     sources: true
     builder: Pipedream repo (component)
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
 - slug: splunk-fedramp
   label: FedRAMP
