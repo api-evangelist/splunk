@@ -22244,7 +22244,7 @@
     - connectors/applications/splunk
     vendor_link: https://www.splunk.com/en_us/software.html
     builder: Fivetran
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
 - slug: splunk-slack-own
   label: Slack (own)
