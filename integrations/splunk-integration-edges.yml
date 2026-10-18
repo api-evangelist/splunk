@@ -24,6 +24,7 @@ checked:
 - https://www.applytosupply.digitalmarketplace.service.gov.uk/g-cloud-15/suppliers
 - https://zapier.com/api/v4/apps/
 - https://zapier.com/apps/splunk/integrations
+- slack/integrations/slack-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -28333,4 +28334,21 @@ edges:
     builder: Fivetran
   detected_by: sweep-data-integration.py
   first_seen: '2026-10-18'
+- partner_name: Slack (own)
+  partner: slack
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://slack.com/marketplace/A1K9VAUA1-victorops
+  mirror_of: slack/integrations/slack-integration-edges.yml
+  apps:
+  - VictorOps
+  listing_count: 1
+  detected: '2026-10-18'
+  detected_by: mirror-platform-listings.py
+  category: Slack app
 templates: []

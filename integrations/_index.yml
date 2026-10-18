@@ -22220,3 +22220,42 @@
       latest_authorization: '2022-08-17'
   status: not-a-workflow
   arazzo: null
+- slug: splunk-fivetran
+  label: Fivetran
+  partner: fivetran
+  partner_name: Fivetran
+  type: marketplace
+  marketplace: fivetran-connectors
+  channel: elt-connector
+  evidence: https://fivetran.com/docs/connectors/applications/splunk
+  source: edge
+  relationship: ipaas-bridge
+  contract_reference:
+    register: Fivetran connectors (fivetran.com/docs/connectors, docs-sitemap.xml + Partner-Built program)
+    spec_file: null
+    role: elt-connector:fivetran
+    registered_name: Splunk
+    matched_domain: splunk.com
+    matched_by: domain+name-among-holders
+    detected_by: sweep-data-integration.py
+    detected: '2026-10-18'
+    signal_note: one edge per (provider, platform); connectors, streams, packages and usage are context, never read
+    connector_paths:
+    - connectors/applications/splunk
+    vendor_link: https://www.splunk.com/en_us/software.html
+    builder: Fivetran
+  status: pending-generation
+  arazzo: null
+- slug: splunk-slack-own
+  label: Slack (own)
+  partner: slack
+  partner_name: Slack (own)
+  category: Slack app
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://slack.com/marketplace/A1K9VAUA1-victorops
+  source: edge
+  relationship: platform-app
+  arazzo: splunk-slack-search-results-to-channel.yml
+  status: arazzo
