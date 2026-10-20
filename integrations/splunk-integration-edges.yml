@@ -10,9 +10,11 @@ checked:
 - https://fivetran.com/docs/connectors/partner-built-program
 - https://focus.finops.org/data-generators/
 - https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/
+- https://github.com/PipedreamHQ/pipedream/tree/d5872355ef27b4efa769f05352f2820c299a456e/components/
 - https://github.com/cncf/k8s-conformance
 - https://github.com/cncf/landscape
 - https://github.com/n8n-io/n8n/tree/860f1273ebd73fabbd668cbec2c49ed9b48a286d/packages/nodes-base/nodes/
+- https://github.com/n8n-io/n8n/tree/f73dc337f8dc61a4fd44aebe41c55faafe4f53a4/packages/nodes-base/nodes/
 - https://github.com/open-telemetry/opentelemetry.io/blob/main/data/ecosystem/vendors.yaml
 - https://github.com/open-telemetry/opentelemetry.io/blob/main/data/registry/
 - https://govramp.org/program-participants
@@ -203,9 +205,9 @@ marketplace_apps:
   channel: partner-built
   app: splunk
   url: https://splunkbase.splunk.com/
-  app_count: 1854
+  app_count: 1863
   adapter: sweep-observability.py:splunkbase-api
-  listed: 1854
+  listed: 1863
 edges:
 - partner_name: Slack
   partner: slack
@@ -262,6 +264,124 @@ edges:
   direction: third-party
   category: Developer Tools
   partner_url: https://www.servicenow.com/
+- partner_name: Visual Studio Code Marketplace
+  partner: vs-code-marketplace
+  partner_match: aggregator
+  type: marketplace
+  marketplace: vscode
+  channel: partner-built
+  relationship: platform-app
+  direction: third-party
+  evidence: https://marketplace.visualstudio.com/publishers/Splunk
+  listing_count: 1
+  apps:
+  - Splunk Extension
+  publisher_name: Splunk
+  badges:
+  - Verified publisher
+  - Verified domain
+  detected_by: sweep-devtools.py
+  detected: '2026-10-14'
+- partner_name: CrowdStrike (own)
+  partner: crowdstrike
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://marketplace.crowdstrike.com/listings/splunk/
+  mirror_of: crowdstrike/integrations/crowdstrike-integration-edges.yml
+  apps:
+  - Splunk Log Ingestion & Management
+  listing_count: 1
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+- partner_name: Slack (own)
+  partner: slack
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://slack.com/marketplace/A1K9VAUA1-victorops
+  mirror_of: slack/integrations/slack-integration-edges.yml
+  apps:
+  - VictorOps
+  listing_count: 1
+  detected: '2026-10-18'
+  detected_by: mirror-platform-listings.py
+  category: Slack app
+- partner_name: Fivetran
+  partner: fivetran
+  partner_match: aggregator
+  type: marketplace
+  marketplace: fivetran-connectors
+  channel: elt-connector
+  relationship: ipaas-bridge
+  direction: third-party
+  evidence: https://fivetran.com/docs/connectors/applications/splunk
+  category: null
+  contract_reference:
+    register: Fivetran connectors (fivetran.com/docs/connectors, docs-sitemap.xml + Partner-Built program)
+    spec_file: null
+    role: elt-connector:fivetran
+    registered_name: Splunk
+    matched_domain: splunk.com
+    matched_by: domain+name-among-holders
+    detected_by: sweep-data-integration.py
+    detected: '2026-10-18'
+    signal_note: one edge per (provider, platform); connectors, streams, packages and usage are context, never read
+    connector_paths:
+    - connectors/applications/splunk
+    vendor_link: https://www.splunk.com/en_us/software.html
+    builder: Fivetran
+  detected_by: sweep-data-integration.py
+  first_seen: '2026-10-18'
+- partner_name: FedRAMP
+  partner: null
+  partner_match: register
+  type: contract
+  channel: regulator-register
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://marketplace.fedramp.gov/products/F1607197917
+  category: FedRAMP authorization
+  contract_reference:
+    register: FedRAMP Marketplace data (github.com/18F/fedramp-data data/data.json @4b73d9247f)
+    standard: FedRAMP
+    spec_file: null
+    role: fedramp-authorized
+    registered_name: Splunk
+    register_id: F1607197917
+    matched_domain: splunk.com
+    matched_by: domain+name-among-holders
+    domain_source: website
+    designations:
+    - Compliant
+    - In Process
+    packages:
+    - Splunk Cloud Platform for FedRAMP High
+    - Splunk Cloud Platform for FedRAMP Moderate
+    service_models:
+    - SaaS
+    paths:
+    - Agency
+    signal_note: certified_products = one entry per AUTHORIZED impact level, never per package; packages, service
+      models, paths and leveraging agencies are context, never counted. The register lists current designations
+      only (revoked / expired are removed), so lapsed is always false
+    detected_by: sweep-gov-cloud.py
+    detected: '2026-10-15'
+    certified_products:
+    - product: FedRAMP Moderate
+      impact_level: Moderate
+      lapsed: false
+      latest_authorization: '2022-08-17'
+  detected_by: sweep-gov-cloud.py
+  first_seen: '2026-10-15'
 - partner_name: OpenTelemetry
   partner: null
   type: contract
@@ -294,23 +414,168 @@ edges:
     - distributions.yaml: Splunk Distribution of OpenTelemetry .NET
     - distributions.yaml: Splunk Distribution of OpenTelemetry Python
     - distributions.yaml: Splunk Distribution of OpenTelemetry Go
-    - registry: instrumentation-go-splunkbuntdb.yml
-    - registry: instrumentation-go-splunkchi.yml
-    - registry: instrumentation-go-splunkclient-go.yml
-    - registry: instrumentation-go-splunkdns.yml
-    - registry: instrumentation-go-splunkelastic.yml
     - registry: instrumentation-go-splunkgorm.yml
-    - registry: instrumentation-go-splunkgraphql.yml
     - registry: instrumentation-go-splunkhttp.yml
-    - registry: instrumentation-go-splunkhttprouter.yml
     - registry: instrumentation-go-splunkkafka.yml
-    - registry: instrumentation-go-splunkleveldb.yml
     - registry: instrumentation-go-splunkmysql.yml
     - registry: instrumentation-go-splunkpgx.yml
+    - registry: instrumentation-go-splunkpq.yml
+    - registry: instrumentation-go-splunksql.yml
+    - registry: instrumentation-go-splunksqlx.yml
     detected_by: sweep-observability.py
     detected: '2026-10-13'
   detected_by: sweep-observability.py
   detected: '2026-10-13'
+- partner_name: Service Tree Viz
+  app: Service Tree Viz
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://splunkbase.splunk.com/app/10028/
+  category: app
+  partner_domain: null
+  detected_by: sweep-observability.py
+  detected: '2026-10-19'
+- partner_name: BXTI Add-on for Method Security
+  app: BXTI Add-on for Method Security
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: null
+  relationship: platform-app
+  direction: unknown
+  evidence: https://splunkbase.splunk.com/app/10025/
+  category: app
+  partner_domain: null
+  detected_by: sweep-observability.py
+  detected: '2026-10-19'
+- partner_name: Search for AWS
+  app: Search for AWS
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://splunkbase.splunk.com/app/10022/
+  category: app
+  partner_domain: null
+  detected_by: sweep-observability.py
+  detected: '2026-10-19'
+- partner_name: endoflife.ai EOL Risk
+  app: endoflife.ai EOL Risk
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://splunkbase.splunk.com/app/10020/
+  category: app
+  partner_domain: endoflife.ai
+  detected_by: sweep-observability.py
+  detected: '2026-10-19'
+- partner_name: Decision API Search Command
+  app: Decision API Search Command
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://splunkbase.splunk.com/app/10019/
+  category: addon
+  partner_domain: null
+  detected_by: sweep-observability.py
+  detected: '2026-10-19'
+- partner_name: LinkedIn Assistant
+  app: LinkedIn Assistant
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://splunkbase.splunk.com/app/10010/
+  category: app
+  partner_domain: null
+  detected_by: sweep-observability.py
+  detected: '2026-10-19'
+- partner_name: ROVIX Universal API Add-on for Splunk
+  app: ROVIX Universal API Add-on for Splunk
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://splunkbase.splunk.com/app/10004/
+  category: addon
+  partner_domain: rovixtechnologies.com
+  detected_by: sweep-observability.py
+  detected: '2026-10-19'
+- partner_name: Metrics Explorer
+  app: Metrics Explorer
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://splunkbase.splunk.com/app/9996/
+  category: app
+  partner_domain: outcoldsolutions.com
+  detected_by: sweep-observability.py
+  detected: '2026-10-19'
+- partner_name: Phosphorus Add-on for Splunk
+  app: Phosphorus Add-on for Splunk
+  partner: null
+  partner_match: null
+  partner_candidate: dragos
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://splunkbase.splunk.com/app/9985/
+  category: addon
+  partner_domain: dragos.com
+  detected_by: sweep-observability.py
+  detected: '2026-10-19'
+- partner_name: Machine Data Lake Monitoring
+  app: Machine Data Lake Monitoring
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: null
+  relationship: platform-app
+  direction: unknown
+  evidence: https://splunkbase.splunk.com/app/9984/
+  category: app
+  partner_domain: null
+  detected_by: sweep-observability.py
+  detected: '2026-10-19'
 - partner_name: Neotelix
   app: Neotelix
   partner: null
@@ -401,6 +666,21 @@ edges:
   partner_domain: sarp.io
   detected_by: sweep-observability.py
   detected: '2026-10-13'
+- partner_name: Hexnode UEM Add-on for Splunk
+  app: Hexnode UEM Add-on for Splunk
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://splunkbase.splunk.com/app/9951/
+  category: addon
+  partner_domain: hexnode.com
+  detected_by: sweep-observability.py
+  detected: '2026-10-19'
 - partner_name: EasySMF for RACF
   app: EasySMF for RACF
   partner: null
@@ -1001,8 +1281,8 @@ edges:
   partner_domain: null
   detected_by: sweep-observability.py
   detected: '2026-10-13'
-- partner_name: Polyswarm App
-  app: Polyswarm App
+- partner_name: PolySwarm Malware Threat Intelligence App
+  app: PolySwarm Malware Threat Intelligence App
   partner: null
   partner_match: null
   partner_candidate: null
@@ -1015,7 +1295,7 @@ edges:
   category: app
   partner_domain: polyswarm.io
   detected_by: sweep-observability.py
-  detected: '2026-10-13'
+  detected: '2026-10-19'
 - partner_name: SearchBak Prism
   app: SearchBak Prism
   partner: null
@@ -1963,9 +2243,9 @@ edges:
   detected: '2026-10-13'
 - partner_name: Axiom for Splunk
   app: Axiom for Splunk
-  partner: axiom-co
-  partner_match: domain+name-among-holders
-  partner_candidate: null
+  partner: null
+  partner_match: null
+  partner_candidate: axiom-co
   type: marketplace
   marketplace: own
   channel: partner-built
@@ -1975,7 +2255,7 @@ edges:
   category: app
   partner_domain: axiom.co
   detected_by: sweep-observability.py
-  detected: '2026-10-13'
+  detected: '2026-10-19'
 - partner_name: Ableversity 4 Splunk Training
   app: Ableversity 4 Splunk Training
   partner: null
@@ -5201,6 +5481,21 @@ edges:
   partner_domain: null
   detected_by: sweep-observability.py
   detected: '2026-10-13'
+- partner_name: Add-on for TOPdesk
+  app: Add-on for TOPdesk
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://splunkbase.splunk.com/app/8411/
+  category: addon
+  partner_domain: null
+  detected_by: sweep-observability.py
+  detected: '2026-10-19'
 - partner_name: Native Embedder
   app: Native Embedder
   partner: null
@@ -11111,21 +11406,6 @@ edges:
   partner_domain: null
   detected_by: sweep-observability.py
   detected: '2026-10-13'
-- partner_name: RT Connect
-  app: RT Connect
-  partner: null
-  partner_match: null
-  partner_candidate: null
-  type: marketplace
-  marketplace: own
-  channel: null
-  relationship: platform-app
-  direction: unknown
-  evidence: https://splunkbase.splunk.com/app/7376/
-  category: app
-  partner_domain: null
-  detected_by: sweep-observability.py
-  detected: '2026-10-13'
 - partner_name: Atlas ITSI Content Pack for Pfsense
   app: Atlas ITSI Content Pack for Pfsense
   partner: null
@@ -11513,21 +11793,6 @@ edges:
   direction: partner-built
   evidence: https://splunkbase.splunk.com/app/7314/
   category: addon
-  partner_domain: null
-  detected_by: sweep-observability.py
-  detected: '2026-10-13'
-- partner_name: AdGuardHome Dashboard
-  app: AdGuardHome Dashboard
-  partner: null
-  partner_match: null
-  partner_candidate: null
-  type: marketplace
-  marketplace: own
-  channel: null
-  relationship: platform-app
-  direction: unknown
-  evidence: https://splunkbase.splunk.com/app/7313/
-  category: app
   partner_domain: null
   detected_by: sweep-observability.py
   detected: '2026-10-13'
@@ -17291,21 +17556,6 @@ edges:
   partner_domain: null
   detected_by: sweep-observability.py
   detected: '2026-10-13'
-- partner_name: CCX Microsoft Windows Extensions (Defender for Endpoint and Sysmon)
-  app: CCX Microsoft Windows Extensions (Defender for Endpoint and Sysmon)
-  partner: null
-  partner_match: null
-  partner_candidate: null
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  relationship: platform-app
-  direction: partner-built
-  evidence: https://splunkbase.splunk.com/app/6313/
-  category: addon
-  partner_domain: null
-  detected_by: sweep-observability.py
-  detected: '2026-10-13'
 - partner_name: Splunk App for AWS Security Dashboards
   app: Splunk App for AWS Security Dashboards
   partner: null
@@ -18971,6 +19221,21 @@ edges:
   partner_domain: null
   detected_by: sweep-observability.py
   detected: '2026-10-13'
+- partner_name: Network Topology Dashboard
+  app: Network Topology Dashboard
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: own
+  channel: null
+  relationship: platform-app
+  direction: unknown
+  evidence: https://splunkbase.splunk.com/app/5612/
+  category: app
+  partner_domain: null
+  detected_by: sweep-observability.py
+  detected: '2026-10-19'
 - partner_name: Google Chrome Add-on for Splunk
   app: Google Chrome Add-on for Splunk
   partner: null
@@ -25646,21 +25911,6 @@ edges:
   partner_domain: null
   detected_by: sweep-observability.py
   detected: '2026-10-13'
-- partner_name: Network Toolkit
-  app: Network Toolkit
-  partner: null
-  partner_match: null
-  partner_candidate: null
-  type: marketplace
-  marketplace: own
-  channel: null
-  relationship: platform-app
-  direction: unknown
-  evidence: https://splunkbase.splunk.com/app/3491/
-  category: app
-  partner_domain: null
-  detected_by: sweep-observability.py
-  detected: '2026-10-13'
 - partner_name: Cisco Splunk Add-on for AppDynamics
   app: Cisco Splunk Add-on for AppDynamics
   partner: null
@@ -28121,51 +28371,17 @@ edges:
   partner_domain: null
   detected_by: sweep-observability.py
   detected: '2026-10-13'
-- partner_name: Visual Studio Code Marketplace
-  partner: vs-code-marketplace
-  partner_match: aggregator
-  type: marketplace
-  marketplace: vscode
-  channel: partner-built
-  relationship: platform-app
-  direction: third-party
-  evidence: https://marketplace.visualstudio.com/publishers/Splunk
-  listing_count: 1
-  apps:
-  - Splunk Extension
-  publisher_name: Splunk
-  badges:
-  - Verified publisher
-  - Verified domain
-  detected_by: sweep-devtools.py
-  detected: '2026-10-14'
-- partner_name: CrowdStrike (own)
-  partner: crowdstrike
-  partner_match: mirror
-  mirror_match: domain+name-among-holders
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://marketplace.crowdstrike.com/listings/splunk/
-  mirror_of: crowdstrike/integrations/crowdstrike-integration-edges.yml
-  apps:
-  - Splunk Log Ingestion & Management
-  listing_count: 1
-  detected: '2026-10-14'
-  detected_by: mirror-platform-listings.py
 - partner_name: CNCF (Cloud Native Landscape)
   partner: cncf
   partner_match: register
   type: register
   direction: partner-built
   category: Cloud native landscape
-  evidence: https://github.com/cncf/landscape/blob/3a7d378b1824b82e729a453bb03fa6f1e37557e1/landscape.yml
+  evidence: https://github.com/cncf/landscape/blob/42dd4cd91dad8ec8558ac02467a43f0805b9957a/landscape.yml
   channel: standard-directory
   relationship: standard-participant
   contract_reference:
-    register: CNCF Cloud Native Landscape (github.com/cncf/landscape landscape.yml @3a7d378b18)
+    register: CNCF Cloud Native Landscape (github.com/cncf/landscape landscape.yml @42dd4cd91d)
     spec_file: null
     standard: Cloud Native (CNCF)
     role: landscape-listed
@@ -28186,7 +28402,7 @@ edges:
     signal_note: 'participation only: a landscape listing is standard-participant evidence, not depth. Entries,
       categories, tier and projects are CONTEXT, never read (breadth is not credit)'
     detected_by: sweep-cloud-native.py
-    detected: '2026-10-15'
+    detected: '2026-10-19'
   detected_by: sweep-cloud-native.py
   first_seen: '2026-10-15'
 - partner_name: Zapier
@@ -28222,7 +28438,7 @@ edges:
   channel: open-source-node
   relationship: ipaas-bridge
   direction: third-party
-  evidence: https://github.com/n8n-io/n8n/tree/860f1273ebd73fabbd668cbec2c49ed9b48a286d/packages/nodes-base/nodes/Splunk
+  evidence: https://github.com/n8n-io/n8n/tree/f73dc337f8dc61a4fd44aebe41c55faafe4f53a4/packages/nodes-base/nodes/Splunk
   category: null
   contract_reference:
     register: n8n built-in nodes (n8n-io/n8n packages/nodes-base)
@@ -28249,7 +28465,7 @@ edges:
   channel: open-source-node
   relationship: ipaas-bridge
   direction: third-party
-  evidence: https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/splunk
+  evidence: https://github.com/PipedreamHQ/pipedream/tree/d5872355ef27b4efa769f05352f2820c299a456e/components/splunk
   category: null
   contract_reference:
     register: Pipedream components (PipedreamHQ/pipedream components/)
@@ -28267,88 +28483,4 @@ edges:
     builder: Pipedream repo (component)
   detected_by: sweep-workflow-automation.py
   first_seen: '2026-10-15'
-- partner_name: FedRAMP
-  partner: null
-  partner_match: register
-  type: contract
-  channel: regulator-register
-  relationship: standard-participant
-  direction: partner-built
-  evidence: https://marketplace.fedramp.gov/products/F1607197917
-  category: FedRAMP authorization
-  contract_reference:
-    register: FedRAMP Marketplace data (github.com/18F/fedramp-data data/data.json @4b73d9247f)
-    standard: FedRAMP
-    spec_file: null
-    role: fedramp-authorized
-    registered_name: Splunk
-    register_id: F1607197917
-    matched_domain: splunk.com
-    matched_by: domain+name-among-holders
-    domain_source: website
-    designations:
-    - Compliant
-    - In Process
-    packages:
-    - Splunk Cloud Platform for FedRAMP High
-    - Splunk Cloud Platform for FedRAMP Moderate
-    service_models:
-    - SaaS
-    paths:
-    - Agency
-    signal_note: certified_products = one entry per AUTHORIZED impact level, never per package; packages, service
-      models, paths and leveraging agencies are context, never counted. The register lists current designations
-      only (revoked / expired are removed), so lapsed is always false
-    detected_by: sweep-gov-cloud.py
-    detected: '2026-10-15'
-    certified_products:
-    - product: FedRAMP Moderate
-      impact_level: Moderate
-      lapsed: false
-      latest_authorization: '2022-08-17'
-  detected_by: sweep-gov-cloud.py
-  first_seen: '2026-10-15'
-- partner_name: Fivetran
-  partner: fivetran
-  partner_match: aggregator
-  type: marketplace
-  marketplace: fivetran-connectors
-  channel: elt-connector
-  relationship: ipaas-bridge
-  direction: third-party
-  evidence: https://fivetran.com/docs/connectors/applications/splunk
-  category: null
-  contract_reference:
-    register: Fivetran connectors (fivetran.com/docs/connectors, docs-sitemap.xml + Partner-Built program)
-    spec_file: null
-    role: elt-connector:fivetran
-    registered_name: Splunk
-    matched_domain: splunk.com
-    matched_by: domain+name-among-holders
-    detected_by: sweep-data-integration.py
-    detected: '2026-10-18'
-    signal_note: one edge per (provider, platform); connectors, streams, packages and usage are context, never read
-    connector_paths:
-    - connectors/applications/splunk
-    vendor_link: https://www.splunk.com/en_us/software.html
-    builder: Fivetran
-  detected_by: sweep-data-integration.py
-  first_seen: '2026-10-18'
-- partner_name: Slack (own)
-  partner: slack
-  partner_match: mirror
-  mirror_match: domain+name-among-holders
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://slack.com/marketplace/A1K9VAUA1-victorops
-  mirror_of: slack/integrations/slack-integration-edges.yml
-  apps:
-  - VictorOps
-  listing_count: 1
-  detected: '2026-10-18'
-  detected_by: mirror-platform-listings.py
-  category: Slack app
 templates: []
