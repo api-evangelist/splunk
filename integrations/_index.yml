@@ -22584,3 +22584,39 @@
     identity_source: wikidata P856 (labelled provenance step; Kin 2026-10-15 decision 1)
   status: not-a-workflow
   arazzo: null
+- slug: splunk-ismap
+  label: ISMAP
+  partner_name: ISMAP
+  category: Japan government cloud security assessment (ISMAP)
+  type: contract
+  channel: regulator-register
+  evidence: https://www.ismap.go.jp/csm?id=cloud_service_list
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: ISMAP / ISMAP-LIU cloud service lists (www.ismap.go.jp)
+    standard: ISMAP
+    spec_file: null
+    role: ismap-registered
+    registrations:
+    - register_number: C24-0087-2
+      registration_type: ISMAP
+      service: Splunk Cloud Platform
+      registered_name: Splunk LLC
+      service_url: https://www.splunk.com/ja_jp/products/splunk-cloud-platform.html
+      matched_domain: splunk.com
+      matched_by: domain+name-among-holders
+      evidence_url: https://www.ismap.go.jp/csm?id=cloud_service_list
+      scope_of_statement: https://www.ismap.go.jp/sys_attachment.do?sys_id=3fe099c12b148710f0bbfd69fe91bfab
+    signal_note: certified_products = one entry per ISMAP registration TYPE (ISMAP, ISMAP-LIU), never per service;
+      services are context, never counted. The lists carry current registrations only (a filed renewal keeps a registration
+      valid), so lapsed is always false
+    certified_products:
+    - product: ISMAP
+      standard: ISMAP
+      registration_type: ISMAP
+      lapsed: false
+    detected_by: sweep-japan-ismap-tisax-assessments.py
+    detected: '2026-10-22'
+  status: not-a-workflow
+  arazzo: null
