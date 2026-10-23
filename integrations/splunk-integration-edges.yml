@@ -57,6 +57,8 @@ checked:
 - https://csrc.nist.gov/projects/cryptographic-module-validation-program/modules-in-process/modules-in-process-list
 - https://csrc.nist.gov/projects/cryptographic-module-validation-program/validated-modules/search/all
 - https://csrc.nist.gov/projects/cryptographic-module-validation-program/validated-modules/search?SearchMode=Advanced&Standard=140-2&CertificateStatus=Historical&ValidationYear=0
+- jenkins/integrations/jenkins-integration-edges.yml
+- https://dir.texas.gov/resource-library-item/tx-ramp-certified-cloud-products
 summary: null
 marketplace_apps:
 - marketplace: own
@@ -180,9 +182,9 @@ edges:
     - SaaS
     paths:
     - Agency
-    signal_note: certified_products = one entry per AUTHORIZED impact level, never per package; packages, service
-      models, paths and leveraging agencies are context, never counted. The register lists current designations
-      only (revoked / expired are removed), so lapsed is always false
+    signal_note: certified_products = one entry per AUTHORIZED impact level, never per package; packages, service models,
+      paths and leveraging agencies are context, never counted. The register lists current designations only (revoked / expired
+      are removed), so lapsed is always false
     detected_by: sweep-gov-cloud.py
     detected: '2026-10-15'
     certified_products:
@@ -28209,8 +28211,8 @@ edges:
     landscape_categories:
     - Observability and Analysis / Observability
     landscape_entries: 2
-    signal_note: 'participation only: a landscape listing is standard-participant evidence, not depth. Entries,
-      categories, tier and projects are CONTEXT, never read (breadth is not credit)'
+    signal_note: 'participation only: a landscape listing is standard-participant evidence, not depth. Entries, categories,
+      tier and projects are CONTEXT, never read (breadth is not credit)'
     detected_by: sweep-cloud-native.py
     detected: '2026-10-19'
   detected_by: sweep-cloud-native.py
@@ -28320,9 +28322,9 @@ edges:
     - product: STAR Certification
       lapsed: false
       latest: '2025-04-22'
-    signal_note: STAR Level 1 (CAIQ self-assessment) = participation; certified_products = one entry per STAR Level
-      2 / STAR for AI Level 2 assessment TYPE (third-party certification, attestation, C-STAR, ValidAIted); lapsed
-      = every instance marked (Deprecated) by the registry; service counts never recorded
+    signal_note: STAR Level 1 (CAIQ self-assessment) = participation; certified_products = one entry per STAR Level 2 / STAR
+      for AI Level 2 assessment TYPE (third-party certification, attestation, C-STAR, ValidAIted); lapsed = every instance
+      marked (Deprecated) by the registry; service counts never recorded
     detected_by: sweep-compliance-assurance.py
     detected: '2026-10-20'
   detected_by: sweep-compliance-assurance.py
@@ -28423,12 +28425,254 @@ edges:
       publisher_leg: artifact-shared-github-org:splunk
       matched_by: domain+name-among-holders
     current: true
-    signal_note: 'the provider''s own command-line tool on a package manager: distribution, not an integration;
-      lapsed = no release in 24 months or deprecated / disabled by the manager'
+    signal_note: 'the provider''s own command-line tool on a package manager: distribution, not an integration; lapsed = no
+      release in 24 months or deprecated / disabled by the manager'
     detected_by: sweep-official-clis.py
     detected: '2026-10-20'
   detected_by: sweep-official-clis.py
   first_seen: '2026-10-20'
+- partner_name: Battery Ventures
+  partner: battery-ventures
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://www.battery.com/company/splunk/
+  category: vc portfolio participation
+  contract_reference:
+    register: Battery Ventures companies (battery.com/company/, the page's own admin-ajax list + company pages)
+    standard: null
+    spec_file: null
+    role: vc-portfolio-company
+    registered_name: Splunk
+    register_id: https://www.battery.com/company/splunk/
+    register_country: San Francisco, California
+    register_website: https://www.splunk.com/
+    matched_domain: splunk.com
+    matched_by: domain+name-among-holders
+    signal_note: 'participation only: the venture firm''s own published portfolio lists the company (investment); an ownership
+      and participation record, not conformance or certification'
+    detected_by: sweep-vc-portfolios.py
+    detected: '2026-10-21'
+    status: 'NASDAQ: SPLK'
+  detected_by: sweep-vc-portfolios.py
+  first_seen: '2026-10-21'
+- partner_name: Common Criteria Portal (CCRA certified products)
+  partner: null
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://www.commoncriteriaportal.org/products/
+  category: Common Criteria (ISO/IEC 15408) product certification
+  contract_reference:
+    register: Common Criteria Portal certified products + archived certificates (commoncriteriaportal.org/products/certified_products.csv,
+      certified_products-archived.csv)
+    standard: ISO/IEC 15408 Common Criteria for Information Technology Security Evaluation (CCRA)
+    spec_file: null
+    role: cc-certified-manufacturer
+    registered_name: Splunk, Inc.
+    matched_domain: splunk.com
+    matched_by: domain+name-among-holders
+    certified_products:
+    - product: Other Devices and Systems
+      product_type: Other Devices and Systems
+      standard: ISO/IEC 15408 Common Criteria for Information Technology Security Evaluation (CCRA)
+      lapsed: true
+      partner_tier: EAL2+,ALC_FLR.1
+      protection_profiles:
+      - PKG_TLS_V1.1
+      - PP_APP_V1.2
+      - PP_APP_V1.3
+      - PP_APP_V1.4
+      schemes:
+      - US
+    signal_note: 'certified_products = one entry per Common Criteria product CATEGORY held (highest EAL for that category
+      in partner_tier; a category held only among archived certificates is lapsed: true); certificate and product counts are
+      context, never counted'
+    detected_by: sweep-common-criteria-certified-products.py
+    detected: '2026-10-21'
+    identity: wikidata Q1835753 'Splunk Inc.' P856 http://www.splunk.com/
+    identity_source: wikidata P856 (labelled provenance step; Kin 2026-10-15 decision 1)
+  detected_by: sweep-common-criteria-certified-products.py
+  first_seen: '2026-10-21'
+- partner_name: NIAP Product Compliant List (US CCEVS)
+  partner: null
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://www.niap-ccevs.org/Product/PCL.cfm
+  category: NIAP Protection Profile conformance (US Common Criteria scheme)
+  contract_reference:
+    register: NIAP Product Compliant List (niap-ccevs.org/Product/PCL.cfm; public JSON /api/project/product/pcl_products_all/)
+    standard: NIAP-approved Protection Profiles under ISO/IEC 15408 Common Criteria for Information Technology Security Evaluation
+      (CCRA)
+    spec_file: null
+    role: niap-pcl-vendor
+    registered_name: Splunk LLC
+    matched_domain: splunk.com
+    matched_by: domain+name-among-holders
+    signal_note: 'certified_products = one entry per NIAP technology type with a Certified (current) or Archived (lapsed:
+      true) PCL product, Protection Profiles named; products In Progress are listing only (in_evaluation), never certified;
+      product counts are context, never counted'
+    detected_by: sweep-common-criteria-certified-products.py
+    detected: '2026-10-21'
+    certified_products:
+    - product: Application Software
+      product_type: Application Software
+      lapsed: true
+      standard: NIAP-approved Protection Profiles under ISO/IEC 15408 Common Criteria for Information Technology Security
+        Evaluation (CCRA)
+      protection_profiles:
+      - PKG_TLS_V1.1
+      - PP_APP_v1.2
+      - PP_APP_v1.3
+      - PP_APP_v1.4
+    - product: Enterprise Security Management
+      product_type: Enterprise Security Management
+      lapsed: true
+      standard: NIAP-approved Protection Profiles under ISO/IEC 15408 Common Criteria for Information Technology Security
+        Evaluation (CCRA)
+      protection_profiles:
+      - none
+    in_evaluation:
+    - Application Software
+    identity: wikidata Q1835753 'Splunk Inc.' P856 http://www.splunk.com/
+    identity_source: wikidata P856 (labelled provenance step; Kin 2026-10-15 decision 1)
+  detected_by: sweep-common-criteria-certified-products.py
+  first_seen: '2026-10-21'
+- partner_name: ISMAP
+  partner: null
+  partner_match: register
+  type: contract
+  channel: regulator-register
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://www.ismap.go.jp/csm?id=cloud_service_list
+  category: Japan government cloud security assessment (ISMAP)
+  contract_reference:
+    register: ISMAP / ISMAP-LIU cloud service lists (www.ismap.go.jp)
+    standard: ISMAP
+    spec_file: null
+    role: ismap-registered
+    registrations:
+    - register_number: C24-0087-2
+      registration_type: ISMAP
+      service: Splunk Cloud Platform
+      registered_name: Splunk LLC
+      service_url: https://www.splunk.com/ja_jp/products/splunk-cloud-platform.html
+      matched_domain: splunk.com
+      matched_by: domain+name-among-holders
+      evidence_url: https://www.ismap.go.jp/csm?id=cloud_service_list
+      scope_of_statement: https://www.ismap.go.jp/sys_attachment.do?sys_id=3fe099c12b148710f0bbfd69fe91bfab
+    signal_note: certified_products = one entry per ISMAP registration TYPE (ISMAP, ISMAP-LIU), never per service; services
+      are context, never counted. The lists carry current registrations only (a filed renewal keeps a registration valid),
+      so lapsed is always false
+    certified_products:
+    - product: ISMAP
+      standard: ISMAP
+      registration_type: ISMAP
+      lapsed: false
+    detected_by: sweep-japan-ismap-tisax-assessments.py
+    detected: '2026-10-22'
+  detected_by: sweep-japan-ismap-tisax-assessments.py
+  first_seen: '2026-10-22'
+- partner_name: Red Hat Ecosystem Catalog (certified partners)
+  partner: red-hat
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://catalog.redhat.com/software/containers/search?p=1&vendor_name=Splunk
+  category: Red Hat OpenShift / RHEL software certification
+  contract_reference:
+    register: 'Red Hat Ecosystem Catalog (catalog.redhat.com/api/containers/v1: repositories, vendors, certified operator
+      bundles)'
+    standard: Red Hat Container Certification (Red Hat Ecosystem Catalog, registry.connect.redhat.com)
+    spec_file: null
+    role: red-hat-certified-partner
+    registered_name: Splunk
+    register_id: splunk
+    matched_domain: splunk.com
+    matched_by: domain+name-among-holders
+    identity_source: the register's own company_url for the vendor (no lookup)
+    certified_products:
+    - product: Red Hat certified container image
+      product_type: container-image
+      standard: Red Hat Container Certification (Red Hat Ecosystem Catalog, registry.connect.redhat.com)
+      lapsed: false
+      repositories_listed: 6
+      products_sample:
+      - layers/splunk/splunk/7.3-redhat/images/sha256-55050c2097d994abc0e6d1c9f7fd0f0c2fb5f4019a9b1e094ffdf33a70a
+      - splunk/sck101
+      - splunk/splunk
+      - splunk/splunk-operator
+      - splunk/splunk-operator-bundle
+    - product: Red Hat certified OpenShift operator
+      product_type: openshift-operator
+      standard: Red Hat OpenShift Operator Certification (certified-operator-index)
+      lapsed: true
+      operator_packages: 2
+      products_sample:
+      - splunk-certified
+      - splunk-operator
+      ocp_versions:
+      - '4.20'
+      - '4.21'
+      - '4.22'
+    signal_note: 'certified_products = one entry per certified product TYPE (container image, OpenShift operator), standard
+      named on each; lapsed: true when no certified item of that type is current (containers: all Deprecated / past EOL /
+      unpublished; operators: absent from the three newest certified-operator indexes); repository and package counts are
+      context, never counted'
+    detected_by: sweep-red-hat-certified-ecosystem.py
+    detected: '2026-10-22'
+  detected_by: sweep-red-hat-certified-ecosystem.py
+  first_seen: '2026-10-22'
+- partner_name: NIST Cryptographic Module Validation Program (FIPS 140)
+  partner: null
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://csrc.nist.gov/projects/cryptographic-module-validation-program/validated-modules/search/all
+  category: FIPS 140 cryptographic module validation (NIST / CCCS CMVP)
+  contract_reference:
+    register: 'NIST CMVP validated cryptographic modules (csrc.nist.gov validated-modules search: active + historical) and
+      Modules In Process list'
+    standard: FIPS 140-2 / FIPS 140-3
+    spec_file: null
+    role: fips-140-validated-vendor
+    registered_name: Splunk LLC
+    matched_domain: splunk.com
+    matched_by: domain+name-among-holders
+    signal_note: 'certified_products = one entry per (FIPS 140 edition, CMVP module type) held; a pair whose certificates
+      are all on the historical list is lapsed: true; Modules In Process are listing only (in_process), never certified; certificate
+      and module counts are context, never counted'
+    detected_by: sweep-nist-cmvp-fips-140-modules.py
+    detected: '2026-10-22'
+    certified_products:
+    - product: FIPS 140-2 Software cryptographic module
+      product_type: Software
+      standard: FIPS 140-2
+      status: Historical
+      lapsed: true
+      validated: '2026-06-04'
+    - product: FIPS 140-3 Software cryptographic module
+      product_type: Software
+      standard: FIPS 140-3
+      status: Active
+      lapsed: false
+      validated: '2026-07-28'
+    vendor_country: USA
+    identity_source: register website (CMVP certificate Vendor panel)
+  detected_by: sweep-nist-cmvp-fips-140-modules.py
+  first_seen: '2026-10-22'
 - partner_name: CrowdStrike (own)
   partner: crowdstrike
   partner_match: mirror
@@ -28505,246 +28749,23 @@ edges:
   category: infrastructure-as-code provider registry listing
   badges:
   - Verified publisher (Terraform partner tier)
-- partner_name: Battery Ventures
-  partner: battery-ventures
-  partner_match: register
-  type: register
-  channel: standard-directory
-  relationship: standard-participant
-  direction: partner-built
-  evidence: https://www.battery.com/company/splunk/
-  category: vc portfolio participation
-  contract_reference:
-    register: Battery Ventures companies (battery.com/company/, the page's own admin-ajax list + company pages)
-    standard: null
-    spec_file: null
-    role: vc-portfolio-company
-    registered_name: Splunk
-    register_id: https://www.battery.com/company/splunk/
-    register_country: San Francisco, California
-    register_website: https://www.splunk.com/
-    matched_domain: splunk.com
-    matched_by: domain+name-among-holders
-    signal_note: 'participation only: the venture firm''s own published portfolio lists the company (investment);
-      an ownership and participation record, not conformance or certification'
-    detected_by: sweep-vc-portfolios.py
-    detected: '2026-10-21'
-    status: 'NASDAQ: SPLK'
-  detected_by: sweep-vc-portfolios.py
-  first_seen: '2026-10-21'
-- partner_name: Common Criteria Portal (CCRA certified products)
-  partner: null
-  partner_match: register
-  type: register
-  channel: standard-directory
-  relationship: standard-participant
-  direction: partner-built
-  evidence: https://www.commoncriteriaportal.org/products/
-  category: Common Criteria (ISO/IEC 15408) product certification
-  contract_reference:
-    register: Common Criteria Portal certified products + archived certificates (commoncriteriaportal.org/products/certified_products.csv,
-      certified_products-archived.csv)
-    standard: ISO/IEC 15408 Common Criteria for Information Technology Security Evaluation (CCRA)
-    spec_file: null
-    role: cc-certified-manufacturer
-    registered_name: Splunk, Inc.
-    matched_domain: splunk.com
-    matched_by: domain+name-among-holders
-    certified_products:
-    - product: Other Devices and Systems
-      product_type: Other Devices and Systems
-      standard: ISO/IEC 15408 Common Criteria for Information Technology Security Evaluation (CCRA)
-      lapsed: true
-      partner_tier: EAL2+,ALC_FLR.1
-      protection_profiles:
-      - PKG_TLS_V1.1
-      - PP_APP_V1.2
-      - PP_APP_V1.3
-      - PP_APP_V1.4
-      schemes:
-      - US
-    signal_note: 'certified_products = one entry per Common Criteria product CATEGORY held (highest EAL for that
-      category in partner_tier; a category held only among archived certificates is lapsed: true); certificate and
-      product counts are context, never counted'
-    detected_by: sweep-common-criteria-certified-products.py
-    detected: '2026-10-21'
-    identity: wikidata Q1835753 'Splunk Inc.' P856 http://www.splunk.com/
-    identity_source: wikidata P856 (labelled provenance step; Kin 2026-10-15 decision 1)
-  detected_by: sweep-common-criteria-certified-products.py
-  first_seen: '2026-10-21'
-- partner_name: NIAP Product Compliant List (US CCEVS)
-  partner: null
-  partner_match: register
-  type: register
-  channel: standard-directory
-  relationship: standard-participant
-  direction: partner-built
-  evidence: https://www.niap-ccevs.org/Product/PCL.cfm
-  category: NIAP Protection Profile conformance (US Common Criteria scheme)
-  contract_reference:
-    register: NIAP Product Compliant List (niap-ccevs.org/Product/PCL.cfm; public JSON /api/project/product/pcl_products_all/)
-    standard: NIAP-approved Protection Profiles under ISO/IEC 15408 Common Criteria for Information Technology Security
-      Evaluation (CCRA)
-    spec_file: null
-    role: niap-pcl-vendor
-    registered_name: Splunk LLC
-    matched_domain: splunk.com
-    matched_by: domain+name-among-holders
-    signal_note: 'certified_products = one entry per NIAP technology type with a Certified (current) or Archived
-      (lapsed: true) PCL product, Protection Profiles named; products In Progress are listing only (in_evaluation),
-      never certified; product counts are context, never counted'
-    detected_by: sweep-common-criteria-certified-products.py
-    detected: '2026-10-21'
-    certified_products:
-    - product: Application Software
-      product_type: Application Software
-      lapsed: true
-      standard: NIAP-approved Protection Profiles under ISO/IEC 15408 Common Criteria for Information Technology
-        Security Evaluation (CCRA)
-      protection_profiles:
-      - PKG_TLS_V1.1
-      - PP_APP_v1.2
-      - PP_APP_v1.3
-      - PP_APP_v1.4
-    - product: Enterprise Security Management
-      product_type: Enterprise Security Management
-      lapsed: true
-      standard: NIAP-approved Protection Profiles under ISO/IEC 15408 Common Criteria for Information Technology
-        Security Evaluation (CCRA)
-      protection_profiles:
-      - none
-    in_evaluation:
-    - Application Software
-    identity: wikidata Q1835753 'Splunk Inc.' P856 http://www.splunk.com/
-    identity_source: wikidata P856 (labelled provenance step; Kin 2026-10-15 decision 1)
-  detected_by: sweep-common-criteria-certified-products.py
-  first_seen: '2026-10-21'
-- partner_name: ISMAP
-  partner: null
-  partner_match: register
-  type: contract
-  channel: regulator-register
-  relationship: standard-participant
-  direction: partner-built
-  evidence: https://www.ismap.go.jp/csm?id=cloud_service_list
-  category: Japan government cloud security assessment (ISMAP)
-  contract_reference:
-    register: ISMAP / ISMAP-LIU cloud service lists (www.ismap.go.jp)
-    standard: ISMAP
-    spec_file: null
-    role: ismap-registered
-    registrations:
-    - register_number: C24-0087-2
-      registration_type: ISMAP
-      service: Splunk Cloud Platform
-      registered_name: Splunk LLC
-      service_url: https://www.splunk.com/ja_jp/products/splunk-cloud-platform.html
-      matched_domain: splunk.com
-      matched_by: domain+name-among-holders
-      evidence_url: https://www.ismap.go.jp/csm?id=cloud_service_list
-      scope_of_statement: https://www.ismap.go.jp/sys_attachment.do?sys_id=3fe099c12b148710f0bbfd69fe91bfab
-    signal_note: certified_products = one entry per ISMAP registration TYPE (ISMAP, ISMAP-LIU), never per service;
-      services are context, never counted. The lists carry current registrations only (a filed renewal keeps a registration
-      valid), so lapsed is always false
-    certified_products:
-    - product: ISMAP
-      standard: ISMAP
-      registration_type: ISMAP
-      lapsed: false
-    detected_by: sweep-japan-ismap-tisax-assessments.py
-    detected: '2026-10-22'
-  detected_by: sweep-japan-ismap-tisax-assessments.py
-  first_seen: '2026-10-22'
-- partner_name: Red Hat Ecosystem Catalog (certified partners)
-  partner: red-hat
-  partner_match: register
-  type: register
-  channel: standard-directory
-  relationship: standard-participant
-  direction: partner-built
-  evidence: https://catalog.redhat.com/software/containers/search?p=1&vendor_name=Splunk
-  category: Red Hat OpenShift / RHEL software certification
-  contract_reference:
-    register: 'Red Hat Ecosystem Catalog (catalog.redhat.com/api/containers/v1: repositories, vendors, certified
-      operator bundles)'
-    standard: Red Hat Container Certification (Red Hat Ecosystem Catalog, registry.connect.redhat.com)
-    spec_file: null
-    role: red-hat-certified-partner
-    registered_name: Splunk
-    register_id: splunk
-    matched_domain: splunk.com
-    matched_by: domain+name-among-holders
-    identity_source: the register's own company_url for the vendor (no lookup)
-    certified_products:
-    - product: Red Hat certified container image
-      product_type: container-image
-      standard: Red Hat Container Certification (Red Hat Ecosystem Catalog, registry.connect.redhat.com)
-      lapsed: false
-      repositories_listed: 6
-      products_sample:
-      - layers/splunk/splunk/7.3-redhat/images/sha256-55050c2097d994abc0e6d1c9f7fd0f0c2fb5f4019a9b1e094ffdf33a70a
-      - splunk/sck101
-      - splunk/splunk
-      - splunk/splunk-operator
-      - splunk/splunk-operator-bundle
-    - product: Red Hat certified OpenShift operator
-      product_type: openshift-operator
-      standard: Red Hat OpenShift Operator Certification (certified-operator-index)
-      lapsed: true
-      operator_packages: 2
-      products_sample:
-      - splunk-certified
-      - splunk-operator
-      ocp_versions:
-      - '4.20'
-      - '4.21'
-      - '4.22'
-    signal_note: 'certified_products = one entry per certified product TYPE (container image, OpenShift operator),
-      standard named on each; lapsed: true when no certified item of that type is current (containers: all Deprecated
-      / past EOL / unpublished; operators: absent from the three newest certified-operator indexes); repository
-      and package counts are context, never counted'
-    detected_by: sweep-red-hat-certified-ecosystem.py
-    detected: '2026-10-22'
-  detected_by: sweep-red-hat-certified-ecosystem.py
-  first_seen: '2026-10-22'
-- partner_name: NIST Cryptographic Module Validation Program (FIPS 140)
-  partner: null
-  partner_match: register
-  type: register
-  channel: standard-directory
-  relationship: standard-participant
-  direction: partner-built
-  evidence: https://csrc.nist.gov/projects/cryptographic-module-validation-program/validated-modules/search/all
-  category: FIPS 140 cryptographic module validation (NIST / CCCS CMVP)
-  contract_reference:
-    register: 'NIST CMVP validated cryptographic modules (csrc.nist.gov validated-modules search: active + historical)
-      and Modules In Process list'
-    standard: FIPS 140-2 / FIPS 140-3
-    spec_file: null
-    role: fips-140-validated-vendor
-    registered_name: Splunk LLC
-    matched_domain: splunk.com
-    matched_by: domain+name-among-holders
-    signal_note: 'certified_products = one entry per (FIPS 140 edition, CMVP module type) held; a pair whose certificates
-      are all on the historical list is lapsed: true; Modules In Process are listing only (in_process), never certified;
-      certificate and module counts are context, never counted'
-    detected_by: sweep-nist-cmvp-fips-140-modules.py
-    detected: '2026-10-22'
-    certified_products:
-    - product: FIPS 140-2 Software cryptographic module
-      product_type: Software
-      standard: FIPS 140-2
-      status: Historical
-      lapsed: true
-      validated: '2026-06-04'
-    - product: FIPS 140-3 Software cryptographic module
-      product_type: Software
-      standard: FIPS 140-3
-      status: Active
-      lapsed: false
-      validated: '2026-07-28'
-    vendor_country: USA
-    identity_source: register website (CMVP certificate Vendor panel)
-  detected_by: sweep-nist-cmvp-fips-140-modules.py
-  first_seen: '2026-10-22'
+- partner_name: Jenkins (own)
+  partner: jenkins
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://plugins.jenkins.io/splunk-devops/
+  mirror_of: jenkins/integrations/jenkins-integration-edges.yml
+  apps:
+  - Splunk
+  - Splunk (splunk-devops)
+  - Splunk Plugin Extension (splunk-devops-extend)
+  listing_count: 1
+  detected: '2026-10-22'
+  detected_by: mirror-platform-listings.py
+  category: Jenkins plugin
 templates: []
